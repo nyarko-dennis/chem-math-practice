@@ -1856,6 +1856,645 @@ export const nutritionQuestions: NutritionQuestion[] = [
     correctAnswer: true,
     rationale: 'WASH (Water, Sanitation, and Hygiene) practices are integrated into nutrition counselling because poor hygiene drives infections that worsen nutrition.',
   },
+
+  // ============================================================
+  // CLINICAL VIGNETTES (30) — case-based, slide-grounded
+  // ============================================================
+  // --- SAM vignettes (6) ---
+  {
+    id: 'sam-021',
+    topic: 'sam',
+    type: 'mcq',
+    prompt:
+      'A 2-year-old child presents with MUAC (Mid-Upper Arm Circumference) of 10.8 cm, bilateral pitting edema, and refuses to feed. The most appropriate initial action is:',
+    choices: [
+      'Begin F-100 therapeutic milk immediately',
+      'Admit for inpatient stabilization and start F-75',
+      'Discharge home with RUTF (Ready-to-Use Therapeutic Food)',
+      'Start aggressive IV (intravenous) fluid bolus',
+    ],
+    correctIndex: 1,
+    rationale:
+      'MUAC <11.5 cm with edema and a failed appetite test mandate inpatient care. Stabilization begins with F-75 (~75 kcal/100 mL), not F-100, to avoid refeeding syndrome.',
+  },
+  {
+    id: 'sam-022',
+    topic: 'sam',
+    type: 'mcq',
+    prompt:
+      'A child admitted with SAM (Severe Acute Malnutrition) is now medically stable, with restored appetite and resolving edema. The nurse should expect:',
+    choices: [
+      'Continue F-75 only',
+      'Transition to F-100 or RUTF (Ready-to-Use Therapeutic Food) gradually over 1–3 days',
+      'Discharge home today',
+      'Begin parenteral nutrition',
+    ],
+    correctIndex: 1,
+    rationale:
+      'The transition phase (1–3 days) moves the child gradually from F-75 to F-100/RUTF for catch-up growth.',
+  },
+  {
+    id: 'sam-023',
+    topic: 'sam',
+    type: 'mcq',
+    prompt:
+      'A 4-month-old infant has visible wasting and bilateral pitting edema. The most appropriate management is:',
+    choices: [
+      'Outpatient RUTF (Ready-to-Use Therapeutic Food) treatment',
+      'Inpatient management',
+      'Continued breastfeeding alone at home',
+      'F-100 therapeutic milk at home',
+    ],
+    correctIndex: 1,
+    rationale:
+      'All infants <6 months with SAM are managed in inpatient care due to breastfeeding support and medical needs.',
+  },
+  {
+    id: 'sam-024',
+    topic: 'sam',
+    type: 'mcq',
+    prompt:
+      'A 3-year-old admitted with SAM (Severe Acute Malnutrition) develops hypoglycemia. The most appropriate immediate action is:',
+    choices: [
+      'Withhold feeds for 24 hours',
+      'Give glucose immediately and keep the child warm',
+      'Begin antibiotics only',
+      'Start a large IV (intravenous) fluid bolus',
+    ],
+    correctIndex: 1,
+    rationale:
+      'Hypoglycemia and hypothermia are leading killers in SAM. Give glucose immediately and warm the child (target environment 25–30 °C).',
+  },
+  {
+    id: 'sam-025',
+    topic: 'sam',
+    type: 'mcq',
+    prompt:
+      'An SAM (Severe Acute Malnutrition) child has been on F-100 for 3 weeks. Edema resolved 16 days ago, MUAC (Mid-Upper Arm Circumference) is now 12.6 cm, and the child is alert, eating well. The most appropriate next step is:',
+    choices: [
+      'Continue inpatient care for another 2 weeks',
+      'Discharge with outpatient follow-up',
+      'Switch back to F-75',
+      'Add IV (intravenous) nutrition support',
+    ],
+    correctIndex: 1,
+    rationale:
+      'Discharge criteria are met: MUAC ≥12.5 mm, no edema for ≥2 weeks, and clinically well.',
+  },
+  {
+    id: 'sam-026',
+    topic: 'sam',
+    type: 'mcq',
+    prompt:
+      'A 12-month-old with SAM (Severe Acute Malnutrition) but no medical complications passes the appetite test. The best management plan is:',
+    choices: [
+      'Inpatient F-75 therapy',
+      'Outpatient RUTF (Ready-to-Use Therapeutic Food) under CMAM (Community-based Management of Acute Malnutrition)',
+      'IV (intravenous) fluids only',
+      '1 week of hospital observation, no feeds',
+    ],
+    correctIndex: 1,
+    rationale:
+      'Per the CMAM model, SAM without complications and a passed appetite test is managed with outpatient RUTF.',
+  },
+
+  // --- Undernutrition vignettes (5) ---
+  {
+    id: 'undern-026',
+    topic: 'undernutrition',
+    type: 'mcq',
+    prompt:
+      'A 30-month-old has a swollen belly, peeling pigmented skin patches, dull discolored bands in the hair, and bilateral pedal edema. The most likely diagnosis is:',
+    choices: ['Marasmus', 'Kwashiorkor', 'Stunting only', 'Iron deficiency anemia'],
+    correctIndex: 1,
+    rationale:
+      'Edema, the "flag sign" hair, and "flaky paint" dermatosis are classic kwashiorkor findings.',
+  },
+  {
+    id: 'undern-027',
+    topic: 'undernutrition',
+    type: 'mcq',
+    prompt:
+      'A 2-year-old is extremely thin with prominent ribs, a drawn-in "old man" face, no edema, and weight far below expected. The most likely diagnosis is:',
+    choices: ['Kwashiorkor', 'Marasmus', 'Marasmic kwashiorkor', 'Vitamin A deficiency'],
+    correctIndex: 1,
+    rationale:
+      'Severe wasting with no edema and characteristic facial appearance defines marasmus.',
+  },
+  {
+    id: 'undern-028',
+    topic: 'undernutrition',
+    type: 'mcq',
+    prompt:
+      'A pregnant woman in an iodine-poor area presents with neck swelling. She should be counselled that her baby is at risk of:',
+    choices: ['Rickets', 'Cretinism', 'Beriberi', 'Pellagra'],
+    correctIndex: 1,
+    rationale:
+      'Maternal iodine deficiency in pregnancy can cause cretinism — severe mental and physical impairment — in the offspring.',
+  },
+  {
+    id: 'undern-029',
+    topic: 'undernutrition',
+    type: 'mcq',
+    prompt:
+      'A child with chronic diarrhea reports difficulty seeing at dusk. Examination shows dry conjunctiva with foamy white patches. The most appropriate management is:',
+    choices: [
+      'Iron supplementation',
+      'High-dose vitamin A supplementation',
+      'Iodized salt only',
+      'Zinc supplementation only',
+    ],
+    correctIndex: 1,
+    rationale:
+      "Night blindness plus Bitot's spots indicate vitamin A deficiency; high-dose vitamin A supplementation is indicated.",
+  },
+  {
+    id: 'undern-030',
+    topic: 'undernutrition',
+    type: 'mcq',
+    prompt:
+      'A 10-year-old girl reports fatigue, breathlessness on exertion, and difficulty concentrating in school. Her conjunctiva appear pale. The most likely cause is:',
+    choices: [
+      'Iodine deficiency',
+      'Iron deficiency anemia',
+      'Kwashiorkor',
+      'Vitamin A deficiency',
+    ],
+    correctIndex: 1,
+    rationale:
+      'Pallor, fatigue, breathlessness, and poor concentration are classic findings of iron deficiency anemia.',
+  },
+
+  // --- Lifecycle vignettes (6) ---
+  {
+    id: 'lifecycle-026',
+    topic: 'lifecycle',
+    type: 'mcq',
+    prompt:
+      'A 28-year-old woman planning to conceive asks when she should start folic acid. The best advice is:',
+    choices: [
+      'After confirming pregnancy',
+      'At least 1 month before planned conception, 400 µg daily',
+      'Only in the third trimester',
+      'Only if there is a family history of birth defects',
+    ],
+    correctIndex: 1,
+    rationale:
+      'WHO (World Health Organization) advises 400 µg folic acid daily starting at least 1 month before planned pregnancy and continuing through the first 12 weeks.',
+  },
+  {
+    id: 'lifecycle-027',
+    topic: 'lifecycle',
+    type: 'mcq',
+    prompt:
+      'A breastfeeding mother who follows a vegan diet asks how to protect her infant nutritionally. The most important supplement to discuss is:',
+    choices: ['Vitamin C', 'Vitamin B12', 'Iron only', 'Calcium only'],
+    correctIndex: 1,
+    rationale:
+      'Vegan/vegetarian breastfeeding mothers must ensure vitamin B12 intake to prevent neurological damage in the infant.',
+  },
+  {
+    id: 'lifecycle-028',
+    topic: 'lifecycle',
+    type: 'mcq',
+    prompt:
+      'A mother asks when to introduce solid foods to her 5-month-old. The nurse should advise her to:',
+    choices: [
+      'Begin solid foods immediately to support growth',
+      'Wait until 6 months of age',
+      'Wait until 12 months',
+      'Start only when teeth appear',
+    ],
+    correctIndex: 1,
+    rationale:
+      'Exclusive breastfeeding is recommended for the first 6 months; complementary feeding begins at about 6 months.',
+  },
+  {
+    id: 'lifecycle-029',
+    topic: 'lifecycle',
+    type: 'mcq',
+    prompt:
+      "A grandmother offers a spoonful of honey to a 9-month-old to soothe a cough. The nurse's correct response is:",
+    choices: [
+      'Allow it for short-term symptomatic relief',
+      'Advise against honey under 12 months due to risk of infant botulism',
+      'Allow only raw honey',
+      'Allow once weekly',
+    ],
+    correctIndex: 1,
+    rationale:
+      'Honey may contain Clostridium botulinum spores; never give to infants under 12 months because of infant botulism risk.',
+  },
+  {
+    id: 'lifecycle-030',
+    topic: 'lifecycle',
+    type: 'mcq',
+    prompt:
+      'A 70-year-old patient with reduced appetite reports she rarely feels thirsty. The most important nutritional risk to assess is:',
+    choices: ['Hypertension', 'Dehydration', 'Hypoglycemia', 'Hypercalcemia'],
+    correctIndex: 1,
+    rationale:
+      'Thirst sensation declines with age, placing older adults at high risk for dehydration even when not thirsty.',
+  },
+  {
+    id: 'lifecycle-031',
+    topic: 'lifecycle',
+    type: 'mcq',
+    prompt:
+      'A pregnant woman in her 2nd trimester asks how many extra calories she should consume daily. The best answer is:',
+    choices: [
+      '"Eat for two — double your intake"',
+      'About 280–300 extra kcal/day',
+      'An extra 1000 kcal/day',
+      'No extra calories needed',
+    ],
+    correctIndex: 1,
+    rationale:
+      'Roughly 280–300 extra kcal/day are needed in the 2nd and 3rd trimesters, with emphasis on nutrient quality, not doubling intake.',
+  },
+
+  // --- NCD vignettes (7) ---
+  {
+    id: 'ncd-026',
+    topic: 'ncd',
+    type: 'mcq',
+    prompt:
+      "A 50-year-old man's BP (Blood Pressure) is 152/96 mmHg on two separate visits. He frequently eats fast food. Initial dietary counselling should emphasize:",
+    choices: [
+      'Eliminate all carbohydrates',
+      'DASH (Dietary Approaches to Stop Hypertension) pattern with sodium <2000 mg/day',
+      'High-protein ketogenic diet',
+      'Increase saturated fats',
+    ],
+    correctIndex: 1,
+    rationale:
+      'A new hypertension diagnosis indicates DASH dietary pattern emphasizing fruits, vegetables, low-fat dairy, whole grains, and sodium restriction <2000 mg/day.',
+  },
+  {
+    id: 'ncd-027',
+    topic: 'ncd',
+    type: 'mcq',
+    prompt:
+      'A patient with type 2 diabetes asks what carbohydrate choices are best. The nurse should advise:',
+    choices: [
+      'Refined white bread and sugary cereals',
+      'Whole grains, vegetables, and legumes (low glycemic index)',
+      'Sugary beverages with each meal',
+      'Fruit juice as a between-meal snack',
+    ],
+    correctIndex: 1,
+    rationale:
+      'Low-GI (Glycemic Index) whole grains, vegetables, and legumes help stabilize blood sugar in type 2 diabetes.',
+  },
+  {
+    id: 'ncd-028',
+    topic: 'ncd',
+    type: 'mcq',
+    prompt:
+      'A woman with gestational diabetes is planning her meals. The most appropriate advice is:',
+    choices: [
+      'One large carbohydrate-rich meal daily',
+      'Small frequent meals, balancing carbs with proteins, avoiding simple sugars',
+      'Skip breakfast',
+      'High simple-sugar drinks before bed',
+    ],
+    correctIndex: 1,
+    rationale:
+      'Small, frequent meals with carb/protein balance and high-fiber foods stabilize blood sugar in gestational diabetes.',
+  },
+  {
+    id: 'ncd-029',
+    topic: 'ncd',
+    type: 'mcq',
+    prompt:
+      'A patient with PUD (Peptic Ulcer Disease) reports burning epigastric pain that worsens at night. The nurse advises:',
+    choices: [
+      'Late-night snacks to neutralize acid',
+      'Avoid eating within 3 hours of bedtime',
+      'Drink citrus juice before bed',
+      'Add caffeine in the evening',
+    ],
+    correctIndex: 1,
+    rationale:
+      'Eating within 3 hours of bedtime increases nocturnal gastric acid secretion and worsens PUD symptoms.',
+  },
+  {
+    id: 'ncd-030',
+    topic: 'ncd',
+    type: 'mcq',
+    prompt:
+      'A 90 kg man wants to lose 9 kg over 6 months. This goal best aligns with:',
+    choices: [
+      'An unrealistic 5% target',
+      'The guideline-aligned 10% weight-loss target',
+      'An aggressive 25% target',
+      'A goal below the recommended weight loss',
+    ],
+    correctIndex: 1,
+    rationale:
+      'Guidelines recommend a 10% weight-loss target over 6 months; 9 kg / 90 kg = 10%.',
+  },
+  {
+    id: 'ncd-031',
+    topic: 'ncd',
+    type: 'mcq',
+    prompt:
+      'A patient newly diagnosed with hypertension reports drinking 4 alcoholic drinks daily. Counselling should include:',
+    choices: [
+      'No change is needed',
+      'Limit to no more than 2 drinks/day (men) or 1/day (women)',
+      'Switch to spirits only',
+      'Drink only with meals',
+    ],
+    correctIndex: 1,
+    rationale:
+      'Excessive alcohol raises BP (Blood Pressure). Recommended limits: men ≤2 drinks/day; women ≤1 drink/day.',
+  },
+  {
+    id: 'ncd-032',
+    topic: 'ncd',
+    type: 'mcq',
+    prompt:
+      'A patient diagnosed with PUD (Peptic Ulcer Disease) due to H. pylori asks whether changing diet alone will heal the ulcer. The best response is:',
+    choices: [
+      '"Yes, diet alone heals the ulcer"',
+      '"Diet helps symptoms, but H. pylori eradication and acid suppression are essential"',
+      '"Avoid all food until ulcer heals"',
+      '"Only antacids are needed"',
+    ],
+    correctIndex: 1,
+    rationale:
+      'Dietary management is adjunctive in PUD; H. pylori eradication, PPIs (Proton Pump Inhibitors)/H2 blockers, and NSAID (Non-Steroidal Anti-Inflammatory Drug) avoidance are essential.',
+  },
+
+  // --- Ghana intervention vignettes (4) ---
+  {
+    id: 'ghana-021',
+    topic: 'ghana',
+    type: 'mcq',
+    prompt:
+      'A 10-month-old is brought to the clinic with acute diarrhea. Per Ghana guidelines, zinc should be given as:',
+    choices: [
+      '20 mg daily for 10–14 days, alongside ORT (Oral Rehydration Therapy)',
+      '100 mg as a single dose',
+      '50 mg daily for 30 days',
+      'Zinc is not indicated',
+    ],
+    correctIndex: 0,
+    rationale:
+      'Children >6 months receive 20 mg zinc daily for 10–14 days with ORT to reduce diarrhea duration, severity, and recurrence.',
+  },
+  {
+    id: 'ghana-022',
+    topic: 'ghana',
+    type: 'mcq',
+    prompt:
+      'A pregnant woman at her first antenatal visit is started on IFA (Iron-Folic Acid) supplementation. The standard daily dose is:',
+    choices: [
+      '10 mg iron + 100 µg folic acid',
+      '60 mg elemental iron + 400 µg folic acid',
+      '300 mg iron + 5 mg folic acid',
+      'Iron alone, no folate',
+    ],
+    correctIndex: 1,
+    rationale:
+      'Routine antenatal IFA in Ghana provides 60 mg elemental iron + 400 µg folic acid daily throughout pregnancy.',
+  },
+  {
+    id: 'ghana-023',
+    topic: 'ghana',
+    type: 'mcq',
+    prompt:
+      'A community health nurse identifies a 2-year-old at outreach with MUAC (Mid-Upper Arm Circumference) 11.4 cm, no edema, alert and eating well, passes the appetite test, with no medical complications. The best plan is:',
+    choices: [
+      'Inpatient stabilization',
+      'Outpatient management with RUTF (Ready-to-Use Therapeutic Food)',
+      'Vitamin A megadose only',
+      'Surgical referral',
+    ],
+    correctIndex: 1,
+    rationale:
+      'SAM (Severe Acute Malnutrition) without complications and a passed appetite test is managed with outpatient RUTF under CMAM (Community-based Management of Acute Malnutrition).',
+  },
+  {
+    id: 'ghana-024',
+    topic: 'ghana',
+    type: 'mcq',
+    prompt:
+      'A nurse counsels a new mother during the first hour after delivery. Per Ghana guidelines, she should:',
+    choices: [
+      'Wait until the next day to begin breastfeeding',
+      'Initiate breastfeeding within the first hour',
+      'Give glucose water first',
+      'Withhold colostrum',
+    ],
+    correctIndex: 1,
+    rationale:
+      'Early initiation of breastfeeding within the first hour is recommended; colostrum provides essential immune protection.',
+  },
+
+  // --- Malnutrition framework vignettes (2) ---
+  {
+    id: 'mal-021',
+    topic: 'malnutrition',
+    type: 'mcq',
+    prompt:
+      'A 4-year-old presents with stunting. The family is poor, the mother has limited education, the household diet is monotonous (mostly cassava), and the child has had repeated episodes of diarrhea. Which combination of UNICEF causes is at play?',
+    choices: [
+      'Immediate causes only',
+      'Basic causes only',
+      'Immediate, underlying, and basic causes — multiple levels',
+      'Genetic causes only',
+    ],
+    correctIndex: 2,
+    rationale:
+      'The UNICEF framework recognizes malnutrition as multifactorial: immediate (poor intake, infection), underlying (food insecurity), and basic (poverty, low education) causes acting together.',
+  },
+  {
+    id: 'mal-022',
+    topic: 'malnutrition',
+    type: 'mcq',
+    prompt:
+      'A program manager in Ghana observes rising childhood overweight in urban schools alongside persistent rural stunting. This best illustrates:',
+    choices: [
+      'Pure undernutrition',
+      'Pure overnutrition',
+      'The double burden of malnutrition',
+      'Acute food insecurity only',
+    ],
+    correctIndex: 2,
+    rationale:
+      'Coexistence of undernutrition and overnutrition in the same population is the double burden of malnutrition — common in developing countries like Ghana.',
+  },
+
+  // ============================================================
+  // CALCULATION ITEMS (15) — slide-grounded numeric reasoning
+  // ============================================================
+  {
+    id: 'intro-026',
+    topic: 'intro',
+    type: 'mcq',
+    prompt:
+      'A patient consumes 30 g protein, 80 g carbohydrate, and 25 g fat in one meal. What is the total kcal in the meal?',
+    choices: ['540 kcal', '585 kcal', '665 kcal', '700 kcal'],
+    correctIndex: 2,
+    rationale:
+      '(30 × 4) + (80 × 4) + (25 × 9) = 120 + 320 + 225 = 665 kcal. Protein and carbohydrate yield 4 kcal/g; fat 9 kcal/g.',
+  },
+  {
+    id: 'intro-027',
+    topic: 'intro',
+    type: 'mcq',
+    prompt:
+      'A meal contains 20 g protein, 50 g carbohydrate, and 30 g fat. What percentage of the total energy comes from fat?',
+    choices: ['30%', '38%', '49%', '60%'],
+    correctIndex: 2,
+    rationale:
+      'Total kcal = (20×4)+(50×4)+(30×9) = 80+200+270 = 550. Fat contributes 270/550 ≈ 49%.',
+  },
+  {
+    id: 'intro-028',
+    topic: 'intro',
+    type: 'mcq',
+    prompt:
+      'A drink contains 14 g of alcohol. Using slide energy values, how many kcal does it provide?',
+    choices: ['56 kcal', '70 kcal', '98 kcal', '112 kcal'],
+    correctIndex: 2,
+    rationale:
+      'Alcohol yields 7 kcal/g; 14 × 7 = 98 kcal.',
+  },
+  {
+    id: 'intro-029',
+    topic: 'intro',
+    type: 'mcq',
+    prompt:
+      'A 1.7 m tall adult weighs 78 kg. What is the approximate BMI (Body Mass Index)?',
+    choices: ['22.0', '25.4', '27.0', '30.1'],
+    correctIndex: 2,
+    rationale:
+      'BMI = 78 / (1.7)² = 78 / 2.89 ≈ 27.0 kg/m².',
+  },
+  {
+    id: 'intro-030',
+    topic: 'intro',
+    type: 'mcq',
+    prompt:
+      'A patient is 1.6 m tall and weighs 64 kg. The BMI (Body Mass Index) is approximately:',
+    choices: ['20.0', '25.0', '28.0', '32.0'],
+    correctIndex: 1,
+    rationale:
+      '64 / (1.6)² = 64 / 2.56 = 25.0 kg/m².',
+  },
+  {
+    id: 'intro-031',
+    topic: 'intro',
+    type: 'mcq',
+    prompt:
+      'Calculate the total energy in a meal of 15 g protein, 90 g carbohydrate, 20 g fat, and 10 g alcohol:',
+    choices: ['480 kcal', '540 kcal', '670 kcal', '750 kcal'],
+    correctIndex: 2,
+    rationale:
+      '(15×4) + (90×4) + (20×9) + (10×7) = 60 + 360 + 180 + 70 = 670 kcal.',
+  },
+  {
+    id: 'ncd-033',
+    topic: 'ncd',
+    type: 'mcq',
+    prompt:
+      'Using the upper limit of the AMDR (Acceptable Macronutrient Distribution Range) for carbohydrate, the maximum daily carbohydrate energy in a 2000 kcal diet is:',
+    choices: ['600 kcal', '900 kcal', '1300 kcal', '1800 kcal'],
+    correctIndex: 2,
+    rationale:
+      'Carbohydrate AMDR upper limit is 65%; 2000 × 0.65 = 1300 kcal.',
+  },
+  {
+    id: 'ncd-034',
+    topic: 'ncd',
+    type: 'mcq',
+    prompt:
+      'For a 2000 kcal diet using the upper limit of the fat AMDR (Acceptable Macronutrient Distribution Range) of 35%, approximately how many grams of fat are allowed per day?',
+    choices: ['30 g', '50 g', '78 g', '100 g'],
+    correctIndex: 2,
+    rationale:
+      '2000 × 0.35 = 700 kcal from fat; 700 ÷ 9 ≈ 78 g.',
+  },
+  {
+    id: 'ncd-035',
+    topic: 'ncd',
+    type: 'mcq',
+    prompt:
+      'A patient maintains a 500 kcal/day energy deficit. Approximately how much weight loss is expected over 4 weeks?',
+    choices: ['~0.5 kg', '~1 kg', '~2 kg', '~5 kg'],
+    correctIndex: 2,
+    rationale:
+      'A ~500 kcal/day deficit produces ~0.5 kg/week loss; × 4 weeks ≈ 2 kg.',
+  },
+  {
+    id: 'ncd-036',
+    topic: 'ncd',
+    type: 'mcq',
+    prompt:
+      'An 80 kg patient is given a 10% weight-loss target over 6 months. The goal weight is:',
+    choices: ['70 kg', '72 kg', '75 kg', '78 kg'],
+    correctIndex: 1,
+    rationale:
+      '10% of 80 kg = 8 kg loss; goal weight = 80 − 8 = 72 kg.',
+  },
+  {
+    id: 'ncd-037',
+    topic: 'ncd',
+    type: 'mcq',
+    prompt:
+      'The DASH (Dietary Approaches to Stop Hypertension) sodium target of <2000 mg/day corresponds to approximately how much salt?',
+    choices: ['~1 g', '~5 g', '~10 g', '~20 g'],
+    correctIndex: 1,
+    rationale:
+      'Sodium <2000 mg/day ≈ 5 g salt (the lecture cites <2000 mg sodium ≈ 5 g salt).',
+  },
+  {
+    id: 'ncd-038',
+    topic: 'ncd',
+    type: 'mcq',
+    prompt:
+      'Per the lecture, the expected weekly weight loss with a 500–1000 kcal/day energy deficit is approximately:',
+    choices: ['0.1–0.3 kg/week', '0.5–1 kg/week', '1.5–2 kg/week', '2–3 kg/week'],
+    correctIndex: 1,
+    rationale:
+      'A daily deficit of 500–1000 kcal yields ~0.5–1 kg/week of weight loss.',
+  },
+  {
+    id: 'ghana-025',
+    topic: 'ghana',
+    type: 'mcq',
+    prompt:
+      'A pregnant woman takes IFA (Iron-Folic Acid) supplementation with 60 mg elemental iron daily for a 40-week pregnancy. Approximately how much total elemental iron does she consume?',
+    choices: ['1,680 mg', '8,400 mg', '16,800 mg', '60,000 mg'],
+    correctIndex: 2,
+    rationale:
+      '60 mg/day × 7 days × 40 weeks = 16,800 mg total elemental iron.',
+  },
+  {
+    id: 'ghana-026',
+    topic: 'ghana',
+    type: 'mcq',
+    prompt:
+      'A 14-month-old receives 20 mg zinc daily for 14 days as part of diarrhea management. The total dose administered is:',
+    choices: ['140 mg', '200 mg', '280 mg', '420 mg'],
+    correctIndex: 2,
+    rationale:
+      '20 mg × 14 days = 280 mg total zinc delivered.',
+  },
+  {
+    id: 'lifecycle-032',
+    topic: 'lifecycle',
+    type: 'mcq',
+    prompt:
+      'A breastfeeding mother previously consumed 2000 kcal/day. Adding the recommended lactation increase, her new daily target is approximately:',
+    choices: ['2050–2100 kcal', '2200–2300 kcal', '2330–2500 kcal', '2800–3000 kcal'],
+    correctIndex: 2,
+    rationale:
+      'Lactation requires ~330–500 extra kcal/day; 2000 + 330 to 500 = 2330–2500 kcal/day.',
+  },
 ];
 
 export function getQuestionsByTopics(

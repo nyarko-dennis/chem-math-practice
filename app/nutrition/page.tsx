@@ -147,12 +147,12 @@ export default function NutritionPage() {
             <input
               type="number"
               min={1}
-              max={175}
+              max={220}
               value={count}
-              onChange={(e) => setCount(Math.max(1, Math.min(175, parseInt(e.target.value) || 1)))}
+              onChange={(e) => setCount(Math.max(1, Math.min(220, parseInt(e.target.value) || 1)))}
               className="w-full p-2 border border-slate-300 rounded-md focus:ring-2 focus:ring-emerald-500 focus:outline-none"
             />
-            <p className="text-xs text-slate-400 mt-1">Up to 175 unique questions available.</p>
+            <p className="text-xs text-slate-400 mt-1">Up to 220 unique questions available.</p>
           </div>
 
           <button
