@@ -43,6 +43,23 @@ export default function Home() {
               Start practicing →
             </span>
           </Link>
+
+          <Link
+            href="/palliative"
+            className="group bg-white p-6 rounded-xl shadow-sm hover:shadow-lg border border-slate-100 transition-all"
+          >
+            <div className="text-sm uppercase tracking-wide text-violet-600 font-semibold mb-2">Course</div>
+            <h2 className="text-xl font-bold text-slate-800 mb-2 group-hover:text-violet-700">
+              Palliative Care Practice
+            </h2>
+            <p className="text-sm text-slate-600 mb-4">
+              Nursing-style MCQ and True/False questions on total pain, the WHO analgesic ladder,
+              care of the dying patient, breaking bad news, and Worden&apos;s tasks of mourning.
+            </p>
+            <span className="inline-flex items-center text-violet-600 font-medium text-sm">
+              Start practicing →
+            </span>
+          </Link>
         </div>
       </div>
     </div>
