@@ -60,6 +60,24 @@ export default function Home() {
               Start practicing →
             </span>
           </Link>
+
+          <Link
+            href="/research"
+            className="group bg-white p-6 rounded-xl shadow-sm hover:shadow-lg border border-slate-100 transition-all"
+          >
+            <div className="text-sm uppercase tracking-wide text-indigo-600 font-semibold mb-2">Course</div>
+            <h2 className="text-xl font-bold text-slate-800 mb-2 group-hover:text-indigo-700">
+              Research Methods Practice
+            </h2>
+            <p className="text-sm text-slate-600 mb-4">
+              MCQ/TF on study designs, sampling, validity, ethics, and data saturation;
+              Yamane &amp; Cochran sample-size drills; and subjective drills on objectives,
+              research questions, themes, and independent/dependent variables.
+            </p>
+            <span className="inline-flex items-center text-indigo-600 font-medium text-sm">
+              Start practicing →
+            </span>
+          </Link>
         </div>
       </div>
     </div>
