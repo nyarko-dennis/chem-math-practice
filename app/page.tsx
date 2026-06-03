@@ -78,6 +78,24 @@ export default function Home() {
               Start practicing →
             </span>
           </Link>
+
+          <Link
+            href="/pharmacology"
+            className="group bg-white p-6 rounded-xl shadow-sm hover:shadow-lg border border-slate-100 transition-all"
+          >
+            <div className="text-sm uppercase tracking-wide text-rose-600 font-semibold mb-2">Course</div>
+            <h2 className="text-xl font-bold text-slate-800 mb-2 group-hover:text-rose-700">
+              Pharmacology Practice
+            </h2>
+            <p className="text-sm text-slate-600 mb-4">
+              MCQ/TF on pharmacokinetic/dynamic principles, ANS, cardiovascular, respiratory, renal, 
+              and NSAID/opioid pharmacology. Subjective drills on MoA, adverse effects, calculations, 
+              and five rights of administration.
+            </p>
+            <span className="inline-flex items-center text-rose-600 font-medium text-sm">
+              Start practicing →
+            </span>
+          </Link>
         </div>
       </div>
     </div>
