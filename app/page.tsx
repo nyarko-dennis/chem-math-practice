@@ -84,20 +84,30 @@ export default function Home() {
         </div>
 
         <div>
-          {progress && (
-            <div className="mb-4 pt-3 border-t border-slate-100 flex justify-between text-xs text-slate-500">
-              <span>Answered: <strong>{progress.totalQuestionsAnswered}</strong></span>
-              <span>
-                Avg. Accuracy:{' '}
-                <strong>
-                  {progress.totalQuestionsAnswered > 0
-                    ? Math.round((progress.totalCorrectAnswers / progress.totalQuestionsAnswered) * 100)
-                    : 0}
-                  %
-                </strong>
-              </span>
-            </div>
-          )}
+          {progress && (() => {
+            const accuracy = progress.totalQuestionsAnswered > 0
+              ? Math.round((progress.totalCorrectAnswers / progress.totalQuestionsAnswered) * 100)
+              : 0;
+            let accuracyColor = 'bg-rose-500';
+            if (accuracy >= 80) accuracyColor = 'bg-emerald-500';
+            else if (accuracy >= 50) accuracyColor = 'bg-amber-500';
+
+            return (
+              <div className="mb-4 pt-4 border-t border-slate-100 grid grid-cols-2 gap-3">
+                <div className="bg-slate-50 rounded-lg p-2.5 flex flex-col justify-center border border-slate-100/80">
+                  <span className="text-slate-400 font-semibold uppercase tracking-wider text-[9px]">Answered</span>
+                  <span className="text-slate-800 font-bold text-base mt-0.5">{progress.totalQuestionsAnswered}</span>
+                </div>
+                <div className="bg-slate-50 rounded-lg p-2.5 flex flex-col justify-center border border-slate-100/80">
+                  <span className="text-slate-400 font-semibold uppercase tracking-wider text-[9px]">Avg. Accuracy</span>
+                  <span className="text-slate-800 font-bold text-base mt-0.5 flex items-center gap-1.5">
+                    {accuracy}%
+                    <span className={`w-2 h-2 rounded-full ${accuracyColor}`}></span>
+                  </span>
+                </div>
+              </div>
+            );
+          })()}
 
           <span className={`inline-flex items-center ${textColor} font-semibold text-sm`}>
             {isActive ? 'Resume practice session →' : 'Start practicing →'}
