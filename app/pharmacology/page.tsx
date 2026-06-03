@@ -1,7 +1,13 @@
 'use client';
 
-import { useMemo, useState } from 'react';
+import { useMemo, useState, useEffect } from 'react';
 import Link from 'next/link';
+import {
+  saveActiveSession,
+  clearActiveSession,
+  saveCourseProgress,
+  getActiveSession,
+} from '@/lib/progressTracker';
 import {
   PharmQuestion,
   PharmTopic,
@@ -76,6 +82,48 @@ export default function PharmacologyPage() {
   const [mode, setMode] = useState<Mode>('quick');
   const [started, setStarted] = useState(false);
   const [finished, setFinished] = useState(false);
+
+  // Saved session states
+  const [hasSavedSession, setHasSavedSession] = useState(false);
+  const [savedSessionMode, setSavedSessionMode] = useState<'quick' | 'drill' | null>(null);
+
+  // Check for saved session on mount
+  useEffect(() => {
+    const session = getActiveSession('pharmacology');
+    if (session) {
+      setHasSavedSession(true);
+      setSavedSessionMode(session.mode);
+    }
+  }, []);
+
+  const loadSavedSession = () => {
+    const session = getActiveSession('pharmacology');
+    if (session) {
+      setMode(session.mode);
+      setStarted(session.started);
+      setFinished(session.finished);
+      setTopics(session.topics);
+      setQuickCount(session.quickCount);
+      setQuestions(session.questions);
+      setShuffles(session.shuffles);
+      setQIndex(session.qIndex);
+      setSelections(session.selections);
+      setChecked(session.checked);
+      setDrills(session.drills);
+      setDIndex(session.dIndex);
+      setDrafts(session.drafts);
+      setRevealed(session.revealed);
+      setRubricChecks(session.rubricChecks);
+    }
+  };
+
+  const discardSavedSession = () => {
+    if (confirm('Are you sure you want to discard your saved session progress?')) {
+      clearActiveSession('pharmacology');
+      setHasSavedSession(false);
+      setSavedSessionMode(null);
+    }
+  };
 
   // quick mode state
   const [topics, setTopics] = useState<SelectedTopics>(DEFAULT_TOPICS);
@@ -226,7 +274,75 @@ export default function PharmacologyPage() {
     setRubricChecks({});
     setPromptCollapsed({});
     setExpanded({});
+    clearActiveSession('pharmacology');
+    setHasSavedSession(false);
+    setSavedSessionMode(null);
   };
+
+  // Save progress when finished
+  useEffect(() => {
+    if (finished && started) {
+      if (mode === 'quick' && questions.length > 0) {
+        const correctCount = questions.filter((q) => checked[q.id] && isQuickCorrect(q)).length;
+        saveCourseProgress('pharmacology', {
+          type: 'quick',
+          correct: correctCount,
+          total: questions.length,
+        });
+      } else if (mode === 'drill' && drills.length > 0) {
+        const totalMarks = drills.reduce((acc, d) => acc + d.marks, 0);
+        const earnedMarks = drills.reduce((acc, d) => acc + drillSelfScore(d), 0);
+        saveCourseProgress('pharmacology', {
+          type: 'drill',
+          correct: earnedMarks,
+          total: totalMarks,
+        });
+      }
+      clearActiveSession('pharmacology');
+      setHasSavedSession(false);
+      setSavedSessionMode(null);
+    }
+  }, [finished, started]);
+
+  // Save active session when state changes
+  useEffect(() => {
+    if (started && !finished) {
+      const activeState = {
+        mode,
+        started,
+        finished,
+        topics,
+        quickCount,
+        questions,
+        shuffles,
+        qIndex,
+        selections,
+        checked,
+        drills,
+        dIndex,
+        drafts,
+        revealed,
+        rubricChecks,
+      };
+      saveActiveSession('pharmacology', activeState);
+    }
+  }, [
+    started,
+    finished,
+    mode,
+    topics,
+    quickCount,
+    questions,
+    shuffles,
+    qIndex,
+    selections,
+    checked,
+    drills,
+    dIndex,
+    drafts,
+    revealed,
+    rubricChecks,
+  ]);
 
   // ============================================================
   // SETUP SCREEN
@@ -239,6 +355,30 @@ export default function PharmacologyPage() {
             <h1 className="text-2xl font-bold text-slate-800">Pharmacology Practice</h1>
             <Link href="/" className="text-sm text-slate-500 hover:text-slate-800">← Home</Link>
           </div>
+
+          {/* Saved Session Resume Banner */}
+          {hasSavedSession && (
+            <div className="bg-rose-50 border border-rose-200 rounded-lg p-4 mb-6 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 shadow-sm">
+              <div>
+                <h3 className="font-semibold text-rose-800 text-sm">Session in Progress</h3>
+                <p className="text-xs text-rose-700">You have a saved {savedSessionMode === 'quick' ? 'Quick Practice' : 'Subjective Drill'} session.</p>
+              </div>
+              <div className="flex gap-2">
+                <button
+                  onClick={loadSavedSession}
+                  className="bg-rose-600 hover:bg-rose-700 text-white text-xs font-semibold px-3 py-1.5 rounded-md transition-colors shadow-sm"
+                >
+                  Resume
+                </button>
+                <button
+                  onClick={discardSavedSession}
+                  className="bg-white hover:bg-slate-50 text-slate-700 text-xs font-semibold px-3 py-1.5 rounded border border-slate-200 transition-colors"
+                >
+                  Discard
+                </button>
+              </div>
+            </div>
+          )}
 
           {/* Mode toggle */}
           <div className="flex bg-slate-100 rounded-lg p-1 mb-6">
