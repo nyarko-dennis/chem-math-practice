@@ -43,6 +43,7 @@ const DEFAULT_TOPICS: SelectedTopics = {
   respiratory: true,
   diuretics: true,
   ghanaContext: true,
+  pastPaper: true,
 };
 
 const DEFAULT_KINDS: SelectedKinds = {
