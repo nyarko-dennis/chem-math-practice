@@ -15,7 +15,7 @@ export default function Home() {
 
   useEffect(() => {
     setMounted(true);
-    const courses = ['math', 'nutrition', 'palliative', 'research', 'pharmacology'];
+    const courses = ['math', 'nutrition', 'palliative', 'research', 'pharmacology', 'surgery'];
     const loadedStats: Record<string, CourseProgress | null> = {};
     const loadedActive: Record<string, boolean> = {};
 
@@ -38,7 +38,7 @@ export default function Home() {
             <p className="text-slate-500">Choose a course to begin a practice session.</p>
           </div>
           <div className="grid gap-4 md:grid-cols-2">
-            {['math', 'nutrition', 'palliative', 'research', 'pharmacology'].map((c) => (
+            {['math', 'nutrition', 'palliative', 'research', 'pharmacology', 'surgery'].map((c) => (
               <div key={c} className="bg-white p-6 rounded-xl border border-slate-100 shadow-sm min-h-[180px]">
                 <div className="h-4 bg-slate-200 rounded w-1/4 mb-3 animate-pulse"></div>
                 <div className="h-6 bg-slate-200 rounded w-3/4 mb-3 animate-pulse"></div>
@@ -164,6 +164,14 @@ export default function Home() {
             'MCQ/TF on pharmacokinetic/dynamic principles, ANS, cardiovascular, respiratory, renal, and NSAID/opioid pharmacology. Subjective drills on MoA, adverse effects, calculations, and five rights.',
             'text-rose-600',
             'text-rose-700'
+          )}
+
+          {renderCard(
+            'surgery',
+            'Surgery & Surgical Nursing II',
+            'MCQ/TF on GI, hepatobiliary, urology, breast/gynae, cardiothoracic, paediatric/bariatric, and thoracic-trauma surgery. Plain-language drills on clinical features, investigations, management, peri-op nursing, and emergencies.',
+            'text-amber-600',
+            'text-amber-700'
           )}
         </div>
       </div>
