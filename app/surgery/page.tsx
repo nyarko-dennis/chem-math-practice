@@ -55,6 +55,15 @@ const DEFAULT_KINDS: SelectedKinds = {
 
 const MAX_QUICK_QUESTIONS = 250;
 
+function getQuestionSubSection(q: SurgeryQuestion): string {
+  if (q.id.startsWith('pq-gy-')) return 'Gynecology';
+  if (q.id.startsWith('pq-ne-')) return 'Neurological';
+  if (q.id.startsWith('pq-gi-')) return 'Gastrointestinal';
+  if (q.id.startsWith('pq-ur-')) return 'Urology';
+  if (q.id.startsWith('pq-doc-')) return 'Exam Review (50 Qs)';
+  return '';
+}
+
 interface ShuffledMCQ {
   id: string;
   displayChoices: string[];
@@ -506,6 +515,21 @@ export default function SurgeryPage() {
   if (finished) {
     if (mode === 'quick') {
       const correctCount = questions.filter((q) => checked[q.id] && isQuickCorrect(q)).length;
+      
+      // Calculate scores by subsection if pastPaper is in the quiz
+      const subScores: Record<string, { correct: number; total: number }> = {};
+      questions.forEach((q) => {
+        const sub = getQuestionSubSection(q);
+        if (sub) {
+          if (!subScores[sub]) subScores[sub] = { correct: 0, total: 0 };
+          subScores[sub].total += 1;
+          if (checked[q.id] && isQuickCorrect(q)) {
+            subScores[sub].correct += 1;
+          }
+        }
+      });
+      const hasSubScores = Object.keys(subScores).length > 0;
+
       return (
         <div className="min-h-screen bg-slate-50 flex items-center justify-center p-4">
           <div className="bg-white p-8 rounded-xl shadow-lg w-full max-w-md text-center">
@@ -513,6 +537,23 @@ export default function SurgeryPage() {
             <div className="text-xl mb-6">
               Score: <span className="font-bold text-amber-600">{correctCount}</span> / {questions.length}
             </div>
+
+            {hasSubScores && (
+              <div className="mb-6 text-left border-t border-slate-100 pt-4">
+                <h3 className="font-semibold text-slate-700 text-sm mb-3">Section Performance:</h3>
+                <div className="space-y-2">
+                  {Object.entries(subScores).map(([name, score]) => (
+                    <div key={name} className="flex justify-between items-center text-sm">
+                      <span className="text-slate-600 font-medium">{name}</span>
+                      <span className="text-slate-800 font-bold">
+                        {score.correct} / {score.total} ({Math.round((score.correct / score.total) * 100)}%)
+                      </span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+
             <div className="flex flex-col gap-3">
               <button
                 onClick={resetAll}
@@ -817,9 +858,23 @@ export default function SurgeryPage() {
 
         <div className="bg-white p-8 rounded-xl shadow-lg mb-6">
           <div className="mb-6">
-            <p className="text-amber-600 text-xs mb-3 uppercase tracking-wide font-semibold">
-              {SURGERY_TOPIC_LABELS[currentQ.topic]} · {currentQ.type === 'mcq' ? 'Multiple Choice' : 'True / False'}
-            </p>
+            <div className="flex flex-wrap items-center gap-2 mb-3">
+              <span className="text-amber-600 text-xs uppercase tracking-wide font-semibold">
+                {SURGERY_TOPIC_LABELS[currentQ.topic]}
+              </span>
+              <span className="text-slate-300 text-xs">•</span>
+              <span className="text-slate-500 text-xs uppercase tracking-wide font-semibold">
+                {currentQ.type === 'mcq' ? 'Multiple Choice' : 'True / False'}
+              </span>
+              {getQuestionSubSection(currentQ) && (
+                <>
+                  <span className="text-slate-300 text-xs">•</span>
+                  <span className="bg-amber-100 text-amber-800 text-[10px] font-bold px-2 py-0.5 rounded-full uppercase tracking-wider">
+                    {getQuestionSubSection(currentQ)}
+                  </span>
+                </>
+              )}
+            </div>
             <p className="text-lg text-slate-800 leading-relaxed">{currentQ.prompt}</p>
           </div>
 

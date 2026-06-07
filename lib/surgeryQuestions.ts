@@ -18,7 +18,7 @@ export const SURGERY_TOPIC_LABELS: Record<SurgeryTopic, string> = {
   thoracicEmergency: 'Thoracic Emergencies (Tension Pneumothorax, Flail Chest, Massive Haemothorax)',
   urologyAndrology: 'Urology & Andrology (BPH, Prostate/Bladder Ca, Retention, Varicocele, Stones, Torsion, Hydrocele, Cryptorchidism)',
   breastGynae: 'Breast & Gynaecology (Breast/Cervical/Ovarian/Endometrial Ca, Ectopic, Fibroids, Imperforate Hymen, Bartholin)',
-  pastPaper: 'Past Question (140 MCQs) — Gyne, Neuro, GI, and Exam Review',
+  pastPaper: 'Past Question (170 MCQs) — Gyne, Neuro, Urology, GI, and Exam Review',
 };
 
 export interface MCQuestion {
@@ -4913,6 +4913,277 @@ export const surgeryQuestions: SurgeryQuestion[] = [
     choices: ["CT scan","PET scan","Biopsy","MRI"],
     correctIndex: 2,
     rationale: "Direct histopathological tissue analysis via a physical biopsy is the only gold-standard method to definitively establish cell grade and local tissue invasion depth."
+  }
+,
+  {
+    id: "pq-ur-001",
+    topic: 'pastPaper',
+    type: 'mcq',
+    prompt: "A patient is admitted with suspected Benign Prostatic Hyperplasia (BPH). The nurse performs a focused history. Which symptom reported by the patient is classified as an obstructive symptom?",
+    choices: ["Urinary hesitancy and weak stream.","Urinary frequency.","Urgent need to urinate.","Nocturia."],
+    correctIndex: 0,
+    rationale: "BPH symptoms are divided into obstructive (hesitancy, weak stream, straining, dribbling, incomplete emptying) caused by physical narrowing of the urethra, and irritative (frequency, nocturia, urgency) caused by bladder muscle instability."
+  },
+  {
+    id: "pq-ur-002",
+    topic: 'pastPaper',
+    type: 'mcq',
+    prompt: "During a physical examination of a patient with suspected Benign Prostatic Hyperplasia (BPH), the physician performs a digital rectal examination (DRE). What rectal finding is expected for BPH?",
+    choices: ["A small, atrophied, non-palpable prostate gland.","A hard, irregular, nodular prostate gland.","A smoothly enlarged, symmetrical, elastic prostate gland.","A soft, fluctuant, extremely tender prostate gland."],
+    correctIndex: 2,
+    rationale: "Benign prostatic hyperplasia presents as a uniform, smooth, elastic, and non-tender enlargement of the prostate gland. A hard, nodular, or irregular gland suggests prostate cancer."
+  },
+  {
+    id: "pq-ur-003",
+    topic: 'pastPaper',
+    type: 'mcq',
+    prompt: "A patient with BPH is prescribed tamsulosin. What is the primary therapeutic mechanism of this medication?",
+    choices: ["It relaxes the smooth muscles of the bladder neck and prostate to improve urine flow.","It provides direct antimicrobial action to prevent urinary tract infections.","It blocks the conversion of testosterone to dihydrotestosterone (DHT) to shrink the prostate.","It acts as a loop diuretic to increase urine production."],
+    correctIndex: 0,
+    rationale: "Tamsulosin is an alpha-blocker that relaxes the smooth muscle in the prostate and bladder neck, rapidly improving urinary flow. In contrast, 5-alpha-reductase inhibitors like finasteride block DHT conversion to shrink the gland over months."
+  },
+  {
+    id: "pq-ur-004",
+    topic: 'pastPaper',
+    type: 'mcq',
+    prompt: "A patient is prescribed finasteride for the management of Benign Prostatic Hyperplasia (BPH). Which of the following should the nurse include in the patient teaching?",
+    choices: ["You will experience immediate relief of urinary retention within 24 hours.","The drug may take 3 to 6 months to reduce prostate size and improve symptoms.","The drug works by relaxing the smooth muscles of the urethra.","There is no risk of sexual dysfunction or decreased libido with this drug."],
+    correctIndex: 1,
+    rationale: "Finasteride is a 5-alpha-reductase inhibitor that shrinks the prostate gland by reducing dihydrotestosterone (DHT) levels. It has a slow onset of action and typically takes 3 to 6 months to show clinical efficacy."
+  },
+  {
+    id: "pq-ur-005",
+    topic: 'pastPaper',
+    type: 'mcq',
+    prompt: "A patient is recovering in the ward after a transurethral resection of the prostate (TURP) with continuous bladder irrigation (CBI) in place. The nurse notes that the drainage has become dark red with large clots. What action should the nurse take first?",
+    choices: ["Slow down the irrigation fluid to a slow drip to prevent bladder distension.","Increase the rate of the irrigation fluid infusion to keep the drainage light pink.","Notify the surgeon immediately for emergency surgical exploration.","Clamp the irrigation tube to prevent further blood loss."],
+    correctIndex: 1,
+    rationale: "The irrigation rate must be adjusted dynamically to maintain a light pink or clear drainage. If the drainage becomes dark red or contains clots, the irrigation flow rate must be increased to prevent clot formation and bladder obstruction."
+  },
+  {
+    id: "pq-ur-006",
+    topic: 'pastPaper',
+    type: 'mcq',
+    prompt: "A nurse is caring for a patient 2 hours post-TURP. The patient becomes confused, reports severe headache and nausea, and has a blood pressure of 160/90 mmHg and heart rate of 52 bpm. What complication should the nurse suspect?",
+    choices: ["Acute myocardial infarction.","Transurethral Resection (TUR) Syndrome.","Autonomic dysreflexia.","Hypovolemic shock from internal bleeding."],
+    correctIndex: 1,
+    rationale: "TUR syndrome is a rare but life-threatening complication caused by systemic absorption of non-conductive irrigation fluid (e.g., glycine), leading to dilutional hyponatremia. Symptoms include confusion, bradycardia, hypertension, headache, and nausea."
+  },
+  {
+    id: "pq-ur-007",
+    topic: 'pastPaper',
+    type: 'mcq',
+    prompt: "During a digital rectal examination (DRE) for a patient with suspected prostate cancer, what specific palpation finding should the clinician expect?",
+    choices: ["A soft, boggy, and extremely tender prostate gland.","A hard, irregular, and nodular prostate gland.","A warm, fluctuant mass projecting into the rectal wall.","A smooth, elastic, and symmetrically enlarged prostate gland."],
+    correctIndex: 1,
+    rationale: "Prostate cancer typically arises in the peripheral zone of the gland. On DRE, it presents characteristically as a hard, nodular, asymmetrical, and fixed prostate gland."
+  },
+  {
+    id: "pq-ur-008",
+    topic: 'pastPaper',
+    type: 'mcq',
+    prompt: "A patient with advanced prostate cancer reports severe, constant lower back and pelvic pain. The nurse should understand that this pain is most likely due to which pathological process?",
+    choices: ["Local compression of the femoral nerve by the primary tumor.","Acute urinary retention causing bladder distension.","Renal colic from secondary kidney stones.","Osteoblastic bone metastasis to the pelvis and spine."],
+    correctIndex: 3,
+    rationale: "Prostate cancer has a high tropism for bone, characteristically causing osteoblastic metastases in the spine, pelvis, and femur, presenting with severe, localized bone pain."
+  },
+  {
+    id: "pq-ur-009",
+    topic: 'pastPaper',
+    type: 'mcq',
+    prompt: "A 70-year-old male presents to the emergency department with sudden, severe lower abdominal pain and a visible, tense, painful bulge above the pubic symphysis. He has not voided for 18 hours. What is the immediate priority nursing action?",
+    choices: ["Administer a rapid intravenous infusion of normal saline.","Administer an oral dose of tamsulosin.","Place a warm heating pad on the lower abdomen.","Insert an indwelling urinary catheter immediately."],
+    correctIndex: 3,
+    rationale: "Acute urinary retention presents as a tense, extremely painful bladder. Immediate catheterization (either urethral or suprapubic) is required to drain the urine and relieve the pressure and pain."
+  },
+  {
+    id: "pq-ur-010",
+    topic: 'pastPaper',
+    type: 'mcq',
+    prompt: "A nurse is caring for a patient who is unable to void 8 hours post-abdominal surgery. Which of the following drugs administered during and after surgery is a common pharmacological cause of acute urinary retention?",
+    choices: ["Beta-blockers (e.g., metoprolol).","Opioids (e.g., morphine) and anticholinergics (e.g., atropine).","Loop diuretics (e.g., furosemide).","Non-steroidal anti-inflammatory drugs (NSAIDs)."],
+    correctIndex: 1,
+    rationale: "Opioids decrease bladder detrusor muscle tone and block the urge to void. Anticholinergics block parasympathetic pathways, preventing detrusor contraction, both heavily predisposing the patient to urinary retention."
+  },
+  {
+    id: "pq-ur-011",
+    topic: 'pastPaper',
+    type: 'mcq',
+    prompt: "A nurse is reviewing the pathology report of a patient diagnosed with bladder cancer. What is the most common histological type of bladder malignancy globally?",
+    choices: ["Small cell undifferentiated carcinoma.","Squamous cell carcinoma.","Adenocarcinoma.","Transitional (urothelial) cell carcinoma."],
+    correctIndex: 3,
+    rationale: "Transitional cell carcinoma (also called urothelial carcinoma) arises from the transitional epithelium lining the urinary tract and accounts for over 90% of all bladder cancers globally."
+  },
+  {
+    id: "pq-ur-012",
+    topic: 'pastPaper',
+    type: 'mcq',
+    prompt: "In endemic regions like parts of Africa, bladder cancer is frequently diagnosed as squamous cell carcinoma. What parasite is classically associated with this specific histological type?",
+    choices: ["Ascaris lumbricoides.","Entamoeba histolytica.","Plasmodium falciparum.","Schistosoma haematobium."],
+    correctIndex: 3,
+    rationale: "Chronic infection with the trematode parasite Schistosoma haematobium causes chronic bladder mucosal inflammation and irritation, which pre-disposes the tissue to squamous metaplasia and squamous cell carcinoma."
+  },
+  {
+    id: "pq-ur-013",
+    topic: 'pastPaper',
+    type: 'mcq',
+    prompt: "A 55-year-old patient presents with painless gross hematuria. They report no pain, burning, or frequency when urinating. What condition should the nurse suspect first?",
+    choices: ["Acute cystitis.","Nephrolithiasis.","Benign prostatic hyperplasia.","Bladder cancer."],
+    correctIndex: 3,
+    rationale: "Painless gross hematuria (visible blood in urine without pain) is the classic hallmark sign of bladder cancer and must be thoroughly investigated using cystoscopy."
+  },
+  {
+    id: "pq-ur-014",
+    topic: 'pastPaper',
+    type: 'mcq',
+    prompt: "A patient is suspected of having bladder cancer. Which diagnostic procedure represents the gold standard to definitively confirm this diagnosis?",
+    choices: ["Computed Tomography (CT) urogram.","Excretory urogram (IVP).","Urine cytology.","Cystoscopy with biopsy."],
+    correctIndex: 3,
+    rationale: "Cystoscopy allows direct visualization of the bladder mucosa, and obtaining a tissue biopsy for histological examination is the gold standard to confirm bladder malignancy and grade."
+  },
+  {
+    id: "pq-ur-015",
+    topic: 'pastPaper',
+    type: 'mcq',
+    prompt: "A patient is diagnosed with a varicocele. What is the anatomical definition of this condition?",
+    choices: ["A build-up of fluid between the layers of the tunica vaginalis.","An abnormal herniation of the bowel into the scrotum.","A fibrous plaque inside the corpora cavernosa causing penis curvature.","Abnormal dilation and tortuosity of the pampiniform venous plexus in the spermatic cord."],
+    correctIndex: 3,
+    rationale: "A varicocele is a cluster of dilated veins (pampiniform plexus) inside the scrotum, classically described as feeling like a 'bag of worms' on palpation."
+  },
+  {
+    id: "pq-ur-016",
+    topic: 'pastPaper',
+    type: 'mcq',
+    prompt: "A patient is diagnosed with a left-sided varicocele. What anatomical feature explains why varicoceles occur predominantly on the left side?",
+    choices: ["The left testis sits higher in the scrotum than the right testis.","The left testicular artery is narrower than the right testicular artery.","The left testicular vein drains directly into the inferior vena cava (IVC).","The left testicular vein drains at a right angle into the high-pressure left renal vein."],
+    correctIndex: 3,
+    rationale: "The left testicular vein drains perpendicularly at a 90-degree angle into the left renal vein, which has higher pressure. The right testicular vein drains at an oblique angle directly into the lower-pressure IVC."
+  },
+  {
+    id: "pq-ur-017",
+    topic: 'pastPaper',
+    type: 'mcq',
+    prompt: "A 45-year-old male presents with a sudden, new-onset right-sided varicocele. Why does this finding require urgent investigations like a renal ultrasound or CT scan?",
+    choices: ["It is a normal finding and requires reassurance only.","Right-sided varicoceles always cause sudden cardiac failure.","It indicates that the patient has bilateral inguinal hernias.","It raises suspicion for a retroperitoneal or renal mass compressing the inferior vena cava."],
+    correctIndex: 3,
+    rationale: "Since the right testicular vein drains directly into the IVC, a new right-sided varicocele is highly abnormal and suggests obstruction of the IVC or right renal vein, often by a renal tumor or retroperitoneal mass."
+  },
+  {
+    id: "pq-ur-018",
+    topic: 'pastPaper',
+    type: 'mcq',
+    prompt: "A patient with a varicocele asks the nurse why the doctor said it could affect his fertility. What is the physiological mechanism?",
+    choices: ["The dilated veins block the passage of sperm through the vas deferens.","The varicocele prevents the secretion of seminal fluid from the prostate.","The venous stasis raises the temperature of the testes, impairing spermatogenesis.","It causes absolute testosterone deficiency and erectile dysfunction."],
+    correctIndex: 2,
+    rationale: "Blood pooling in the dilated veins increases the temperature of the scrotum and testes. Spermatogenesis requires a temperature slightly below core body temperature; chronic warmth impairs sperm count and motility."
+  },
+  {
+    id: "pq-ur-019",
+    topic: 'pastPaper',
+    type: 'mcq',
+    prompt: "A patient is admitted with renal colic due to an obstructing kidney stone. How does the pain typically present and radiate?",
+    choices: ["Severe, colicky flank pain that radiates from the loin down to the groin.","Sharp chest pain that radiates to the jaw and left arm.","Generalized abdominal pain that is relieved by defecation.","Dull, constant epigastric pain that radiates to the left shoulder."],
+    correctIndex: 0,
+    rationale: "Ureteral colic presents as sudden, severe, spasmodic (colicky) flank pain ('loin') that radiates down to the lower abdomen, groin, or labia/testicles ('groin') as the stone migrates down the ureter."
+  },
+  {
+    id: "pq-ur-020",
+    topic: 'pastPaper',
+    type: 'mcq',
+    prompt: "A patient presents with acute loin-to-groin pain and hematuria. Which diagnostic test is the investigation of choice to confirm nephrolithiasis?",
+    choices: ["Plain abdominal X-ray (KUB) only.","Abdominal ultrasound only.","Intravenous pyelogram (IVP).","Non-contrast Computed Tomography of the Kidneys, Ureters, and Bladder (CT KUB)."],
+    correctIndex: 3,
+    rationale: "Non-contrast CT KUB is the gold standard and investigation of choice for suspected renal stones because it has high sensitivity and specificity for almost all stone types, including radiolucent ones."
+  },
+  {
+    id: "pq-ur-021",
+    topic: 'pastPaper',
+    type: 'mcq',
+    prompt: "A patient with a 5 mm ureteral stone is managed conservatively and prescribed tamsulosin. What is the purpose of this medication in kidney stone management?",
+    choices: ["It prevents secondary bacterial infections in the kidney.","It relaxes the smooth muscles of the distal ureter to facilitate stone passage.","It acts as a strong analgesic to relieve renal colic pain.","It alkalinizes the urine to dissolve the stone."],
+    correctIndex: 1,
+    rationale: "Tamsulosin is an alpha-blocker. Alpha-1 receptors are found in the distal ureter. Blocking these receptors relaxes ureteral smooth muscle, which reduces spasm and promotes spontaneous stone passage."
+  },
+  {
+    id: "pq-ur-022",
+    topic: 'pastPaper',
+    type: 'mcq',
+    prompt: "A nurse is teaching a student about testicular torsion. What is the underlying pathophysiology of this condition?",
+    choices: ["Bacterial infection of the epididymis and testis.","Dilated varicose veins within the pampiniform venous plexus.","Accumulation of serous fluid between the layers of the tunica vaginalis.","Twisting of the spermatic cord which cuts off testicular arterial blood supply."],
+    correctIndex: 3,
+    rationale: "Testicular torsion occurs when the testis twists on the spermatic cord, immediately compromising the venous and arterial blood supply, leading to ischemia and necrosis if not corrected."
+  },
+  {
+    id: "pq-ur-023",
+    topic: 'pastPaper',
+    type: 'mcq',
+    prompt: "A patient with testicular torsion is being prepared for emergency surgery. What is the critical time window from onset of pain to salvage the testis?",
+    choices: ["Within 48 hours.","Within 12 hours.","Within 6 hours.","Within 24 hours."],
+    correctIndex: 2,
+    rationale: "Ischemic injury to the testis begins rapidly. Surgical detorsion within 6 hours of pain onset offers a salvage rate of >90%, which drops drastically to under 10% after 24 hours."
+  },
+  {
+    id: "pq-ur-024",
+    topic: 'pastPaper',
+    type: 'mcq',
+    prompt: "A 16-year-old male presents with sudden, severe left testicular pain. Which clinical findings support a diagnosis of testicular torsion over epididymitis?",
+    choices: ["A swollen, high-riding left testis and an absent left cremasteric reflex.","Relief of pain when elevating the left scrotum (Prehn's sign).","Normal positioning of the testis with a positive cremasteric reflex.","High fever, dysuria, and purulent urethral discharge."],
+    correctIndex: 0,
+    rationale: "Torsion causes the testis to retract upward (high-riding). The cremasteric reflex is characteristically absent on the affected side. Prehn's sign (relief of pain with elevation) is typically negative in torsion but positive in epididymitis."
+  },
+  {
+    id: "pq-ur-025",
+    topic: 'pastPaper',
+    type: 'mcq',
+    prompt: "A patient undergoes emergency surgical detorsion for a right testicular torsion. The surgeon performs a bilateral orchidopexy. Why is the unaffected left testis also fixed?",
+    choices: ["To double the rate of testosterone production.","To improve cosmetic symmetry of the scrotum.","To prevent the development of testicular cancer on the left side.","The anatomical defect (bell-clapper deformity) is typically bilateral, predisposing the left side to future torsion."],
+    correctIndex: 3,
+    rationale: "Testicular torsion often occurs because of an underlying congenital hyper-mobility ('bell-clapper deformity'). Since this defect is usually bilateral, the contralateral (unaffected) testis is surgically anchored (fixed) to prevent future torsion."
+  },
+  {
+    id: "pq-ur-026",
+    topic: 'pastPaper',
+    type: 'mcq',
+    prompt: "A patient presents with a painless, swollen scrotum. The nurse shines a penlight through the scrotum and notes red light glows through the mass (positive transillumination). What is the likely diagnosis?",
+    choices: ["Testicular torsion.","Hydrocele.","Inguinal hernia containing bowel.","Testicular cancer."],
+    correctIndex: 1,
+    rationale: "A hydrocele is a collection of clear serous fluid. Light easily passes through fluid (positive transillumination). Solid masses like testicular cancer or bowel in a hernia do not transilluminate."
+  },
+  {
+    id: "pq-ur-027",
+    topic: 'pastPaper',
+    type: 'mcq',
+    prompt: "A nurse explains the pathophysiology of a hydrocele to a patient. Where is the fluid located in a hydrocele?",
+    choices: ["Between the visceral and parietal layers of the tunica vaginalis.","Between the tunica albuginea and the epididymis.","Within the pampiniform venous plexus.","Inside the lumen of the vas deferens."],
+    correctIndex: 0,
+    rationale: "A hydrocele is a painless accumulation of fluid within the potential space of the tunica vaginalis, which surrounds the anterior and lateral aspects of the testis."
+  },
+  {
+    id: "pq-ur-028",
+    topic: 'pastPaper',
+    type: 'mcq',
+    prompt: "A pediatrician schedules an infant for an orchidopexy for cryptorchidism. What is the optimal age range to perform this surgery?",
+    choices: ["Immediately at birth.","After 5 years of age, before starting school.","At puberty (11 to 14 years).","Before 1 to 2 years of age."],
+    correctIndex: 3,
+    rationale: "Performing orchidopexy (surgical placement of undescended testis into the scrotum) before age 1 to 2 is critical to protect germ cells from heat damage (preserving fertility) and to allow easy palpation for future testicular cancer screening."
+  },
+  {
+    id: "pq-ur-029",
+    topic: 'pastPaper',
+    type: 'mcq',
+    prompt: "A nurse is teaching a patient about kidney stone prevention. Which is the most common mineral composition of kidney stones globally?",
+    choices: ["Cystine.","Calcium oxalate.","Uric acid.","Struvite (triple phosphate)."],
+    correctIndex: 1,
+    rationale: "Calcium oxalate stones are the most common type of renal calculi, accounting for approximately 70% to 80% of all cases."
+  },
+  {
+    id: "pq-ur-030",
+    topic: 'pastPaper',
+    type: 'mcq',
+    prompt: "A patient is admitted with a single functioning left kidney and is diagnosed with an obstructing 7 mm left ureteral stone. Which complication should the nurse monitor for closely?",
+    choices: ["Pre-renal hypovolemic shock.","Post-renal acute kidney injury (AKI).","Chronic pyelonephritis.","Intra-renal glomerulonephritis."],
+    correctIndex: 1,
+    rationale: "An obstructing stone in a patient with a single functioning kidney blocks all urine outflow, leading to post-renal obstruction, hydronephrosis, and rapid onset of acute kidney injury (AKI)."
   }
 ];
 
