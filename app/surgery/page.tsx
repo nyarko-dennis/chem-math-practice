@@ -38,6 +38,7 @@ const DEFAULT_TOPICS: SelectedTopics = {
   thoracicEmergency: true,
   urologyAndrology: true,
   breastGynae: true,
+  pastPaper: true,
 };
 
 const DEFAULT_KINDS: SelectedKinds = {

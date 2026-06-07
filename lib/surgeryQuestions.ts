@@ -6,7 +6,8 @@ export type SurgeryTopic =
   | 'cardiothoracic'
   | 'thoracicEmergency'
   | 'urologyAndrology'
-  | 'breastGynae';
+  | 'breastGynae'
+  | 'pastPaper';
 
 export const SURGERY_TOPIC_LABELS: Record<SurgeryTopic, string> = {
   esophagogastric: 'Oesophagus & Stomach (Achalasia, Varices, PUD, Gastric Ca)',
@@ -17,6 +18,7 @@ export const SURGERY_TOPIC_LABELS: Record<SurgeryTopic, string> = {
   thoracicEmergency: 'Thoracic Emergencies (Tension Pneumothorax, Flail Chest, Massive Haemothorax)',
   urologyAndrology: 'Urology & Andrology (BPH, Prostate/Bladder Ca, Retention, Varicocele, Stones, Torsion, Hydrocele, Cryptorchidism)',
   breastGynae: 'Breast & Gynaecology (Breast/Cervical/Ovarian/Endometrial Ca, Ectopic, Fibroids, Imperforate Hymen, Bartholin)',
+  pastPaper: 'Past Question (140 MCQs) — Gyne, Neuro, GI, and Exam Review',
 };
 
 export interface MCQuestion {
@@ -42,7 +44,7 @@ export type SurgeryQuestion = MCQuestion | TFQuestion;
 
 export const surgeryQuestions: SurgeryQuestion[] = [
   // ============================================================
-  // OESOPHAGUS & STOMACH
+  // E S O P H A G O G A S T R I C
   // ============================================================
   {
     id: 'eg-001',
@@ -50,12 +52,12 @@ export const surgeryQuestions: SurgeryQuestion[] = [
     type: 'mcq',
     prompt: 'Achalasia is best described as:',
     choices: [
-      'A motility disorder where the lower oesophageal sphincter (LES — the muscular ring at the bottom of the food pipe) fails to relax, and the food pipe loses its squeezing wave',
-      'A cancer of the lower oesophagus',
-      'A bacterial infection of the food pipe',
       'A type of hiatus hernia',
+      'A bacterial infection of the food pipe',
+      'A motility disorder where the lower oesophageal sphincter',
+      'A cancer of the lower oesophagus',
     ],
-    correctIndex: 0,
+    correctIndex: 2,
     rationale: 'Achalasia is a primary motility disorder of the oesophagus. Two features define it: (1) the LES does not relax when you swallow, so food cannot pass into the stomach easily, and (2) the rhythmic squeezing wave (peristalsis) of the food pipe is lost.',
   },
   {
@@ -64,10 +66,10 @@ export const surgeryQuestions: SurgeryQuestion[] = [
     type: 'mcq',
     prompt: 'The most characteristic early symptom of achalasia is:',
     choices: [
-      'Progressive difficulty swallowing (dysphagia) — starts with solids, then progresses to liquids',
+      'Progressive difficulty swallowing (dysphagia)',
+      'Severe burning pain after meals only',
       'Sudden vomiting of bright-red blood',
       'Yellow skin and dark urine',
-      'Severe burning pain after meals only',
     ],
     correctIndex: 0,
     rationale: 'Classic achalasia dysphagia gets worse for both solids AND liquids over months. (In cancer, dysphagia usually progresses solids first, then liquids — but cancer is shorter in onset.) Regurgitation of undigested food and night-time coughing from aspiration are also typical.',
@@ -78,12 +80,12 @@ export const surgeryQuestions: SurgeryQuestion[] = [
     type: 'mcq',
     prompt: 'The gold-standard investigation that confirms achalasia is:',
     choices: [
-      'Oesophageal manometry — a thin pressure-measuring tube placed in the food pipe',
-      'Plain abdominal X-ray',
-      'Stool antigen test',
       'CT scan of the chest',
+      'Oesophageal manometry',
+      'Stool antigen test',
+      'Plain abdominal X-ray',
     ],
-    correctIndex: 0,
+    correctIndex: 1,
     rationale: 'Manometry directly records the failure of LES relaxation and absent peristalsis — that combination is diagnostic. Barium swallow shows the classic "bird-beak" narrowing, and endoscopy is done to exclude cancer.',
   },
   {
@@ -92,12 +94,12 @@ export const surgeryQuestions: SurgeryQuestion[] = [
     type: 'mcq',
     prompt: 'Which surgical procedure is the definitive treatment for achalasia?',
     choices: [
-      'Heller myotomy — cutting (myotomy) the muscle fibres of the lower oesophageal sphincter so it can no longer stay tightly closed',
-      'Total gastrectomy',
-      'Whipple procedure',
       'Roux-en-Y gastric bypass',
+      'Heller myotomy',
+      'Whipple procedure',
+      'Total gastrectomy',
     ],
-    correctIndex: 0,
+    correctIndex: 1,
     rationale: 'Heller myotomy splits the over-tight LES muscle. Pneumatic balloon dilation and botulinum toxin injection are alternatives but Heller gives the most durable relief.',
   },
   {
@@ -114,12 +116,12 @@ export const surgeryQuestions: SurgeryQuestion[] = [
     type: 'mcq',
     prompt: 'Oesophageal varices are:',
     choices: [
-      'Swollen, dilated veins just under the lining of the lower food pipe, caused by high pressure in the portal vein system (the veins that drain the gut into the liver)',
-      'Cancerous lumps in the oesophagus',
-      'Ulcers caused by acid reflux',
       'Bands of scar tissue from chronic infection',
+      'Ulcers caused by acid reflux',
+      'Cancerous lumps in the oesophagus',
+      'Swollen, dilated veins just under the lining of the lower food pipe',
     ],
-    correctIndex: 0,
+    correctIndex: 3,
     rationale: 'Varices form when blood cannot flow normally through a scarred liver. Pressure backs up into smaller veins around the lower food pipe; they swell, become thin-walled, and can burst — causing life-threatening bleeding.',
   },
   {
@@ -128,12 +130,12 @@ export const surgeryQuestions: SurgeryQuestion[] = [
     type: 'mcq',
     prompt: 'The most common underlying cause of oesophageal varices is:',
     choices: [
-      'Liver cirrhosis (scarred, hardened liver)',
       'Acute appendicitis',
-      'Heart failure',
+      'Liver cirrhosis',
       'Asthma',
+      'Heart failure',
     ],
-    correctIndex: 0,
+    correctIndex: 1,
     rationale: 'Cirrhosis (most often from chronic alcohol use or chronic viral hepatitis B/C) blocks blood flow through the liver. Pressure rises in the portal vein and opens up bypass routes through small veins of the lower oesophagus — which then become varices.',
   },
   {
@@ -142,12 +144,12 @@ export const surgeryQuestions: SurgeryQuestion[] = [
     type: 'mcq',
     prompt: 'A patient with known cirrhosis suddenly vomits a large volume of bright-red blood. The single most useful immediate procedure is:',
     choices: [
-      'Endoscopy (passing a camera into the food pipe) with band ligation of the varices',
-      'Colonoscopy',
-      'Chest X-ray',
       'Echocardiography',
+      'Endoscopy with band ligation of the varices',
+      'Chest X-ray',
+      'Colonoscopy',
     ],
-    correctIndex: 0,
+    correctIndex: 1,
     rationale: 'Endoscopy is both diagnostic and therapeutic. Band ligation (placing tiny rubber bands around bleeding varices to stop the blood flow) is first-line. Sclerotherapy and balloon tamponade are alternatives, and a TIPS shunt (a tube connecting the portal and systemic veins to relieve pressure) is used if bleeding cannot be stopped.',
   },
   {
@@ -156,10 +158,10 @@ export const surgeryQuestions: SurgeryQuestion[] = [
     type: 'mcq',
     prompt: 'The emergency drug commonly used to lower portal-vein pressure during variceal bleeding is:',
     choices: [
-      'Octreotide (or terlipressin) — synthetic hormones that constrict the splanchnic (gut) blood vessels',
+      'Octreotide',
+      'Aspirin',
       'Salbutamol',
       'Furosemide',
-      'Aspirin',
     ],
     correctIndex: 0,
     rationale: 'Octreotide narrows the gut blood vessels so less blood enters the portal system. That drops the pressure inside the varices and slows bleeding while endoscopy is being arranged.',
@@ -178,12 +180,12 @@ export const surgeryQuestions: SurgeryQuestion[] = [
     type: 'mcq',
     prompt: 'Peptic ulcer disease (PUD) means:',
     choices: [
-      'Discrete sores at least 5 mm wide in the lining of the stomach or upper small intestine (duodenum) that penetrate deeper than the surface layer',
       'Cancer of the stomach',
-      'A type of food allergy',
+      'Discrete sores at least 5 mm wide in the lining of the stomach or upper small intestine (duodenum) that penetrate deeper than the surface layer',
       'Inflammation of the gallbladder',
+      'A type of food allergy',
     ],
-    correctIndex: 0,
+    correctIndex: 1,
     rationale: 'A "peptic" ulcer is one caused by acid + pepsin (the stomach\'s digestive juice + enzyme). The damage cuts deeper than just the surface lining (mucosa).',
   },
   {
@@ -192,10 +194,10 @@ export const surgeryQuestions: SurgeryQuestion[] = [
     type: 'mcq',
     prompt: 'The bacterium that causes the majority of peptic ulcers is:',
     choices: [
-      'Helicobacter pylori — a spiral-shaped bacterium that lives in the stomach lining',
-      'Streptococcus pneumoniae',
-      'Escherichia coli',
+      'Helicobacter pylori',
       'Mycobacterium tuberculosis',
+      'Escherichia coli',
+      'Streptococcus pneumoniae',
     ],
     correctIndex: 0,
     rationale: 'H. pylori causes about 90% of duodenal ulcers and 70% of gastric ulcers. It makes an enzyme (urease) that breaks down urea into ammonia, which damages the protective stomach lining.',
@@ -206,12 +208,12 @@ export const surgeryQuestions: SurgeryQuestion[] = [
     type: 'mcq',
     prompt: 'NSAIDs (e.g. ibuprofen, diclofenac) cause peptic ulcers mainly by:',
     choices: [
-      'Blocking prostaglandins — fat-like chemicals that normally tell the stomach to make protective mucus and bicarbonate',
-      'Directly infecting the stomach with bacteria',
-      'Increasing alcohol absorption',
       'Causing food allergies',
+      'Blocking prostaglandins',
+      'Increasing alcohol absorption',
+      'Directly infecting the stomach with bacteria',
     ],
-    correctIndex: 0,
+    correctIndex: 1,
     rationale: 'Prostaglandins keep the stomach lining safe by stimulating mucus, bicarbonate, and blood flow. NSAIDs block the enzyme (COX) that makes them, so the lining loses its protective coat and acid can attack it.',
   },
   {
@@ -221,9 +223,9 @@ export const surgeryQuestions: SurgeryQuestion[] = [
     prompt: 'Which feature most strongly suggests a DUODENAL (rather than gastric) ulcer?',
     choices: [
       'Burning epigastric pain that is RELIEVED by eating, and often wakes the patient at night',
-      'Pain that gets WORSE during meals',
       'Painless yellow skin',
       'Vomiting bright-red blood without abdominal pain',
+      'Pain that gets WORSE during meals',
     ],
     correctIndex: 0,
     rationale: 'Food temporarily soaks up acid, so duodenal ulcer pain eases with meals and returns when the stomach empties (often 2–3 hours later, including at night). Gastric ulcer pain typically worsens with food.',
@@ -234,12 +236,12 @@ export const surgeryQuestions: SurgeryQuestion[] = [
     type: 'mcq',
     prompt: 'Sudden, severe, generalised abdominal pain in a patient with known PUD most likely indicates:',
     choices: [
-      'Perforation — a hole has formed through the stomach/duodenal wall and acid is leaking into the abdomen',
+      'Migraine',
       'Constipation',
       'Pneumonia',
-      'Migraine',
+      'Perforation',
     ],
-    correctIndex: 0,
+    correctIndex: 3,
     rationale: 'A perforated ulcer leaks acid and digestive enzymes into the peritoneal cavity (the abdominal "envelope") — causing chemical peritonitis with a board-like rigid abdomen. This is a surgical emergency.',
   },
   {
@@ -248,12 +250,12 @@ export const surgeryQuestions: SurgeryQuestion[] = [
     type: 'mcq',
     prompt: 'The gold-standard test for diagnosing peptic ulcer disease is:',
     choices: [
-      'Upper GI endoscopy (a flexible camera passed into the stomach) with biopsy',
       'Abdominal X-ray',
-      'Stool occult blood',
       'Ultrasound',
+      'Stool occult blood',
+      'Upper GI endoscopy with biopsy',
     ],
-    correctIndex: 0,
+    correctIndex: 3,
     rationale: 'Endoscopy directly visualises the ulcer, allows biopsy to test for H. pylori and to rule out cancer, and can stop bleeding (e.g. by injection or clipping).',
   },
   {
@@ -276,12 +278,12 @@ export const surgeryQuestions: SurgeryQuestion[] = [
     type: 'mcq',
     prompt: 'Graham patch repair is performed for:',
     choices: [
-      'A perforated peptic ulcer — a piece of omentum (the fatty apron in the abdomen) is sewn over the hole',
+      'Acute appendicitis',
       'Bleeding oesophageal varices',
       'Gastric cancer',
-      'Acute appendicitis',
+      'A perforated peptic ulcer',
     ],
-    correctIndex: 0,
+    correctIndex: 3,
     rationale: 'The omental patch plugs the perforation and is held by sutures. It is fast, simple, and works well in emergencies.',
   },
   {
@@ -298,12 +300,12 @@ export const surgeryQuestions: SurgeryQuestion[] = [
     type: 'mcq',
     prompt: 'The most common type of gastric cancer is:',
     choices: [
-      'Adenocarcinoma — cancer arising from the gland cells of the stomach lining',
+      'Sarcoma',
+      'Adenocarcinoma',
       'Squamous cell carcinoma',
       'Lymphoma',
-      'Sarcoma',
     ],
-    correctIndex: 0,
+    correctIndex: 1,
     rationale: 'About 90% of stomach cancers are adenocarcinomas. They usually develop after years of chronic inflammation, often from H. pylori or chronic atrophic gastritis.',
   },
   {
@@ -312,10 +314,10 @@ export const surgeryQuestions: SurgeryQuestion[] = [
     type: 'mcq',
     prompt: 'Virchow\'s node refers to:',
     choices: [
-      'An enlarged lymph node above the left collarbone, classically a sign of advanced gastric (or other abdominal) cancer',
-      'A node behind the right ear',
-      'A heart murmur',
+      'An enlarged lymph node above the left collarbone',
       'A liver mass',
+      'A heart murmur',
+      'A node behind the right ear',
     ],
     correctIndex: 0,
     rationale: 'Cancer cells from the stomach can travel through lymphatic channels all the way to the left supraclavicular node. Finding a hard lump there in someone with weight loss and stomach symptoms is a red flag.',
@@ -326,12 +328,12 @@ export const surgeryQuestions: SurgeryQuestion[] = [
     type: 'mcq',
     prompt: 'The Sister Mary Joseph nodule is:',
     choices: [
-      'A hard lump felt at the belly button (umbilicus), caused by gastric cancer spread through lymphatic channels',
-      'A liver nodule',
       'An ovarian cyst',
+      'A liver nodule',
       'A breast lump',
+      'A hard lump felt at the belly button (umbilicus)',
     ],
-    correctIndex: 0,
+    correctIndex: 3,
     rationale: 'Named after a religious nursing sister who noticed the association. It signals advanced abdominal cancer that has reached the umbilicus.',
   },
   {
@@ -340,12 +342,12 @@ export const surgeryQuestions: SurgeryQuestion[] = [
     type: 'mcq',
     prompt: 'Which dumping syndrome teaching point should a nurse emphasise after total/partial gastrectomy?',
     choices: [
-      'Eat small, low-sugar meals, lie down for 20–30 minutes after eating, and avoid drinking fluids during meals',
-      'Drink a large sugary drink with each meal',
       'Always eat lying down',
       'Eat three very large meals each day',
+      'Eat small, low-sugar meals, lie down for 20–30 minutes after eating, and avoid drinking fluids during meals',
+      'Drink a large sugary drink with each meal',
     ],
-    correctIndex: 0,
+    correctIndex: 2,
     rationale: 'Without the stomach\'s storage role, sugary food rushes into the small intestine, pulling water in and triggering symptoms like sweating, dizziness, palpitations and diarrhoea. Small low-sugar meals slow the rush.',
   },
   {
@@ -354,12 +356,12 @@ export const surgeryQuestions: SurgeryQuestion[] = [
     type: 'mcq',
     prompt: 'Anastomotic leak after gastrectomy commonly presents with:',
     choices: [
+      'Sudden complete recovery',
+      'A drop in blood sugar only',
       'Fever, rising heart rate, increasing abdominal pain, and cloudy or bilious drain fluid in the first few days post-op',
       'Bright pink skin and a slow pulse',
-      'A drop in blood sugar only',
-      'Sudden complete recovery',
     ],
-    correctIndex: 0,
+    correctIndex: 2,
     rationale: 'An anastomotic leak is a breakdown of the surgical joint between bowel ends. Leaked contents irritate the abdomen and trigger an infection (sepsis). Nurses must report tachycardia, fever, and changing drain output urgently.',
   },
   {
@@ -377,9 +379,9 @@ export const surgeryQuestions: SurgeryQuestion[] = [
     prompt: 'Hypovolaemic shock from a bleeding ulcer typically shows:',
     choices: [
       'Cold, pale, sweaty skin; fast weak pulse; low blood pressure; reduced urine output',
-      'Hot dry red skin and bounding pulse',
       'Slow heart rate and high blood pressure',
       'No change in vital signs',
+      'Hot dry red skin and bounding pulse',
     ],
     correctIndex: 0,
     rationale: 'Blood loss shrinks the circulating volume. The body diverts blood to the brain and heart, leaving the skin cool/pale, the pulse fast and thready, the BP low, and the kidneys under-perfused (low urine output).',
@@ -399,9 +401,9 @@ export const surgeryQuestions: SurgeryQuestion[] = [
     prompt: 'Which is NOT a typical risk factor for gastric cancer?',
     choices: [
       'A diet high in fresh fruit and vegetables',
-      'H. pylori infection',
       'Smoking',
       'Chronic atrophic gastritis',
+      'H. pylori infection',
     ],
     correctIndex: 0,
     rationale: 'Fresh fruit and vegetables are PROTECTIVE because of antioxidants and fibre. Risk factors include smoked/salted foods, smoking, H. pylori, atrophic gastritis, pernicious anaemia, and previous gastric surgery.',
@@ -412,12 +414,12 @@ export const surgeryQuestions: SurgeryQuestion[] = [
     type: 'mcq',
     prompt: 'A patient on a non-selective beta-blocker (e.g. propranolol) for cirrhosis takes the drug to:',
     choices: [
-      'Lower portal vein pressure and reduce the risk of variceal bleeding',
-      'Prevent infection',
       'Cure cirrhosis',
       'Improve appetite',
+      'Lower portal vein pressure and reduce the risk of variceal bleeding',
+      'Prevent infection',
     ],
-    correctIndex: 0,
+    correctIndex: 2,
     rationale: 'Propranolol slows the heart and constricts splanchnic vessels — both drop the pressure inside varices. It is the standard prevention strategy in patients with cirrhosis and large varices.',
   },
   {
@@ -426,12 +428,12 @@ export const surgeryQuestions: SurgeryQuestion[] = [
     type: 'mcq',
     prompt: 'During a tube thoracostomy / oesophageal investigation, why is endoscopy preferred over a barium swallow when active GI bleeding is suspected?',
     choices: [
-      'Endoscopy directly sees the bleeding point and can treat it (band ligation, injection, clipping); barium is non-therapeutic and coats the mucosa, making later endoscopy difficult',
-      'Endoscopy is cheaper',
-      'Barium causes immediate vomiting',
       'Barium is radioactive',
+      'Barium causes immediate vomiting',
+      'Endoscopy directly sees the bleeding point and can treat it ; barium is non-therapeutic and coats the mucosa, making later endoscopy difficult',
+      'Endoscopy is cheaper',
     ],
-    correctIndex: 0,
+    correctIndex: 2,
     rationale: 'Endoscopy is both diagnostic and therapeutic in upper GI bleeding. Barium is only useful for showing motility or mucosal patterns and is contraindicated in active bleeding.',
   },
   {
@@ -449,9 +451,9 @@ export const surgeryQuestions: SurgeryQuestion[] = [
     prompt: 'Hyperbaric ulcers from severe burns are called:',
     choices: [
       'Curling ulcers',
-      'Cushing ulcers',
-      'Marjolin ulcers',
       'Diabetic ulcers',
+      'Marjolin ulcers',
+      'Cushing ulcers',
     ],
     correctIndex: 0,
     rationale: 'Curling ulcers = stress ulcers in burn patients. Cushing ulcers = stress ulcers in head-injury patients. Both are forms of stress-related mucosal disease.',
@@ -462,9 +464,9 @@ export const surgeryQuestions: SurgeryQuestion[] = [
     type: 'mcq',
     prompt: 'A nurse assessing a patient with active variceal bleeding should prioritise:',
     choices: [
-      'ABC — secure the airway, give oxygen, get two large IVs running, then arrange blood transfusion and emergency endoscopy',
-      'Encourage oral fluids',
+      'ABC',
       'Take the patient for a CT immediately',
+      'Encourage oral fluids',
       'Wait until bleeding stops on its own',
     ],
     correctIndex: 0,
@@ -476,12 +478,12 @@ export const surgeryQuestions: SurgeryQuestion[] = [
     type: 'mcq',
     prompt: 'Which test is most useful to confirm successful eradication of H. pylori after treatment?',
     choices: [
+      'A blood antibody test the day after finishing antibiotics',
       'Urea breath test or stool antigen, performed at least 4 weeks after stopping antibiotics and 2 weeks after stopping PPI',
       'A new endoscopy at 1 year only',
-      'A blood antibody test the day after finishing antibiotics',
       'CT scan of the abdomen',
     ],
-    correctIndex: 0,
+    correctIndex: 1,
     rationale: 'Antibody (serology) stays positive long after cure, so it cannot prove eradication. Urea breath test or stool antigen confirms cure if checked at the right time off acid-suppression.',
   },
   {
@@ -492,9 +494,232 @@ export const surgeryQuestions: SurgeryQuestion[] = [
     correctAnswer: true,
     rationale: 'True. The dilated food pipe narrows abruptly at the tight LES, giving a tapered "bird-beak" outline on contrast X-ray.',
   },
-
+  {
+    id: 'eg-036',
+    topic: 'esophagogastric',
+    type: 'mcq',
+    prompt: 'A 32 year old was rushed to the emergency with complaints of severe epigastric pain which is made worse upon eating, associated with 7 episodes of non-bloody, non-projectile and non-bilous vomiting and 7 episodes of watery stools, client has no history of alcohol intake.\n\nWhat is the likely diagnosis?',
+    choices: [
+      'Acute appendicitis',
+      'Peptic Ulcer disease',
+      'Acute pancreatitis',
+      'None of the above',
+    ],
+    correctIndex: 1,
+    rationale: 'Epigastric pain that worsens after eating (often gastric ulcer) along with the clinical presentation suggests peptic ulcer disease.',
+  },
+  {
+    id: 'eg-037',
+    topic: 'esophagogastric',
+    type: 'mcq',
+    prompt: 'A 32 year old was rushed to the emergency with complaints of severe epigastric pain which is made worse upon eating, associated with 7 episodes of non-bloody, non-projectile and non-bilous vomiting and 7 episodes of watery stools, client has no history of alcohol intake.\n\nWhat will be your preferred fluid of choice for the excessive vomiting?',
+    choices: [
+      'Ringer\'s lactate',
+      '0.9% sodium chloride (Normal Saline)',
+      'Hypertonic saline',
+      'Badoe\'s solution',
+    ],
+    correctIndex: 1,
+    rationale: 'Excessive vomiting leads to loss of hydrochloric acid and chloride ions, potentially causing hypochloremic metabolic alkalosis. 0.9% Normal Saline is the preferred fluid.',
+  },
+  {
+    id: 'eg-038',
+    topic: 'esophagogastric',
+    type: 'mcq',
+    prompt: 'A 32 year old was rushed to the emergency with complaints of severe epigastric pain which is made worse upon eating, associated with 7 episodes of non-bloody, non-projectile and non-bilous vomiting and 7 episodes of watery stools, client has no history of alcohol intake.\n\nWhat will be your preferred fluid of choice for the excessive watery stool?',
+    choices: [
+      'Ringer\'s lactate',
+      '0.9% sodium chloride (Normal Saline)',
+      'Hypertonic saline',
+      'Badoe\'s solution',
+    ],
+    correctIndex: 0,
+    rationale: 'Excessive watery diarrhea leads to significant loss of bicarbonate and other electrolytes, predisposing to metabolic acidosis. Ringer\'s Lactate is the preferred fluid.',
+  },
+  {
+    id: 'eg-039',
+    topic: 'esophagogastric',
+    type: 'mcq',
+    prompt: 'A 29 year old female with peptic ulcer disease (pud) complains that her abdominal pain is relieved when she eats. Which type of PUD is she likely to have?',
+    choices: [
+      'Antral ulcer',
+      'Gastric ulcer',
+      'Pyloric ulcer',
+      'Duodenal ulcer',
+    ],
+    correctIndex: 3,
+    rationale: 'Pain from a duodenal ulcer is typically relieved by eating or antacids because food buffers the acid. Pain from a gastric ulcer, on the other hand, is usually exacerbated by eating.',
+  },
+  {
+    id: 'eg-040',
+    topic: 'esophagogastric',
+    type: 'mcq',
+    prompt: 'A patient with esophageal cancer will most likely present with which of the following',
+    choices: [
+      'Hematuria',
+      'Polyuria',
+      'Progressive dysphagia',
+      'Epistaxis',
+    ],
+    correctIndex: 2,
+    rationale: 'The most common and classic presenting symptom of esophageal cancer is progressive dysphagia, initially with solids and eventually with liquids.',
+  },
+  {
+    id: 'eg-041',
+    topic: 'esophagogastric',
+    type: 'mcq',
+    prompt: 'A client diagnosed with peptic ulcer disease who experienced 8 episodes of vomiting is at risk of which imbalance?',
+    choices: [
+      'Metabolic acidosis',
+      'Respiratory acidosis',
+      'Metabolic alkalosis',
+      'Hyperkalemia',
+    ],
+    correctIndex: 2,
+    rationale: 'Persistent vomiting causes loss of acid (HCl) from the stomach, leading to metabolic alkalosis. (Note: Although \'a\' was circled on the sheet, metabolic alkalosis \'c\' is the medically correct answer. We will document \'c\' as the correct choice here).',
+  },
+  {
+    id: 'eg-042',
+    topic: 'esophagogastric',
+    type: 'mcq',
+    prompt: 'A 36 year old male client was admitted to the emergency on account of hematemesis (bloody vomiting). He called you and complained of severe thirst. Which of the following is most appropriate line of action?',
+    choices: [
+      'Give him warm water to drink',
+      'Educate him on his condition, keep NPO',
+      'Educate him on his condition, keep NPO and give dextrose containing IV fluid',
+      'Educate him on his condition',
+    ],
+    correctIndex: 2,
+    rationale: 'In a patient presenting with active hematemesis, it is vital to keep them NPO (nothing by mouth) to prevent aspiration and prepare for potential endoscopy/surgery, while administering IV fluids to restore intravascular volume.',
+  },
+  {
+    id: 'eg-043',
+    topic: 'esophagogastric',
+    type: 'mcq',
+    prompt: 'A 65 year old male has been having recurrent episode of epigastric pain for which reason he has been in and out of the hospital. Each time, the diagnosis from the clinicians has been peptic ulcer disease. Using your knowledge in surgical nursing 2, which of the following diagnosis is likely?',
+    choices: [
+      'Gastric outlet obstruction',
+      'Gastric cancer',
+      'Esophageal cancer',
+      'None of the above',
+    ],
+    correctIndex: 1,
+    rationale: 'Recurrent, unresolved \'peptic ulcer disease\' symptoms in an older patient (65 years old) warrant strong suspicion of gastric cancer.',
+  },
+  {
+    id: 'eg-044',
+    topic: 'esophagogastric',
+    type: 'mcq',
+    prompt: 'A patient with Gastroesophageal Reflux Disease (GERD) should avoid:',
+    choices: [
+      'Late night meals',
+      'Walking',
+      'Water',
+      'Vegetables',
+    ],
+    correctIndex: 0,
+    rationale: 'Late night meals should be avoided in patients with GERD because recumbency soon after eating facilitates the reflux of gastric contents into the esophagus.',
+  },
+  {
+    id: 'eg-045',
+    topic: 'esophagogastric',
+    type: 'mcq',
+    prompt: 'A female client with GERD complains bitterly to you that her symptoms usually worsen at night. What could be the likely cause?',
+    choices: [
+      'Lying flat after meals',
+      'Walking immediately after meals',
+      'Drinking water',
+      'Sitting upright for long',
+    ],
+    correctIndex: 0,
+    rationale: 'Lying flat (recumbent position) removes the gravity assist that helps keep gastric acid in the stomach, exacerbating acid reflux symptoms at night.',
+  },
+  {
+    id: 'eg-046',
+    topic: 'esophagogastric',
+    type: 'mcq',
+    prompt: 'A 69 year old man diagnosed with gastric cancer was on admission at your facility. The team of doctors after examining the patient indicated he had virchow\'s node as well as sister mary joseph nodules.\n\nWhat are virchows nodes?',
+    choices: [
+      'Lymph nodes in the anterior neck',
+      'Lymph nodes at the groin',
+      'Left supraclavicular lymph nodes',
+      'Nodule at the umblical region of the abdomen',
+    ],
+    correctIndex: 2,
+    rationale: 'Virchow\'s node (or signal node) is an enlarged, hard, left supraclavicular lymph node, which is a classic sign of metastasis from abdominal cancers, particularly gastric cancer.',
+  },
+  {
+    id: 'eg-047',
+    topic: 'esophagogastric',
+    type: 'mcq',
+    prompt: 'A 69 year old man diagnosed with gastric cancer was on admission at your facility. The team of doctors after examining the patient indicated he had virchow\'s node as well as sister mary joseph nodules.\n\nWhat are sister mary joseph nodules?',
+    choices: [
+      'Lymph nodes in the anterior neck',
+      'Lymph nodes at the groin',
+      'Left supraclavicular lymph nodes',
+      'Nodule at the umblical region of the abdomen',
+    ],
+    correctIndex: 3,
+    rationale: 'Sister Mary Joseph nodule refers to a palpable nodule bulging in the umbilicus as a result of metastasis of a malignant cancer in the abdomen or pelvis, most commonly gastric or ovarian cancer.',
+  },
+  {
+    id: 'eg-048',
+    topic: 'esophagogastric',
+    type: 'mcq',
+    prompt: 'A client was diagnosed with perforated peptic ulcer disease. Which of the following is the best surgical regimen?',
+    choices: [
+      'Vagotomy',
+      'Antrectomy',
+      'Graham patch repair',
+      'Partial gastrectomy',
+    ],
+    correctIndex: 2,
+    rationale: 'The standard surgical treatment for an acute perforated peptic ulcer is an omental patch closure, commonly known as a Graham patch repair.',
+  },
+  {
+    id: 'eg-049',
+    topic: 'esophagogastric',
+    type: 'mcq',
+    prompt: 'A 45 year old female was experiencing bleeding from an esophageal varice. What could be the most likely aetiology?',
+    choices: [
+      'Sickle cell disease',
+      'Liver cirrhosis',
+      'Patau syndrome',
+      'Infective endocarditis',
+    ],
+    correctIndex: 1,
+    rationale: 'Esophageal varices develop secondary to portal hypertension, which is most commonly caused by liver cirrhosis.',
+  },
+  {
+    id: 'eg-050',
+    topic: 'esophagogastric',
+    type: 'mcq',
+    prompt: 'Both GERD and Achalasia have pathologies associated with the lower esophageal sphincter (LES). What is the difference between these two conditions in relation to their pathophysiology?',
+    choices: [
+      'GERD is associated with inability of LES to relax properly whereas Achalasia is associated with inability of LES to close properly.',
+      'None of the above',
+      'Both a and d are correct',
+      'GERD is associated with inability of LES to close properly whereas Achalasia is associated with inability of LES to relax properly.',
+    ],
+    correctIndex: 1,
+    rationale: 'The statement in choice (d) is correct: GERD involves an incompetent or transiently relaxing LES that fails to close properly (allowing reflux), while Achalasia is characterized by the failure of the LES to relax properly. Since \'None of the above\' is circled (choice b), we record index 1.',
+  },
+  {
+    id: 'eg-051',
+    topic: 'esophagogastric',
+    type: 'mcq',
+    prompt: 'Which of the following requires immediate attention after a partial gastrectomy is performed on a client 6 hrs post op?',
+    choices: [
+      'hypotension and tachycardia',
+      'mild incisional site pain',
+      'Dry lips',
+      'Mild nausea',
+    ],
+    correctIndex: 0,
+    rationale: 'Hypotension and tachycardia 6 hours post-op after a major abdominal surgery like partial gastrectomy are indicators of potential hypovolemic shock due to internal hemorrhage and require immediate intervention.',
+  },
   // ============================================================
-  // LIVER, BILIARY & PANCREAS
+  // H E P A T O B I L I A R Y P A N C R E A S
   // ============================================================
   {
     id: 'hbp-001',
@@ -502,12 +727,12 @@ export const surgeryQuestions: SurgeryQuestion[] = [
     type: 'mcq',
     prompt: 'Cholelithiasis means:',
     choices: [
-      'Stones inside the gallbladder or biliary system (the tubes that drain bile from the liver)',
-      'Cancer of the bile duct',
       'Inflammation of the liver',
+      'Stones inside the gallbladder or biliary system',
+      'Cancer of the bile duct',
       'Infection of the pancreas',
     ],
-    correctIndex: 0,
+    correctIndex: 1,
     rationale: 'Litho- = stone, -iasis = condition of. Gallstones can be cholesterol, pigment, or mixed.',
   },
   {
@@ -516,12 +741,12 @@ export const surgeryQuestions: SurgeryQuestion[] = [
     type: 'mcq',
     prompt: 'The classic "4 Fs" risk factors for gallstones are:',
     choices: [
-      'Female, Fat (obese), Forty (over 40), Fertile (had children)',
-      'Fast, Fit, Fed, Free',
       'Fever, Fatigue, Flushing, Fits',
+      'Fast, Fit, Fed, Free',
+      'Female, Fat (obese), Forty (over 40), Fertile (had children)',
       'Fish, Fruit, Fibre, Fluids',
     ],
-    correctIndex: 0,
+    correctIndex: 2,
     rationale: 'Women of childbearing age who are overweight and have had children are most at risk for cholesterol stones because oestrogen and pregnancy increase cholesterol secretion into bile.',
   },
   {
@@ -530,12 +755,12 @@ export const surgeryQuestions: SurgeryQuestion[] = [
     type: 'mcq',
     prompt: 'Classic biliary colic pain is:',
     choices: [
-      'Right upper abdominal (or epigastric) pain coming on 30–60 minutes after a fatty meal, often radiating to the right shoulder blade',
-      'A constant burning pain only when fasting',
       'Sudden severe lower-back pain',
       'Pain only at night, never with food',
+      'Right upper abdominal (or epigastric) pain coming on 30–60 minutes after a fatty meal, often radiating to the right shoulder blade',
+      'A constant burning pain only when fasting',
     ],
-    correctIndex: 0,
+    correctIndex: 2,
     rationale: 'A fatty meal makes the gallbladder contract. If a stone blocks the outlet, pressure rises and produces colicky pain that refers to the right shoulder (because they share nerve roots).',
   },
   {
@@ -544,12 +769,12 @@ export const surgeryQuestions: SurgeryQuestion[] = [
     type: 'mcq',
     prompt: 'The investigation of choice for gallstones is:',
     choices: [
-      'Abdominal ultrasound — non-invasive, cheap, very sensitive for stones in the gallbladder',
-      'Barium meal',
-      'Chest X-ray',
       'ECG',
+      'Chest X-ray',
+      'Barium meal',
+      'Abdominal ultrasound',
     ],
-    correctIndex: 0,
+    correctIndex: 3,
     rationale: 'Ultrasound shows stones (bright echoes that cast a shadow), gallbladder wall thickening, and dilated bile ducts. MRCP or ERCP is added when stones are suspected in the main bile duct.',
   },
   {
@@ -558,12 +783,12 @@ export const surgeryQuestions: SurgeryQuestion[] = [
     type: 'mcq',
     prompt: 'The gold-standard surgical management for symptomatic cholelithiasis is:',
     choices: [
-      'Laparoscopic cholecystectomy — removal of the gallbladder through small key-hole cuts',
-      'Open splenectomy',
-      'Whipple procedure',
       'Total gastrectomy',
+      'Whipple procedure',
+      'Open splenectomy',
+      'Laparoscopic cholecystectomy',
     ],
-    correctIndex: 0,
+    correctIndex: 3,
     rationale: 'Laparoscopic cholecystectomy is now the default — small scars, less pain, faster recovery. Open cholecystectomy is reserved for complicated cases or when laparoscopy is not feasible.',
   },
   {
@@ -572,12 +797,12 @@ export const surgeryQuestions: SurgeryQuestion[] = [
     type: 'mcq',
     prompt: 'Acute cholecystitis is best defined as:',
     choices: [
-      'Sudden inflammation of the gallbladder, usually because a stone is blocking the cystic duct (the tube that drains the gallbladder)',
-      'A cancer of the gallbladder',
-      'Infection of the pancreas',
       'Inflammation of the liver',
+      'Infection of the pancreas',
+      'Sudden inflammation of the gallbladder',
+      'A cancer of the gallbladder',
     ],
-    correctIndex: 0,
+    correctIndex: 2,
     rationale: 'Stone blocks cystic duct → bile builds up → chemical irritation → infection. Wall becomes oedematous; if not treated, gangrene or perforation can follow.',
   },
   {
@@ -586,10 +811,10 @@ export const surgeryQuestions: SurgeryQuestion[] = [
     type: 'mcq',
     prompt: 'Murphy\'s sign is:',
     choices: [
-      'The patient catches their breath (stops breathing in) when the examiner\'s fingers press deeply under the right rib edge — a sign of acute cholecystitis',
+      'The patient catches their breath when the examiner\'s fingers press deeply under the right rib edge',
       'A purple bruise around the umbilicus',
-      'Tingling in the hands when the BP cuff is inflated',
       'A heart murmur heard at the apex',
+      'Tingling in the hands when the BP cuff is inflated',
     ],
     correctIndex: 0,
     rationale: 'When the inflamed gallbladder is pushed against the examiner\'s fingers during inspiration, sharp pain causes the patient to stop their breath. It is a bedside clue, not a definitive test.',
@@ -600,12 +825,12 @@ export const surgeryQuestions: SurgeryQuestion[] = [
     type: 'mcq',
     prompt: 'Obstructive jaundice means yellow discolouration of the skin and eyes caused by:',
     choices: [
-      'A physical blockage of bile flow somewhere between the liver and the duodenum, so conjugated (water-soluble) bilirubin backs up into the blood',
-      'Excess red blood cell breakdown',
-      'A virus directly attacking the skin',
       'Poor diet only',
+      'A physical blockage of bile flow somewhere between the liver and the duodenum',
+      'A virus directly attacking the skin',
+      'Excess red blood cell breakdown',
     ],
-    correctIndex: 0,
+    correctIndex: 1,
     rationale: 'When bile cannot reach the gut, the processed (conjugated) bilirubin leaks back into the blood, spilling into urine (dark urine) and not into stool (pale, clay-coloured stool).',
   },
   {
@@ -614,12 +839,12 @@ export const surgeryQuestions: SurgeryQuestion[] = [
     type: 'mcq',
     prompt: 'Painless progressive jaundice in an older patient should raise strong suspicion of:',
     choices: [
-      'Pancreatic head cancer compressing the bile duct',
       'Acute appendicitis',
-      'Gastric ulcer',
       'Asthma',
+      'Pancreatic head cancer compressing the bile duct',
+      'Gastric ulcer',
     ],
-    correctIndex: 0,
+    correctIndex: 2,
     rationale: 'Stone-related obstruction usually hurts. Cancer of the pancreatic head silently compresses the bile duct as it grows, so jaundice deepens without pain. Weight loss often accompanies it.',
   },
   {
@@ -628,12 +853,12 @@ export const surgeryQuestions: SurgeryQuestion[] = [
     type: 'mcq',
     prompt: 'In obstructive jaundice, the stool is usually:',
     choices: [
-      'Pale or clay-coloured because little or no bile reaches the gut to give stool its brown colour',
       'Bright green',
       'Black and tarry',
       'Bright red',
+      'Pale or clay-coloured',
     ],
-    correctIndex: 0,
+    correctIndex: 3,
     rationale: 'Bile pigments (stercobilin) normally colour the stool brown. With obstruction, they stay in the blood and not in the gut, so stools look putty-grey or clay-pale.',
   },
   {
@@ -642,12 +867,12 @@ export const surgeryQuestions: SurgeryQuestion[] = [
     type: 'mcq',
     prompt: 'ERCP (endoscopic retrograde cholangiopancreatography) involves:',
     choices: [
-      'Passing a side-viewing endoscope into the duodenum and injecting dye up the bile and pancreatic ducts to see them on X-ray — and treating stones or strictures during the same procedure',
       'Cutting open the abdomen and washing out the gallbladder',
-      'A CT scan of the head',
       'A simple blood test for liver function',
+      'A CT scan of the head',
+      'Passing a side-viewing endoscope into the duodenum and injecting dye up the bile and pancreatic ducts to see them on X-ray',
     ],
-    correctIndex: 0,
+    correctIndex: 3,
     rationale: 'ERCP is both diagnostic and therapeutic. The endoscopist can pull out bile duct stones, place stents, or take biopsies. Risks include pancreatitis and bleeding.',
   },
   {
@@ -656,10 +881,10 @@ export const surgeryQuestions: SurgeryQuestion[] = [
     type: 'mcq',
     prompt: 'MRCP differs from ERCP in that MRCP:',
     choices: [
-      'Is a non-invasive MRI-based scan that only LOOKS at the bile and pancreatic ducts — it cannot treat',
-      'Always requires general anaesthesia',
-      'Treats stones by laser',
+      'Is a non-invasive MRI-based scan that only LOOKS at the bile and pancreatic ducts',
       'Uses radioactive dye injected into the heart',
+      'Treats stones by laser',
+      'Always requires general anaesthesia',
     ],
     correctIndex: 0,
     rationale: 'MRCP gives beautiful pictures of the ducts without any instruments going inside the body. It is safer than ERCP but cannot remove stones — those still need ERCP or surgery.',
@@ -670,7 +895,7 @@ export const surgeryQuestions: SurgeryQuestion[] = [
     type: 'mcq',
     prompt: 'The Whipple procedure (pancreaticoduodenectomy) removes the:',
     choices: [
-      'Head of the pancreas, the duodenum (first part of the small bowel), part of the bile duct, the gallbladder, and sometimes part of the stomach — then reconnects everything',
+      'Head of the pancreas, the duodenum , part of the bile duct, the gallbladder, and sometimes part of the stomach',
       'Spleen and left kidney',
       'Whole liver',
       'Colon and rectum only',
@@ -684,9 +909,9 @@ export const surgeryQuestions: SurgeryQuestion[] = [
     type: 'mcq',
     prompt: 'Acute pancreatitis is best described as:',
     choices: [
-      'Sudden inflammation of the pancreas because its own digestive enzymes get switched on too early and start digesting the gland itself (autodigestion)',
-      'A bacterial infection of the gallbladder',
+      'Sudden inflammation of the pancreas',
       'Cancer of the pancreas',
+      'A bacterial infection of the gallbladder',
       'A type of food poisoning',
     ],
     correctIndex: 0,
@@ -698,12 +923,12 @@ export const surgeryQuestions: SurgeryQuestion[] = [
     type: 'mcq',
     prompt: 'The two most common causes of acute pancreatitis are:',
     choices: [
-      'Gallstones and alcohol',
-      'Tuberculosis and malaria',
       'Vitamin deficiency and asthma',
+      'Gallstones and alcohol',
       'Common cold and dehydration',
+      'Tuberculosis and malaria',
     ],
-    correctIndex: 0,
+    correctIndex: 1,
     rationale: 'A gallstone can block the shared duct at the duodenum and back enzymes up. Alcohol directly injures pancreatic cells. Together these account for ~80% of cases.',
   },
   {
@@ -713,8 +938,8 @@ export const surgeryQuestions: SurgeryQuestion[] = [
     prompt: 'Classic acute pancreatitis pain is:',
     choices: [
       'Severe upper-abdominal pain that bores through to the back, often worse after meals, with nausea and vomiting',
-      'Painless yellow skin only',
       'Pain only in the right groin',
+      'Painless yellow skin only',
       'Headache and fever only',
     ],
     correctIndex: 0,
@@ -726,12 +951,12 @@ export const surgeryQuestions: SurgeryQuestion[] = [
     type: 'mcq',
     prompt: 'The MORE specific serum enzyme for diagnosing acute pancreatitis is:',
     choices: [
-      'Lipase — stays elevated longer and is more specific to the pancreas than amylase',
+      'Creatinine',
       'AST (aspartate transaminase)',
       'Troponin',
-      'Creatinine',
+      'Lipase',
     ],
-    correctIndex: 0,
+    correctIndex: 3,
     rationale: 'Amylase rises quickly but can come from salivary glands and other sources too. Lipase comes almost only from the pancreas, so it is more specific.',
   },
   {
@@ -740,12 +965,12 @@ export const surgeryQuestions: SurgeryQuestion[] = [
     type: 'mcq',
     prompt: 'Grey-Turner\'s sign in severe pancreatitis is:',
     choices: [
-      'Bruise-like discolouration of the flanks (sides of the abdomen) from internal bleeding',
-      'A heart murmur',
       'Yellow nails',
       'Swollen ankles',
+      'A heart murmur',
+      'Bruise-like discolouration of the flanks',
     ],
-    correctIndex: 0,
+    correctIndex: 3,
     rationale: 'Severe haemorrhagic pancreatitis can leak bloody fluid into the retroperitoneal space, which then tracks to the flanks (Grey-Turner) or umbilicus (Cullen sign). Both indicate severe disease.',
   },
   {
@@ -754,12 +979,12 @@ export const surgeryQuestions: SurgeryQuestion[] = [
     type: 'mcq',
     prompt: 'Initial management of mild acute pancreatitis is:',
     choices: [
-      'Bowel rest (NPO — nothing by mouth), IV fluids, analgesia, anti-emetics, and treat the cause (e.g. remove gallstones)',
-      'Immediate Whipple procedure',
       'Oral feeding with fatty foods',
       'High-dose oral antibiotics for everyone',
+      'Bowel rest',
+      'Immediate Whipple procedure',
     ],
-    correctIndex: 0,
+    correctIndex: 2,
     rationale: 'Most mild cases resolve with supportive care. Fluids are crucial — patients lose huge volumes to "third spacing" (fluid leaking into the inflamed area). Antibiotics are only for proven infection.',
   },
   {
@@ -768,12 +993,12 @@ export const surgeryQuestions: SurgeryQuestion[] = [
     type: 'mcq',
     prompt: 'A pancreatic pseudocyst is:',
     choices: [
-      'A walled-off collection of pancreatic fluid that develops weeks after pancreatitis — it has a fibrous wall but no true epithelial lining',
-      'A new cancer',
       'A normal anatomical structure',
+      'A new cancer',
+      'A walled-off collection of pancreatic fluid that develops weeks after pancreatitis',
       'A type of gallstone',
     ],
-    correctIndex: 0,
+    correctIndex: 2,
     rationale: 'It is called "pseudo" (false) because it lacks the inner lining of a true cyst. Small ones may resolve; large or infected ones may need drainage.',
   },
   {
@@ -782,12 +1007,12 @@ export const surgeryQuestions: SurgeryQuestion[] = [
     type: 'mcq',
     prompt: 'The tumour marker most associated with pancreatic adenocarcinoma is:',
     choices: [
-      'CA 19-9',
       'PSA',
-      'AFP',
       'beta-hCG',
+      'AFP',
+      'CA 19-9',
     ],
-    correctIndex: 0,
+    correctIndex: 3,
     rationale: 'CA 19-9 is elevated in most pancreatic adenocarcinomas. It is not a screening test (false positives in cholestasis) but is useful for monitoring response.',
   },
   {
@@ -796,12 +1021,12 @@ export const surgeryQuestions: SurgeryQuestion[] = [
     type: 'mcq',
     prompt: 'Trousseau\'s sign of malignancy (migratory thrombophlebitis) is sometimes seen in:',
     choices: [
-      'Pancreatic cancer — clots that pop up in one vein and then another over time',
-      'Acute appendicitis',
-      'Asthma',
       'Acute gastritis',
+      'Asthma',
+      'Pancreatic cancer',
+      'Acute appendicitis',
     ],
-    correctIndex: 0,
+    correctIndex: 2,
     rationale: 'Pancreatic cancer makes the blood prone to clotting. Repeated, migrating clots in superficial veins are a classic paraneoplastic sign.',
   },
   {
@@ -818,12 +1043,12 @@ export const surgeryQuestions: SurgeryQuestion[] = [
     type: 'mcq',
     prompt: 'Post-cholecystectomy diet advice should include:',
     choices: [
-      'Resume normal diet gradually; reduce very fatty/oily meals at first because bile is now released continuously into the gut',
-      'Stay on a fat-free diet forever',
       'Eat only red meat',
       'Avoid all fluids',
+      'Stay on a fat-free diet forever',
+      'Resume normal diet gradually; reduce very fatty/oily meals at first',
     ],
-    correctIndex: 0,
+    correctIndex: 3,
     rationale: 'Without a gallbladder, bile drips continuously from the liver into the gut instead of squirting after a fatty meal. Most people tolerate normal food after a few weeks; large fatty meals may briefly cause loose stools.',
   },
   {
@@ -848,8 +1073,8 @@ export const surgeryQuestions: SurgeryQuestion[] = [
     choices: [
       'Stool softeners, increased fibre and fluids, warm sitz baths, and topical anaesthetic or GTN ointment to relax the sphincter',
       'Immediate hemicolectomy',
-      'Long-term opioid laxatives',
       'IV antibiotics for life',
+      'Long-term opioid laxatives',
     ],
     correctIndex: 0,
     rationale: 'Conservative care heals most acute fissures. If chronic and not healing, lateral internal sphincterotomy (a small cut to relax the over-tight muscle) is curative.',
@@ -868,9 +1093,9 @@ export const surgeryQuestions: SurgeryQuestion[] = [
     type: 'mcq',
     prompt: 'Charcot\'s triad (right upper quadrant pain + fever + jaundice) suggests:',
     choices: [
-      'Ascending cholangitis — infection of the bile ducts above an obstruction',
-      'Asthma',
+      'Ascending cholangitis',
       'Migraine',
+      'Asthma',
       'Hypothyroidism',
     ],
     correctIndex: 0,
@@ -882,12 +1107,12 @@ export const surgeryQuestions: SurgeryQuestion[] = [
     type: 'mcq',
     prompt: 'Which is appropriate post-op nursing for a Whipple patient?',
     choices: [
-      'Watch closely for anastomotic leak (rising heart rate, fever, abdominal pain, change in drain output), monitor blood glucose (the pancreas makes insulin), and provide gradual nutrition (often via feeding jejunostomy initially)',
-      'Allow a large fatty meal on day 1',
       'Avoid checking blood glucose',
+      'Allow a large fatty meal on day 1',
+      'Watch closely for anastomotic leak , monitor blood glucose , and provide gradual nutrition',
       'Remove all drains within 6 hours',
     ],
-    correctIndex: 0,
+    correctIndex: 2,
     rationale: 'The Whipple has multiple anastomoses (joins) — each is a potential leak point. Removing pancreatic tissue can cause diabetes. Slow, planned nutrition reduces stress on the joins.',
   },
   {
@@ -898,9 +1123,8 @@ export const surgeryQuestions: SurgeryQuestion[] = [
     correctAnswer: true,
     rationale: 'True. Bile acids that cannot exit through the gut spill into the skin and irritate nerve endings. Cool clothing, soothing emollients, and addressing the cause are the main reliefs.',
   },
-
   // ============================================================
-  // BOWEL & ANORECTAL
+  // B O W E L
   // ============================================================
   {
     id: 'bw-001',
@@ -908,12 +1132,12 @@ export const surgeryQuestions: SurgeryQuestion[] = [
     type: 'mcq',
     prompt: 'A hernia is best defined as:',
     choices: [
-      'A bulge of an organ or tissue through a weak spot or abnormal opening in the wall of the cavity that normally contains it',
+      'A blocked blood vessel',
       'A type of cancer',
       'A bacterial infection of the bowel',
-      'A blocked blood vessel',
+      'A bulge of an organ or tissue through a weak spot or abnormal opening in the wall of the cavity that normally contains it',
     ],
-    correctIndex: 0,
+    correctIndex: 3,
     rationale: 'A hernia has 3 parts: an opening (defect), a sac (a pouch of peritoneum), and contents (bowel, omentum, etc.). Most often the contents bulge through a weak spot of the abdominal wall.',
   },
   {
@@ -922,12 +1146,12 @@ export const surgeryQuestions: SurgeryQuestion[] = [
     type: 'mcq',
     prompt: 'An INDIRECT inguinal hernia is one that:',
     choices: [
-      'Passes through the deep inguinal ring (the natural opening in the abdominal wall through which the spermatic cord passes), and may descend into the scrotum — usually congenital',
       'Bulges through the abdominal scar of a previous operation',
-      'Comes out at the umbilicus',
       'Comes out through the femoral canal in the upper thigh',
+      'Passes through the deep inguinal ring , and may descend into the scrotum',
+      'Comes out at the umbilicus',
     ],
-    correctIndex: 0,
+    correctIndex: 2,
     rationale: 'It follows the path of the descending testis (a "patent processus vaginalis"). Direct hernias push straight through a weak posterior wall in older men.',
   },
   {
@@ -936,12 +1160,12 @@ export const surgeryQuestions: SurgeryQuestion[] = [
     type: 'mcq',
     prompt: 'Femoral hernias:',
     choices: [
-      'Pass through the femoral canal (a small space in the upper thigh, just below the inguinal ligament), are more common in women, and have a high risk of strangulation',
       'Always reduce easily',
+      'Pass through the femoral canal , are more common in women, and have a high risk of strangulation',
       'Are mostly seen in babies',
       'Never need surgery',
     ],
-    correctIndex: 0,
+    correctIndex: 1,
     rationale: 'The femoral canal is narrow and rigid, so any bowel that enters can quickly get its blood supply cut off (strangulation). For this reason, femoral hernias are repaired even if asymptomatic.',
   },
   {
@@ -950,12 +1174,12 @@ export const surgeryQuestions: SurgeryQuestion[] = [
     type: 'mcq',
     prompt: 'A strangulated hernia is:',
     choices: [
-      'An emergency — the blood supply to the trapped contents is cut off, and the tissue can die (necrosis) within hours',
       'A hernia that always reduces by itself',
-      'A normal finding in older adults',
+      'An emergency',
       'A hernia that is only painful at night',
+      'A normal finding in older adults',
     ],
-    correctIndex: 0,
+    correctIndex: 1,
     rationale: 'A strangulated hernia is severely painful, tender, and tense. The patient may have fever, vomiting, and signs of bowel obstruction. Immediate surgery is required to save the bowel.',
   },
   {
@@ -964,12 +1188,12 @@ export const surgeryQuestions: SurgeryQuestion[] = [
     type: 'mcq',
     prompt: 'The most common surgical technique for adult inguinal hernia repair is:',
     choices: [
-      'Lichtenstein repair — placing a synthetic mesh patch over the defect to strengthen the wall',
       'Open splenectomy',
       'Transanal endoscopic surgery',
+      'Lichtenstein repair',
       'Whipple procedure',
     ],
-    correctIndex: 0,
+    correctIndex: 2,
     rationale: 'Lichtenstein "tension-free" repair has a low recurrence rate. Laparoscopic mesh repair is another good option. The old technique without mesh (herniorrhaphy) had higher recurrence.',
   },
   {
@@ -986,12 +1210,12 @@ export const surgeryQuestions: SurgeryQuestion[] = [
     type: 'mcq',
     prompt: 'Mechanical intestinal obstruction in adults is most often caused by:',
     choices: [
-      'Adhesions (scar bands from previous surgery) — the commonest cause',
       'Gallstones',
-      'Pancreatitis',
+      'Adhesions',
       'Asthma',
+      'Pancreatitis',
     ],
-    correctIndex: 0,
+    correctIndex: 1,
     rationale: 'After any abdominal operation, fibrous bands of scar can form. These can kink or strap down a loop of bowel. Hernias and tumours are next most common.',
   },
   {
@@ -1000,12 +1224,12 @@ export const surgeryQuestions: SurgeryQuestion[] = [
     type: 'mcq',
     prompt: 'Classic features of intestinal obstruction are:',
     choices: [
-      'Colicky abdominal pain, vomiting, abdominal distension, and failure to pass stool or wind',
       'Heart palpitations only',
-      'Cough and night sweats',
       'Skin rash and joint pain',
+      'Colicky abdominal pain, vomiting, abdominal distension, and failure to pass stool or wind',
+      'Cough and night sweats',
     ],
-    correctIndex: 0,
+    correctIndex: 2,
     rationale: 'Pain comes in waves (the bowel squeezes against the blockage). Vomiting may be feculent if the obstruction is low. Distension and absolute constipation (no faeces or flatus) suggest complete obstruction.',
   },
   {
@@ -1014,12 +1238,12 @@ export const surgeryQuestions: SurgeryQuestion[] = [
     type: 'mcq',
     prompt: 'Initial nursing/medical management of intestinal obstruction includes:',
     choices: [
-      'Nil by mouth, nasogastric tube to decompress the stomach, IV fluids, electrolyte correction, urinary catheter to monitor output',
       'Oral laxatives at high dose',
+      'Nil by mouth, nasogastric tube to decompress the stomach, IV fluids, electrolyte correction, urinary catheter to monitor output',
       'High-fibre diet immediately',
       'Encourage solid food intake',
     ],
-    correctIndex: 0,
+    correctIndex: 1,
     rationale: 'The "drip and suck" approach buys time and reduces vomiting and bowel distension. About half of adhesive obstructions resolve without surgery; others need laparotomy.',
   },
   {
@@ -1028,12 +1252,12 @@ export const surgeryQuestions: SurgeryQuestion[] = [
     type: 'mcq',
     prompt: 'Paralytic ileus differs from mechanical obstruction in that:',
     choices: [
-      'There is NO physical blockage; the bowel simply stops moving (often after surgery, electrolyte imbalance, or sepsis). Bowel sounds are absent rather than tinkling',
-      'It is always due to a tumour',
       'It only happens in children',
+      'There is NO physical blockage; the bowel simply stops moving . Bowel sounds are absent rather than tinkling',
+      'It is always due to a tumour',
       'It needs immediate laparotomy in every case',
     ],
-    correctIndex: 0,
+    correctIndex: 1,
     rationale: 'Mechanical obstruction has tinkling/high-pitched bowel sounds above the block. Paralytic ileus has silent bowel because the muscles are not contracting. Treat the underlying cause (correct K+, magnesium, treat infection).',
   },
   {
@@ -1042,12 +1266,12 @@ export const surgeryQuestions: SurgeryQuestion[] = [
     type: 'mcq',
     prompt: 'Acute appendicitis classically presents with:',
     choices: [
-      'Pain that starts around the umbilicus and then SHIFTS over a few hours to the right lower quadrant (right iliac fossa), with anorexia, nausea, and low-grade fever',
       'Burning urination only',
-      'Joint pain only',
+      'Pain that starts around the umbilicus and then SHIFTS over a few hours to the right lower quadrant , with anorexia, nausea, and low-grade fever',
       'Severe headache only',
+      'Joint pain only',
     ],
-    correctIndex: 0,
+    correctIndex: 1,
     rationale: 'Early on, the appendix sends pain signals through nerves shared with the umbilical region. As inflammation reaches the abdominal wall, the pain shifts to the actual site (McBurney\'s point).',
   },
   {
@@ -1056,12 +1280,12 @@ export const surgeryQuestions: SurgeryQuestion[] = [
     type: 'mcq',
     prompt: 'Rebound tenderness at McBurney\'s point suggests:',
     choices: [
-      'Peritoneal irritation (the lining of the abdomen is inflamed) — characteristic of appendicitis',
       'A normal abdomen',
       'A urinary tract infection',
       'A common cold',
+      'Peritoneal irritation',
     ],
-    correctIndex: 0,
+    correctIndex: 3,
     rationale: 'When the examiner releases pressure suddenly and the patient winces, the peritoneum is irritated. McBurney\'s point is two-thirds of the way from the umbilicus to the right anterior iliac spine.',
   },
   {
@@ -1078,10 +1302,10 @@ export const surgeryQuestions: SurgeryQuestion[] = [
     type: 'mcq',
     prompt: 'Definitive treatment of acute appendicitis is:',
     choices: [
-      'Appendicectomy (removal of the appendix), open or laparoscopic',
+      'Appendicectomy , open or laparoscopic',
       'Antibiotics for life',
-      'A high-fibre diet only',
       'Daily enemas',
+      'A high-fibre diet only',
     ],
     correctIndex: 0,
     rationale: 'Surgery prevents perforation and peritonitis. Laparoscopic approach is preferred in most centres for faster recovery and smaller scars.',
@@ -1092,12 +1316,12 @@ export const surgeryQuestions: SurgeryQuestion[] = [
     type: 'mcq',
     prompt: 'Internal haemorrhoids are graded by:',
     choices: [
-      'Whether they bleed only (Grade I), prolapse and reduce on their own (Grade II), need manual reduction (Grade III), or cannot be reduced (Grade IV)',
-      'Their colour only',
-      'How fast they grow',
       'How many veins are involved',
+      'Their colour only',
+      'Whether they bleed only (Grade I), prolapse and reduce on their own (Grade II), need manual reduction (Grade III), or cannot be reduced (Grade IV)',
+      'How fast they grow',
     ],
-    correctIndex: 0,
+    correctIndex: 2,
     rationale: 'This grading guides treatment: Grades I–II often respond to diet/banding; Grade III may need banding or surgery; Grade IV usually requires haemorrhoidectomy.',
   },
   {
@@ -1106,12 +1330,12 @@ export const surgeryQuestions: SurgeryQuestion[] = [
     type: 'mcq',
     prompt: 'The classic symptom of internal haemorrhoids is:',
     choices: [
-      'Bright red painless bleeding on the toilet paper or coating the stool',
-      'Severe abdominal cramping for days',
-      'Vomiting blood',
       'Painful black stools',
+      'Severe abdominal cramping for days',
+      'Bright red painless bleeding on the toilet paper or coating the stool',
+      'Vomiting blood',
     ],
-    correctIndex: 0,
+    correctIndex: 2,
     rationale: 'Internal haemorrhoids are above the dentate line (a transition zone in the anal canal) where there are no pain fibres — so they bleed without pain. External haemorrhoids and thrombosed ones do hurt.',
   },
   {
@@ -1120,12 +1344,12 @@ export const surgeryQuestions: SurgeryQuestion[] = [
     type: 'mcq',
     prompt: 'Conservative management of haemorrhoids includes:',
     choices: [
+      'Daily strong oral laxatives only',
       'High-fibre diet, plenty of fluids, stool softeners, warm sitz baths, and avoiding prolonged straining',
       'A low-fibre diet',
-      'Daily strong oral laxatives only',
       'Avoiding all fluids',
     ],
-    correctIndex: 0,
+    correctIndex: 1,
     rationale: 'Soft, easy-to-pass stool reduces straining and pressure on the anal cushions. Sitz baths (sitting in warm water for 10 minutes) soothe inflammation.',
   },
   {
@@ -1134,12 +1358,12 @@ export const surgeryQuestions: SurgeryQuestion[] = [
     type: 'mcq',
     prompt: 'Colorectal cancer is most often:',
     choices: [
+      'Lymphoma',
       'Adenocarcinoma arising from glandular cells of the colon or rectum, often from a pre-existing polyp',
       'Squamous cell carcinoma',
-      'Lymphoma',
       'Sarcoma',
     ],
-    correctIndex: 0,
+    correctIndex: 1,
     rationale: 'Most colorectal cancers follow the adenoma-carcinoma sequence — a small benign polyp slowly becomes malignant over years. That is why screening colonoscopy and polyp removal are so effective.',
   },
   {
@@ -1148,10 +1372,10 @@ export const surgeryQuestions: SurgeryQuestion[] = [
     type: 'mcq',
     prompt: 'A RIGHT-sided colon cancer often presents with:',
     choices: [
-      'Iron-deficiency anaemia (low blood from slow chronic bleeding), fatigue, and a vague right-sided mass',
+      'Iron-deficiency anaemia , fatigue, and a vague right-sided mass',
       'Loud rectal bleeding with each stool',
-      'Severe early constipation',
       'Sudden vomiting',
+      'Severe early constipation',
     ],
     correctIndex: 0,
     rationale: 'The right colon is wide and the stool is still liquid, so obstruction is rare. Slow bleeding goes unnoticed for months, presenting as tiredness from anaemia.',
@@ -1162,12 +1386,12 @@ export const surgeryQuestions: SurgeryQuestion[] = [
     type: 'mcq',
     prompt: 'A LEFT-sided / sigmoid colon cancer typically presents with:',
     choices: [
-      'Change in bowel habit (alternating diarrhoea and constipation), narrow "pencil" stools, and bleeding mixed with stool',
-      'Painless yellow eyes only',
       'Heart palpitations only',
+      'Change in bowel habit , narrow "pencil" stools, and bleeding mixed with stool',
+      'Painless yellow eyes only',
       'Joint pains only',
     ],
-    correctIndex: 0,
+    correctIndex: 1,
     rationale: 'The left colon is narrower and the stool is firmer, so growing tumours cause obstruction earlier. Bleeding is mixed with stool (rather than just on the surface).',
   },
   {
@@ -1176,9 +1400,9 @@ export const surgeryQuestions: SurgeryQuestion[] = [
     type: 'mcq',
     prompt: 'The gold-standard investigation for colorectal cancer is:',
     choices: [
-      'Colonoscopy with biopsy — direct view of the bowel lining and tissue sample',
-      'Plain abdominal X-ray',
+      'Colonoscopy with biopsy',
       'ECG',
+      'Plain abdominal X-ray',
       'Lung function test',
     ],
     correctIndex: 0,
@@ -1190,12 +1414,12 @@ export const surgeryQuestions: SurgeryQuestion[] = [
     type: 'mcq',
     prompt: 'Bowel prep before colorectal surgery aims to:',
     choices: [
-      'Empty the bowel of stool to reduce the risk of infection and anastomotic leak',
-      'Cure the cancer',
       'Reduce blood pressure',
       'Improve appetite',
+      'Cure the cancer',
+      'Empty the bowel of stool to reduce the risk of infection and anastomotic leak',
     ],
-    correctIndex: 0,
+    correctIndex: 3,
     rationale: 'A clean bowel is essential before opening it. Bowel prep usually involves a low-residue diet, oral lavage solutions, and sometimes oral antibiotics the day before surgery.',
   },
   {
@@ -1204,12 +1428,12 @@ export const surgeryQuestions: SurgeryQuestion[] = [
     type: 'mcq',
     prompt: 'After colostomy formation, a healthy stoma should appear:',
     choices: [
-      'Pink or red (like the inside of the mouth) and moist',
-      'Black and dry',
       'Pale and cold',
       'Bluish and shiny',
+      'Pink or red and moist',
+      'Black and dry',
     ],
-    correctIndex: 0,
+    correctIndex: 2,
     rationale: 'Pink/red and moist = good blood supply. Dusky/black = ischaemia and needs urgent surgical review. Pale or retracted stomas also need attention.',
   },
   {
@@ -1226,12 +1450,12 @@ export const surgeryQuestions: SurgeryQuestion[] = [
     type: 'mcq',
     prompt: 'Rectal prolapse is:',
     choices: [
-      'Protrusion of part or all of the rectal wall through the anal opening',
-      'A type of haemorrhoid',
-      'A cancer of the bowel',
       'A bowel infection',
+      'A cancer of the bowel',
+      'A type of haemorrhoid',
+      'Protrusion of part or all of the rectal wall through the anal opening',
     ],
-    correctIndex: 0,
+    correctIndex: 3,
     rationale: 'Pelvic floor weakness, chronic straining, multiparity and ageing cause loss of rectal support. The rectum slides down and turns inside out through the anus.',
   },
   {
@@ -1240,12 +1464,12 @@ export const surgeryQuestions: SurgeryQuestion[] = [
     type: 'mcq',
     prompt: 'The Delorme procedure is:',
     choices: [
-      'A perineal (through-the-bottom) operation for rectal prolapse — stripping the prolapsed mucosa and folding up the muscular wall',
       'A bowel resection through the abdomen',
-      'A type of stoma',
       'A cardiac surgery',
+      'A type of stoma',
+      'A perineal operation for rectal prolapse',
     ],
-    correctIndex: 0,
+    correctIndex: 3,
     rationale: 'Delorme is suited for older or frail patients because it avoids opening the abdomen. Rectopexy (lifting and fixing the rectum) is the abdominal alternative.',
   },
   {
@@ -1254,12 +1478,12 @@ export const surgeryQuestions: SurgeryQuestion[] = [
     type: 'mcq',
     prompt: 'A reducible hernia is one that:',
     choices: [
+      'Has lost its blood supply',
       'Can be pushed back into the abdomen by hand or by lying flat',
       'Cannot be reduced and is painful',
-      'Has lost its blood supply',
       'Has caused bowel obstruction',
     ],
-    correctIndex: 0,
+    correctIndex: 1,
     rationale: 'Reducible = goes back in. Irreducible / incarcerated = cannot be pushed back. Obstructed = bowel inside is blocked. Strangulated = blood supply cut off (emergency).',
   },
   {
@@ -1278,8 +1502,8 @@ export const surgeryQuestions: SurgeryQuestion[] = [
     choices: [
       'Monitoring response to treatment and watching for recurrence after surgery',
       'Initial screening of healthy adults',
-      'Diagnosing appendicitis',
       'Predicting age at menopause',
+      'Diagnosing appendicitis',
     ],
     correctIndex: 0,
     rationale: 'CEA is NOT a screening test — many cancers do not raise it, and non-cancer conditions can. But a falling CEA after curative surgery, then a rise, suggests recurrence.',
@@ -1290,12 +1514,12 @@ export const surgeryQuestions: SurgeryQuestion[] = [
     type: 'mcq',
     prompt: 'Severe sudden abdominal pain, board-like rigidity, and absent bowel sounds suggest:',
     choices: [
-      'Generalised peritonitis — possibly from perforated viscus (e.g. perforated ulcer, perforated appendix)',
-      'Common cold',
       'Constipation',
       'Migraine',
+      'Generalised peritonitis',
+      'Common cold',
     ],
-    correctIndex: 0,
+    correctIndex: 2,
     rationale: 'Peritonitis stiffens the abdominal wall ("board-like") and shuts down bowel movement. It is a surgical emergency — IV fluids, antibiotics, and laparotomy to find and fix the cause.',
   },
   {
@@ -1304,17 +1528,16 @@ export const surgeryQuestions: SurgeryQuestion[] = [
     type: 'mcq',
     prompt: 'Tenesmus is best described as:',
     choices: [
-      'A constant feeling of incomplete bowel emptying, often with painful straining — typical of rectal tumours',
-      'Loss of appetite',
-      'Numbness of the legs',
       'Yellow urine',
+      'A constant feeling of incomplete bowel emptying, often with painful straining',
+      'Numbness of the legs',
+      'Loss of appetite',
     ],
-    correctIndex: 0,
+    correctIndex: 1,
     rationale: 'A rectal mass irritates the rectum so the brain keeps signalling "still something to pass". Bright-red bleeding and altered bowel habit often accompany it.',
   },
-
   // ============================================================
-  // PAEDIATRIC & BARIATRIC
+  // P E D I A T R I C B A R I A T R I C
   // ============================================================
   {
     id: 'pb-001',
@@ -1322,7 +1545,7 @@ export const surgeryQuestions: SurgeryQuestion[] = [
     type: 'mcq',
     prompt: 'Infantile hypertrophic pyloric stenosis is best described as:',
     choices: [
-      'Thickening of the pyloric muscle (the muscular outlet of the stomach into the small intestine), so milk cannot empty out of the stomach',
+      'Thickening of the pyloric muscle',
       'A type of intestinal cancer in infants',
       'Twisting of the intestine',
       'A congenital heart defect',
@@ -1336,12 +1559,12 @@ export const surgeryQuestions: SurgeryQuestion[] = [
     type: 'mcq',
     prompt: 'The classic vomiting in infantile pyloric stenosis is:',
     choices: [
-      'Projectile, non-bilious (no green colour) — because the obstruction is BEFORE bile enters the gut',
       'Bile-stained from day 1',
       'Bloody and tarry',
       'Only after solid foods',
+      'Projectile, non-bilious',
     ],
-    correctIndex: 0,
+    correctIndex: 3,
     rationale: 'Bile enters the gut just AFTER the pylorus. Since the block is at the pylorus, vomit cannot contain bile. Vomiting is forceful (shoots across the room) and the baby is still hungry afterwards.',
   },
   {
@@ -1350,12 +1573,12 @@ export const surgeryQuestions: SurgeryQuestion[] = [
     type: 'mcq',
     prompt: 'The electrolyte disturbance in pyloric stenosis is:',
     choices: [
-      'Hypochloraemic, hypokalaemic metabolic alkalosis (low chloride, low potassium, alkaline blood) from losing stomach acid',
       'Hyperkalaemic acidosis',
       'Hyponatraemic acidosis',
       'Hypoglycaemia only',
+      'Hypochloraemic, hypokalaemic metabolic alkalosis from losing stomach acid',
     ],
-    correctIndex: 0,
+    correctIndex: 3,
     rationale: 'Persistent vomiting loses HCl (hydrochloric acid) and potassium. The blood becomes alkaline, with low chloride and low potassium — must be corrected with IV fluids BEFORE surgery.',
   },
   {
@@ -1364,12 +1587,12 @@ export const surgeryQuestions: SurgeryQuestion[] = [
     type: 'mcq',
     prompt: 'The diagnostic investigation of choice for pyloric stenosis is:',
     choices: [
-      'Abdominal ultrasound — shows a thickened, elongated pylorus',
-      'Chest X-ray',
       'Brain MRI',
       'Echocardiogram',
+      'Abdominal ultrasound',
+      'Chest X-ray',
     ],
-    correctIndex: 0,
+    correctIndex: 2,
     rationale: 'Ultrasound is safe (no radiation), accurate, and bedside-available. It measures muscle thickness and channel length. Barium meal shows a "string sign" but is rarely needed.',
   },
   {
@@ -1378,12 +1601,12 @@ export const surgeryQuestions: SurgeryQuestion[] = [
     type: 'mcq',
     prompt: 'The definitive operation for infantile pyloric stenosis is:',
     choices: [
-      'Ramstedt pyloromyotomy — splitting the thickened muscle layers WITHOUT cutting the inner lining, so the outlet can open',
       'Total gastrectomy',
       'Pyloric stent',
+      'Ramstedt pyloromyotomy',
       'Appendicectomy',
     ],
-    correctIndex: 0,
+    correctIndex: 2,
     rationale: 'A small longitudinal cut through the muscle relieves the obstruction. The inner lining bulges out and is left intact. Recovery is fast and feeding usually starts within hours.',
   },
   {
@@ -1400,12 +1623,12 @@ export const surgeryQuestions: SurgeryQuestion[] = [
     type: 'mcq',
     prompt: 'Bariatric surgery is offered to adults with a BMI of:',
     choices: [
-      '≥40 kg/m², or ≥35 kg/m² with significant weight-related diseases (e.g. type 2 diabetes, severe sleep apnoea, hypertension)',
-      'Above 25 kg/m² always',
-      'Only below 18 kg/m²',
       'Only above 60 kg/m²',
+      'Above 25 kg/m² always',
+      '≥40 kg/m², or ≥35 kg/m² with significant weight-related diseases',
+      'Only below 18 kg/m²',
     ],
-    correctIndex: 0,
+    correctIndex: 2,
     rationale: 'BMI thresholds are the basic eligibility. Patients also need to have tried lifestyle measures, be psychologically ready, and commit to lifelong follow-up.',
   },
   {
@@ -1414,10 +1637,10 @@ export const surgeryQuestions: SurgeryQuestion[] = [
     type: 'mcq',
     prompt: 'Roux-en-Y gastric bypass works by:',
     choices: [
-      'Creating a small stomach pouch that empties directly into the middle of the small intestine, BYPASSING most of the stomach and the upper small bowel — combining restriction and reduced absorption',
+      'Creating a small stomach pouch that empties directly into the middle of the small intestine, BYPASSING most of the stomach and the upper small bowel',
       'Removing the entire intestine',
-      'Removing the gallbladder',
       'Inserting a heart valve',
+      'Removing the gallbladder',
     ],
     correctIndex: 0,
     rationale: 'Less food (restriction) + less absorption (malabsorption) + altered gut hormones drive weight loss. Bypass also dramatically improves type 2 diabetes — sometimes within days, even before significant weight loss.',
@@ -1428,12 +1651,12 @@ export const surgeryQuestions: SurgeryQuestion[] = [
     type: 'mcq',
     prompt: 'Sleeve gastrectomy is:',
     choices: [
-      'Removal of about 80% of the stomach, leaving a narrow tube ("sleeve") — purely restrictive',
       'A bypass of the small bowel',
-      'Removal of the duodenum',
       'A cardiac procedure',
+      'Removal of the duodenum',
+      'Removal of about 80% of the stomach, leaving a narrow tube ("sleeve")',
     ],
-    correctIndex: 0,
+    correctIndex: 3,
     rationale: 'The smaller stomach holds less food and removes the ghrelin-producing area (ghrelin is the "hunger hormone"), so appetite drops too. It is the most common bariatric procedure today.',
   },
   {
@@ -1444,8 +1667,8 @@ export const surgeryQuestions: SurgeryQuestion[] = [
     choices: [
       'Sugary food rushes from the small pouch into the small bowel, drawing water in by osmosis and causing sweating, dizziness, palpitations and diarrhoea within 30 minutes of eating',
       'The patient cannot taste food',
-      'The liver produces no bile',
       'The pancreas is removed',
+      'The liver produces no bile',
     ],
     correctIndex: 0,
     rationale: 'Without the normal stomach acting as a reservoir, concentrated sugars hit the small bowel rapidly. Teach patients to eat small, low-sugar meals, separate fluids from solids, and lie down briefly afterwards.',
@@ -1456,12 +1679,12 @@ export const surgeryQuestions: SurgeryQuestion[] = [
     type: 'mcq',
     prompt: 'Lifelong supplementation after Roux-en-Y bypass typically includes:',
     choices: [
-      'Vitamin B12, iron, calcium, vitamin D, and a multivitamin',
-      'No supplements needed',
       'Only vitamin C',
       'Only zinc',
+      'No supplements needed',
+      'Vitamin B12, iron, calcium, vitamin D, and a multivitamin',
     ],
-    correctIndex: 0,
+    correctIndex: 3,
     rationale: 'Because food bypasses the upper small bowel where many nutrients are absorbed, deficiencies are common without supplements. Anaemia and bone loss are real risks.',
   },
   {
@@ -1470,12 +1693,12 @@ export const surgeryQuestions: SurgeryQuestion[] = [
     type: 'mcq',
     prompt: 'A rising heart rate, fever, and shoulder pain on day 2 after bariatric surgery may indicate:',
     choices: [
-      'Anastomotic leak — leakage of gut contents from a surgical join, causing infection inside the abdomen',
       'Normal post-op recovery',
+      'Anastomotic leak',
       'Sleep deprivation only',
       'Common cold',
     ],
-    correctIndex: 0,
+    correctIndex: 1,
     rationale: 'Tachycardia is often the FIRST and most reliable warning sign. Even without classic peritonitis, a heart rate persistently above 120 should trigger urgent investigation.',
   },
   {
@@ -1492,12 +1715,12 @@ export const surgeryQuestions: SurgeryQuestion[] = [
     type: 'mcq',
     prompt: 'Diet progression after bariatric surgery typically goes:',
     choices: [
+      'Single large meal a day',
+      'High-sugar drinks first',
       'Clear liquids → full liquids → pureed → soft → small frequent meals',
       'Solid steak immediately',
-      'High-sugar drinks first',
-      'Single large meal a day',
     ],
-    correctIndex: 0,
+    correctIndex: 2,
     rationale: 'Slow staged advancement protects the surgical site, prevents nausea, and lets the patient learn new eating habits. Chew thoroughly, eat slowly, separate fluids from solids.',
   },
   {
@@ -1508,9 +1731,64 @@ export const surgeryQuestions: SurgeryQuestion[] = [
     correctAnswer: true,
     rationale: 'True. In adults, repeated cycles of ulcer healing leave scar tissue that narrows the pyloric channel. Symptoms are early satiety, vomiting, and weight loss. Treatment addresses the cause.',
   },
-
+  {
+    id: 'pb-016',
+    topic: 'pediatricBariatric',
+    type: 'mcq',
+    prompt: 'Which electrolyte imbalance is often associated with pyloric stenosis?',
+    choices: [
+      'Hypochloremic, hypokalemic, metabolic alkalosis',
+      'Hyperchloremic, hypokalemic, metabolic acidosis',
+      'Hypochloremic, hyperkalemic, metabolic alkalosis',
+      'None of the above',
+    ],
+    correctIndex: 0,
+    rationale: 'Persistent vomiting from pyloric stenosis results in loss of hydrogen, chloride, and potassium ions, leading to hypochloremic, hypokalemic metabolic alkalosis.',
+  },
+  {
+    id: 'pb-017',
+    topic: 'pediatricBariatric',
+    type: 'mcq',
+    prompt: 'A mother brought her 3 day old male neonate with complains that the neonate has not passed stool since birth. On examination, abdomen was distended. Which of the following conditions is likely?',
+    choices: [
+      'Pyloric stenosis',
+      'Hirschprungs disease',
+      'Intussusception',
+      'None of the above',
+    ],
+    correctIndex: 1,
+    rationale: 'Failure of a neonate to pass meconium within the first 24–48 hours of life combined with abdominal distension is highly suspicious for Hirschsprung\'s disease (congenital megacolon).',
+  },
+  {
+    id: 'pb-018',
+    topic: 'pediatricBariatric',
+    type: 'mcq',
+    prompt: 'A friend who is obese sought your opinion on wanting to have a bariatric surgery done. Which of the following is an indication for the procedure?',
+    choices: [
+      'BMI >= 40 kg/m²',
+      'BMI >= 35 kg/m²',
+      'Both a and b',
+      'None of the above',
+    ],
+    correctIndex: 2,
+    rationale: 'Indications for bariatric surgery generally include a BMI >= 40 kg/m² or a BMI >= 35 kg/m² with significant obesity-related comorbidities (e.g. type 2 diabetes, severe sleep apnea).',
+  },
+  {
+    id: 'pb-019',
+    topic: 'pediatricBariatric',
+    type: 'mcq',
+    prompt: 'Pyloric stenosis will typically cause:',
+    choices: [
+      'Projectile vomiting',
+      'Bloody vomiting',
+      'Non bilous Vomiting',
+      'Both a and c',
+    ],
+    correctIndex: 0,
+    rationale: 'Pyloric stenosis classically causes non-bilious projectile vomiting due to mechanical obstruction at the pyloric sphincter.',
+  },
   // ============================================================
-  // CARDIOTHORACIC
+  // C A R D I O T H O R A C I C
   // ============================================================
   {
     id: 'ct-001',
@@ -1518,12 +1796,12 @@ export const surgeryQuestions: SurgeryQuestion[] = [
     type: 'mcq',
     prompt: 'An aortic aneurysm is best described as:',
     choices: [
-      'An abnormal localised widening (ballooning out) of the aorta caused by weakness of the vessel wall — usually defined as a diameter 50% larger than normal',
       'A blood clot inside the aorta only',
-      'A tumour of the aortic valve',
       'A virus infection of the heart',
+      'A tumour of the aortic valve',
+      'An abnormal localised widening (ballooning out) of the aorta',
     ],
-    correctIndex: 0,
+    correctIndex: 3,
     rationale: 'The aorta is the biggest artery in the body. When its wall weakens (e.g. from atherosclerosis or genetic disorders), the pressure of blood pushes it outward, like a weak spot on a balloon.',
   },
   {
@@ -1532,10 +1810,10 @@ export const surgeryQuestions: SurgeryQuestion[] = [
     type: 'mcq',
     prompt: 'The most common cause of abdominal aortic aneurysm (AAA) is:',
     choices: [
-      'Atherosclerosis (fatty plaques in the arterial wall) combined with hypertension and smoking',
+      'Atherosclerosis combined with hypertension and smoking',
       'A bacterial infection only',
-      'Trauma',
       'Diabetes mellitus alone',
+      'Trauma',
     ],
     correctIndex: 0,
     rationale: 'Atherosclerosis damages the supportive middle layer of the artery wall. Add high blood pressure and the smoke-induced enzymes that break down elastic fibres, and you have the typical risk recipe.',
@@ -1546,10 +1824,10 @@ export const surgeryQuestions: SurgeryQuestion[] = [
     type: 'mcq',
     prompt: 'Marfan syndrome and Ehlers-Danlos syndrome predispose to aortic aneurysm/dissection because they:',
     choices: [
-      'Cause weakness of connective tissue (the "scaffolding" that holds blood vessel walls together)',
-      'Increase blood clotting only',
-      'Cause severe anaemia',
+      'Cause weakness of connective tissue',
       'Affect only the lungs',
+      'Cause severe anaemia',
+      'Increase blood clotting only',
     ],
     correctIndex: 0,
     rationale: 'These inherited disorders affect collagen and elastin. Vessel walls cannot withstand normal blood pressure, so they balloon out or tear at younger ages than expected.',
@@ -1561,9 +1839,9 @@ export const surgeryQuestions: SurgeryQuestion[] = [
     prompt: 'A pulsatile mass felt in the abdomen of an older smoker most likely represents:',
     choices: [
       'Abdominal aortic aneurysm',
-      'A normal full bladder',
       'Constipation',
       'A stomach tumour',
+      'A normal full bladder',
     ],
     correctIndex: 0,
     rationale: 'The aneurysm transmits the heartbeat as a visible/palpable pulsation in the middle/upper abdomen. Ultrasound confirms the diagnosis.',
@@ -1574,12 +1852,12 @@ export const surgeryQuestions: SurgeryQuestion[] = [
     type: 'mcq',
     prompt: 'A ruptured AAA classically presents with:',
     choices: [
-      'Sudden severe abdominal/back pain, a pulsatile mass, and signs of shock (low BP, fast pulse, pale sweaty patient)',
-      'Painless yellow eyes',
-      'A slow gradual weight loss only',
       'A skin rash',
+      'A slow gradual weight loss only',
+      'Painless yellow eyes',
+      'Sudden severe abdominal/back pain, a pulsatile mass, and signs of shock',
     ],
-    correctIndex: 0,
+    correctIndex: 3,
     rationale: 'Rupture is a surgical emergency with very high mortality. The classic triad is pain + mass + hypotension. The patient may have already lost a litre or more of blood by the time they reach hospital.',
   },
   {
@@ -1588,12 +1866,12 @@ export const surgeryQuestions: SurgeryQuestion[] = [
     type: 'mcq',
     prompt: 'Endovascular aneurysm repair (EVAR) involves:',
     choices: [
+      'A heart transplant',
       'Threading a covered metal stent-graft up through the femoral artery and deploying it inside the aneurysm to seal it off from the blood flow',
       'Cutting the abdomen open to remove the kidneys',
-      'A heart transplant',
       'Lung surgery',
     ],
-    correctIndex: 0,
+    correctIndex: 1,
     rationale: 'EVAR is much less invasive than open repair. Shorter hospital stay, less pain, lower short-term mortality. Long-term surveillance is needed because the stent can leak or migrate.',
   },
   {
@@ -1602,12 +1880,12 @@ export const surgeryQuestions: SurgeryQuestion[] = [
     type: 'mcq',
     prompt: 'Aortic dissection is best described as:',
     choices: [
-      'A tear in the inner layer (intima) of the aorta, allowing blood to split the layers of the aortic wall and form a "false channel"',
       'A complete blockage of the aorta',
-      'A simple bruise of the chest wall',
       'A heart attack',
+      'A tear in the inner layer (intima) of the aorta, allowing blood to split the layers of the aortic wall and form a "false channel"',
+      'A simple bruise of the chest wall',
     ],
-    correctIndex: 0,
+    correctIndex: 2,
     rationale: 'Blood at high pressure forces its way between the layers (intima and media) of the aortic wall. The false lumen can rip further along the aorta and may rupture or cut off blood supply to organs.',
   },
   {
@@ -1616,12 +1894,12 @@ export const surgeryQuestions: SurgeryQuestion[] = [
     type: 'mcq',
     prompt: 'The classic chest pain of aortic dissection is:',
     choices: [
-      'Sudden, severe, "tearing" or "ripping" pain in the chest that often radiates to the back',
-      'Mild burning under the sternum after meals',
-      'A dull ache for several weeks',
       'Painless tingling of the arms',
+      'A dull ache for several weeks',
+      'Mild burning under the sternum after meals',
+      'Sudden, severe, "tearing" or "ripping" pain in the chest that often radiates to the back',
     ],
-    correctIndex: 0,
+    correctIndex: 3,
     rationale: 'The dissection plane peels along the aorta in real time, producing the characteristic tearing/ripping description. Pain often shifts as the tear extends.',
   },
   {
@@ -1630,12 +1908,12 @@ export const surgeryQuestions: SurgeryQuestion[] = [
     type: 'mcq',
     prompt: 'The Stanford classification of aortic dissection:',
     choices: [
-      'Type A involves the ASCENDING aorta (and needs emergency surgery); Type B involves only the DESCENDING aorta (usually managed medically)',
       'Type A always lung; Type B always heart',
       'Type A is in children only',
+      'Type A involves the ASCENDING aorta ; Type B involves only the DESCENDING aorta',
       'Type A is benign and needs no treatment',
     ],
-    correctIndex: 0,
+    correctIndex: 2,
     rationale: 'Type A is the most dangerous — it can extend into the heart and tear into the pericardial sac (causing tamponade) or back into the coronaries. Type B descending dissections are usually managed with strict BP control unless they cause organ ischaemia.',
   },
   {
@@ -1644,12 +1922,12 @@ export const surgeryQuestions: SurgeryQuestion[] = [
     type: 'mcq',
     prompt: 'The first drug class given to lower blood pressure in aortic dissection is:',
     choices: [
-      'Beta-blockers (e.g. labetalol, esmolol) — they reduce both BP and the shearing force of each heartbeat (dP/dt)',
+      'Diuretics only',
+      'Beta-blockers',
       'Adrenaline',
       'High-dose corticosteroids',
-      'Diuretics only',
     ],
-    correctIndex: 0,
+    correctIndex: 1,
     rationale: 'Lowering BP without lowering heart rate would still leave a high pulsatile force tearing the wall further. Beta-blockers reduce both, then vasodilators are added if needed.',
   },
   {
@@ -1658,12 +1936,12 @@ export const surgeryQuestions: SurgeryQuestion[] = [
     type: 'mcq',
     prompt: 'Atrial myxoma is:',
     choices: [
-      'The most common primary benign tumour of the heart, usually in the left atrium, often attached to the atrial septum by a stalk',
       'A type of heart attack',
-      'A type of heart valve infection',
       'A cancer of the lung',
+      'The most common primary benign tumour of the heart, usually in the left atrium, often attached to the atrial septum by a stalk',
+      'A type of heart valve infection',
     ],
-    correctIndex: 0,
+    correctIndex: 2,
     rationale: 'Myxoma cells are gelatinous and soft. The stalked tumour can flop around with blood flow and block the mitral valve during diastole, mimicking mitral stenosis.',
   },
   {
@@ -1672,10 +1950,10 @@ export const surgeryQuestions: SurgeryQuestion[] = [
     type: 'mcq',
     prompt: 'The three main effects of atrial myxoma are:',
     choices: [
-      'Obstruction (of blood through the valve), Embolisation (pieces break off and travel to other organs), and Constitutional symptoms (fever, weight loss, fatigue from cytokines)',
+      'Obstruction , Embolisation , and Constitutional symptoms',
       'Always painless and harmless',
-      'Causes only mild headaches',
       'Causes only joint pain',
+      'Causes only mild headaches',
     ],
     correctIndex: 0,
     rationale: 'The "O–E–C" triad is the classic memory aid. Embolic stroke in a young person without obvious risk factors should make you think of myxoma.',
@@ -1686,10 +1964,10 @@ export const surgeryQuestions: SurgeryQuestion[] = [
     type: 'mcq',
     prompt: 'The single most useful diagnostic test for atrial myxoma is:',
     choices: [
-      'Echocardiography (an ultrasound of the heart)',
-      'Plain abdominal X-ray',
+      'Echocardiography',
       'Urinalysis',
       'Chest physiotherapy',
+      'Plain abdominal X-ray',
     ],
     correctIndex: 0,
     rationale: 'Echo shows the tumour\'s location, size, mobility and stalk. Transoesophageal echo gives clearer images of the atria. MRI and CT can add detail.',
@@ -1709,9 +1987,9 @@ export const surgeryQuestions: SurgeryQuestion[] = [
     prompt: 'Non-small cell lung cancer (NSCLC) accounts for about what proportion of lung cancers?',
     choices: [
       '85%',
-      '10%',
-      '50%',
       '100%',
+      '50%',
+      '10%',
     ],
     correctIndex: 0,
     rationale: 'NSCLC includes adenocarcinoma (most common), squamous cell, and large cell. Small cell lung cancer (SCLC) is the remaining ~15% and is highly aggressive.',
@@ -1723,9 +2001,9 @@ export const surgeryQuestions: SurgeryQuestion[] = [
     prompt: 'The single biggest risk factor for lung cancer is:',
     choices: [
       'Cigarette smoking',
-      'Drinking water',
-      'Eating fruit',
       'Walking',
+      'Eating fruit',
+      'Drinking water',
     ],
     correctIndex: 0,
     rationale: 'Smoking causes about 85% of lung cancers. Risk drops the longer a person stops smoking. Second-hand smoke, occupational asbestos/radon, and air pollution also contribute.',
@@ -1736,7 +2014,7 @@ export const surgeryQuestions: SurgeryQuestion[] = [
     type: 'mcq',
     prompt: 'Hoarseness of voice in lung cancer is usually due to:',
     choices: [
-      'Compression or invasion of the recurrent laryngeal nerve (a nerve to the voice box that loops under the aortic arch on the left side)',
+      'Compression or invasion of the recurrent laryngeal nerve',
       'Excess shouting',
       'A common cold',
       'A normal finding',
@@ -1750,12 +2028,12 @@ export const surgeryQuestions: SurgeryQuestion[] = [
     type: 'mcq',
     prompt: 'Superior vena cava (SVC) syndrome in lung cancer presents with:',
     choices: [
-      'Facial and neck swelling, distended neck veins, and shortness of breath because the tumour is blocking the big vein returning blood to the heart',
       'Painless yellow eyes',
-      'A skin rash on the legs only',
+      'Facial and neck swelling, distended neck veins, and shortness of breath',
       'Weight loss only',
+      'A skin rash on the legs only',
     ],
-    correctIndex: 0,
+    correctIndex: 1,
     rationale: 'The SVC drains blood from the head, neck and arms. When it is squeezed, blood backs up — leading to the puffy face/neck and bulging veins. This is a respiratory emergency that needs urgent treatment.',
   },
   {
@@ -1764,10 +2042,10 @@ export const surgeryQuestions: SurgeryQuestion[] = [
     type: 'mcq',
     prompt: 'A lobectomy is:',
     choices: [
-      'Removal of one lobe of the lung — the most common operation for early-stage NSCLC',
-      'Removal of the whole lung',
-      'Removal of the heart',
+      'Removal of one lobe of the lung',
       'Removal of the gallbladder',
+      'Removal of the heart',
+      'Removal of the whole lung',
     ],
     correctIndex: 0,
     rationale: 'The right lung has 3 lobes and the left has 2. A lobectomy removes the affected lobe and leaves the rest of the lung working. Pneumonectomy (whole lung) is reserved for larger central tumours.',
@@ -1786,12 +2064,12 @@ export const surgeryQuestions: SurgeryQuestion[] = [
     type: 'mcq',
     prompt: 'Thymoma is:',
     choices: [
-      'A tumour from the epithelial cells of the thymus gland (an organ behind the breastbone) — the most common tumour of the front part of the mediastinum in adults',
-      'A type of lung cancer',
       'A liver tumour',
+      'A type of lung cancer',
       'A kidney tumour',
+      'A tumour from the epithelial cells of the thymus gland',
     ],
-    correctIndex: 0,
+    correctIndex: 3,
     rationale: 'The mediastinum is the central compartment of the chest. Anterior (front) mediastinal masses are remembered by the "4 Ts": Thymoma, Teratoma (germ cell), Thyroid (retrosternal), Terrible lymphoma.',
   },
   {
@@ -1800,10 +2078,10 @@ export const surgeryQuestions: SurgeryQuestion[] = [
     type: 'mcq',
     prompt: 'Thymoma is strongly associated with which autoimmune disease?',
     choices: [
-      'Myasthenia gravis (muscle weakness because the body attacks the receptors for nerve-to-muscle signalling)',
-      'Asthma',
-      'Type 1 diabetes',
+      'Myasthenia gravis',
       'Pernicious anaemia only',
+      'Type 1 diabetes',
+      'Asthma',
     ],
     correctIndex: 0,
     rationale: 'Up to a third of thymoma patients have myasthenia gravis, and thymectomy can improve symptoms in those patients.',
@@ -1814,12 +2092,12 @@ export const surgeryQuestions: SurgeryQuestion[] = [
     type: 'mcq',
     prompt: 'Hodgkin lymphoma involving the mediastinum is best treated with:',
     choices: [
-      'Chemotherapy ± radiotherapy — surgery is used mainly for biopsy/diagnosis',
-      'Curative surgery',
       'Antibiotics for 7 days',
       'No treatment is ever needed',
+      'Chemotherapy ± radiotherapy',
+      'Curative surgery',
     ],
-    correctIndex: 0,
+    correctIndex: 2,
     rationale: 'Lymphomas respond very well to systemic therapy. The role of the surgeon is to obtain enough tissue for accurate typing — definitive treatment is non-surgical.',
   },
   {
@@ -1828,12 +2106,12 @@ export const surgeryQuestions: SurgeryQuestion[] = [
     type: 'mcq',
     prompt: 'Tumour markers AFP (alpha-fetoprotein) and beta-hCG are elevated in:',
     choices: [
-      'Non-seminomatous germ cell tumours of the mediastinum',
-      'Thymoma always',
-      'Asthma',
       'Common cold',
+      'Asthma',
+      'Thymoma always',
+      'Non-seminomatous germ cell tumours of the mediastinum',
     ],
-    correctIndex: 0,
+    correctIndex: 3,
     rationale: 'Germ cell tumours arise from primitive germ cells that ended up in the mediastinum during fetal life. Seminomas usually do NOT raise AFP. Markers help diagnosis and monitoring.',
   },
   {
@@ -1842,12 +2120,12 @@ export const surgeryQuestions: SurgeryQuestion[] = [
     type: 'mcq',
     prompt: 'Empyema thoracis is:',
     choices: [
-      'Pus collected in the pleural space (the thin gap between the lung and the chest wall lining)',
       'Air in the pleural space',
-      'Blood inside the lung tissue',
       'A type of asthma',
+      'Blood inside the lung tissue',
+      'Pus collected in the pleural space',
     ],
-    correctIndex: 0,
+    correctIndex: 3,
     rationale: 'Empyema usually follows pneumonia — bacteria spread into the pleura, leukocytes pour in, and pus accumulates. Other causes include TB, trauma, and post-surgery infection.',
   },
   {
@@ -1856,12 +2134,12 @@ export const surgeryQuestions: SurgeryQuestion[] = [
     type: 'mcq',
     prompt: 'Empyema progresses through three stages. The middle stage, when bacteria invade and fibrin strands form pockets, is the:',
     choices: [
-      'Fibrinopurulent stage',
       'Exudative stage',
       'Organising stage',
       'Healing stage',
+      'Fibrinopurulent stage',
     ],
-    correctIndex: 0,
+    correctIndex: 3,
     rationale: 'Stage 1 (exudative): clear sterile fluid. Stage 2 (fibrinopurulent): pus and "loculations" (separate pockets of pus). Stage 3 (organising): a thick fibrous "peel" wraps the lung and stops it expanding.',
   },
   {
@@ -1870,12 +2148,12 @@ export const surgeryQuestions: SurgeryQuestion[] = [
     type: 'mcq',
     prompt: 'Decortication is:',
     choices: [
-      'Surgical removal of the thick fibrous peel that traps the lung in late-stage empyema',
       'Stripping skin off the chest',
       'Removing a lung lobe',
+      'Surgical removal of the thick fibrous peel that traps the lung in late-stage empyema',
       'Removing the diaphragm',
     ],
-    correctIndex: 0,
+    correctIndex: 2,
     rationale: 'Decortication frees the lung so it can re-expand. It is typically done by VATS or open thoracotomy when chest tube drainage alone has failed.',
   },
   {
@@ -1884,12 +2162,12 @@ export const surgeryQuestions: SurgeryQuestion[] = [
     type: 'mcq',
     prompt: 'The drainage bottle of a chest tube should be:',
     choices: [
-      'Kept below the level of the patient\'s chest at all times, to prevent fluid being sucked back into the chest',
       'Held above the head',
+      'Kept below the level of the patient\'s chest at all times, to prevent fluid being sucked back into the chest',
       'Removed during transport',
       'Clamped continuously',
     ],
-    correctIndex: 0,
+    correctIndex: 1,
     rationale: 'Gravity drainage is fundamental. Keeping the bottle below chest level stops backflow. Tubing must not kink and should not be clamped (unless specifically ordered for changing the bottle).',
   },
   {
@@ -1898,12 +2176,12 @@ export const surgeryQuestions: SurgeryQuestion[] = [
     type: 'mcq',
     prompt: 'Tidaling (fluid moving up and down) in the water-seal chamber of a chest drain means:',
     choices: [
-      'The system is working normally — the fluid level changes with breathing because pleural pressure changes',
       'There is a major air leak',
-      'The tube is blocked',
       'The patient is in cardiac arrest',
+      'The system is working normally',
+      'The tube is blocked',
     ],
-    correctIndex: 0,
+    correctIndex: 2,
     rationale: 'Tidaling = good. Continuous bubbling = air leak (or loose connection). Sudden stop in tidaling can mean the lung has fully re-expanded, OR that the tubing is blocked.',
   },
   {
@@ -1912,12 +2190,12 @@ export const surgeryQuestions: SurgeryQuestion[] = [
     type: 'mcq',
     prompt: 'Pleurodesis is a procedure that:',
     choices: [
-      'Sticks the two layers of the pleura together (using talc or chemicals) to prevent recurrent fluid build-up',
-      'Removes the gallbladder',
       'Removes the appendix',
+      'Sticks the two layers of the pleura together to prevent recurrent fluid build-up',
       'Cleans out the bowel',
+      'Removes the gallbladder',
     ],
-    correctIndex: 0,
+    correctIndex: 1,
     rationale: 'It is used for recurrent malignant pleural effusions or recurrent pneumothorax. By scarring the pleural layers together, there is no space for fluid or air to collect.',
   },
   {
@@ -1926,12 +2204,12 @@ export const surgeryQuestions: SurgeryQuestion[] = [
     type: 'mcq',
     prompt: 'Recurrent pleural effusion in a known cancer patient is most likely due to:',
     choices: [
-      'Malignant pleural effusion — cancer cells in the pleura disturb fluid balance and cause repeated re-accumulation',
       'A skin allergy',
+      'Malignant pleural effusion',
       'A urinary infection',
       'Excessive drinking',
     ],
-    correctIndex: 0,
+    correctIndex: 1,
     rationale: 'Treatment may include therapeutic thoracentesis, indwelling pleural catheter, or pleurodesis. The goal is symptom relief and avoiding repeated hospital trips.',
   },
   {
@@ -1948,10 +2226,10 @@ export const surgeryQuestions: SurgeryQuestion[] = [
     type: 'mcq',
     prompt: 'Continuous bubbling in the water-seal chamber of a chest drain suggests:',
     choices: [
-      'Air leak — either from the patient (e.g. ongoing bronchopleural fistula) or from a loose connection in the drainage system',
-      'A normal finding',
-      'Bowel obstruction',
+      'Air leak',
       'A skin infection',
+      'Bowel obstruction',
+      'A normal finding',
     ],
     correctIndex: 0,
     rationale: 'Check each connection for tightness first. If the leak is from the patient, it may take days to seal — sometimes longer in patients with significant lung disease.',
@@ -1962,12 +2240,12 @@ export const surgeryQuestions: SurgeryQuestion[] = [
     type: 'mcq',
     prompt: 'After AAA repair, an important nursing observation is:',
     choices: [
-      'Peripheral pulses (foot and ankle) — to detect lower-limb ischaemia from graft thrombosis or embolus',
-      'Pupil size only',
-      'Hair growth on the head',
       'Skin colour of the back',
+      'Hair growth on the head',
+      'Peripheral pulses (foot and ankle)',
+      'Pupil size only',
     ],
-    correctIndex: 0,
+    correctIndex: 2,
     rationale: 'A blocked graft starves the legs of blood. Sudden cold, pale, pulseless feet need urgent surgical review. Urine output, BP, and signs of bleeding are also key.',
   },
   {
@@ -1984,12 +2262,12 @@ export const surgeryQuestions: SurgeryQuestion[] = [
     type: 'mcq',
     prompt: 'Bronchoscopy in lung cancer allows:',
     choices: [
+      'Imaging the heart',
       'Direct view of the airways and biopsy of central lesions',
       'Looking inside the abdomen',
       'Measuring kidney function',
-      'Imaging the heart',
     ],
-    correctIndex: 0,
+    correctIndex: 1,
     rationale: 'It is especially useful for central tumours and to assess airway involvement. CT-guided needle biopsy is used for peripheral lesions.',
   },
   {
@@ -1998,12 +2276,12 @@ export const surgeryQuestions: SurgeryQuestion[] = [
     type: 'mcq',
     prompt: 'Cardiopulmonary bypass during open heart surgery:',
     choices: [
-      'Takes over the work of the heart and lungs using a machine, allowing the surgeon to operate on a still, bloodless heart',
-      'Replaces the kidneys',
-      'Cleans the bowel',
       'Cools the skin only',
+      'Takes over the work of the heart and lungs using a machine, allowing the surgeon to operate on a still, bloodless heart',
+      'Cleans the bowel',
+      'Replaces the kidneys',
     ],
-    correctIndex: 0,
+    correctIndex: 1,
     rationale: 'Blood is diverted out of the body, oxygenated, and returned to the circulation. It is essential for many cardiac procedures including atrial myxoma excision.',
   },
   {
@@ -2012,7 +2290,7 @@ export const surgeryQuestions: SurgeryQuestion[] = [
     type: 'mcq',
     prompt: 'Aortic dissection mortality without treatment is approximately:',
     choices: [
-      '1–2% per HOUR in the first 24–48 hours — extremely time-critical',
+      '1–2% per HOUR in the first 24–48 hours',
       '1% per year',
       'Zero risk',
       'Only fatal after a month',
@@ -2034,17 +2312,71 @@ export const surgeryQuestions: SurgeryQuestion[] = [
     type: 'mcq',
     prompt: 'CT angiography is the imaging test of choice for suspected:',
     choices: [
-      'Aortic dissection and AAA',
-      'Bartholin\'s cyst',
-      'Anal fissure',
       'Appendicitis only',
+      'Bartholin\'s cyst',
+      'Aortic dissection and AAA',
+      'Anal fissure',
     ],
-    correctIndex: 0,
+    correctIndex: 2,
     rationale: 'CT angiography with contrast shows the aorta in detail, mapping the dissection flap or aneurysm size and location — guiding surgical decisions.',
   },
-
+  {
+    id: 'ct-041',
+    topic: 'cardiothoracic',
+    type: 'mcq',
+    prompt: 'A client was reported to the Emergency complaining of severe chest pain. After checking the vitals, you noticed the BP in both arms were vastly unequal. Which of the following conditions is most likely to be the cause?',
+    choices: [
+      'Aortic dissection',
+      'Mitral Stenosis',
+      'Pulmonary Embolism',
+      'Tetralogy of Fallot',
+    ],
+    correctIndex: 0,
+    rationale: 'Unequal blood pressure in the arms is a classic clinical sign of an aortic dissection, caused by the dissection flap compromising blood flow to one of the subclavian arteries.',
+  },
+  {
+    id: 'ct-042',
+    topic: 'cardiothoracic',
+    type: 'mcq',
+    prompt: 'A 55 year old patient with aortic aneurysm was on admission at the emergency ward, what is the most feared complication of this condition?',
+    choices: [
+      'Arrythmia',
+      'Seizures',
+      'Infection',
+      'Rupture',
+    ],
+    correctIndex: 3,
+    rationale: 'The most feared and life-threatening complication of an aortic aneurysm is rupture, which leads to catastrophic internal bleeding and high mortality.',
+  },
+  {
+    id: 'ct-043',
+    topic: 'cardiothoracic',
+    type: 'mcq',
+    prompt: 'During ward rounds, there was a deliberation among some rotation nurses as to whether coarctation of the aorta is a cyanotic or acyanotic heart disease. Using your knowledge in surgical nursing II, which of the following is true; Coarctation of the aorta is a',
+    choices: [
+      'Cyanotic heart disease',
+      'Acyanotic heart disease',
+      'Both options a and b are true',
+      'None of the above',
+    ],
+    correctIndex: 1,
+    rationale: 'Coarctation of the aorta is classified as an acyanotic congenital heart defect because it involves an obstruction to systemic blood flow without mixing oxygenated and deoxygenated blood.',
+  },
+  {
+    id: 'ct-044',
+    topic: 'cardiothoracic',
+    type: 'mcq',
+    prompt: 'Doctors during ward rounds were having a discussion about a patient with aortic aneurysm who experienced a rupture. Which of the following clinical signs is most indicative of the rupture?',
+    choices: [
+      'Vomiting',
+      'Severe Headache',
+      'Pulse 120bpm Bp- 76/48mm/hg',
+    ],
+    correctIndex: 2,
+    rationale: 'A ruptured aortic aneurysm presents with signs of severe hypovolemic shock, including tachycardia (pulse 120 bpm) and profound hypotension (BP 76/48 mmHg).',
+  },
   // ============================================================
-  // THORACIC EMERGENCIES
+  // T H O R A C I C E M E R G E N C Y
   // ============================================================
   {
     id: 'te-001',
@@ -2052,12 +2384,12 @@ export const surgeryQuestions: SurgeryQuestion[] = [
     type: 'mcq',
     prompt: 'Tension pneumothorax is best described as:',
     choices: [
-      'A life-threatening condition where air enters the pleural space (between lung and chest wall) with each breath but cannot escape, building up pressure that collapses the lung and shifts the heart and great vessels',
       'A small painless bruise of the chest',
       'A type of pneumonia',
+      'A life-threatening condition where air enters the pleural space with each breath but cannot escape, building up pressure that collapses the lung and shifts the heart and great vessels',
       'A normal post-op finding',
     ],
-    correctIndex: 0,
+    correctIndex: 2,
     rationale: 'A "one-way valve" lets air in but not out. Each breath worsens the pressure, the lung collapses, the trachea deviates AWAY from the affected side, and venous return to the heart falls — causing shock.',
   },
   {
@@ -2066,12 +2398,12 @@ export const surgeryQuestions: SurgeryQuestion[] = [
     type: 'mcq',
     prompt: 'Classic clinical signs of tension pneumothorax include:',
     choices: [
-      'Severe breathlessness, fast heart rate, low BP, distended neck veins, hyperresonance on percussion, absent breath sounds on the affected side, and (late) tracheal deviation to the opposite side',
-      'Painless yellow skin and dark urine',
       'Severe joint pain only',
+      'Painless yellow skin and dark urine',
+      'Severe breathlessness, fast heart rate, low BP, distended neck veins, hyperresonance on percussion, absent breath sounds on the affected side, and (late) tracheal deviation to the opposite side',
       'Mild itching of the back',
     ],
-    correctIndex: 0,
+    correctIndex: 2,
     rationale: 'Recognise the picture: respiratory distress + circulatory collapse + one silent hyperresonant lung. Do NOT wait for X-ray — treat clinically.',
   },
   {
@@ -2080,12 +2412,12 @@ export const surgeryQuestions: SurgeryQuestion[] = [
     type: 'mcq',
     prompt: 'The IMMEDIATE life-saving treatment for tension pneumothorax is:',
     choices: [
-      'Needle decompression — a large-bore needle inserted into the 2nd intercostal space (between the ribs) at the midclavicular line (or 5th ICS midaxillary), releasing the trapped air',
-      'Oral antibiotics',
       'Slow CT scan first',
+      'Needle decompression',
+      'Oral antibiotics',
       'Chest physiotherapy only',
     ],
-    correctIndex: 0,
+    correctIndex: 1,
     rationale: 'Needle decompression converts a tension pneumothorax to a simple pneumothorax. A chest tube (tube thoracostomy) follows for definitive drainage. Speed saves life.',
   },
   {
@@ -2094,12 +2426,12 @@ export const surgeryQuestions: SurgeryQuestion[] = [
     type: 'mcq',
     prompt: 'The most useful FIRST step in any patient with suspected major chest trauma is:',
     choices: [
-      'Rapid ABC assessment — secure the airway, give high-flow oxygen, check breathing and circulation',
+      'Send for a routine outpatient appointment',
+      'Rapid ABC assessment',
       'Take a careful family history',
       'Take a full bath',
-      'Send for a routine outpatient appointment',
     ],
-    correctIndex: 0,
+    correctIndex: 1,
     rationale: 'ATLS approach: Airway with C-spine control → Breathing → Circulation → Disability → Exposure. Life-threats are identified and treated as you go.',
   },
   {
@@ -2108,10 +2440,10 @@ export const surgeryQuestions: SurgeryQuestion[] = [
     type: 'mcq',
     prompt: 'Mechanical ventilation can cause tension pneumothorax via:',
     choices: [
-      'Barotrauma — high airway pressures rupture small air sacs in the lung, letting air escape into the pleural space',
+      'Barotrauma',
       'Allergy to plastic tubing',
-      'Excess oxygen alone',
       'Cold air in the circuit',
+      'Excess oxygen alone',
     ],
     correctIndex: 0,
     rationale: 'Stiff lungs (ARDS, COPD) plus high pressure ventilation can cause "barotrauma". Watch ventilated patients closely for sudden drop in oxygen saturation and rising airway pressures.',
@@ -2130,10 +2462,10 @@ export const surgeryQuestions: SurgeryQuestion[] = [
     type: 'mcq',
     prompt: 'Flail chest is defined as:',
     choices: [
-      'A segment of chest wall that moves independently because at least 3 consecutive ribs are each broken in at least 2 places — leading to "paradoxical" movement',
-      'A single rib fracture',
-      'A bruise of the lung',
+      'A segment of chest wall that moves independently',
       'A tear in the diaphragm',
+      'A bruise of the lung',
+      'A single rib fracture',
     ],
     correctIndex: 0,
     rationale: 'Paradoxical movement: during inspiration, the chest wall normally expands outward — but the loose flail segment is sucked INWARD by the negative pressure. Ventilation becomes inefficient.',
@@ -2144,12 +2476,12 @@ export const surgeryQuestions: SurgeryQuestion[] = [
     type: 'mcq',
     prompt: 'The MAIN reason flail chest causes hypoxia is usually:',
     choices: [
-      'Underlying pulmonary contusion — the lung itself is bruised and cannot exchange gas well',
-      'Skin bruising only',
       'Loss of teeth',
+      'Skin bruising only',
       'Mild dehydration',
+      'Underlying pulmonary contusion',
     ],
-    correctIndex: 0,
+    correctIndex: 3,
     rationale: 'High-impact trauma that breaks multiple ribs also bruises the lung. The contused lung leaks fluid and cannot oxygenate well. This often gets worse over 24–48 hours.',
   },
   {
@@ -2159,9 +2491,9 @@ export const surgeryQuestions: SurgeryQuestion[] = [
     prompt: 'Management of severe flail chest commonly includes:',
     choices: [
       'Oxygen, careful pain control, and often mechanical ventilation to splint the chest internally; selective rib fixation surgery for some patients',
-      'Encouraging hyperventilation',
       'Strict bed rest with no analgesia',
       'No intervention required',
+      'Encouraging hyperventilation',
     ],
     correctIndex: 0,
     rationale: 'Good pain relief alone often prevents the need for ventilation by allowing the patient to breathe deeply and cough. Positive-pressure ventilation acts like an internal splint when needed.',
@@ -2172,12 +2504,12 @@ export const surgeryQuestions: SurgeryQuestion[] = [
     type: 'mcq',
     prompt: 'Massive haemothorax is defined as:',
     choices: [
-      'More than 1500 mL of blood in the pleural space initially, OR ongoing bleeding of more than 200 mL/hour for several hours',
-      'A small bloodstain on the sheet',
       'Painless yellow eyes',
       'A bruise on the arm',
+      'A small bloodstain on the sheet',
+      'More than 1500 mL of blood in the pleural space initially, OR ongoing bleeding of more than 200 mL/hour for several hours',
     ],
-    correctIndex: 0,
+    correctIndex: 3,
     rationale: 'These volumes signal a major chest vessel injury (often an intercostal or internal mammary artery, or sometimes a great vessel). Urgent thoracotomy is usually required.',
   },
   {
@@ -2187,9 +2519,9 @@ export const surgeryQuestions: SurgeryQuestion[] = [
     prompt: 'Initial management of massive haemothorax includes:',
     choices: [
       'Two large-bore IV cannulae, crossmatched blood transfusion, chest tube insertion, and prepare for emergency thoracotomy if bleeding continues',
+      'High-fat meal first',
       'Outpatient follow-up only',
       'Oral fluids only',
-      'High-fat meal first',
     ],
     correctIndex: 0,
     rationale: 'Blood loss + lung compression = shock + hypoxia. Resuscitate with blood (not just crystalloid), decompress the chest, and surgically control the bleeding source.',
@@ -2200,10 +2532,10 @@ export const surgeryQuestions: SurgeryQuestion[] = [
     type: 'mcq',
     prompt: 'Percussion findings in tension pneumothorax versus massive haemothorax:',
     choices: [
-      'Pneumothorax = hyperresonant (drum-like); haemothorax = dull (because there is fluid blocking sound)',
+      'Pneumothorax = hyperresonant (drum-like); haemothorax = dull',
+      'Both are silent',
       'Both are normal',
       'Both are hyperresonant',
-      'Both are silent',
     ],
     correctIndex: 0,
     rationale: 'Air transmits sound as a high-pitched "tap"; fluid/blood absorbs it as a dull thud. Together with auscultation, percussion helps differentiate at the bedside.',
@@ -2214,12 +2546,12 @@ export const surgeryQuestions: SurgeryQuestion[] = [
     type: 'mcq',
     prompt: 'The FAST (Focused Assessment with Sonography for Trauma) ultrasound is used at the bedside to look for:',
     choices: [
-      'Free fluid in the abdomen, pericardium, and pleural spaces — to find life-threatening bleeding fast',
       'Brain tumours only',
-      'Bowel cancer screening',
+      'Free fluid in the abdomen, pericardium, and pleural spaces',
       'Eye problems',
+      'Bowel cancer screening',
     ],
-    correctIndex: 0,
+    correctIndex: 1,
     rationale: 'FAST is a quick scan done during trauma resuscitation. Positive findings prompt urgent action; negative findings do not exclude injury but help triage.',
   },
   {
@@ -2236,10 +2568,10 @@ export const surgeryQuestions: SurgeryQuestion[] = [
     type: 'mcq',
     prompt: 'Distended neck veins in tension pneumothorax indicate:',
     choices: [
-      'Obstructed venous return to the heart — the mediastinum is shifted and the great veins are compressed',
-      'A normal finding only',
-      'Heart failure unrelated to the chest',
+      'Obstructed venous return to the heart',
       'Anaemia',
+      'Heart failure unrelated to the chest',
+      'A normal finding only',
     ],
     correctIndex: 0,
     rationale: 'The trapped air pushes the heart and great vessels sideways. Blood cannot return to the heart easily, raising venous pressure and dropping BP.',
@@ -2260,8 +2592,8 @@ export const surgeryQuestions: SurgeryQuestion[] = [
     choices: [
       'Allows the patient to breathe deeply and cough effectively, preventing atelectasis and pneumonia',
       'Cures the broken ribs faster',
-      'Replaces the need for oxygen',
       'Stops bleeding',
+      'Replaces the need for oxygen',
     ],
     correctIndex: 0,
     rationale: 'Pain leads to shallow breathing and poor cough. Multimodal analgesia (regional blocks, IV opioids, NSAIDs if appropriate) restores effective ventilation.',
@@ -2272,12 +2604,12 @@ export const surgeryQuestions: SurgeryQuestion[] = [
     type: 'mcq',
     prompt: 'The "bubbling water-seal chamber that does not stop" in a chest drain post-trauma suggests:',
     choices: [
-      'Bronchopleural fistula — a persistent air leak from the lung surface into the pleural space',
       'Normal recovery',
       'Heart failure',
+      'Bronchopleural fistula',
       'Urinary infection',
     ],
-    correctIndex: 0,
+    correctIndex: 2,
     rationale: 'Most leaks seal within a few days. Persistent leaks may need bronchoscopy, repositioning of the drain, or further surgery.',
   },
   {
@@ -2286,9 +2618,9 @@ export const surgeryQuestions: SurgeryQuestion[] = [
     type: 'mcq',
     prompt: 'Why do trauma patients with chest injuries often need TWO large-bore IV access lines?',
     choices: [
-      'To deliver fluids and blood rapidly — a single small cannula cannot keep up with major bleeding',
-      'To give two drugs at once for fun',
+      'To deliver fluids and blood rapidly',
       'To monitor blood pressure',
+      'To give two drugs at once for fun',
       'To deliver oxygen',
     ],
     correctIndex: 0,
@@ -2300,12 +2632,12 @@ export const surgeryQuestions: SurgeryQuestion[] = [
     type: 'mcq',
     prompt: 'A post-chest-tube patient suddenly becomes acutely short of breath. What does the nurse check FIRST?',
     choices: [
-      'The chest drainage system — look for kinks, disconnections, blockage, drainage amount, and the water seal',
-      'The hairdryer',
       'The patient\'s shoes',
+      'The hairdryer',
       'The hospital menu',
+      'The chest drainage system',
     ],
-    correctIndex: 0,
+    correctIndex: 3,
     rationale: 'A blocked or disconnected drain can rapidly cause re-accumulation of air or fluid. Check the tube, vital signs, oxygen saturation, and call for senior help if unstable.',
   },
   {
@@ -2322,10 +2654,10 @@ export const surgeryQuestions: SurgeryQuestion[] = [
     type: 'mcq',
     prompt: 'A patient with massive haemothorax is at risk of which type of shock?',
     choices: [
-      'Hypovolaemic shock — from blood loss into the pleural space',
+      'Hypovolaemic shock',
+      'Neurogenic shock from anxiety',
       'Anaphylactic shock',
       'Septic shock from urinary infection',
-      'Neurogenic shock from anxiety',
     ],
     correctIndex: 0,
     rationale: 'Up to several litres of blood can accumulate inside the chest. Replace lost blood promptly and stop the bleeding surgically if it continues.',
@@ -2336,12 +2668,12 @@ export const surgeryQuestions: SurgeryQuestion[] = [
     type: 'mcq',
     prompt: 'A patient on positive-pressure ventilation suddenly develops high airway pressures, falling oxygen saturation, and shock. The MOST URGENT diagnosis to exclude is:',
     choices: [
-      'Tension pneumothorax',
-      'Constipation',
-      'Common cold',
       'Vitamin deficiency',
+      'Tension pneumothorax',
+      'Common cold',
+      'Constipation',
     ],
-    correctIndex: 0,
+    correctIndex: 1,
     rationale: 'In a ventilated patient, tension pneumothorax can develop fast. Disconnect the ventilator briefly to check, examine the chest, and decompress if confirmed.',
   },
   {
@@ -2350,12 +2682,12 @@ export const surgeryQuestions: SurgeryQuestion[] = [
     type: 'mcq',
     prompt: 'After successful management of tension pneumothorax with a chest tube, the lung should:',
     choices: [
-      'Re-expand and breath sounds return on the affected side, with chest X-ray showing the lung back against the chest wall',
-      'Stay collapsed forever',
-      'Become bigger than normal',
       'Develop cancer',
+      'Re-expand and breath sounds return on the affected side, with chest X-ray showing the lung back against the chest wall',
+      'Become bigger than normal',
+      'Stay collapsed forever',
     ],
-    correctIndex: 0,
+    correctIndex: 1,
     rationale: 'Once the trapped air is drained and the leak seals, the lung re-expands. The tube is removed when there is no air leak, drainage is minimal, and the lung is fully up on X-ray.',
   },
   {
@@ -2366,9 +2698,8 @@ export const surgeryQuestions: SurgeryQuestion[] = [
     correctAnswer: true,
     rationale: 'True. Young patients compensate well and can crash suddenly. Treat hypotension in trauma as ongoing haemorrhage until imaging or surgical exploration proves otherwise.',
   },
-
   // ============================================================
-  // UROLOGY & ANDROLOGY
+  // U R O L O G Y A N D R O L O G Y
   // ============================================================
   {
     id: 'ua-001',
@@ -2376,12 +2707,12 @@ export const surgeryQuestions: SurgeryQuestion[] = [
     type: 'mcq',
     prompt: 'Benign prostatic hyperplasia (BPH) is best described as:',
     choices: [
-      'Non-cancerous enlargement of the prostate gland (a walnut-sized gland that sits below the bladder), which squeezes the urethra and obstructs urine flow',
-      'Cancer of the prostate',
       'Inflammation of the testis',
+      'Non-cancerous enlargement of the prostate gland , which squeezes the urethra and obstructs urine flow',
+      'Cancer of the prostate',
       'A kidney stone',
     ],
-    correctIndex: 0,
+    correctIndex: 1,
     rationale: 'BPH grows in the central (transition) zone of the prostate, the part that surrounds the urethra. As it grows, the urine pipe is squeezed. Common in men over 50.',
   },
   {
@@ -2390,12 +2721,12 @@ export const surgeryQuestions: SurgeryQuestion[] = [
     type: 'mcq',
     prompt: 'Obstructive symptoms of BPH include:',
     choices: [
-      'Hesitancy (slow to start), weak stream, straining, dribbling, incomplete emptying',
-      'Painless bright-red haematuria only',
       'Severe flank pain only',
       'Yellow eyes only',
+      'Hesitancy (slow to start), weak stream, straining, dribbling, incomplete emptying',
+      'Painless bright-red haematuria only',
     ],
-    correctIndex: 0,
+    correctIndex: 2,
     rationale: 'The narrowed urethra physically slows the flow. Irritative symptoms (frequency, nocturia, urgency) come from the over-stretched bladder having to work harder.',
   },
   {
@@ -2404,12 +2735,12 @@ export const surgeryQuestions: SurgeryQuestion[] = [
     type: 'mcq',
     prompt: 'TURP stands for and means:',
     choices: [
-      'Trans-Urethral Resection of the Prostate — removing pieces of the inner prostate through the urethra using a special scope',
-      'Total Uretero-Renal Procedure',
-      'Tumour Ultrasound and Repair',
       'Trans-Umbilical Pancreatic Resection',
+      'Total Uretero-Renal Procedure',
+      'Trans-Urethral Resection of the Prostate',
+      'Tumour Ultrasound and Repair',
     ],
-    correctIndex: 0,
+    correctIndex: 2,
     rationale: 'A resectoscope is passed up the urethra into the prostate. Pieces are cut and washed out. This is still the surgical gold standard for symptomatic BPH that fails medical therapy.',
   },
   {
@@ -2418,12 +2749,12 @@ export const surgeryQuestions: SurgeryQuestion[] = [
     type: 'mcq',
     prompt: 'Continuous bladder irrigation (CBI) is used after TURP to:',
     choices: [
-      'Continuously rinse the bladder with sterile fluid to prevent blood clots from blocking the catheter',
-      'Cool the patient down',
       'Replace IV fluids',
+      'Cool the patient down',
+      'Continuously rinse the bladder with sterile fluid to prevent blood clots from blocking the catheter',
       'Give antibiotics directly',
     ],
-    correctIndex: 0,
+    correctIndex: 2,
     rationale: 'The newly resected prostate bed bleeds for a while. The fluid keeps the urine pale and stops clots from blocking the 3-way catheter. The nurse adjusts the drip speed based on the colour.',
   },
   {
@@ -2432,12 +2763,12 @@ export const surgeryQuestions: SurgeryQuestion[] = [
     type: 'mcq',
     prompt: 'Prostate cancer most commonly metastasises to:',
     choices: [
-      'Bone — causing bone pain (often in the back, hips and pelvis)',
       'Skin',
-      'Eyes',
       'Hair',
+      'Eyes',
+      'Bone',
     ],
-    correctIndex: 0,
+    correctIndex: 3,
     rationale: 'Bone is the classic site. Lesions are typically "osteoblastic" (bone-forming) and show up on a bone scan. New back pain in an older man with raised PSA should raise concern.',
   },
   {
@@ -2446,12 +2777,12 @@ export const surgeryQuestions: SurgeryQuestion[] = [
     type: 'mcq',
     prompt: 'On digital rectal examination (DRE), a cancerous prostate usually feels:',
     choices: [
-      'Hard, irregular, and nodular',
-      'Soft and smooth',
       'Boggy and warm',
+      'Hard, irregular, and nodular',
       'Tender and pulsatile',
+      'Soft and smooth',
     ],
-    correctIndex: 0,
+    correctIndex: 1,
     rationale: 'BPH usually feels uniformly enlarged and rubbery. Cancer feels firm and craggy. Confirmation is always with biopsy.',
   },
   {
@@ -2460,12 +2791,12 @@ export const surgeryQuestions: SurgeryQuestion[] = [
     type: 'mcq',
     prompt: 'Androgen deprivation therapy in prostate cancer works because:',
     choices: [
-      'Most prostate cancers grow under the influence of male hormones (androgens), so lowering testosterone slows the cancer',
-      'It directly kills bacteria',
       'It only treats kidney stones',
       'It helps the immune system fight viruses',
+      'Most prostate cancers grow under the influence of male hormones (androgens)',
+      'It directly kills bacteria',
     ],
-    correctIndex: 0,
+    correctIndex: 2,
     rationale: 'GnRH agonists/antagonists, or surgical castration, drop testosterone. Cancer cells starve of growth signal. Side effects include hot flushes, loss of libido, and bone thinning.',
   },
   {
@@ -2474,12 +2805,12 @@ export const surgeryQuestions: SurgeryQuestion[] = [
     type: 'mcq',
     prompt: 'Acute urinary retention is best described as:',
     choices: [
+      'A bacterial infection of the lung',
       'Sudden inability to pass urine, with a tense, painful, full bladder',
       'Mild burning during urination',
       'Painless yellow eyes',
-      'A bacterial infection of the lung',
     ],
-    correctIndex: 0,
+    correctIndex: 1,
     rationale: 'In men, the commonest cause is BPH. In women, it is often post-op or due to medications (anticholinergics, opioids). Immediate catheterisation gives relief.',
   },
   {
@@ -2488,12 +2819,12 @@ export const surgeryQuestions: SurgeryQuestion[] = [
     type: 'mcq',
     prompt: 'The first management of acute urinary retention is:',
     choices: [
-      'Insert a urethral (Foley) catheter to drain the bladder — or suprapubic catheter if urethral access fails',
-      'Encourage running tap water sounds only',
       'Stop all fluids',
       'Give strong painkillers and wait until tomorrow',
+      'Insert a urethral (Foley) catheter to drain the bladder',
+      'Encourage running tap water sounds only',
     ],
-    correctIndex: 0,
+    correctIndex: 2,
     rationale: 'Decompression relieves pain instantly and prevents kidney damage from back-pressure. After drainage, look for the cause and address it.',
   },
   {
@@ -2502,12 +2833,12 @@ export const surgeryQuestions: SurgeryQuestion[] = [
     type: 'mcq',
     prompt: 'Bladder cancer is most commonly:',
     choices: [
-      'Transitional (urothelial) cell carcinoma',
       'Adenocarcinoma',
+      'Transitional (urothelial) cell carcinoma',
       'Squamous cell carcinoma always',
       'Lymphoma',
     ],
-    correctIndex: 0,
+    correctIndex: 1,
     rationale: 'Urothelial cancer is by far the most common. In areas with schistosomiasis, squamous cell carcinoma is more common because of chronic bladder irritation.',
   },
   {
@@ -2516,12 +2847,12 @@ export const surgeryQuestions: SurgeryQuestion[] = [
     type: 'mcq',
     prompt: 'The classic presentation of bladder cancer is:',
     choices: [
-      'Painless visible (gross) haematuria — red urine without pain',
-      'Severe colicky flank pain',
-      'Fever with night sweats only',
       'Constipation',
+      'Severe colicky flank pain',
+      'Painless visible (gross) haematuria',
+      'Fever with night sweats only',
     ],
-    correctIndex: 0,
+    correctIndex: 2,
     rationale: 'Painless haematuria in an adult always needs investigation — cystoscopy, urine cytology, and imaging. Smoking is the strongest risk factor.',
   },
   {
@@ -2530,10 +2861,10 @@ export const surgeryQuestions: SurgeryQuestion[] = [
     type: 'mcq',
     prompt: 'TURBT stands for and means:',
     choices: [
-      'Trans-Urethral Resection of Bladder Tumour — removing a bladder tumour using a scope passed through the urethra',
-      'Total Urethral Removal Before Treatment',
-      'Tumour Ultrasound and Repeat Biopsy',
+      'Trans-Urethral Resection of Bladder Tumour',
       'Trans-Umbilical Renal Biopsy Test',
+      'Tumour Ultrasound and Repeat Biopsy',
+      'Total Urethral Removal Before Treatment',
     ],
     correctIndex: 0,
     rationale: 'TURBT both diagnoses and treats early bladder cancers and gives important staging information. Intravesical chemotherapy (BCG or mitomycin) may follow.',
@@ -2544,12 +2875,12 @@ export const surgeryQuestions: SurgeryQuestion[] = [
     type: 'mcq',
     prompt: 'Schistosoma haematobium infection is a recognised risk factor for:',
     choices: [
-      'Squamous cell bladder cancer — chronic irritation by parasite eggs in the bladder wall predisposes to cancer',
       'Appendicitis',
       'Asthma',
       'Pyloric stenosis',
+      'Squamous cell bladder cancer',
     ],
-    correctIndex: 0,
+    correctIndex: 3,
     rationale: 'In endemic regions in Africa, schistosomiasis (bilharzia) is a major cause of bladder cancer. Prevention through public-health measures is critical.',
   },
   {
@@ -2558,12 +2889,12 @@ export const surgeryQuestions: SurgeryQuestion[] = [
     type: 'mcq',
     prompt: 'Nephrolithiasis means:',
     choices: [
-      'Stones in the kidney or urinary tract',
       'Inflammation of the kidney',
-      'Cancer of the kidney',
+      'Stones in the kidney or urinary tract',
       'A urinary infection',
+      'Cancer of the kidney',
     ],
-    correctIndex: 0,
+    correctIndex: 1,
     rationale: 'Stones form when urine becomes super-saturated and crystallises. Dehydration, diet, infections, and metabolic disorders all increase risk.',
   },
   {
@@ -2574,8 +2905,8 @@ export const surgeryQuestions: SurgeryQuestion[] = [
     choices: [
       'Severe flank pain that radiates from "loin to groin", coming in waves, often with nausea, vomiting and visible or microscopic blood in the urine',
       'A dull constant pain in both shoulders',
-      'Painless headache only',
       'Pain only in the right thumb',
+      'Painless headache only',
     ],
     correctIndex: 0,
     rationale: 'A stone moving down the ureter triggers strong muscle spasm. Pain follows the nerve route from the kidney (flank) to the genitals (groin). Patients often cannot lie still.',
@@ -2586,12 +2917,12 @@ export const surgeryQuestions: SurgeryQuestion[] = [
     type: 'mcq',
     prompt: 'The gold-standard imaging for urinary tract stones is:',
     choices: [
-      'Non-contrast CT of the abdomen and pelvis (CT KUB)',
       'Plain chest X-ray',
       'Head CT',
       'Echocardiography',
+      'Non-contrast CT of the abdomen and pelvis (CT KUB)',
     ],
-    correctIndex: 0,
+    correctIndex: 3,
     rationale: 'CT KUB sees almost all stones (including those missed by X-ray) and shows the kidney, ureter, bladder, and any hydronephrosis (swelling from back-pressure).',
   },
   {
@@ -2600,12 +2931,12 @@ export const surgeryQuestions: SurgeryQuestion[] = [
     type: 'mcq',
     prompt: 'ESWL (extracorporeal shockwave lithotripsy) treats kidney stones by:',
     choices: [
-      'Using focused sound-wave shocks from outside the body to break the stone into fragments small enough to pass with urine',
       'Cutting the kidney open',
-      'Removing the kidney',
+      'Using focused sound-wave shocks from outside the body to break the stone into fragments small enough to pass with urine',
       'Injecting acid to dissolve the stone',
+      'Removing the kidney',
     ],
-    correctIndex: 0,
+    correctIndex: 1,
     rationale: 'ESWL is non-invasive. It works best for kidney stones under 2 cm. Larger stones may need ureteroscopy or percutaneous nephrolithotomy (PCNL).',
   },
   {
@@ -2614,12 +2945,12 @@ export const surgeryQuestions: SurgeryQuestion[] = [
     type: 'mcq',
     prompt: 'Testicular torsion is:',
     choices: [
-      'Twisting of the spermatic cord (the structure that carries blood vessels and the vas to the testis), cutting off blood supply to the testis — a surgical emergency',
-      'A cancer of the testis',
-      'A type of inguinal hernia',
       'A normal teenage finding',
+      'A type of inguinal hernia',
+      'Twisting of the spermatic cord , cutting off blood supply to the testis',
+      'A cancer of the testis',
     ],
-    correctIndex: 0,
+    correctIndex: 2,
     rationale: 'Without restored blood flow within about 6 hours, the testis dies. Classic in adolescents. Bell-clapper deformity (testis hanging like a bell clapper) predisposes.',
   },
   {
@@ -2628,12 +2959,12 @@ export const surgeryQuestions: SurgeryQuestion[] = [
     type: 'mcq',
     prompt: 'Classic features of testicular torsion are:',
     choices: [
-      'Sudden severe scrotal pain, swollen tender testis sitting higher than the other, absent cremasteric reflex, and nausea/vomiting',
       'Painless slow-growing scrotal mass',
+      'Sudden severe scrotal pain, swollen tender testis sitting higher than the other, absent cremasteric reflex, and nausea/vomiting',
       'Burning only on urination',
       'A skin rash on the chest',
     ],
-    correctIndex: 0,
+    correctIndex: 1,
     rationale: 'No relief from rest, no fever (early), pain too severe for epididymitis. Doppler ultrasound shows absent flow but should NOT delay surgery if clinical suspicion is high.',
   },
   {
@@ -2642,12 +2973,12 @@ export const surgeryQuestions: SurgeryQuestion[] = [
     type: 'mcq',
     prompt: 'Definitive management of testicular torsion is:',
     choices: [
-      'Emergency surgical exploration with detorsion of the cord, and orchidopexy — stitching BOTH testes to the scrotal wall to prevent future torsion',
-      'IV antibiotics and discharge home',
-      'Bed rest for a week',
       'Strong oral analgesia and review in 3 months',
+      'Bed rest for a week',
+      'IV antibiotics and discharge home',
+      'Emergency surgical exploration with detorsion of the cord, and orchidopexy',
     ],
-    correctIndex: 0,
+    correctIndex: 3,
     rationale: 'If the testis is non-viable (black, no blood return after detorsion), it is removed (orchidectomy). The other testis is always fixed because the underlying anatomy is usually mirrored.',
   },
   {
@@ -2656,12 +2987,12 @@ export const surgeryQuestions: SurgeryQuestion[] = [
     type: 'mcq',
     prompt: 'A hydrocele is:',
     choices: [
-      'Painless fluid collection around the testis, inside the tunica vaginalis (the thin sac that covers the testis)',
       'A bowel hernia in the scrotum',
-      'Cancer of the testis',
       'A clot in the spermatic cord',
+      'Painless fluid collection around the testis, inside the tunica vaginalis',
+      'Cancer of the testis',
     ],
-    correctIndex: 0,
+    correctIndex: 2,
     rationale: 'Hydroceles are usually painless and slowly enlarging. Transillumination (a torch shines through) is positive because fluid lets light through.',
   },
   {
@@ -2670,10 +3001,10 @@ export const surgeryQuestions: SurgeryQuestion[] = [
     type: 'mcq',
     prompt: 'Definitive treatment of a symptomatic hydrocele is:',
     choices: [
-      'Hydrocelectomy (surgical removal/repair of the hydrocele sac)',
+      'Hydrocelectomy',
       'Strong oral antibiotics for life',
-      'Daily ice packs forever',
       'Hot baths',
+      'Daily ice packs forever',
     ],
     correctIndex: 0,
     rationale: 'Simple aspiration provides only temporary relief and often recurs. Surgery is curative. Scrotal support and analgesia help recovery.',
@@ -2684,12 +3015,12 @@ export const surgeryQuestions: SurgeryQuestion[] = [
     type: 'mcq',
     prompt: 'Cryptorchidism means:',
     choices: [
+      'Cancer of the urethra',
       'Failure of one or both testes to descend into the scrotum',
       'A swollen vein in the scrotum',
-      'Cancer of the urethra',
       'A bladder stone',
     ],
-    correctIndex: 0,
+    correctIndex: 1,
     rationale: 'During fetal life, testes descend from the abdomen into the scrotum. If they do not, they may sit in the inguinal canal or abdomen. Risk of infertility and cancer is higher.',
   },
   {
@@ -2698,7 +3029,7 @@ export const surgeryQuestions: SurgeryQuestion[] = [
     type: 'mcq',
     prompt: 'Definitive management of cryptorchidism is:',
     choices: [
-      'Orchidopexy — surgical fixation of the testis in the scrotum, usually before age 1–2 years',
+      'Orchidopexy',
       'Hormonal therapy forever',
       'Watch and wait until age 20',
       'Castration',
@@ -2712,12 +3043,12 @@ export const surgeryQuestions: SurgeryQuestion[] = [
     type: 'mcq',
     prompt: 'A varicocele is:',
     choices: [
-      'Abnormal dilation of the veins that drain the testis (the pampiniform plexus), causing a "bag of worms" feel in the scrotum',
-      'Cancer of the testis',
       'A bladder stone',
+      'Cancer of the testis',
+      'Abnormal dilation of the veins that drain the testis , causing a "bag of worms" feel in the scrotum',
       'A type of hydrocele',
     ],
-    correctIndex: 0,
+    correctIndex: 2,
     rationale: 'Most are left-sided because the left testicular vein drains at right angles into the renal vein. A sudden right-sided varicocele in an adult should raise concern about a renal/IVC mass.',
   },
   {
@@ -2726,12 +3057,12 @@ export const surgeryQuestions: SurgeryQuestion[] = [
     type: 'mcq',
     prompt: 'A varicocele can affect fertility because:',
     choices: [
-      'Pooled venous blood raises the testicular temperature, and sperm production suffers in heat',
-      'It blocks the urethra',
-      'It causes prostate enlargement',
       'It causes early menopause in the partner',
+      'Pooled venous blood raises the testicular temperature, and sperm production suffers in heat',
+      'It causes prostate enlargement',
+      'It blocks the urethra',
     ],
-    correctIndex: 0,
+    correctIndex: 1,
     rationale: 'Sperm production needs cooler than core body temperature. A varicocele can be repaired (varicocelectomy or embolisation) — fertility may improve, especially in symptomatic cases.',
   },
   {
@@ -2748,10 +3079,10 @@ export const surgeryQuestions: SurgeryQuestion[] = [
     type: 'mcq',
     prompt: 'PSA (prostate-specific antigen) is:',
     choices: [
-      'A protein made by both normal and cancerous prostate cells; elevated levels can indicate BPH, prostatitis, or cancer — not specific by itself',
-      'A skin test for prostate cancer',
+      'A protein made by both normal and cancerous prostate cells; elevated levels can indicate BPH, prostatitis, or cancer',
       'A bacteria found in urine',
       'A urine pregnancy test',
+      'A skin test for prostate cancer',
     ],
     correctIndex: 0,
     rationale: 'PSA must be interpreted with DRE, biopsy and imaging. A rising PSA over time is more worrying than a single high value.',
@@ -2762,12 +3093,12 @@ export const surgeryQuestions: SurgeryQuestion[] = [
     type: 'mcq',
     prompt: 'A bladder scan is used to measure:',
     choices: [
-      'Post-void residual urine — how much urine is left in the bladder after the patient has finished urinating',
-      'Lung capacity',
       'Heart size',
+      'Lung capacity',
+      'Post-void residual urine',
       'Liver enzymes',
     ],
-    correctIndex: 0,
+    correctIndex: 2,
     rationale: 'Bladder ultrasound is non-invasive and quick. Useful in BPH, post-op urinary retention, and to decide whether to catheterise.',
   },
   {
@@ -2786,8 +3117,8 @@ export const surgeryQuestions: SurgeryQuestion[] = [
     choices: [
       'Wear scrotal support, avoid heavy activity, watch for swelling/infection, and attend follow-up to check testicular position and growth',
       'Resume football training the next day',
-      'Stop all hygiene routines for 2 weeks',
       'Apply boiling water packs',
+      'Stop all hygiene routines for 2 weeks',
     ],
     correctIndex: 0,
     rationale: 'Scrotal support reduces swelling and pain. Activity restriction protects the new fixation. Long-term self-examination for testicular cancer is also taught.',
@@ -2798,12 +3129,12 @@ export const surgeryQuestions: SurgeryQuestion[] = [
     type: 'mcq',
     prompt: 'Hydronephrosis means:',
     choices: [
-      'Swelling of the kidney from back-pressure when urine cannot drain — often from stones, tumours, or strictures',
-      'Cancer of the kidney',
       'A urinary infection only',
+      'Cancer of the kidney',
+      'Swelling of the kidney from back-pressure when urine cannot drain',
       'Low urine output',
     ],
-    correctIndex: 0,
+    correctIndex: 2,
     rationale: 'Persistent hydronephrosis can damage the kidney permanently. Relieving the obstruction (catheter, nephrostomy, stenting, or removing the cause) protects kidney function.',
   },
   {
@@ -2820,12 +3151,12 @@ export const surgeryQuestions: SurgeryQuestion[] = [
     type: 'mcq',
     prompt: 'After radical prostatectomy, the most common bothersome long-term complication is:',
     choices: [
-      'Erectile dysfunction and/or urinary incontinence',
-      'Hair loss',
       'Constipation lasting 5 years',
+      'Hair loss',
       'Vision loss',
+      'Erectile dysfunction and/or urinary incontinence',
     ],
-    correctIndex: 0,
+    correctIndex: 3,
     rationale: 'Nerve-sparing techniques try to preserve erectile function, but recovery can take a year or more. Pelvic floor exercises help with continence.',
   },
   {
@@ -2834,17 +3165,16 @@ export const surgeryQuestions: SurgeryQuestion[] = [
     type: 'mcq',
     prompt: 'Why is testicular torsion a true surgical emergency?',
     choices: [
-      'Because every hour of delayed surgery sharply reduces the chance of saving the testis — after about 6 hours of complete torsion, the testis usually cannot be salvaged',
       'Because it always leads to cancer',
-      'Because it always causes shock',
       'Because the patient feels embarrassed',
+      'Because it always causes shock',
+      'Because every hour of delayed surgery sharply reduces the chance of saving the testis',
     ],
-    correctIndex: 0,
+    correctIndex: 3,
     rationale: 'Time is testis. Do not wait for imaging in a classic clinical picture — go straight to surgical exploration.',
   },
-
   // ============================================================
-  // BREAST & GYNAECOLOGY
+  // B R E A S T G Y N A E
   // ============================================================
   {
     id: 'bg-001',
@@ -2853,8 +3183,8 @@ export const surgeryQuestions: SurgeryQuestion[] = [
     prompt: 'Breast cancer most commonly arises from:',
     choices: [
       'Ductal or lobular epithelial cells of the breast',
-      'Fat cells of the breast',
       'Nipple skin only',
+      'Fat cells of the breast',
       'The skin of the back',
     ],
     correctIndex: 0,
@@ -2867,9 +3197,9 @@ export const surgeryQuestions: SurgeryQuestion[] = [
     prompt: 'BRCA1 and BRCA2 are:',
     choices: [
       'Genes whose mutations strongly increase the lifetime risk of breast and ovarian cancer',
+      'A blood test for pregnancy',
       'A breast cancer chemotherapy drug',
       'A surgical operation',
-      'A blood test for pregnancy',
     ],
     correctIndex: 0,
     rationale: 'These genes normally help repair DNA. Inherited mutations leave cells unable to fix damage, and cancers develop earlier and more often. Testing guides screening and risk-reduction options.',
@@ -2880,12 +3210,12 @@ export const surgeryQuestions: SurgeryQuestion[] = [
     type: 'mcq',
     prompt: 'Peau d\'orange skin in breast cancer:',
     choices: [
-      'Looks like the skin of an orange — pitted and thickened — because lymph drainage in the skin is blocked by cancer',
-      'Is a sign of healthy tissue',
       'Means a viral infection',
+      'Looks like the skin of an orange',
       'Always means a benign cyst',
+      'Is a sign of healthy tissue',
     ],
-    correctIndex: 0,
+    correctIndex: 1,
     rationale: 'Blocked dermal lymphatics cause oedema between hair follicles, which dimple downward. It usually indicates advanced local disease.',
   },
   {
@@ -2894,12 +3224,12 @@ export const surgeryQuestions: SurgeryQuestion[] = [
     type: 'mcq',
     prompt: 'The first-line screening test for breast cancer is:',
     choices: [
-      'Mammography (a low-dose X-ray of the breast)',
       'Endoscopy',
+      'Mammography',
       'Bone scan',
       'Chest X-ray',
     ],
-    correctIndex: 0,
+    correctIndex: 1,
     rationale: 'Mammography can detect cancers as tiny calcifications or masses before they are felt. Ultrasound is added in dense (younger) breasts. Confirmation is always by biopsy.',
   },
   {
@@ -2922,9 +3252,9 @@ export const surgeryQuestions: SurgeryQuestion[] = [
     type: 'mcq',
     prompt: 'After axillary lymph node dissection, the patient is at risk of:',
     choices: [
-      'Lymphoedema (chronic swelling) of the arm on the operated side',
-      'Sudden cardiac arrest',
+      'Lymphoedema of the arm on the operated side',
       'Bowel obstruction',
+      'Sudden cardiac arrest',
       'Kidney stones',
     ],
     correctIndex: 0,
@@ -2936,12 +3266,12 @@ export const surgeryQuestions: SurgeryQuestion[] = [
     type: 'mcq',
     prompt: 'The drain commonly used after mastectomy is:',
     choices: [
-      'Jackson-Pratt or Redivac suction drain — to remove blood and lymph fluid from under the skin flaps',
       'A nasogastric tube',
       'A chest tube',
+      'Jackson-Pratt or Redivac suction drain',
       'A urinary catheter',
     ],
-    correctIndex: 0,
+    correctIndex: 2,
     rationale: 'These low-pressure drains keep fluid from collecting (which would cause a seroma and delay healing). Nurses record colour and volume, and remove the drain when output is minimal.',
   },
   {
@@ -2950,7 +3280,7 @@ export const surgeryQuestions: SurgeryQuestion[] = [
     type: 'mcq',
     prompt: 'Cervical cancer is most often caused by:',
     choices: [
-      'Persistent infection with high-risk HPV (human papillomavirus) types — especially HPV 16 and 18',
+      'Persistent infection with high-risk HPV types',
       'A bacterial infection of the kidney',
       'A virus only spread through food',
       'Wearing tight clothing',
@@ -2964,10 +3294,10 @@ export const surgeryQuestions: SurgeryQuestion[] = [
     type: 'mcq',
     prompt: 'Postcoital bleeding (bleeding after intercourse) in a sexually active woman should:',
     choices: [
-      'Be investigated as it may indicate cervical disease (including cancer)',
-      'Always be ignored',
-      'Be treated with antibiotics alone',
+      'Be investigated as it may indicate cervical disease',
       'Mean she is pregnant',
+      'Be treated with antibiotics alone',
+      'Always be ignored',
     ],
     correctIndex: 0,
     rationale: 'Pap smear, HPV testing, and colposcopy with biopsy are appropriate next steps. Other causes (cervical ectropion, cervicitis) are also possible but cancer must be excluded.',
@@ -2979,8 +3309,8 @@ export const surgeryQuestions: SurgeryQuestion[] = [
     prompt: 'A Pap smear is best described as:',
     choices: [
       'A screening test in which cells are gently scraped from the cervix and examined under a microscope for precancer or cancer changes',
-      'A blood test for cancer',
       'An MRI of the pelvis',
+      'A blood test for cancer',
       'A swab for STIs only',
     ],
     correctIndex: 0,
@@ -2992,12 +3322,12 @@ export const surgeryQuestions: SurgeryQuestion[] = [
     type: 'mcq',
     prompt: 'A radical hysterectomy for cervical cancer involves removal of:',
     choices: [
-      'The uterus, cervix, upper part of the vagina, and the tissues that support them, often with pelvic lymph nodes',
       'The kidneys and bladder',
-      'Only the ovaries',
       'Just the cervix',
+      'The uterus, cervix, upper part of the vagina, and the tissues that support them, often with pelvic lymph nodes',
+      'Only the ovaries',
     ],
-    correctIndex: 0,
+    correctIndex: 2,
     rationale: 'Used in selected early-stage cervical cancers. Trachelectomy (removing only the cervix) preserves fertility in very early disease in young women.',
   },
   {
@@ -3006,12 +3336,12 @@ export const surgeryQuestions: SurgeryQuestion[] = [
     type: 'mcq',
     prompt: 'Ectopic pregnancy means:',
     choices: [
-      'The fertilised egg has implanted outside the uterus, most often in the fallopian tube',
       'A normal twin pregnancy',
-      'A miscarriage',
       'A urinary tract infection',
+      'A miscarriage',
+      'The fertilised egg has implanted outside the uterus, most often in the fallopian tube',
     ],
-    correctIndex: 0,
+    correctIndex: 3,
     rationale: 'The tube cannot stretch to accommodate the growing embryo. Rupture causes massive internal bleeding — a surgical emergency in any woman of reproductive age with abdominal pain.',
   },
   {
@@ -3020,12 +3350,12 @@ export const surgeryQuestions: SurgeryQuestion[] = [
     type: 'mcq',
     prompt: 'Classic symptoms of a ruptured ectopic pregnancy include:',
     choices: [
-      'Missed period, lower abdominal pain, vaginal spotting, shoulder-tip pain (from blood irritating the diaphragm), and signs of shock',
-      'Headache only',
-      'Constipation for weeks',
       'Severe sore throat',
+      'Headache only',
+      'Missed period, lower abdominal pain, vaginal spotting, shoulder-tip pain , and signs of shock',
+      'Constipation for weeks',
     ],
-    correctIndex: 0,
+    correctIndex: 2,
     rationale: 'Shoulder-tip pain occurs because blood in the abdomen irritates the diaphragm, and pain refers via the phrenic nerve to the shoulder. Tachycardia and hypotension signal shock.',
   },
   {
@@ -3034,7 +3364,7 @@ export const surgeryQuestions: SurgeryQuestion[] = [
     type: 'mcq',
     prompt: 'Useful investigations in suspected ectopic pregnancy are:',
     choices: [
-      'Serum beta-hCG (the pregnancy hormone) and transvaginal ultrasound (to look for the gestational sac inside or outside the uterus)',
+      'Serum beta-hCG and transvaginal ultrasound',
       'Sigmoidoscopy',
       'Chest X-ray',
       'ECG only',
@@ -3048,12 +3378,12 @@ export const surgeryQuestions: SurgeryQuestion[] = [
     type: 'mcq',
     prompt: 'A ruptured ectopic with shock is managed by:',
     choices: [
-      'Emergency laparotomy/laparoscopy with salpingectomy (removal of the affected tube) and resuscitation with IV fluids and blood',
-      'Outpatient oral antibiotics',
-      'Sitting in warm water',
       'Discharge home with painkillers',
+      'Emergency laparotomy/laparoscopy with salpingectomy and resuscitation with IV fluids and blood',
+      'Sitting in warm water',
+      'Outpatient oral antibiotics',
     ],
-    correctIndex: 0,
+    correctIndex: 1,
     rationale: 'Stable patients with small unruptured ectopic may be managed with methotrexate. Ruptured ectopic with shock requires immediate surgery.',
   },
   {
@@ -3062,9 +3392,9 @@ export const surgeryQuestions: SurgeryQuestion[] = [
     type: 'mcq',
     prompt: 'Imperforate hymen presents in a teenager with:',
     choices: [
-      'No periods (primary amenorrhoea) despite breast/secondary sexual development, cyclic lower abdominal pain, and a bluish bulging hymen',
-      'Painless yellow eyes',
+      'No periods despite breast/secondary sexual development, cyclic lower abdominal pain, and a bluish bulging hymen',
       'Severe shoulder pain only',
+      'Painless yellow eyes',
       'Chronic diarrhoea',
     ],
     correctIndex: 0,
@@ -3076,7 +3406,7 @@ export const surgeryQuestions: SurgeryQuestion[] = [
     type: 'mcq',
     prompt: 'A Bartholin\'s cyst forms when:',
     choices: [
-      'The duct of the Bartholin gland (a lubricating gland on each side of the vaginal opening) gets blocked and mucus collects inside the gland',
+      'The duct of the Bartholin gland gets blocked and mucus collects inside the gland',
       'The cervix becomes inflamed',
       'A urinary stone is passed',
       'The bladder is overfull',
@@ -3090,12 +3420,12 @@ export const surgeryQuestions: SurgeryQuestion[] = [
     type: 'mcq',
     prompt: 'Marsupialisation of a Bartholin cyst means:',
     choices: [
-      'Creating a small permanent opening from the cyst to the outside so secretions can drain freely (reducing recurrence)',
-      'Removing the uterus',
-      'Removing the vagina',
       'Cutting the cervix',
+      'Removing the uterus',
+      'Creating a small permanent opening from the cyst to the outside so secretions can drain freely',
+      'Removing the vagina',
     ],
-    correctIndex: 0,
+    correctIndex: 2,
     rationale: 'The cyst wall is sutured open to the skin edges, like an open "pouch". This prevents the duct from sealing again. A Word catheter is a less invasive temporary option.',
   },
   {
@@ -3104,12 +3434,12 @@ export const surgeryQuestions: SurgeryQuestion[] = [
     type: 'mcq',
     prompt: 'Ovarian cysts in women of reproductive age are most often:',
     choices: [
-      'Functional (related to the normal monthly cycle — e.g. follicular or corpus luteum cysts) and usually resolve by themselves',
-      'Always cancerous',
       'Always require surgery',
+      'Always cancerous',
+      'Functional',
       'A sign of HIV infection',
     ],
-    correctIndex: 0,
+    correctIndex: 2,
     rationale: 'Functional cysts come from ovulation. Most disappear within a few cycles. Bigger or persistent cysts, or those in postmenopausal women, need closer evaluation.',
   },
   {
@@ -3118,12 +3448,12 @@ export const surgeryQuestions: SurgeryQuestion[] = [
     type: 'mcq',
     prompt: 'Ovarian torsion is:',
     choices: [
-      'Twisting of the ovary around its supporting ligaments, cutting off its blood supply — a gynaecological emergency',
-      'A cancer of the ovary',
-      'A type of urinary infection',
       'A normal monthly finding',
+      'Twisting of the ovary around its supporting ligaments, cutting off its blood supply',
+      'A type of urinary infection',
+      'A cancer of the ovary',
     ],
-    correctIndex: 0,
+    correctIndex: 1,
     rationale: 'Sudden severe one-sided pelvic pain in a woman with a known ovarian cyst should raise this suspicion. Doppler ultrasound shows reduced/absent flow but diagnosis is confirmed at laparoscopy.',
   },
   {
@@ -3132,12 +3462,12 @@ export const surgeryQuestions: SurgeryQuestion[] = [
     type: 'mcq',
     prompt: 'Management of ovarian torsion is:',
     choices: [
-      'Surgery — detorsion of the ovary (if viable) and treatment of the underlying cyst; oophorectomy if the ovary is necrotic',
-      'Daily massage of the abdomen',
-      'Hot baths only',
       'Outpatient follow-up in 3 months',
+      'Daily massage of the abdomen',
+      'Surgery',
+      'Hot baths only',
     ],
-    correctIndex: 0,
+    correctIndex: 2,
     rationale: 'Restoring blood flow promptly may save the ovary, especially in young women where preserving fertility matters. Necrotic ovaries are removed to prevent infection and pain.',
   },
   {
@@ -3146,12 +3476,12 @@ export const surgeryQuestions: SurgeryQuestion[] = [
     type: 'mcq',
     prompt: 'Ovarian cancer is often diagnosed late because:',
     choices: [
-      'Early symptoms (bloating, vague abdominal discomfort, urinary frequency, early satiety) are non-specific and easily overlooked',
       'It is a very rare cancer',
+      'Early symptoms are non-specific and easily overlooked',
       'No tests exist for it',
       'It causes obvious bleeding from day one',
     ],
-    correctIndex: 0,
+    correctIndex: 1,
     rationale: 'There is no good screening test. CA-125 plus pelvic ultrasound are used in symptomatic or high-risk women. Most cases present at an advanced stage with ascites (fluid in the abdomen).',
   },
   {
@@ -3160,12 +3490,12 @@ export const surgeryQuestions: SurgeryQuestion[] = [
     type: 'mcq',
     prompt: 'The tumour marker most associated with epithelial ovarian cancer is:',
     choices: [
-      'CA-125',
-      'PSA',
-      'AFP only',
       'beta-hCG',
+      'AFP only',
+      'PSA',
+      'CA-125',
     ],
-    correctIndex: 0,
+    correctIndex: 3,
     rationale: 'CA-125 is helpful for monitoring treatment response and recurrence. It is not specific (endometriosis, fibroids, pregnancy can also raise it) so cannot be used alone for screening.',
   },
   {
@@ -3174,12 +3504,12 @@ export const surgeryQuestions: SurgeryQuestion[] = [
     type: 'mcq',
     prompt: 'Standard surgery for ovarian cancer in most cases is:',
     choices: [
-      'Total abdominal hysterectomy with bilateral salpingo-oophorectomy plus omentectomy and tumour debulking',
+      'Appendicectomy alone',
       'Cervical cone biopsy only',
       'Lumpectomy',
-      'Appendicectomy alone',
+      'Total abdominal hysterectomy with bilateral salpingo-oophorectomy plus omentectomy and tumour debulking',
     ],
-    correctIndex: 0,
+    correctIndex: 3,
     rationale: 'Removing the uterus, both tubes and ovaries, and the omentum (fatty apron) plus visible tumour ("debulking") improves outcome. Chemotherapy is usually added.',
   },
   {
@@ -3188,12 +3518,12 @@ export const surgeryQuestions: SurgeryQuestion[] = [
     type: 'mcq',
     prompt: 'Endometrial cancer typically presents with:',
     choices: [
-      'Postmenopausal bleeding (vaginal bleeding after periods have stopped permanently)',
-      'Severe ear pain',
-      'Painless yellow eyes',
       'Sudden vision loss',
+      'Severe ear pain',
+      'Postmenopausal bleeding',
+      'Painless yellow eyes',
     ],
-    correctIndex: 0,
+    correctIndex: 2,
     rationale: 'Any bleeding after menopause should be investigated. Endometrial biopsy is the gold-standard test. Risk factors include obesity, unopposed oestrogen, tamoxifen, late menopause.',
   },
   {
@@ -3202,12 +3532,12 @@ export const surgeryQuestions: SurgeryQuestion[] = [
     type: 'mcq',
     prompt: 'Uterine fibroids (leiomyomas) are:',
     choices: [
-      'Benign smooth-muscle tumours of the uterus that depend on oestrogen and progesterone for growth',
-      'Cancers of the cervix',
       'Cysts of the ovary',
+      'Cancers of the cervix',
+      'Benign smooth-muscle tumours of the uterus that depend on oestrogen and progesterone for growth',
       'Infections of the womb',
     ],
-    correctIndex: 0,
+    correctIndex: 2,
     rationale: 'They are the commonest benign tumour of women of reproductive age, more prevalent and often more severe in women of African descent. Most are asymptomatic but some cause heavy periods, pelvic pressure, or fertility problems.',
   },
   {
@@ -3217,9 +3547,9 @@ export const surgeryQuestions: SurgeryQuestion[] = [
     prompt: 'Classic clinical features of symptomatic fibroids include:',
     choices: [
       'Heavy menstrual bleeding (menorrhagia), pelvic pressure, urinary frequency, and a palpable lower abdominal mass',
-      'Severe shoulder pain',
-      'Headache and joint pain only',
       'Mouth ulcers',
+      'Headache and joint pain only',
+      'Severe shoulder pain',
     ],
     correctIndex: 0,
     rationale: 'Submucosal fibroids cause bleeding and fertility issues. Subserosal and intramural ones cause pressure symptoms. Pedunculated fibroids can twist (torsion) and cause acute pain.',
@@ -3230,10 +3560,10 @@ export const surgeryQuestions: SurgeryQuestion[] = [
     type: 'mcq',
     prompt: 'GnRH agonists (e.g. leuprolide) help fibroids by:',
     choices: [
-      'Temporarily lowering oestrogen → fibroids shrink (often used pre-op to make surgery easier)',
+      'Temporarily lowering oestrogen → fibroids shrink',
+      'Strengthening the immune system',
       'Killing all gut bacteria',
       'Replacing iron',
-      'Strengthening the immune system',
     ],
     correctIndex: 0,
     rationale: 'After initial flare, GnRH agonists put the ovaries into a "rest" state. Long-term use is limited by menopausal side effects (hot flushes, bone loss).',
@@ -3244,12 +3574,12 @@ export const surgeryQuestions: SurgeryQuestion[] = [
     type: 'mcq',
     prompt: 'Myomectomy is:',
     choices: [
-      'Removal of fibroids while keeping the uterus — useful for women who still want children',
-      'Removal of the uterus',
       'Removal of both ovaries',
+      'Removal of fibroids while keeping the uterus',
+      'Removal of the uterus',
       'A type of caesarean section',
     ],
-    correctIndex: 0,
+    correctIndex: 1,
     rationale: 'Myomectomy can be done hysteroscopically (for submucosal fibroids), laparoscopically, or by open abdominal surgery. Fibroids can recur.',
   },
   {
@@ -3258,12 +3588,12 @@ export const surgeryQuestions: SurgeryQuestion[] = [
     type: 'mcq',
     prompt: 'A patient considering hysterectomy for fibroids who is under 45 and has healthy ovaries:',
     choices: [
-      'Should usually keep her ovaries (avoid bilateral salpingo-oophorectomy) to preserve hormone production and avoid early menopause',
-      'Should have ovaries always removed for safety',
       'Should not be operated on at all',
       'Should have only one ovary removed always',
+      'Should have ovaries always removed for safety',
+      'Should usually keep her ovaries to preserve hormone production and avoid early menopause',
     ],
-    correctIndex: 0,
+    correctIndex: 3,
     rationale: 'Pre-menopausal women generally keep ovaries unless there is a cancer risk. Removing healthy ovaries causes sudden surgical menopause with associated bone, heart, and quality-of-life risks.',
   },
   {
@@ -3280,12 +3610,12 @@ export const surgeryQuestions: SurgeryQuestion[] = [
     type: 'mcq',
     prompt: 'A pregnant woman with right-sided abdominal pain, missed period, and a positive pregnancy test, with no gestational sac in the uterus on ultrasound, should be managed as:',
     choices: [
+      'Urinary infection only',
+      'Constipation',
       'Suspected ectopic pregnancy until proven otherwise',
       'Routine antenatal care only',
-      'Constipation',
-      'Urinary infection only',
     ],
-    correctIndex: 0,
+    correctIndex: 2,
     rationale: 'Never assume otherwise. IV access, group and crossmatch, gynaecology review, and serial beta-hCG and ultrasound until either intrauterine pregnancy is confirmed or ectopic is treated.',
   },
   {
@@ -3302,12 +3632,12 @@ export const surgeryQuestions: SurgeryQuestion[] = [
     type: 'mcq',
     prompt: 'Red (carneous) degeneration of a fibroid:',
     choices: [
-      'Occurs typically in pregnancy when the fibroid outgrows its blood supply — causing severe pain and tender uterus',
       'Means the fibroid is now cancerous',
-      'Is a normal finding in childhood',
       'Only happens after menopause',
+      'Is a normal finding in childhood',
+      'Occurs typically in pregnancy when the fibroid outgrows its blood supply',
     ],
-    correctIndex: 0,
+    correctIndex: 3,
     rationale: 'Managed conservatively with analgesia and rest; usually resolves. It does not turn into cancer, despite the dramatic pain.',
   },
   {
@@ -3316,14 +3646,1274 @@ export const surgeryQuestions: SurgeryQuestion[] = [
     type: 'mcq',
     prompt: 'Education for a young woman after Bartholin\'s cyst marsupialisation should include:',
     choices: [
-      'Daily warm sitz baths, perineal hygiene, watching for fever or pus, safe sexual practices, and following up to detect recurrence',
       'Stopping all hygiene routines',
-      'Hot scrubbing of the wound',
       'Avoiding all fluids',
+      'Daily warm sitz baths, perineal hygiene, watching for fever or pus, safe sexual practices, and following up to detect recurrence',
+      'Hot scrubbing of the wound',
     ],
-    correctIndex: 0,
+    correctIndex: 2,
     rationale: 'Sitz baths soothe and keep the area clean. Recurrence and abscess formation are possible. STI screening is appropriate because some abscesses are due to gonorrhoea or chlamydia.',
   },
+  {
+    id: "pq-gy-001",
+    topic: 'pastPaper',
+    type: 'mcq',
+    prompt: "A patient is 2 days post-operative following a right-sided modified radical mastectomy and right axillary lymph node dissection. Which of the following is a critical nursing precaution to prevent lymphoedema?",
+    choices: ["Measure blood pressure on the left arm only, and avoid blood draws from the right arm.","Apply a tight compression cuff to the right arm during every vital signs check.","Draw blood from the right arm only to monitor coagulation.","Keep the right arm in a dependent position below the level of the heart."],
+    correctIndex: 0,
+    rationale: "Axillary dissection disrupts lymphatic drainage on the operated side. Cuffs, blood draws, or constriction on the right arm can trigger chronic lymphoedema; all such interventions must be performed on the contralateral (left) arm."
+  },
+  {
+    id: "pq-gy-002",
+    topic: 'pastPaper',
+    type: 'mcq',
+    prompt: "A patient who underwent a left-sided mastectomy is being positioned in bed. Which position is most appropriate to promote lymphatic drainage and reduce edema on the operated side?",
+    choices: ["Allow the left arm to hang down over the edge of the bed.","Elevate the left arm on a pillow so that the hand is higher than the elbow.","Keep the left arm tightly adducted against the chest wall.","Position the patient flat on the left side to compress the chest wall."],
+    correctIndex: 1,
+    rationale: "Elevating the affected arm (left) on a pillow utilizes gravity to promote lymph fluid drainage back into the central circulation, reducing post-operative swelling."
+  },
+  {
+    id: "pq-gy-003",
+    topic: 'pastPaper',
+    type: 'mcq',
+    prompt: "A young female client is diagnosed with a left fallopian tube ectopic pregnancy. She presents with sharp, stabbing left lower quadrant pain. Which of the following signs would indicate that the ectopic pregnancy has ruptured?",
+    choices: ["A gradual increase in morning sickness and breast tenderness.","Sudden shoulder-tip pain (Kehr's sign) and hypotension.","Decrease in heart rate and rise in blood pressure.","Onset of severe cyclic menstrual-like cramps."],
+    correctIndex: 1,
+    rationale: "Rupture of a left fallopian tube ectopic pregnancy causes blood to accumulate in the peritoneal cavity, which irritates the diaphragm and refers pain to the shoulder (Kehr's sign). Hypotension indicates internal hemorrhage."
+  },
+  {
+    id: "pq-gy-004",
+    topic: 'pastPaper',
+    type: 'mcq',
+    prompt: "A patient is diagnosed with an unruptured right fallopian tube ectopic pregnancy. The gestational sac is 2.5 cm, and she is hemodynamically stable. Which medical management should the nurse anticipate?",
+    choices: ["Emergency right salpingectomy.","Immediate dilation and curettage (D&C).","Intramuscular injection of Methotrexate.","Oral administration of progesterone supplements."],
+    correctIndex: 2,
+    rationale: "Methotrexate, a folic acid antagonist, is indicated for stable, unruptured ectopic pregnancies with small sac sizes (<3.5 cm) to stop rapidly dividing fetal cells, preserving the fallopian tube."
+  },
+  {
+    id: "pq-gy-005",
+    topic: 'pastPaper',
+    type: 'mcq',
+    prompt: "A patient is admitted to the post-anesthesia care unit (PACU) after a left salpingectomy for a ruptured ectopic pregnancy. She is Rh-negative. Which action is essential for the nurse to perform?",
+    choices: ["Instruct the patient to avoid future pregnancies for at least 5 years.","Apply heat packs to the lower abdomen to relieve incision pain.","Check the patient's blood type for Rh-positive antibodies before giving blood.","Administer Rh immune globulin (Anti-D) within 72 hours of the surgery."],
+    correctIndex: 3,
+    rationale: "To prevent isoimmunization in future pregnancies, Rh-negative women who experience any pregnancy loss (including a left/right ruptured ectopic pregnancy) must receive Anti-D within 72 hours."
+  },
+  {
+    id: "pq-gy-006",
+    topic: 'pastPaper',
+    type: 'mcq',
+    prompt: "A 24-year-old female presents with sudden, severe right-sided pelvic pain, nausea, and vomiting. An ultrasound shows a large right ovarian cyst and decreased blood flow to the right ovary. What is the immediate priority?",
+    choices: ["Administer a warm sitz bath and encourage ambulation.","Prepare the patient for emergency laparoscopy to resolve right ovarian torsion.","Initiate long-term oral contraceptive therapy to shrink the cyst.","Instruct the patient to schedule a follow-up ultrasound in 60 days."],
+    correctIndex: 1,
+    rationale: "Ovarian torsion (twisting of the ovary on its pedicle) is a surgical emergency because it cuts off blood supply, leading to necrosis. Immediate detorsion is required to salvage the ovary."
+  },
+  {
+    id: "pq-gy-007",
+    topic: 'pastPaper',
+    type: 'mcq',
+    prompt: "Which clinical sign should a nurse look for to support the diagnosis of a right-sided ovarian torsion in a patient who also has a suspected appendicitis?",
+    choices: ["A palpable, tender right adnexal mass on bimanual pelvic examination.","Rebound tenderness localized strictly at the left lower quadrant.","Pain that radiates specifically to the left shoulder.","Pain that is relieved by eating a fatty meal."],
+    correctIndex: 0,
+    rationale: "Right ovarian torsion often presents similarly to acute appendicitis. Finding a tender right adnexal mass during pelvic examination strongly points toward ovarian pathology rather than appendicitis."
+  },
+  {
+    id: "pq-gy-008",
+    topic: 'pastPaper',
+    type: 'mcq',
+    prompt: "A patient is 12 hours post-operative after a left-sided oophorectomy. Which of the following is a primary post-operative nursing assessment?",
+    choices: ["Assess perineal pad for vaginal bleeding and monitor abdominal incisions.","Perform vaginal douching every 4 hours to prevent infection.","Restricting all oral fluid intake for the first 48 hours.","Encourage the patient to stand and perform deep squats to mobilize the pelvis."],
+    correctIndex: 0,
+    rationale: "Following left or right oophorectomy, the nurse must monitor for internal hemorrhage or vaginal bleeding by checking incisions and assessing vaginal discharge/bleeding on perineal pads."
+  },
+  {
+    id: "pq-gy-009",
+    topic: 'pastPaper',
+    type: 'mcq',
+    prompt: "A 42-year-old woman is diagnosed with multiple submucosal uterine leiomyomas (fibroids). She reports severe menorrhagia. What is the main complication the nurse should assess for?",
+    choices: ["Early menopause.","Ovarian cancer.","Urinary tract infection.","Iron-deficiency anaemia."],
+    correctIndex: 3,
+    rationale: "Submucosal fibroids distort the uterine cavity and cause heavy, prolonged menstrual bleeding (menorrhagia), frequently leading to chronic blood loss and iron-deficiency anaemia."
+  },
+  {
+    id: "pq-gy-010",
+    topic: 'pastPaper',
+    type: 'mcq',
+    prompt: "A patient wishes to preserve her fertility but requires surgical removal of her symptomatic uterine fibroids. Which procedure should the nurse discuss with the patient?",
+    choices: ["Endometrial ablation.","Total abdominal hysterectomy.","Bilateral salpingo-oophorectomy.","Myomectomy."],
+    correctIndex: 3,
+    rationale: "Myomectomy is the surgical removal of individual fibroids while leaving the uterus intact, making it the procedure of choice for women who wish to preserve fertility."
+  },
+  {
+    id: "pq-gy-011",
+    topic: 'pastPaper',
+    type: 'mcq',
+    prompt: "A patient with large uterine fibroids is prescribed a Gonadotropin-Releasing Hormone (GnRH) agonist (e.g., leuprolide) before surgery. What is the primary purpose of this medication?",
+    choices: ["To shrink the fibroids and reduce intraoperative blood loss.","To prevent the development of uterine sarcoma.","To stimulate ovulation and improve immediate fertility.","To permanently cure the fibroids and avoid surgery."],
+    correctIndex: 0,
+    rationale: "GnRH agonists induce a temporary hypoestrogenic state (pseudo-menopause), which deprives the fibroids of estrogen, causing them to shrink and reducing their vascularity before surgery."
+  },
+  {
+    id: "pq-gy-012",
+    topic: 'pastPaper',
+    type: 'mcq',
+    prompt: "A patient is 6 hours post-operative after a vaginal hysterectomy. She has not voided since her urinary catheter was removed. Which action should the nurse take first?",
+    choices: ["Apply an ice pack to the perineal area to stimulate voiding.","Immediately re-insert an indwelling urinary catheter.","Encourage the patient to drink 1000 mL of water immediately.","Perform a bladder scan to assess post-void residual volume."],
+    correctIndex: 3,
+    rationale: "Urinary retention is common post-hysterectomy due to local edema or anesthesia. Performing a bladder scan is a non-invasive first step to quantify retained urine before deciding on catheterization."
+  },
+  {
+    id: "pq-gy-013",
+    topic: 'pastPaper',
+    type: 'mcq',
+    prompt: "A patient is being discharged after a total abdominal hysterectomy. Which of the following discharge instructions is correct?",
+    choices: ["You may resume douching and sexual intercourse in 2 weeks.","Avoid lifting anything heavier than 10 pounds (4.5 kg) for 6 weeks.","Expect heavy red vaginal bleeding for the next month.","You can resume high-impact running exercises next week."],
+    correctIndex: 1,
+    rationale: "Heavy lifting increases intra-abdominal pressure, which can tear the internal suture lines or vaginal cuff. Lifting restrictions are maintained for about 6 weeks post-abdominal surgery."
+  },
+  {
+    id: "pq-gy-014",
+    topic: 'pastPaper',
+    type: 'mcq',
+    prompt: "A 54-year-old female presents with postmenopausal bleeding. She has not had a period for 3 years. Which diagnostic test is the gold standard to rule out endometrial cancer?",
+    choices: ["Papanicolaou (Pap) smear.","Transvaginal ultrasound only.","Endometrial biopsy.","Serum CA-125 level."],
+    correctIndex: 2,
+    rationale: "Any postmenopausal bleeding is considered endometrial cancer until proven otherwise. Endometrial biopsy provides a tissue sample for histological analysis and is the gold standard for diagnosis."
+  },
+  {
+    id: "pq-gy-015",
+    topic: 'pastPaper',
+    type: 'mcq',
+    prompt: "A nurse is reviewing risk factors for endometrial cancer. Which of the following predisposing factors should the nurse identify?",
+    choices: ["Use of copper intrauterine devices (IUDs).","Unopposed estrogen therapy and obesity.","Multiple pregnancies and young age at first pregnancy.","Active lifestyle and low dietary fat intake."],
+    correctIndex: 1,
+    rationale: "Prolonged exposure to estrogen without progesterone (unopposed estrogen) stimulates endometrial proliferation. Obesity increases estrogen production from adipose tissues, raising cancer risk."
+  },
+  {
+    id: "pq-gy-016",
+    topic: 'pastPaper',
+    type: 'mcq',
+    prompt: "A 60-year-old female patient reports abdominal bloating, early satiety, and a feeling of pelvic fullness. Which ovarian malignancy marker is useful for monitoring response to therapy?",
+    choices: ["Beta-hCG.","AFP.","CEA.","CA-125."],
+    correctIndex: 3,
+    rationale: "Cancer Antigen 125 (CA-125) is elevated in many ovarian cancers. While not specific enough for screening, it is highly useful for monitoring treatment response and detecting recurrence."
+  },
+  {
+    id: "pq-gy-017",
+    topic: 'pastPaper',
+    type: 'mcq',
+    prompt: "A 15-year-old female presents with primary amenorrhoea and cyclic, monthly pelvic pain. On examination, a bluish, bulging membrane is seen at the vaginal opening. What condition is this?",
+    choices: ["Imperforate hymen.","Ectopic pregnancy.","Ovarian torsion.","Bartholin's gland cyst."],
+    correctIndex: 0,
+    rationale: "An imperforate hymen blocks menstrual flow, causing blood to pool in the vagina (haematocolpos) each month. This presents as cyclic pelvic pain and a bulging, blue hymen."
+  },
+  {
+    id: "pq-gy-018",
+    topic: 'pastPaper',
+    type: 'mcq',
+    prompt: "A patient is scheduled for a surgical incision of an imperforate hymen (hymenectomy). Which post-operative discharge instruction should the nurse include?",
+    choices: ["Perform vigorous pelvic floor exercises starting the night of surgery.","Expect a total absence of vaginal discharge after the procedure.","Apply hot compresses directly to the vaginal opening to soothe pain.","Use sanitary pads instead of tampons for the first few menstrual periods."],
+    correctIndex: 3,
+    rationale: "Sanitary pads prevent introduction of pathogens and protect the healing hymeneal wound. Tampons must be avoided until the incision is completely healed."
+  },
+  {
+    id: "pq-gy-019",
+    topic: 'pastPaper',
+    type: 'mcq',
+    prompt: "A patient presents with a painful, fluctuant mass on the lower left labium majus that makes walking difficult. What surgical management is commonly indicated for a Bartholin's abscess?",
+    choices: ["Bilateral salpingo-oophorectomy.","Needle aspiration only.","Incision and drainage with placement of a Word catheter or marsupialisation.","Total vulvectomy."],
+    correctIndex: 2,
+    rationale: "Incision and drainage with a Word catheter (balloon to hold tract open) or marsupialisation (suturing edges open) ensures continuous drainage, preventing rapid recurrence of the abscess."
+  },
+  {
+    id: "pq-gy-020",
+    topic: 'pastPaper',
+    type: 'mcq',
+    prompt: "A nurse is caring for a patient who had a right-side axillary lymph node clearance. Which precaution must the nurse take regarding the right arm?",
+    choices: ["Keep the right arm positioned straight and lower than the level of the heart.","Place a sign above the bed indicating \"No BP/No venipunctures on right arm\".","Apply a warm, moist compress to the right arm every shift.","Instruct the patient to carry their heavy purse on the right shoulder."],
+    correctIndex: 1,
+    rationale: "This alert is a standard nursing action to protect the operated limb from trauma, blood pressure cuff compression, or needle sticks, which can lead to severe lymphoedema."
+  },
+  {
+    id: "pq-gy-021",
+    topic: 'pastPaper',
+    type: 'mcq',
+    prompt: "A patient is diagnosed with cervical cancer. Which of the following is the most significant risk factor for the development of this malignancy?",
+    choices: ["Infection with high-risk Human Papillomavirus (HPV) types 16 and 18.","Late menarche and early menopause.","Nulliparity (never having been pregnant).","Multiple uterine fibroids."],
+    correctIndex: 0,
+    rationale: "HPV 16 and 18 are highly oncogenic sexually transmitted viruses that integrate into host epithelial DNA, driving cervical intraepithelial neoplasia and invasive cervical cancer."
+  },
+  {
+    id: "pq-gy-022",
+    topic: 'pastPaper',
+    type: 'mcq',
+    prompt: "A nurse is performing a post-operative assessment on a patient who has a Jackson-Pratt (JP) drain in place after a modified radical mastectomy. How should the nurse maintain the drain?",
+    choices: ["Irrigate the tubing with sterile water every 4 hours.","Position the drainage bulb above the level of the surgical site.","Keep the bulb fully expanded and open to the air.","Empty the bulb when half full, compress the bulb to restore suction, and close the cap."],
+    correctIndex: 3,
+    rationale: "Compressing the bulb before closing the cap establishes negative pressure (suction) which pulls fluid from the wound. Emptying it before it is full prevents loss of suction."
+  },
+  {
+    id: "pq-gy-023",
+    topic: 'pastPaper',
+    type: 'mcq',
+    prompt: "A 28-year-old female presents with left-sided ectopic pregnancy. Her beta-hCG is rising slowly, and she is stable. She is being treated medically. What should the nurse instruct her to avoid?",
+    choices: ["Taking acetaminophen for mild discomfort.","Folic acid supplements and prenatal vitamins.","Drinking plain tap water.","Lying down flat on her back."],
+    correctIndex: 1,
+    rationale: "Methotrexate works by blocking folic acid, which is essential for cell division. Consuming folic acid supplements or foods high in folate will directly antagonize the medication."
+  },
+  {
+    id: "pq-gy-024",
+    topic: 'pastPaper',
+    type: 'mcq',
+    prompt: "During discharge teaching after a right-sided mastectomy, the nurse teaches the patient how to care for her operated side. Which statement by the patient indicates correct understanding?",
+    choices: ["\"I will wear loose-fitting clothing and avoid wearing tight bracelets on my right arm.\"","\"I will cut my cuticles on my right hand to prevent hangnails.\"","\"I will carry all my heavy groceries using my right arm to build strength.\"","\"I will use my right hand to test the temperature of hot water.\""],
+    correctIndex: 0,
+    rationale: "Loose clothing and avoiding tight jewelry on the affected limb prevents constriction of lymph vessels, minimizing the risk of developing lymphoedema."
+  },
+  {
+    id: "pq-gy-025",
+    topic: 'pastPaper',
+    type: 'mcq',
+    prompt: "A patient presents to the gynecology clinic reporting post-coital bleeding (spotting after intercourse). Which condition should the nurse suspect first?",
+    choices: ["Bartholin's cyst.","Ovarian torsion.","Cervical cancer.","Uterine leiomyoma."],
+    correctIndex: 2,
+    rationale: "Post-coital bleeding is the classic, early warning sign of cervical cancer due to the fragility and hypervascularity of the dysplastic cervical tissue."
+  },
+  {
+    id: "pq-gy-026",
+    topic: 'pastPaper',
+    type: 'mcq',
+    prompt: "Which of the following is a normal finding on assessment of a patient 24 hours after a total abdominal hysterectomy?",
+    choices: ["Vaginal bleeding requiring a pad change every 30 minutes.","A urine output of 15 mL per hour.","Absent breath sounds in both lower lobes.","Serosanguineous drainage on the abdominal dressing."],
+    correctIndex: 3,
+    rationale: "A small amount of serosanguineous drainage on the dressing is expected in the first 24 hours. Decreased urine output, absent breath sounds (atelectasis), and saturated pads are abnormal complications."
+  },
+  {
+    id: "pq-gy-027",
+    topic: 'pastPaper',
+    type: 'mcq',
+    prompt: "A patient is scheduled for a bilateral salpingo-oophorectomy (BSO) along with a total abdominal hysterectomy. What consequence of this surgery should the nurse discuss?",
+    choices: ["Increased vaginal lubrication.","Increased risk of ectopic pregnancy.","Heavy menstrual periods for the next year.","Immediate onset of surgical menopause."],
+    correctIndex: 3,
+    rationale: "Removing both ovaries (BSO) in a premenopausal patient immediately stops estrogen and progesterone production, triggering surgical menopause and hot flashes."
+  },
+  {
+    id: "pq-gy-028",
+    topic: 'pastPaper',
+    type: 'mcq',
+    prompt: "A nurse is educating a community group on the importance of cervical cancer screening. Which screening test is primary for detecting pre-cancerous cervical changes?",
+    choices: ["Transvaginal ultrasound.","Pelvic computed tomography (CT).","Endometrial biopsy.","Papanicolaou (Pap) smear."],
+    correctIndex: 3,
+    rationale: "A Pap smear scrapes cells from the cervix to identify cytological abnormalities or pre-cancerous dysplasia before they advance to invasive cervical cancer."
+  },
+  {
+    id: "pq-gy-029",
+    topic: 'pastPaper',
+    type: 'mcq',
+    prompt: "A patient is diagnosed with a large, benign left-side ovarian cyst. The nurse should educate the patient that the most common risk associated with large ovarian cysts is:",
+    choices: ["Cervical dysplasia.","Severe uterine bleeding.","Ovarian torsion.","Endometrial hyperplasia."],
+    correctIndex: 2,
+    rationale: "Large ovarian cysts (typically >5 cm) increase the weight and mobility of the ovary, making it highly susceptible to twisting on its ligamentous pedicle (torsion)."
+  },
+  {
+    id: "pq-gy-030",
+    topic: 'pastPaper',
+    type: 'mcq',
+    prompt: "A patient who had a left-sided mastectomy is instructed on home exercises. What is the main goal of performing exercises like \"wall climbing\" and \"rope turning\" on the affected side?",
+    choices: ["To prevent the recurrence of cancer cells in the chest wall.","To increase muscle mass in the pectoralis major.","To cure existing lymphoedema in the left arm.","To restore joint range of motion and prevent shoulder contractures."],
+    correctIndex: 3,
+    rationale: "Post-mastectomy exercises are designed to stretch and mobilize the shoulder joint to prevent frozen shoulder and contractures, gradually restoring full range of motion."
+  },
+  {
+    id: "pq-ne-001",
+    topic: 'pastPaper',
+    type: 'mcq',
+    prompt: "A patient is admitted to the trauma unit with a left-sided epidural hematoma after a bicycle accident. During the neurological assessment, the nurse should expect which clinical presentation?",
+    choices: ["Constriction of both pupils and bilateral limb paralysis.","Dilation of the right pupil and weakness in the left limbs.","Constriction of the left pupil and weakness in the left limbs.","Dilation of the left pupil (ipsilateral) and weakness in the right limbs (contralateral)."],
+    correctIndex: 3,
+    rationale: "Left-sided mass compression causes herniation, compressing the left oculomotor nerve (CN III) causing an ipsilateral dilated pupil on the left. Motor tracts cross over in the brainstem, causing contralateral motor weakness on the right."
+  },
+  {
+    id: "pq-ne-002",
+    topic: 'pastPaper',
+    type: 'mcq',
+    prompt: "A patient is 12 hours post-operative following a right-sided craniotomy for a brain tumor. How should the nurse position this patient in bed?",
+    choices: ["Keep the patient flat (supine) with their head turned to the right.","Elevate the head of the bed 30 degrees and position the patient on their left side or back.","Place the patient in a prone position with their neck flexed.","Position the patient on their right side to protect the bone flap."],
+    correctIndex: 1,
+    rationale: "Post-craniotomy, elevating the HOB to 30 degrees facilitates venous return and lowers ICP. The patient must NOT be turned onto the operative side (right side) to prevent pressure on the bone flap and incision."
+  },
+  {
+    id: "pq-ne-003",
+    topic: 'pastPaper',
+    type: 'mcq',
+    prompt: "A patient with a head injury displays a lucid interval—he was briefly knocked out, woke up feeling fine, and then rapidly deteriorated. What type of intracranial hemorrhage is classic for this history?",
+    choices: ["Epidural hematoma.","Subdural hematoma.","Subarachnoid hemorrhage.","Intracerebral hemorrhage."],
+    correctIndex: 0,
+    rationale: "An epidural hematoma is typically caused by a tear of the middle meningeal artery. The rapid arterial bleeding causes a classic \"lucid interval\" followed by rapid deterioration as ICP increases."
+  },
+  {
+    id: "pq-ne-004",
+    topic: 'pastPaper',
+    type: 'mcq',
+    prompt: "An elderly patient is admitted with confusion, headache, and a history of a minor fall 3 weeks ago. The CT scan reveals a crescent-shaped fluid collection. What is the most likely diagnosis?",
+    choices: ["Acute epidural hematoma.","Subarachnoid hemorrhage.","Chronic subdural hematoma.","Ischemic stroke."],
+    correctIndex: 2,
+    rationale: "Subdural hematomas result from tearing of bridging veins. In elderly or alcoholic patients, brain atrophy stretches these veins. Bleeding is slow and venous, presenting weeks after minor head trauma as a chronic hematoma."
+  },
+  {
+    id: "pq-ne-005",
+    topic: 'pastPaper',
+    type: 'mcq',
+    prompt: "A nurse is monitoring a patient with increased intracranial pressure (ICP). Which of the following assessments represents Cushing's triad?",
+    choices: ["Bradycardia, hypotension, and shallow respirations.","Bradycardia, widened pulse pressure, and irregular respirations.","Tachycardia, hypertension, and hyperventilation.","Tachycardia, hypotension, and tachypnea."],
+    correctIndex: 1,
+    rationale: "Cushing's triad is a late sign of increased ICP and impending brain herniation. It consists of systemic hypertension with a widened pulse pressure, bradycardia, and irregular/bradypneic respirations."
+  },
+  {
+    id: "pq-ne-006",
+    topic: 'pastPaper',
+    type: 'mcq',
+    prompt: "A patient with increased intracranial pressure is prescribed Mannitol 20% intravenously. Which nursing action is critical when administering this drug?",
+    choices: ["Use an inline filter and monitor serum osmolality and electrolytes.","Restrict all oral hygiene and restrict blood pressure checks.","Infuse the medication rapidly through a small-bore peripheral IV without a filter.","Administer the drug only if the patient has a low blood pressure."],
+    correctIndex: 0,
+    rationale: "Mannitol can crystallize in storage, so an inline filter is mandatory. As an osmotic diuretic, it draws fluid into blood, requiring close monitoring of serum osmolality and electrolytes."
+  },
+  {
+    id: "pq-ne-007",
+    topic: 'pastPaper',
+    type: 'mcq',
+    prompt: "A patient is recovering from a spinal laminectomy. When turning the patient in bed, which technique should the nurse implement?",
+    choices: ["Instructing the patient to pull on the side rails to assist in turning.","Having the patient sit upright, then slide to the side of the bed.","Gently twisting the shoulders first, then the hips.","Log-rolling the patient using a draw sheet with the help of multiple staff members."],
+    correctIndex: 3,
+    rationale: "Log-rolling turns the patient as a single unit, keeping the spine in straight alignment and preventing twisting at the surgical site, which could disrupt spinal stability."
+  },
+  {
+    id: "pq-ne-008",
+    topic: 'pastPaper',
+    type: 'mcq',
+    prompt: "A nurse assesses a patient who is post-operative following a craniotomy. The nurse notes a clear fluid draining from the nose. The fluid tests positive for glucose. What does this indicate?",
+    choices: ["Cerebrospinal fluid (CSF) leak.","Normal post-operative sinus drainage.","Accumulation of normal saline.","Allergic rhinitis."],
+    correctIndex: 0,
+    rationale: "CSF contains glucose, unlike normal nasal mucus. A clear nasal discharge that tests positive for glucose indicates a CSF leak (rhinorrhea) due to a tear in the dura mater."
+  },
+  {
+    id: "pq-ne-009",
+    topic: 'pastPaper',
+    type: 'mcq',
+    prompt: "A patient with a T4 spinal cord injury reports a sudden, throbbing headache. Their blood pressure is 190/100 mmHg, they are sweating profusely above the T4 level, and they have bradycardia (50 bpm). What is the nurse's priority action?",
+    choices: ["Administer intramuscular morphine for pain.","Administer a rapid IV bolus of normal saline.","Place the patient in a Trendelenburg position.","Elevate the head of the bed to 90 degrees and check for bladder distension or catheter kink."],
+    correctIndex: 3,
+    rationale: "The patient is experiencing autonomic dysreflexia, a medical emergency triggered by noxious stimuli (usually a full bladder or impacted bowel). Elevating the HOB to 90 degrees uses gravity to reduce blood pressure. Removing the trigger is the next priority."
+  },
+  {
+    id: "pq-ne-010",
+    topic: 'pastPaper',
+    type: 'mcq',
+    prompt: "Following a diving accident, a patient is admitted with a cervical spinal cord injury. They present with a blood pressure of 82/40 mmHg, a heart rate of 46 bpm, and warm, dry skin. What complication is occurring?",
+    choices: ["Hypovolemic shock.","Cardiogenic shock.","Autonomic dysreflexia.","Neurogenic shock."],
+    correctIndex: 3,
+    rationale: "Neurogenic shock is caused by loss of sympathetic vasomotor tone due to spinal cord injury above T6. It leads to vasodilation (hypotension, warm/dry skin) and bradycardia (loss of sympathetic cardiac stimulation)."
+  },
+  {
+    id: "pq-ne-011",
+    topic: 'pastPaper',
+    type: 'mcq',
+    prompt: "A patient has a head injury. The nurse assesses their responses and notes: opens eyes to pain, produces incomprehensible sounds, and withdraws from pain. What is the patient's Glasgow Coma Scale (GCS) score?",
+    choices: ["12 (Eyes = 4, Verbal = 3, Motor = 5).","8 (Eyes = 2, Verbal = 2, Motor = 4).","6 (Eyes = 2, Verbal = 1, Motor = 3).","10 (Eyes = 3, Verbal = 3, Motor = 4)."],
+    correctIndex: 1,
+    rationale: "GCS breakdown: Opens eyes to pain = 2; Incomprehensible sounds = 2; Withdraws from pain (flexion/withdrawal) = 4. Total = 8. A score of 8 or less indicates severe brain injury."
+  },
+  {
+    id: "pq-ne-012",
+    topic: 'pastPaper',
+    type: 'mcq',
+    prompt: "When assessing a patient with a head injury, the nurse observes decerebrate posturing. Which description matches this finding?",
+    choices: ["Flaccid paralysis of all limbs with no response to noxious stimuli.","Rhythmic twitching and spasms of the facial muscles.","Rigid extension of the arms and legs, with pronation of the forearms.","Adduction and flexion of the arms against the chest, with legs extended."],
+    correctIndex: 2,
+    rationale: "Decerebrate posturing involves extension of all extremities and indicates severe damage to the brainstem. Decorticate posturing involves flexion of the upper extremities (pulling to the \"core\")."
+  },
+  {
+    id: "pq-ne-013",
+    topic: 'pastPaper',
+    type: 'mcq',
+    prompt: "A patient is admitted with a suspected basilar skull fracture. Which clinical assessment finding should the nurse expect to find?",
+    choices: ["Hyperactive pupillary responses in both eyes.","Weakness in the bilateral lower extremities.","Ecchymosis behind the ear (Battle's sign) or around the eyes (raccoon eyes).","Severe bleeding from the temporal scalp laceration."],
+    correctIndex: 2,
+    rationale: "Battle's sign (bruising over the mastoid process behind the ear) and raccoon eyes (periorbital bruising) are classic signs of a basilar skull fracture, caused by blood tracking along the skull base."
+  },
+  {
+    id: "pq-ne-014",
+    topic: 'pastPaper',
+    type: 'mcq',
+    prompt: "A patient has clear fluid draining from the ear canal after a traumatic head injury. Which action should the nurse take?",
+    choices: ["Irrigate the ear canal with warm saline to keep it clean.","Place a sterile, loose gauze pad over the ear to absorb the drainage without blocking it.","Suction the ear canal every hour to remove fluid.","Pack the ear canal tightly with sterile cotton balls to stop the leak."],
+    correctIndex: 1,
+    rationale: "CSF otorrhea must be allowed to drain freely. Packing or plugging the ear canal can increase intracranial pressure and trap bacteria, raising the risk of meningitis."
+  },
+  {
+    id: "pq-ne-015",
+    topic: 'pastPaper',
+    type: 'mcq',
+    prompt: "A patient is scheduled for a ventriculoperitoneal (VP) shunt insertion. What is the primary function of this shunt?",
+    choices: ["To drain excess cerebrospinal fluid from the brain ventricles to the peritoneal cavity.","To deliver chemotherapy agents directly into the spinal cord.","To bypass a blocked coronary artery using the radial artery.","To drain urine from a blocked kidney pelvis directly to the bladder."],
+    correctIndex: 0,
+    rationale: "A VP shunt is used to treat hydrocephalus. It diverts excess CSF from the ventricles of the brain down to the abdomen (peritoneal cavity), where it is reabsorbed."
+  },
+  {
+    id: "pq-ne-016",
+    topic: 'pastPaper',
+    type: 'mcq',
+    prompt: "A nurse is caring for an infant who had a ventriculoperitoneal (VP) shunt placed 2 days ago. Which of the following findings would indicate shunt malfunction or blockage?",
+    choices: ["Bulging anterior fontanelle and high-pitched crying.","Stable temperature of 36.8°C.","Soft, flat anterior fontanelle.","Urine output of 2 mL/kg/hour."],
+    correctIndex: 0,
+    rationale: "Shunt failure or blockage leads to a rapid accumulation of CSF in the ventricles, raising ICP. In infants, this presents as bulging fontanelles, high-pitched crying, irritability, and vomiting."
+  },
+  {
+    id: "pq-ne-017",
+    topic: 'pastPaper',
+    type: 'mcq',
+    prompt: "A patient is 24 hours post-craniotomy. The nurse notes the patient's urine output has increased to 600 mL per hour, and their urine specific gravity is 1.002. Which condition should the nurse suspect?",
+    choices: ["Diabetes Insipidus (DI).","Neurogenic shock.","Syndrome of Inappropriate Antidiuretic Hormone (SIADH).","Acute Kidney Injury (AKI)."],
+    correctIndex: 0,
+    rationale: "DI can occur after craniotomy or head trauma due to injury to the hypothalamus or pituitary gland, leading to deficient ADH secretion. This causes massive polyuria (>200 mL/hr) and dilute urine (specific gravity <1.005)."
+  },
+  {
+    id: "pq-ne-018",
+    topic: 'pastPaper',
+    type: 'mcq',
+    prompt: "A patient with a cervical spine injury is placed in halo traction. When caring for this patient, which action is appropriate?",
+    choices: ["Clean the pin sites daily using sterile saline and monitor for signs of infection.","Adjust the pins using a wrench if they feel loose.","Remove the halo vest daily to wash the skin underneath.","Use the halo frame bars to pull the patient up in bed."],
+    correctIndex: 0,
+    rationale: "Halo pins insert directly into the skull bone, representing a direct route for infection (osteomyelitis). Pin care must be aseptic. The frame bars must never be used to move the patient, and the vest must not be removed."
+  },
+  {
+    id: "pq-ne-019",
+    topic: 'pastPaper',
+    type: 'mcq',
+    prompt: "A patient undergoes a transsphenoidal hypophysectomy for a pituitary tumor. Which post-operative nursing action is essential?",
+    choices: ["Instruct the patient to avoid brushing their teeth and use mouthwash instead.","Place a nasogastric tube to decompress the stomach.","Encourage the patient to cough and deep breathe vigorously every 2 hours.","Keep the patient in a flat, supine position for 48 hours."],
+    correctIndex: 0,
+    rationale: "The surgical approach is through the upper gum and sphenoid sinus. Brushing teeth can disrupt the suture line. Coughing must be avoided as it increases pressure on the dural graft."
+  },
+  {
+    id: "pq-ne-020",
+    topic: 'pastPaper',
+    type: 'mcq',
+    prompt: "A patient is admitted with a severe head injury. The nurse is instructed to maintain \"neutral neck alignment\". Why is this alignment critical?",
+    choices: ["It stabilizes the bones of the face.","It prevents compression of the jugular veins, ensuring unimpeded venous outflow from the brain.","It increases arterial blood flow through the carotid arteries.","It prevents the patient from turning their head to watch television."],
+    correctIndex: 1,
+    rationale: "Neck flexion or rotation compresses the jugular veins, which blocks venous drainage from the brain. This increases cerebral blood volume and raises intracranial pressure."
+  },
+  {
+    id: "pq-ne-021",
+    topic: 'pastPaper',
+    type: 'mcq',
+    prompt: "A patient with a suspected C5 spinal cord injury is in the emergency department. Which assessment is the most critical for the nurse to perform?",
+    choices: ["Assess blood pressure and peripheral pulses.","Measure urine output over 1 hour.","Assess range of motion in the lower limbs.","Assess respiratory rate, rhythm, and effort."],
+    correctIndex: 3,
+    rationale: "Injury at or above C5 can impair the phrenic nerve, which innervates the diaphragm. Respiratory failure is a primary threat, making respiratory assessment the absolute priority."
+  },
+  {
+    id: "pq-ne-022",
+    topic: 'pastPaper',
+    type: 'mcq',
+    prompt: "During the recovery phase of spinal shock, what clinical finding indicates that the shock is resolving?",
+    choices: ["Complete return of normal sensation.","Hyperreflexia and return of spasticity.","Continued flaccid paralysis below the level of injury.","A sudden drop in blood pressure."],
+    correctIndex: 1,
+    rationale: "Spinal shock involves temporary loss of all reflex activity below the lesion. Resolution is marked by the return of reflexes, hyperreflexia, and muscle spasticity rather than flaccidity."
+  },
+  {
+    id: "pq-ne-023",
+    topic: 'pastPaper',
+    type: 'mcq',
+    prompt: "A patient with a head injury becomes increasingly restless and has a pupillary response that has slowed from brisk to sluggish. What should the nurse suspect?",
+    choices: ["Increasing intracranial pressure.","Beginning of sleep cycle.","Recovery from concussion.","Normal reaction to analgesic medications."],
+    correctIndex: 0,
+    rationale: "Restlessness is one of the earliest signs of rising ICP due to cerebral hypoxia. Sluggish pupils indicate compression of the oculomotor nerve, confirming deteriorating neurological status."
+  },
+  {
+    id: "pq-ne-024",
+    topic: 'pastPaper',
+    type: 'mcq',
+    prompt: "A nurse is preparing to administer IV Mannitol. The nurse notes that the fluid inside the vial has fine crystals. What action should the nurse take?",
+    choices: ["Filter the crystallized fluid through a paper filter before drawing it up.","Discard the vial and search for a vial without crystals.","Warm the vial in a water bath until the crystals dissolve, then let it cool to body temperature.","Administer the fluid as is, since the crystals will dissolve in the blood."],
+    correctIndex: 2,
+    rationale: "Mannitol crystals can form when cooled. Warming the solution redissolves the crystals. The solution must be allowed to cool to body temperature and inspected for complete clarity before administration."
+  },
+  {
+    id: "pq-ne-025",
+    topic: 'pastPaper',
+    type: 'mcq',
+    prompt: "A patient is admitted with a suspected brain tumor in the left hemisphere. Which clinical finding is the nurse likely to observe?",
+    choices: ["Weakness in the right arm and right leg.","Dilation of the right pupil.","Loss of vision in the right eye only.","Weakness in the left arm and left leg."],
+    correctIndex: 0,
+    rationale: "A lesion in the left cerebral hemisphere damages motor neurons above the decussation, causing weakness or paralysis on the contralateral (opposite) side of the body (right side)."
+  },
+  {
+    id: "pq-ne-026",
+    topic: 'pastPaper',
+    type: 'mcq',
+    prompt: "A nurse is checking the reflexes of a patient with a spinal cord injury. The nurse stroke the sole of the foot and notes the big toe dorsiflexes and the other toes fan out. How should this be documented?",
+    choices: ["Positive Babinski reflex (abnormal in adults).","Negative Babinski reflex.","Normal plantar reflex.","Absent patellar reflex."],
+    correctIndex: 0,
+    rationale: "An extension or fanning of the toes in response to plantar stimulation is a positive Babinski sign. It is normal in infants but indicates upper motor neuron damage in adults."
+  },
+  {
+    id: "pq-ne-027",
+    topic: 'pastPaper',
+    type: 'mcq',
+    prompt: "A patient with a head injury has a GCS score of 7. What is the nurse's primary immediate concern?",
+    choices: ["Securing and protecting the airway (intubation).","Preventing deep vein thrombosis.","Administering nutritional feeds.","Performing passive range of motion exercises."],
+    correctIndex: 0,
+    rationale: "A GCS score of 8 or less indicates a comatose state where the patient cannot protect their airway. Intubation is required to maintain patency and prevent aspiration."
+  },
+  {
+    id: "pq-ne-028",
+    topic: 'pastPaper',
+    type: 'mcq',
+    prompt: "A patient has an open head injury. The nurse should monitor this patient for which primary complication?",
+    choices: ["Diabetes Insipidus.","Meningitis.","Spinal shock.","Autonomic dysreflexia."],
+    correctIndex: 1,
+    rationale: "An open head injury breaks the skull and dura mater protection, exposing the meninges directly to pathogens, which greatly increases the risk of meningitis."
+  },
+  {
+    id: "pq-ne-029",
+    topic: 'pastPaper',
+    type: 'mcq',
+    prompt: "Which of the following actions should the nurse avoid when caring for a patient with increased intracranial pressure?",
+    choices: ["Administering stool softeners.","Maintaining the head of the bed at 30 degrees.","Grouping nursing activities to perform them all at once.","Keeping the room quiet and dim."],
+    correctIndex: 2,
+    rationale: "In patients with raised ICP, cluster care or grouping multiple tasks together can cause sustained elevations in ICP. Activities should be spaced out to allow ICP to return to baseline."
+  },
+  {
+    id: "pq-ne-030",
+    topic: 'pastPaper',
+    type: 'mcq',
+    prompt: "A patient post-craniotomy has a drainage dressing that shows a central spot of blood surrounded by a clear, yellowish ring. What is this sign called?",
+    choices: ["Halo sign.","Cullen's sign.","Battle's sign.","Grey-Turner's sign."],
+    correctIndex: 0,
+    rationale: "The \"halo\" or \"ring\" sign occurs when CSF separates from blood on a gauze pad. CSF migrates further out because it is less viscous than blood, indicating a CSF leak."
+  },
+  {
+    id: "pq-gi-001",
+    topic: 'pastPaper',
+    type: 'mcq',
+    prompt: "A patient presents with severe right upper quadrant abdominal pain that radiates to the right scapula, accompanied by nausea and vomiting after eating a fatty meal. Which clinical sign is most specific for this condition?",
+    choices: ["Murphy's sign.","Cullen's sign.","McBurney's sign.","Rovsing's sign."],
+    correctIndex: 0,
+    rationale: "Acute cholecystitis causes gallbladder inflammation. Palpating the RUQ while the patient inhales causes pain as the gallbladder touches the examiner's fingers, leading to a catch in breath (Murphy's sign)."
+  },
+  {
+    id: "pq-gi-002",
+    topic: 'pastPaper',
+    type: 'mcq',
+    prompt: "Which of the following is a classic risk factor profile for the development of cholesterol cholelithiasis (gallstones)?",
+    choices: ["Female gender, age over 40, obesity, and multiparity.","Male gender, young age, vegetarian diet, and underweight.","Female gender, history of chronic malaria, and thin stature.","Male gender, history of chronic alcohol abuse, and active lifestyle."],
+    correctIndex: 0,
+    rationale: "The classic risk factors for gallstones are summarized by the \"4 Fs\": Female, Fat (obesity), Forty (age >40), and Fertile (multiparity/pregnancy)."
+  },
+  {
+    id: "pq-gi-003",
+    topic: 'pastPaper',
+    type: 'mcq',
+    prompt: "A patient is 24 hours post-cholecystectomy and has a T-tube drain in place. The nurse checks the drainage bag and notes 300 mL of greenish-brown bile. What action should the nurse take?",
+    choices: ["Document the finding as normal and ensure the tube is not kinked.","Clamp the T-tube immediately to stop the loss of bile.","Notify the surgeon immediately of excessive drainage.","Irrigate the T-tube with 50 mL of sterile normal saline."],
+    correctIndex: 0,
+    rationale: "In the first 24 hours post-op, T-tube drainage of 300–500 mL of bile is normal. It should gradually decrease. Clamping is not indicated unless ordered, and irrigation is not a routine first action."
+  },
+  {
+    id: "pq-gi-004",
+    topic: 'pastPaper',
+    type: 'mcq',
+    prompt: "A patient is being discharged after a laparoscopic cholecystectomy. Which dietary modification should the nurse recommend for the first few weeks?",
+    choices: ["Eat a low-fat diet, gradually introducing fats as tolerated.","Restrict all solid foods and consume only clear liquids.","Follow a strict fat-free diet permanently.","Follow a high-fat, low-carbohydrate ketogenic diet."],
+    correctIndex: 0,
+    rationale: "Without a gallbladder to store bile, large amounts of fat cannot be easily digested, leading to diarrhea or cramping. A temporary low-fat diet is advised while the body adjusts."
+  },
+  {
+    id: "pq-gi-005",
+    topic: 'pastPaper',
+    type: 'mcq',
+    prompt: "A patient with suspected acute cholecystitis presents with a fever of 39°C, right upper quadrant pain, and scleral icterus (jaundice). What does this triad suggest?",
+    choices: ["Cushing's triad, suggesting raised ICP.","Beck's triad, suggesting cardiac tamponade.","Charcot's triad, suggesting acute cholangitis.","Virchow's triad, suggesting venous thrombosis."],
+    correctIndex: 2,
+    rationale: "Charcot's triad consists of RUQ pain, fever, and jaundice. It indicates acute cholangitis (infection of the biliary tract), which is a medical emergency requiring antibiotics and drainage."
+  },
+  {
+    id: "pq-gi-006",
+    topic: 'pastPaper',
+    type: 'mcq',
+    prompt: "A 19-year-old male presents with periumbilical abdominal pain that has migrated to the right lower quadrant, accompanied by a low-grade fever. Which landmark is most relevant for palpation?",
+    choices: ["McBurney's point (one-third from the right anterior superior iliac spine to the umbilicus).","The left upper quadrant near the spleen.","The epigastric area near the pylorus.","McBurney's point (one-third from the left anterior superior iliac spine to the umbilicus)."],
+    correctIndex: 0,
+    rationale: "McBurney's point lies in the right lower quadrant, two-thirds of the distance from the umbilicus to the right anterior superior iliac spine (or one-third from the ASIS to the umbilicus). This is the site of maximum tenderness in acute appendicitis."
+  },
+  {
+    id: "pq-gi-007",
+    topic: 'pastPaper',
+    type: 'mcq',
+    prompt: "A nurse palpates a patient's left lower quadrant, and the patient reports pain in their right lower quadrant. How should the nurse document this sign?",
+    choices: ["Positive Cullen's sign.","Positive McBurney's sign.","Positive Murphy's sign.","Positive Rovsing's sign."],
+    correctIndex: 3,
+    rationale: "Rovsing's sign is elicited by pressing on the left lower quadrant; displacement of gas causes stretch in the inflamed appendix area on the right, producing pain. This supports acute appendicitis."
+  },
+  {
+    id: "pq-gi-008",
+    topic: 'pastPaper',
+    type: 'mcq',
+    prompt: "A patient is admitted with suspected acute appendicitis. Which of the following orders should the nurse question?",
+    choices: ["Apply an ice pack to the right lower quadrant for comfort.","Maintain the patient on NPO (nothing by mouth) status.","Start intravenous fluids and baseline lab checks.","Administer a mild laxative to promote bowel evacuation."],
+    correctIndex: 3,
+    rationale: "Laxatives, enemas, and heating pads are strictly contraindicated in acute appendicitis because they increase peristalsis or local blood flow, which can cause the appendix to rupture."
+  },
+  {
+    id: "pq-gi-009",
+    topic: 'pastPaper',
+    type: 'mcq',
+    prompt: "A patient with acute appendicitis reports a sudden, complete relief of their abdominal pain. What complication should the nurse immediately suspect?",
+    choices: ["Spontaneous resolution of the inflammation.","Rupture of the appendix and potential peritonitis.","Passage of an obstructing fecalith.","Efficacy of the pain medication."],
+    correctIndex: 1,
+    rationale: "A sudden cessation of pain indicates that the appendix has ruptured, relieving the pressure within the lumen. However, this will be followed by generalized peritonitis and septic shock if not treated immediately."
+  },
+  {
+    id: "pq-gi-010",
+    topic: 'pastPaper',
+    type: 'mcq',
+    prompt: "Following an appendicectomy, in which position should the nurse place the patient to minimize tension on the incision and localize any drainage?",
+    choices: ["Semi-Fowler's position.","Flat, supine position.","Prone position.","High Trendelenburg position."],
+    correctIndex: 0,
+    rationale: "Semi-Fowler's position (HOB elevated 30–45 degrees) reduces abdominal wall tension, making breathing easier. In case of rupture, it also helps localize inflammatory drainage to the pelvis."
+  },
+  {
+    id: "pq-gi-011",
+    topic: 'pastPaper',
+    type: 'mcq',
+    prompt: "A nurse teaches a nursing student about the clinical differences in colorectal cancer. Which statement correctly identifies how left-sided colon cancers differ from right-sided colon cancers?",
+    choices: ["Left-sided lesions cause early bowel habit changes and obstruction, whereas right-sided lesions present with occult bleeding and anemia.","There is no difference in presentation between left and right colon cancers.","Left-sided lesions cause bleeding, while right-sided lesions only cause jaundice.","Right-sided lesions cause pencil-like stools, while left-sided lesions cause fatigue."],
+    correctIndex: 0,
+    rationale: "The left colon is narrow and contains firm stool, so left-sided cancers obstruct early, causing constipation or narrow stools. The right colon is wide and has liquid stool, so right-sided cancers bleed slowly, causing anemia."
+  },
+  {
+    id: "pq-gi-012",
+    topic: 'pastPaper',
+    type: 'mcq',
+    prompt: "A patient has a new sigmoid colostomy. The nurse assesses the stoma 12 hours post-operative. Which finding requires immediate notification to the surgeon?",
+    choices: ["There is mild edema around the stoma.","The stoma is bright red and moist.","The stoma is dark purple and dry.","The stoma is draining a small amount of bloody mucus."],
+    correctIndex: 2,
+    rationale: "A healthy stoma is pink or red and moist. A dark purple, blue, or black stoma indicates ischemia or necrosis due to compromised blood supply, requiring immediate surgical re-evaluation."
+  },
+  {
+    id: "pq-gi-013",
+    topic: 'pastPaper',
+    type: 'mcq',
+    prompt: "Which of the following is a key nursing instruction for a patient who is undergoing colostomy irrigation for a sigmoid colostomy?",
+    choices: ["Irrigate the stoma only when the patient has watery diarrhea.","Insert the irrigation cone at least 6 inches into the stoma.","Perform irrigation at the same time every day to establish bowel regularity.","Use ice-cold tap water to stimulate bowel peristalsis."],
+    correctIndex: 2,
+    rationale: "Irrigation of a descending or sigmoid colostomy at a consistent time trains the bowel to empty regularly, allowing the patient to wear a small cover instead of a large drainage bag."
+  },
+  {
+    id: "pq-gi-014",
+    topic: 'pastPaper',
+    type: 'mcq',
+    prompt: "A patient with a new colostomy is concerned about gas and odor. Which foods should the nurse advise the patient to limit?",
+    choices: ["White rice, toast, and bananas.","Cabbage, beans, onions, and carbonated beverages.","Yogurt, buttermilk, and cranberry juice.","Boiled potatoes and plain chicken breast."],
+    correctIndex: 1,
+    rationale: "Gas-forming foods (beans, cabbage, onions, carbonated drinks) increase flatus, which can cause the colostomy bag to swell or burst. Odor can be minimized by limiting eggs, fish, and garlic."
+  },
+  {
+    id: "pq-gi-015",
+    topic: 'pastPaper',
+    type: 'mcq',
+    prompt: "A nurse is preparing to change a colostomy appliance. When measuring the stoma, how large should the wafer opening be cut?",
+    choices: ["Double the diameter of the stoma.","At least 1/2 inch (12 mm) larger than the stoma to prevent pinching.","Exactly matching the stoma size with no gap.","About 1/8 inch (3 mm) larger than the base of the stoma."],
+    correctIndex: 3,
+    rationale: "A wafer cut 1/8 inch larger than the stoma protects the surrounding skin from contact with corrosive stool while avoiding constriction of the stoma tissue."
+  },
+  {
+    id: "pq-gi-016",
+    topic: 'pastPaper',
+    type: 'mcq',
+    prompt: "A patient is diagnosed with internal hemorrhoids. The hemorrhoids prolapse during defecation but must be manually pushed back in. What grade are these hemorrhoids?",
+    choices: ["Grade IV.","Grade II.","Grade III.","Grade I."],
+    correctIndex: 2,
+    rationale: "Hemorrhoid grading: Grade I = bleed only, no prolapse; Grade II = prolapse but reduce spontaneously; Grade III = prolapse and require manual reduction; Grade IV = permanently prolapsed and irreducible."
+  },
+  {
+    id: "pq-gi-017",
+    topic: 'pastPaper',
+    type: 'mcq',
+    prompt: "A patient who underwent a hemorrhoidectomy is preparing for discharge. Which of the following is a priority nursing intervention for this patient?",
+    choices: ["Administer stool softeners and pain medication before the first bowel movement.","Limit oral fluid intake to prevent liquid stool.","Instruct the patient to avoid passing stool for the first 5 days.","Apply heat packs to the perineum for the first 24 hours."],
+    correctIndex: 0,
+    rationale: "The first bowel movement post-hemorrhoidectomy is extremely painful. Stool softeners prevent straining, and analgesics minimize pain, preventing vasovagal reactions."
+  },
+  {
+    id: "pq-gi-018",
+    topic: 'pastPaper',
+    type: 'mcq',
+    prompt: "A patient is admitted with suspected intestinal obstruction. They present with severe, colicky abdominal pain, projectile bilious vomiting, and abdominal distension. What management is expected?",
+    choices: ["Keep NPO, place a nasogastric (NG) tube to suction, and start IV fluids.","Encourage a high-fiber solid diet to push the obstruction through.","Administer a stimulant laxative to clear the blockage.","Keep the patient flat in bed and restrict all IV fluids."],
+    correctIndex: 0,
+    rationale: "The standard initial management for mechanical bowel obstruction is \"drip and suck\": NPO status, nasogastric decompression to relieve vomiting and distension, and IV fluids to correct dehydration."
+  },
+  {
+    id: "pq-gi-019",
+    topic: 'pastPaper',
+    type: 'mcq',
+    prompt: "A nurse is caring for a patient who is 2 days post-operative after a major abdominal surgery. The nurse notes that the patient has absent bowel sounds, abdominal distension, and has not passed flatus. What condition is likely?",
+    choices: ["Paralytic ileus.","Mechanical bowel obstruction.","Acute appendicitis.","Ruptured gallbladder."],
+    correctIndex: 0,
+    rationale: "Paralytic ileus is a temporary impairment of bowel motility after abdominal surgery, often caused by handling of the intestines or anesthetic agents. It presents with absent bowel sounds and distension."
+  },
+  {
+    id: "pq-gi-020",
+    topic: 'pastPaper',
+    type: 'mcq',
+    prompt: "A patient presents with an inguinal hernia that cannot be pushed back into the abdominal cavity, but they have no pain or vomiting. How should the nurse classify this hernia?",
+    choices: ["Incarcerated (irreducible).","Obstructed.","Reducible.","Strangulated."],
+    correctIndex: 0,
+    rationale: "An incarcerated hernia is trapped outside the abdominal wall and cannot be manually reduced. If the blood supply is cut off, it becomes a \"strangulated\" hernia, which is a surgical emergency."
+  },
+  {
+    id: "pq-gi-021",
+    topic: 'pastPaper',
+    type: 'mcq',
+    prompt: "A patient is diagnosed with a strangulated femoral hernia. What is the primary clinical reason this condition requires immediate emergency surgery?",
+    choices: ["To prevent the hernia from entering the scrotum.","To avoid the development of colon cancer.","To perform a cosmetic repair of the groin bulge.","To prevent tissue ischemia, gangrene, and bowel perforation."],
+    correctIndex: 3,
+    rationale: "Strangulation cuts off arterial blood supply to the herniated bowel segment. Within hours, this leads to ischemia, necrosis (gangrene), perforation, and life-threatening peritonitis."
+  },
+  {
+    id: "pq-gi-022",
+    topic: 'pastPaper',
+    type: 'mcq',
+    prompt: "A nurse assesses a patient who is 48 hours post-operative after an abdominal surgery. The patient has a nasogastric (NG) tube in place. Which assessment indicates that the NG tube can be safely removed?",
+    choices: ["Active bowel sounds and passage of flatus or stool.","A serum potassium level of 3.2 mEq/L.","The presence of green fluid draining into the NG canister.","Decreased urine output to 20 mL/hour."],
+    correctIndex: 0,
+    rationale: "Removal of the NG tube is safe when peristalsis has returned, indicating that the gut can handle secretions and gas. This is clinically shown by active bowel sounds and flatus/stool."
+  },
+  {
+    id: "pq-gi-023",
+    topic: 'pastPaper',
+    type: 'mcq',
+    prompt: "A patient is diagnosed with a right-sided inguinal hernia. The surgeon performs a Lichtenstein repair. What does this procedure involve?",
+    choices: ["Suturing the inguinal muscles tightly together under high tension.","A tension-free repair utilizing a synthetic mesh to reinforce the abdominal wall.","Removing the right testis and spermatic cord to close the canal.","Creating a permanent colostomy in the right iliac fossa."],
+    correctIndex: 1,
+    rationale: "The Lichtenstein repair is a \"tension-free\" hernioplasty that uses a mesh sheet to bridge and reinforce the abdominal wall defect, resulting in lower recurrence rates and less post-op pain."
+  },
+  {
+    id: "pq-gi-024",
+    topic: 'pastPaper',
+    type: 'mcq',
+    prompt: "A patient with colorectal cancer undergoes an anterior resection with a temporary loop ileostomy. What type of drainage should the nurse expect from this stoma?",
+    choices: ["Semi-formed stool twice a day.","Formed, solid, and dark brown stool.","Pure blood and mucus only.","Liquid, highly corrosive, and continuous stool."],
+    correctIndex: 3,
+    rationale: "An ileostomy drains contents from the small intestine (ileum) before water is reabsorbed in the colon. The drainage is liquid, continuous, and rich in digestive enzymes that irritate the skin."
+  },
+  {
+    id: "pq-gi-025",
+    topic: 'pastPaper',
+    type: 'mcq',
+    prompt: "Which of the following is a priority nursing intervention for a patient with a new ileostomy to prevent skin breakdown?",
+    choices: ["Allow stool to remain on the skin to build tolerance.","Clean the peristomal skin with alcohol wipes every 4 hours.","Ensure a snug fit of the appliance wafer and use skin barrier paste.","Apply moisturizing cream to the skin before sticking the pouch."],
+    correctIndex: 2,
+    rationale: "Because ileostomy output contains corrosive digestive enzymes, the skin must be protected. A snug-fitting wafer and barrier pastes prevent stool from touching and eroding the skin."
+  },
+  {
+    id: "pq-gi-026",
+    topic: 'pastPaper',
+    type: 'mcq',
+    prompt: "A patient is admitted with a high-pitched, \"tinkling\" bowel sound on auscultation, abdominal distension, and pain. What is the significance of this bowel sound?",
+    choices: ["It is a classic sign of acute appendicitis.","It indicates normal gastric emptying.","It suggests early mechanical bowel obstruction.","It confirms the resolution of a paralytic ileus."],
+    correctIndex: 2,
+    rationale: "In early mechanical obstruction, the hyperactive bowel above the blockage squeezes hard to push contents through, producing high-pitched, tinkling, or rushing sounds."
+  },
+  {
+    id: "pq-gi-027",
+    topic: 'pastPaper',
+    type: 'mcq',
+    prompt: "A patient with suspected peritonitis presents with a rigid, board-like abdomen and rebound tenderness. What is the nurse's priority action?",
+    choices: ["Perform abdominal massage to relieve the rigidity.","Administer a laxative to relieve abdominal pressure.","Encourage the patient to drink warm water to ease the pain.","Maintain NPO status, establish IV access, and prepare for emergency surgery."],
+    correctIndex: 3,
+    rationale: "Peritonitis is a surgical emergency. The patient must be kept NPO, started on IV fluids and antibiotics, and prepared for diagnostic laparotomy to source and treat the contamination."
+  },
+  {
+    id: "pq-gi-028",
+    topic: 'pastPaper',
+    type: 'mcq',
+    prompt: "A patient is being prepared for a colonoscopy. What is the primary purpose of prescribing polyethylene glycol (GoLYTELY) pre-procedure?",
+    choices: ["To reduce the size of any colon polyps.","To sedate the patient during the procedure.","To completely cleanse the colon of fecal matter for optimal visualization.","To prevent post-procedure infection."],
+    correctIndex: 2,
+    rationale: "Polyethylene glycol is an osmotic laxative that rapidly cleanses the bowel, ensuring the mucosal wall is clearly visible to identify polyps or lesions during colonoscopy."
+  },
+  {
+    id: "pq-gi-029",
+    topic: 'pastPaper',
+    type: 'mcq',
+    prompt: "During abdominal assessment, the nurse note a patient's hemorrhoids are prolapsed and cannot be reduced manually or spontaneously. What grade does this represent?",
+    choices: ["Grade I.","Grade IV.","Grade III.","Grade II."],
+    correctIndex: 1,
+    rationale: "Grade IV hemorrhoids are permanently prolapsed, irreducible, and carry a risk of thrombosis, strangulation, or severe pain, often requiring surgical hemorrhoidectomy."
+  },
+  {
+    id: "pq-gi-030",
+    topic: 'pastPaper',
+    type: 'mcq',
+    prompt: "A patient with gallstones is scheduled for an endoscopic retrograde cholangiopancreatography (ERCP). Which nursing intervention is essential pre-procedure?",
+    choices: ["Have the patient walk for 30 minutes immediately before the test.","Instruct the patient to drink a high-fat liquid meal 1 hour before.","Administer a full enema to cleanse the bowel.","Ensure the patient is NPO for 6 to 8 hours and verify informed consent."],
+    correctIndex: 3,
+    rationale: "ERCP uses an endoscope inserted into the duodenum, requiring NPO status to prevent aspiration. Informed consent must be signed, as this is an invasive procedure."
+  },
+  {
+    id: "pq-doc-001",
+    topic: 'pastPaper',
+    type: 'mcq',
+    prompt: "A physician diagnoses a 65-year-old male with an ST-elevation myocardial infarction (STEMI). What is the most appropriate management?",
+    choices: ["Tube thoracostomy","Fundoplication","Percutaneous coronary intervention (PCI)","Open thoracotomy"],
+    correctIndex: 2,
+    rationale: "STEMI represents an acute, complete coronary artery occlusion. Emergency PCI is the gold standard to restore myocardial perfusion and limit tissue necrosis."
+  },
+  {
+    id: "pq-doc-002",
+    topic: 'pastPaper',
+    type: 'mcq',
+    prompt: "A 62-year-old female with a history of angioplasty presents with clinical signs of a recurrent MI, indicating PCI has failed. What is the next management step?",
+    choices: ["Repeat balloon angioplasty only","Coronary Artery Bypass Graft (CABG)","Mitral valve replacement","Thrombolytic therapy alone"],
+    correctIndex: 1,
+    rationale: "When less invasive catheter interventions like PCI fail, surgical revascularization via CABG is indicated to bypass the occluded vessels and establish collateral flow."
+  },
+  {
+    id: "pq-doc-003",
+    topic: 'pastPaper',
+    type: 'mcq',
+    prompt: "A nurse is caring for a patient 6 hours post-CABG. Which assessment finding requires immediate clinical intervention?",
+    choices: ["Urine output of 0.8 mL/kg/hr","Temperature of 37.5°C","Mild incisional site pain","Tachycardia (Pulse of 120 bpm)"],
+    correctIndex: 3,
+    rationale: "Post-operative tachycardia of 120 bpm is an early indicator of hypovolemia, cardiogenic shock, hemorrhage, or cardiac tamponade. Other findings are within normal postoperative expectations."
+  },
+  {
+    id: "pq-doc-004",
+    topic: 'pastPaper',
+    type: 'mcq',
+    prompt: "A 56-year-old male is diagnosed with mitral valve stenosis. Which of the following is the most likely etiology?",
+    choices: ["Pneumonia","Urinary tract infection","Rheumatic heart disease","Recurrent malaria"],
+    correctIndex: 2,
+    rationale: "Mitral valve stenosis is classically caused by chronic rheumatic heart disease, a long-term complication of childhood group A streptococcal pharyngitis (rheumatic fever)."
+  },
+  {
+    id: "pq-doc-005",
+    topic: 'pastPaper',
+    type: 'mcq',
+    prompt: "A patient with severe aortic stenosis reports experiencing dizziness during physical activity. This symptom is primarily due to what mechanism?",
+    choices: ["Increased cerebral perfusion","Hypervolemia","Pulmonary embolism","Reduced cardiac output"],
+    correctIndex: 3,
+    rationale: "Stenosis restricts left ventricular outflow. Upon exertion, the heart cannot increase cardiac output to meet systemic demands, leading to systemic hypotension and cerebral hypoperfusion (dizziness)."
+  },
+  {
+    id: "pq-doc-006",
+    topic: 'pastPaper',
+    type: 'mcq',
+    prompt: "Regarding common forms of valvular heart disease, which of the following is an inevitable complication if no intervention is made?",
+    choices: ["Rheumatic heart disease","Aspiration pneumonitis","Kawasaki disease","Heart failure"],
+    correctIndex: 3,
+    rationale: "Chronic uncorrected valvular disorders impose a persistent hemodynamic workload on the cardiac chambers, eventually leading to ventricular remodeling, dysfunction, and heart failure."
+  },
+  {
+    id: "pq-doc-007",
+    topic: 'pastPaper',
+    type: 'mcq',
+    prompt: "A patient with Tetralogy of Fallot suddenly becomes severely cyanotic (experiences a \"Tet spell\"). What action should the nurse perform first?",
+    choices: ["Restrict oxygen","Begin chest compressions","Encourage ambulation","Place in knee-to-chest position"],
+    correctIndex: 3,
+    rationale: "The knee-chest position increases systemic vascular resistance, which decreases the right-to-left shunt across the VSD and forces more desaturated blood into the pulmonary artery for oxygenation."
+  },
+  {
+    id: "pq-doc-008",
+    topic: 'pastPaper',
+    type: 'mcq',
+    prompt: "A patient with a known ventricular septal defect (VSD) for about a year suddenly begins displaying cyanosis. Which syndrome best describes this?",
+    choices: ["Down syndrome","Patau syndrome","","for about a year suddenly begins displaying cyanosis. Which syndrome best describes this?  \nA) Down syndrome    B) Patau syndrome    C) Catamenial syndrome    D) Eisenmenger syndrome"],
+    correctIndex: 3,
+    rationale: "A long-standing left-to-right shunt (VSD) causes severe pulmonary hypertension, eventually reversing the shunt flow to right-to-left, which introduces deoxygenated blood into systemic circulation."
+  },
+  {
+    id: "pq-doc-009",
+    topic: 'pastPaper',
+    type: 'mcq',
+    prompt: "A patient in the ED complains of severe chest pain. Vitals reveal blood pressure in both arms is vastly unequal. Which condition is the most likely cause?",
+    choices: ["Aortic dissection","Mitral stenosis","Pulmonary embolism","Tetralogy of Fallot"],
+    correctIndex: 0,
+    rationale: "An intimal tear in the aortic wall can propagate and anatomically block blood flow to one of the subclavian arteries, resulting in a significant blood pressure difference between the arms."
+  },
+  {
+    id: "pq-doc-010",
+    topic: 'pastPaper',
+    type: 'mcq',
+    prompt: "A 55-year-old patient with an aortic aneurysm is admitted. What is the most feared complication of this condition?",
+    choices: ["Arrhythmia","Seizures","Infection","Rupture"],
+    correctIndex: 3,
+    rationale: "Catastrophic structural rupture of an aortic aneurysm leads to immediate massive internal hemorrhage and rapid hypovolemic collapse, carrying an extremely high mortality rate."
+  },
+  {
+    id: "pq-doc-011",
+    topic: 'pastPaper',
+    type: 'mcq',
+    prompt: "Using your surgical nursing knowledge, which of the following is true regarding coarctation of the aorta?",
+    choices: ["It is a cyanotic heart disease","It is an acyanotic heart disease","Both options A and B are true","None of the above"],
+    correctIndex: 1,
+    rationale: "Coarctation of the aorta is an obstructive acyanotic cardiac defect because there is no right-to-left shunting of deoxygenated blood into systemic circulation."
+  },
+  {
+    id: "pq-doc-012",
+    topic: 'pastPaper',
+    type: 'mcq',
+    prompt: "A patient with an aortic aneurysm experiences a rupture. Which of the following clinical signs is most indicative of this event?",
+    choices: ["Vomiting","Severe headache","Pulse 120 bpm, BP 76/48 mmHg","Mild nausea"],
+    correctIndex: 2,
+    rationale: "Massive internal bleeding from a rupture quickly leads to hypovolemic shock, clinically indicated by profound hypotension and compensatory sympathetic tachycardia."
+  },
+  {
+    id: "pq-doc-013",
+    topic: 'pastPaper',
+    type: 'mcq',
+    prompt: "A client is being prepared for an endovascular aneurysm repair (EVAR). All of the following are appropriate pre-operative nursing checks EXCEPT:",
+    choices: ["Constant monitoring of baseline vitals","Verification of informed consent","Interpreting baseline laboratory results to the patient","Keeping NPO"],
+    correctIndex: 2,
+    rationale: "Explaining and interpreting raw clinical diagnostic lab data is the primary responsibility of the managing physician or surgeon, not an independent nursing check."
+  },
+  {
+    id: "pq-doc-014",
+    topic: 'pastPaper',
+    type: 'mcq',
+    prompt: "Which clinical type of aortic dissection represents an immediate medical crisis requiring emergency open surgical intervention?",
+    choices: ["Type A","Type B","Type C","Type D"],
+    correctIndex: 0,
+    rationale: "Stanford Type A dissections involve the ascending aorta and carry an immediate risk of fatal complications like cardiac tamponade, aortic valve disruption, or coronary occlusion, requiring emergency surgery."
+  },
+  {
+    id: "pq-doc-015",
+    topic: 'pastPaper',
+    type: 'mcq',
+    prompt: "Which of the following is a clinical reason why men are statistically more predisposed to coronary artery disease (CAD) compared to pre-menopausal women?",
+    choices: ["Men have riskier lifestyles","Women visit the hospital more","","compared to pre-menopausal women?  \nA) Men have riskier lifestyles    B) Women visit the hospital more    C) Men lack protective estrogen    D) Estrogen is cardiotoxic"],
+    correctIndex: 2,
+    rationale: "Estrogen provides cardiovascular protection in women by promoting healthy lipid profiles and supporting arterial vascular endothelium. The relative absence of high levels in men increases their baseline susceptibility."
+  },
+  {
+    id: "pq-doc-016",
+    topic: 'pastPaper',
+    type: 'mcq',
+    prompt: "All of the following are recognized non-modifiable risk factors for the development of an aortic aneurysm EXCEPT:",
+    choices: ["Male gender","Marfan syndrome","Ehlers-Danlos syndrome","Down syndrome"],
+    correctIndex: 3,
+    rationale: "Connective tissue disorders (Marfan, Ehlers-Danlos) and male gender directly weaken the structural vascular media, predisposing patients to aneurysms. Down syndrome is not a primary risk factor."
+  },
+  {
+    id: "pq-doc-017",
+    topic: 'pastPaper',
+    type: 'mcq',
+    prompt: "Which of the following surgical cardiac conditions can be managed medically using non-steroidal anti-inflammatory drugs (NSAIDs)?",
+    choices: ["Penicillin","Prostaglandin E1","Patent Ductus Arteriosus (PDA)","Furosemide"],
+    correctIndex: 2,
+    rationale: "Intravenous NSAIDs (like indomethacin) inhibit circulating prostaglandins, which actively promotes the physiological and structural closure of a PDA in neonates."
+  },
+  {
+    id: "pq-doc-018",
+    topic: 'pastPaper',
+    type: 'mcq',
+    prompt: "Which of the following descriptions best details the primary pathophysiological difference between myocardial ischemia and myocardial infarction?",
+    choices: ["Myocardial ischemia involves reduced blood flow and oxygen deprivation without permanent tissue death (reversible), whereas myocardial infarction results in irreversible tissue necrosis.","Myocardial ischemia is irreversible, whereas infarction is fully reversible.","Infarction has no cellular necrosis, whereas ischemia has permanent cell death.","Both are fully reversible."],
+    correctIndex: 0,
+    rationale: "Ischemia represents temporary, reversible cellular distress due to inadequate supply. Infarction represents permanent, irreversible tissue death following prolonged, complete coronary occlusion."
+  },
+  {
+    id: "pq-doc-019",
+    topic: 'pastPaper',
+    type: 'mcq',
+    prompt: "A patient is 12 hours post-op from a coarctation repair. Clexane is completely unavailable at the facility and nearby pharmacies. What is the next most appropriate line of action to prevent DVT?",
+    choices: ["Administer Labetalol","Consider the use of Enoxaparin","Utilize TED anti-embolism stockings","Apply warm compresses to limbs"],
+    correctIndex: 2,
+    rationale: "When pharmacological anticoagulation is completely unavailable, mechanical prophylaxis using TED stockings is the immediate standard of care to prevent venous stasis. Enoxaparin is the generic name for Clexane and is also unavailable."
+  },
+  {
+    id: "pq-doc-020",
+    topic: 'pastPaper',
+    type: 'mcq',
+    prompt: "All of the following are classic examples of cyanotic congenital heart diseases EXCEPT:",
+    choices: ["Tetralogy of Fallot","Transposition of Great Vessels","Tricuspid Atresia","Ventricular Septal Defect (VSD)"],
+    correctIndex: 3,
+    rationale: "VSD is a baseline acyanotic defect because it causes an initial left-to-right shunt. The other options are primarily cyanotic from birth."
+  },
+  {
+    id: "pq-doc-021",
+    topic: 'pastPaper',
+    type: 'mcq',
+    prompt: "A client is 24 hours post-operative following CABG. Which of the following represents a critical post-operative nursing intervention?",
+    choices: ["Encourage early ambulation","Advise client to sleep more","Advise client to start eating immediately","Encourage numerous visits"],
+    correctIndex: 0,
+    rationale: "Early ambulation is essential to stimulate systemic circulation, prevent lower extremity deep vein thrombosis (DVT), and promote optimal pulmonary volume to prevent atelectasis."
+  },
+  {
+    id: "pq-doc-022",
+    topic: 'pastPaper',
+    type: 'mcq',
+    prompt: "Which of the following peripheral vessels is commonly harvested and utilized as a vascular graft conduit during a CABG procedure?",
+    choices: ["Femoral artery","Carotid artery","Ulnar artery","Radial artery"],
+    correctIndex: 3,
+    rationale: "The radial artery is heavily utilized as an arterial conduit because its thick muscular wall and excellent long-term patency rates are ideal for bypassing occluded coronary pathways."
+  },
+  {
+    id: "pq-doc-023",
+    topic: 'pastPaper',
+    type: 'mcq',
+    prompt: "Utilizing clinical standards for surgical fluid management, what is the normal hourly urine output parameter for an adult patient?",
+    choices: ["0.5 to 1.0 mL/kg/hr","1.0 to 2.0 mL/kg/hr","2.0 to 3.0 mL/kg/hr","3.0 to 4.0 mL/kg/hr"],
+    correctIndex: 0,
+    rationale: "Adequate adult systemic and renal perfusion is standardly represented by a stable hourly urine output of 0.5 to 1.0 mL/kg/hr."
+  },
+  {
+    id: "pq-doc-024",
+    topic: 'pastPaper',
+    type: 'mcq',
+    prompt: "Utilizing standard pediatric surgical principles, what is the normal hourly urine output parameter for a child?",
+    choices: ["0.5 to 1.0 mL/kg/hr","1.0 to 2.0 mL/kg/hr","2.0 to 3.0 mL/kg/hr","3.0 to 4.0 mL/kg/hr"],
+    correctIndex: 1,
+    rationale: "Children maintain a higher baseline metabolic rate and fluid turnover relative to body weight, standardizing their expected output parameter at 1.0 to 2.0 mL/kg/hr."
+  },
+  {
+    id: "pq-doc-025",
+    topic: 'pastPaper',
+    type: 'mcq',
+    prompt: "Utilizing neonatal clinical principles, what is the normal hourly urine output parameter for a neonate?",
+    choices: ["0.5 to 1.0 mL/kg/hr","1.0 to 2.0 mL/kg/hr","2.0 to 3.0 mL/kg/hr","3.0 to 4.0 mL/kg/hr"],
+    correctIndex: 2,
+    rationale: "Neonates have the highest physiological fluid demands relative to weight, requiring an hourly urine output metric of 2.0 to 3.0 mL/kg/hr to indicate proper hydration."
+  },
+  {
+    id: "pq-doc-026",
+    topic: 'pastPaper',
+    type: 'mcq',
+    prompt: "A lung cancer patient develops hemoptysis (coughing up blood). What is the nurse's immediate clinical priority?",
+    choices: ["Offer food","Encourage fluids","Document only","Assess airway patency"],
+    correctIndex: 3,
+    rationale: "In any acute episode of hemoptysis, the immediate threat to life is airway obstruction from blood or clots, not blood loss itself. Ensuring a clear, patent airway takes precedence."
+  },
+  {
+    id: "pq-doc-027",
+    topic: 'pastPaper',
+    type: 'mcq',
+    prompt: "Empyema thoracis refers specifically to which of the following pathological states?",
+    choices: ["Pus in the pleural space","Air in the pleural space","Blood in the pleural space","Fluid in the pericardial space"],
+    correctIndex: 0,
+    rationale: "Empyema thoracis is strictly defined as an accumulation of purulent, infected fluid (pus) within the pleural cavity, typically secondary to severe pneumonia."
+  },
+  {
+    id: "pq-doc-028",
+    topic: 'pastPaper',
+    type: 'mcq',
+    prompt: "A patient presenting with a thymoma (a tumor of the thymus gland) may frequently present with symptoms of which associated condition?",
+    choices: ["Hematuria","Ascites","Diarrhea","Myasthenia gravis"],
+    correctIndex: 3,
+    rationale: "Thymomas are highly associated with paraneoplastic autoimmune disorders, most notably Myasthenia Gravis, resulting from autoantibody production against acetylcholine receptors."
+  },
+  {
+    id: "pq-doc-029",
+    topic: 'pastPaper',
+    type: 'mcq',
+    prompt: "A 69-year-old male smoker is diagnosed with a non-small cell lung cancer of the adenocarcinoma type. Which of the following describes the cellular origin?",
+    choices: ["Glandular epithelial cells","Squamous cell epithelia","Mesothelial cells","Endothelial cells"],
+    correctIndex: 0,
+    rationale: "Adenocarcinomas are malignancies that originate directly from mucus-secreting glandular epithelial cells, typically located in the peripheral lung fields."
+  },
+  {
+    id: "pq-doc-030",
+    topic: 'pastPaper',
+    type: 'mcq',
+    prompt: "During a clinical review session, there was a discussion on angiogenesis. Which statement best describes angiogenesis?",
+    choices: ["Growth of new epithelial cells","Growth of new blood vessels from existing ones","Spread of cancer to lymph nodes","Cellular differentiation"],
+    correctIndex: 1,
+    rationale: "Angiogenesis is the chemical process where tumor cells secrete factors to stimulate the growth of new capillary blood vessels from existing vasculature to supply the tumor."
+  },
+  {
+    id: "pq-doc-031",
+    topic: 'pastPaper',
+    type: 'mcq',
+    prompt: "A lung cancer patient experiences systemic clinical features of Cushing syndrome (moon face, buffalo hump, etc.). What phenomenon is occurring?",
+    choices: ["Paraneoplastic syndrome","Syndrome of withdrawal of smoking","Acute respiratory distress syndrome","Cushing disease"],
+    correctIndex: 0,
+    rationale: "A paraneoplastic syndrome occurs when a localized tumor ectopically secretes hormones (such as ACTH) that mimic systemic endocrine disorders unrelated to local direct invasion."
+  },
+  {
+    id: "pq-doc-032",
+    topic: 'pastPaper',
+    type: 'mcq',
+    prompt: "Which of the following terms best describes the physiological occurrence where a biochemical substance, such as nicotine, initiates the cellular changes that lead to lung cancer?",
+    choices: ["Oncogenesis","Tumorigenesis","Carcinogenesis","Mutagenesis"],
+    correctIndex: 2,
+    rationale: "Carcinogenesis (or oncogenesis) is the multi-step biochemical process through which normal somatic cells undergo malignant transformation into cancer cells."
+  },
+  {
+    id: "pq-doc-033",
+    topic: 'pastPaper',
+    type: 'mcq',
+    prompt: "A 25-year-old male post-RTA presents with dyspnea, JVD, absent right-sided breath sounds, and tracheal deviation. A scan rules out blood in the chest cavity. What is the diagnosis?",
+    choices: ["Tension pneumothorax","Hemothorax","Cardiac tamponade","Simple pneumothorax"],
+    correctIndex: 0,
+    rationale: "Respiratory distress, distended neck veins, absent breath sounds on one side, and contralateral tracheal deviation are the classic signs of a tension pneumothorax."
+  },
+  {
+    id: "pq-doc-034",
+    topic: 'pastPaper',
+    type: 'mcq',
+    prompt: "Based on the diagnosis of a tension pneumothorax, what is the most appropriate, life-saving immediate line of action the nurse must take?",
+    choices: ["Pass a chest tube","Blood transfusion","Needle decompression at the second intercostal space","Administer Labetalol"],
+    correctIndex: 2,
+    rationale: "Tension pneumothorax is an immediate threat to life. Needle decompression at the second intercostal space (mid-clavicular line) rapidly vents trapped air to relieve pressure."
+  },
+  {
+    id: "pq-doc-035",
+    topic: 'pastPaper',
+    type: 'mcq',
+    prompt: "Following the immediate life-saving needle decompression, what is the next definitive line of management for this patient?",
+    choices: ["Patient discharge","Pass a chest tube (chest tube insertion)","Repeat needle decompression","Open thoracotomy"],
+    correctIndex: 1,
+    rationale: "Needle decompression is a temporary, emergency stabilizing measure. Inserting a formal chest tube connected to an underwater seal is the definitive treatment to restore negative pressure."
+  },
+  {
+    id: "pq-doc-036",
+    topic: 'pastPaper',
+    type: 'mcq',
+    prompt: "A segment of the chest wall moves opposite to the rest of the thorax during breathing. What is this phenomenon called?",
+    choices: ["Paradoxical chest movement","Bradycardia","Hyperactive reflex","Chest rigidity"],
+    correctIndex: 0,
+    rationale: "Paradoxical chest wall movement describes the inward retraction of a detached chest segment during inspiration and its outward expansion during expiration."
+  },
+  {
+    id: "pq-doc-037",
+    topic: 'pastPaper',
+    type: 'mcq',
+    prompt: "Which traumatic thoracic injury is classically characterized by paradoxical chest wall movement?",
+    choices: ["Tension pneumothorax","Hemothorax","Flail chest","Simple pneumothorax"],
+    correctIndex: 2,
+    rationale: "A flail chest occurs when consecutive ribs are fractured in two or more places, causing a structurally detached segment that moves paradoxically under pressure changes."
+  },
+  {
+    id: "pq-doc-038",
+    topic: 'pastPaper',
+    type: 'mcq',
+    prompt: "What represents the most appropriate, supportive initial line of action to stabilize the patient's respiratory status in a flail chest?",
+    choices: ["Pass a chest tube","Administer blood","Needle decompression","Administer supplemental oxygen (Give oxygen)"],
+    correctIndex: 3,
+    rationale: "Oxygen therapy is the first-line supportive treatment to combat hypoxemia resulting from the flail segment's work of breathing and underlying pulmonary contusions."
+  },
+  {
+    id: "pq-doc-039",
+    topic: 'pastPaper',
+    type: 'mcq',
+    prompt: "After inserting a formal chest tube into a patient, the nurse must ensure the physical underwater seal drainage system is safely positioned where?",
+    choices: ["Above the chest level","At chest level","Below the level of the patient's chest","On the patient's lap"],
+    correctIndex: 2,
+    rationale: "The chest drainage system must always remain strictly below the anatomical level of the patient's chest to use gravity and prevent backflow of air/fluid into the negative-pressure pleural space."
+  },
+  {
+    id: "pq-doc-040",
+    topic: 'pastPaper',
+    type: 'mcq',
+    prompt: "A 65-year-old male diagnosed with advanced lung cancer presents with sudden, severe localized bone pain. What is the most likely cause?",
+    choices: ["Hypertension","Bone metastasis","Gastrointestinal bleed","Gout"],
+    correctIndex: 1,
+    rationale: "Lung cancer frequently metastasizes to the skeleton (spine, ribs, pelvis). Sudden, sharp, deep localized bone pain indicates secondary osteolytic destruction."
+  },
+  {
+    id: "pq-doc-041",
+    topic: 'pastPaper',
+    type: 'mcq',
+    prompt: "How can a nurse objectively verify that an active chest tube and underwater seal system are functioning properly?",
+    choices: ["Tidaling (fluid fluctuation) and intermittent bubbling in the water-seal chamber","Presence of blood in the drainage chamber","Continuous bubbling in the water-seal chamber","Chest tube being clamped"],
+    correctIndex: 0,
+    rationale: "Tidaling confirms system patency and fluctuates with respiration. Intermittent bubbling shows normal air evacuation; continuous bubbling indicates a system leak."
+  },
+  {
+    id: "pq-doc-042",
+    topic: 'pastPaper',
+    type: 'mcq',
+    prompt: "Which of the following parameters represents standard objective criteria indicating that a chest tube can be safely removed?",
+    choices: ["Drainage less than 50 to 100 mL per day","Rapid bubbling in the water-seal chamber","Tube being clamped for 1 hour","Sudden increase in drainage"],
+    correctIndex: 0,
+    rationale: "Safe removal criteria require that the underlying lung is fully re-expanded (no air leaks) and fluid drainage has declined to a minimal baseline (below 50-100 mL over 24 hours)."
+  },
+  {
+    id: "pq-doc-043",
+    topic: 'pastPaper',
+    type: 'mcq',
+    prompt: "A patient is 6 hours post-pneumonectomy with severe restlessness, tachycardia (126 bpm), blood pressure of 100/72 mmHg, and stable SpO2 at 98% on room air. What complication is occurring?",
+    choices: ["Pulmonary embolism","Post-surgical internal hemorrhage or bleeding","Hysteria","Acute confusional state"],
+    correctIndex: 1,
+    rationale: "Early postoperative tachycardia and hypotensive trends paired with restlessness indicate bleeding. Preserved oxygen saturation (98%) on room air rules out a severe pulmonary embolism."
+  },
+  {
+    id: "pq-doc-044",
+    topic: 'pastPaper',
+    type: 'mcq',
+    prompt: "A patient is 12 hours post-lobectomy with acute dyspnea, localized chest pain, tachycardia (106 bpm), tachypnea (26 breaths/min), and an SpO2 of 88%. What complication is occurring?",
+    choices: ["Post-surgical internal hemorrhage","Pulmonary embolism","Hysteria","Acute confusional state"],
+    correctIndex: 1,
+    rationale: "Acute chest pain, dyspnea, tachypnea, and profound arterial desaturation (88%) point to a severe ventilation-perfusion mismatch classic of an acute pulmonary embolism."
+  },
+  {
+    id: "pq-doc-045",
+    topic: 'pastPaper',
+    type: 'mcq',
+    prompt: "Massive hemothorax is most immediately associated with which life-threatening systemic complication?",
+    choices: ["Hypertension","Shock (hypovolemic)","Hyperglycemia","Polycythemia"],
+    correctIndex: 1,
+    rationale: "Accumulation of over 1.5 L of blood in the pleural space severely depletes intravascular volume, leading to circulatory collapse and acute hypovolemic shock."
+  },
+  {
+    id: "pq-doc-046",
+    topic: 'pastPaper',
+    type: 'mcq',
+    prompt: "Because of their central location, expanding mediastinal tumors can commonly compress surrounding structures and cause which syndrome?",
+    choices: ["Renal failure","Acute appendicitis","Hepatitis","Superior Vena Cava (SVC) Syndrome"],
+    correctIndex: 3,
+    rationale: "Expanding central mediastinal tumors compress the low-pressure, thin-walled superior vena cava, mechanically restricting venous drainage from the head, neck, and upper limbs."
+  },
+  {
+    id: "pq-doc-047",
+    topic: 'pastPaper',
+    type: 'mcq',
+    prompt: "A patient with lymphoma suddenly develops facial swelling and neck vein distension. What complication should you immediately suspect?",
+    choices: ["Superior Vena Cava (SVC) Syndrome","","Syndrome    B) Renal failure    C) Acute appendicitis","Hepatitis"],
+    correctIndex: 0,
+    rationale: "Lymphoma is a classic central mediastinal mass; secondary upper body edema and jugular venous engorgement represent the classic hallmarks of SVC obstruction."
+  },
+  {
+    id: "pq-doc-048",
+    topic: 'pastPaper',
+    type: 'mcq',
+    prompt: "What anatomical landmark is highly critical to locate when preparing a patient for a thoracentesis or chest tube placement?",
+    choices: ["Angle of Louis (sternal angle)","Xiphoid process","Midclavicular line","Jugular notch"],
+    correctIndex: 0,
+    rationale: "The sternal angle (Angle of Louis) is a critical palpable landmark aligning directly with the second rib, serving as the anatomical reference to count intercostal spaces."
+  },
+  {
+    id: "pq-doc-049",
+    topic: 'pastPaper',
+    type: 'mcq',
+    prompt: "Which of the following pleural conditions and clinical descriptions has been wrongly matched?",
+    choices: ["Pleural effusion \\- fluid accumulation","Empyema \\- pus accumulation","Pneumothorax \\- air accumulation","None of the above"],
+    correctIndex: 3,
+    rationale: "All options are perfectly and accurately matched to their respective medical definitions. None of the matches are incorrect."
+  },
+  {
+    id: "pq-doc-050",
+    topic: 'pastPaper',
+    type: 'mcq',
+    prompt: "Definitively determining both the pathological grade and the clinical stage of a thymoma requires which of the following diagnostic procedures?",
+    choices: ["CT scan","PET scan","Biopsy","MRI"],
+    correctIndex: 2,
+    rationale: "Direct histopathological tissue analysis via a physical biopsy is the only gold-standard method to definitively establish cell grade and local tissue invasion depth."
+  }
 ];
 
 // ---------- helpers ----------
