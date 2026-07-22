@@ -47,6 +47,12 @@ test('buildChainRule applies the chain rule to a linear inner function', () => {
   assert.equal(q.correctAnswer, '8(2x+3)^{3}');
 });
 
+test('buildChainRule collapses exponent 1 to no exponent notation', () => {
+  // f = (2x+3)^{2} -> f' = 2*2*(2x+3)^{1} = 4(2x+3)
+  const q = buildChainRule({ a: 2, b: 3, n: 2 });
+  assert.equal(q.correctAnswer, '4(2x+3)');
+});
+
 test('buildTrigExpLog covers each variant', () => {
   assert.equal(buildTrigExpLog({ variant: 'sin', a: 3, k: 2 }).correctAnswer, '6\\cos(2x)');
   assert.equal(buildTrigExpLog({ variant: 'cos', a: 3, k: 2 }).correctAnswer, '-6\\sin(2x)');

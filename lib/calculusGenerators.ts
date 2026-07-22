@@ -87,8 +87,8 @@ export function buildChainRule(p: { a: number; b: number; n: number }): Calculus
     source: 'generated',
     instructions: 'Differentiate using the chain rule:',
     prompt,
-    correctAnswer: `${coef}(${p.a}x+${p.b})^{${innerExp}}`,
-    solution: `\\text{Chain rule: bring down }${p.n}\\text{, reduce power, times inner derivative }${p.a}:\\ ${coef}(${p.a}x+${p.b})^{${innerExp}}`,
+    correctAnswer: `${coef}(${p.a}x+${p.b})${innerExp === 1 ? '' : `^{${innerExp}}`}`,
+    solution: `\\text{Chain rule: bring down }${p.n}\\text{, reduce power, times inner derivative }${p.a}:\\ ${coef}(${p.a}x+${p.b})${innerExp === 1 ? '' : `^{${innerExp}}`}`,
   };
 }
 
