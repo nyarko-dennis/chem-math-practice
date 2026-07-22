@@ -1274,6 +1274,753 @@ git commit -m "chore(calculus): lint and build fixes"
 
 ---
 
+## Task 10: Learn-mode lesson data
+
+> **Amendment 2 (2026-07-22):** Tasks 10-12 add Learn mode (per-topic worked
+> examples with step-by-step reveal + try-it-yourself) per the spec's Learn
+> mode section. Tasks 1-9 are complete at this point.
+
+**Files:**
+- Create: `lib/calculusLessons.ts`
+- Test: `lib/calculusLessons.test.ts`
+
+**Interfaces:**
+- Consumes: `CalculusQuestion` from `./calculusTypes.ts`; `generatePowerRule`, `generateProductRule`, `generateQuotientRule`, `generateChainRule`, `generateTrigExpLog` from `./calculusGenerators.ts`; `implicitHigherOrderQuestions` from `./calculusImplicitBank.ts`; `partialDifferentiationQuestions` from `./calculusPartialBank.ts`; `applicationsQuestions` from `./calculusApplicationsBank.ts`; `randId` from `./calculusGenerators.ts`.
+- Produces:
+  - `ExampleStep { explanation: string; latex: string }`
+  - `WorkedExample { id: string; title: string; prompt: string; steps: ExampleStep[]; answer: string }`
+  - `CalculusLesson { id: string; title: string; intro: string; examples: WorkedExample[]; tryIt: () => CalculusQuestion }`
+  - `calculusLessons: CalculusLesson[]` (10 lessons, ids `lesson-01`..`lesson-10`)
+
+- [ ] **Step 1: Write the failing test**
+
+Create `lib/calculusLessons.test.ts`:
+
+```typescript
+import { test } from 'node:test';
+import assert from 'node:assert/strict';
+import { calculusLessons } from './calculusLessons.ts';
+
+test('there are 10 lessons with unique ids', () => {
+  assert.equal(calculusLessons.length, 10);
+  const ids = calculusLessons.map((l) => l.id);
+  assert.equal(new Set(ids).size, 10);
+});
+
+test('every lesson is well-formed', () => {
+  for (const l of calculusLessons) {
+    assert.ok(l.title && l.intro);
+    assert.ok(l.examples.length >= 2, `${l.id} needs >=2 examples`);
+    for (const ex of l.examples) {
+      assert.ok(ex.id && ex.title && ex.prompt && ex.answer);
+      assert.ok(ex.steps.length >= 2, `${ex.id} needs >=2 steps`);
+      for (const s of ex.steps) assert.ok(s.explanation && s.latex);
+    }
+  }
+});
+
+test('example ids are globally unique', () => {
+  const ids = calculusLessons.flatMap((l) => l.examples.map((e) => e.id));
+  assert.equal(new Set(ids).size, ids.length);
+});
+
+test('tryIt draws a matching question for every lesson', () => {
+  const expectCategory: Record<string, string> = {
+    'lesson-01': 'basicRules', 'lesson-02': 'basicRules', 'lesson-03': 'basicRules',
+    'lesson-04': 'basicRules', 'lesson-05': 'basicRules',
+    'lesson-06': 'implicitHigherOrder', 'lesson-07': 'implicitHigherOrder',
+    'lesson-08': 'implicitHigherOrder',
+    'lesson-09': 'partial', 'lesson-10': 'applications',
+  };
+  for (const l of calculusLessons) {
+    for (let i = 0; i < 5; i++) {
+      const q = l.tryIt();
+      assert.equal(q.category, expectCategory[l.id], `${l.id} drew wrong category`);
+      assert.ok(q.prompt && q.correctAnswer && q.solution);
+    }
+  }
+});
+
+test('bank-backed lessons draw from the right subtopic slice', () => {
+  const byId = Object.fromEntries(calculusLessons.map((l) => [l.id, l]));
+  // implicit: source ids ih-01..ih-12; higher-order: ih-13..ih-24; parametric: ih-25..ih-30.
+  // tryIt re-ids drawn questions, so check the prompt appears in the right slice instead.
+  const implicitPrompts = new Set(
+    ['lesson-06', 'lesson-07', 'lesson-08'].map(() => '')
+  );
+  void implicitPrompts;
+  for (let i = 0; i < 10; i++) {
+    assert.match(byId['lesson-06'].tryIt().instructions, /implicit/i);
+    assert.match(byId['lesson-07'].tryIt().instructions, /second|third/i);
+    assert.match(byId['lesson-08'].tryIt().instructions, /parametric/i);
+  }
+});
+
+test('spot-check example math', () => {
+  const allExamples = Object.fromEntries(
+    calculusLessons.flatMap((l) => l.examples.map((e) => [e.id, e]))
+  );
+  assert.equal(allExamples['ex-power-1'].answer, '15x^{2}');
+  assert.equal(allExamples['ex-quot-1'].answer, '\\frac{-30}{(9x+2)^{2}}');
+  assert.equal(allExamples['ex-chain-1'].answer, '6(2x+9)^{2}');
+  assert.equal(allExamples['ex-impl-1'].answer, '-\\frac{x}{y}');
+});
+```
+
+- [ ] **Step 2: Run test to verify it fails**
+
+Run: `node --test lib/calculusLessons.test.ts`
+Expected: FAIL - cannot find module `./calculusLessons.ts`.
+
+- [ ] **Step 3: Write the implementation**
+
+Create `lib/calculusLessons.ts`. Every `explanation` is plain language: technical terms glossed in everyday words.
+
+```typescript
+import type { CalculusQuestion } from './calculusTypes.ts';
+import {
+  generatePowerRule,
+  generateProductRule,
+  generateQuotientRule,
+  generateChainRule,
+  generateTrigExpLog,
+  randId,
+} from './calculusGenerators.ts';
+import { implicitHigherOrderQuestions } from './calculusImplicitBank.ts';
+import { partialDifferentiationQuestions } from './calculusPartialBank.ts';
+import { applicationsQuestions } from './calculusApplicationsBank.ts';
+
+export interface ExampleStep {
+  explanation: string;
+  latex: string;
+}
+
+export interface WorkedExample {
+  id: string;
+  title: string;
+  prompt: string;
+  steps: ExampleStep[];
+  answer: string;
+}
+
+export interface CalculusLesson {
+  id: string;
+  title: string;
+  intro: string;
+  examples: WorkedExample[];
+  tryIt: () => CalculusQuestion;
+}
+
+function drawFrom(bank: CalculusQuestion[]): CalculusQuestion {
+  const q = bank[Math.floor(Math.random() * bank.length)];
+  return { ...q, id: randId() };
+}
+
+// Bank slices by position (ids are ordered: ih-01..12 implicit, ih-13..24 higher-order, ih-25..30 parametric)
+const implicitSlice = implicitHigherOrderQuestions.slice(0, 12);
+const higherOrderSlice = implicitHigherOrderQuestions.slice(12, 24);
+const parametricSlice = implicitHigherOrderQuestions.slice(24, 30);
+
+export const calculusLessons: CalculusLesson[] = [
+  {
+    id: 'lesson-01',
+    title: 'Power rule',
+    intro: 'The power rule is the workhorse of differentiation. For any power of x, you bring the power down to the front as a multiplier, then knock the power down by one. It works for whole numbers, negatives, and fractions alike.',
+    examples: [
+      {
+        id: 'ex-power-1',
+        title: 'Differentiate y = 5x^3',
+        prompt: 'y=5x^{3}',
+        steps: [
+          { explanation: 'The power rule says: bring the power down front as a multiplier, then reduce the power by one.', latex: '\\frac{d}{dx}x^{n}=nx^{n-1}' },
+          { explanation: 'Here the power is 3. Bring the 3 down and multiply it by the 5 already in front, then drop the power from 3 to 2.', latex: '\\frac{dy}{dx}=5\\cdot 3x^{3-1}' },
+          { explanation: 'Tidy up: 5 times 3 is 15.', latex: '\\frac{dy}{dx}=15x^{2}' },
+        ],
+        answer: '15x^{2}',
+      },
+      {
+        id: 'ex-power-2',
+        title: 'Differentiate y = 2x^4 + 7x',
+        prompt: 'y=2x^{4}+7x',
+        steps: [
+          { explanation: 'When terms are added, differentiate each term on its own (term-by-term).', latex: '\\frac{dy}{dx}=\\frac{d}{dx}(2x^{4})+\\frac{d}{dx}(7x)' },
+          { explanation: 'First term: bring down the 4, multiply by 2, drop the power to 3. Second term: the derivative of 7x is just 7, because x to the power 1 differentiates to 1.', latex: '\\frac{dy}{dx}=2\\cdot 4x^{3}+7' },
+          { explanation: 'Tidy up.', latex: '\\frac{dy}{dx}=8x^{3}+7' },
+        ],
+        answer: '8x^{3}+7',
+      },
+    ],
+    tryIt: generatePowerRule,
+  },
+  {
+    id: 'lesson-02',
+    title: 'Product rule',
+    intro: 'When two expressions are multiplied together, you cannot just differentiate each and multiply. The product rule says: differentiate the first and keep the second, then keep the first and differentiate the second, and add the two pieces.',
+    examples: [
+      {
+        id: 'ex-prod-1',
+        title: 'Differentiate y = (x^2 + 3)(x^4 + 1)',
+        prompt: 'y=(x^{2}+3)(x^{4}+1)',
+        steps: [
+          { explanation: 'Name the two factors: u is the first bracket, v is the second.', latex: 'u=x^{2}+3,\\quad v=x^{4}+1' },
+          { explanation: 'Differentiate each factor separately with the power rule.', latex: "u'=2x,\\quad v'=4x^{3}" },
+          { explanation: 'Apply the product rule: (derivative of first)(second) + (first)(derivative of second).', latex: "\\frac{dy}{dx}=u'v+uv'=2x(x^{4}+1)+(x^{2}+3)\\cdot 4x^{3}" },
+          { explanation: 'Multiply out both pieces.', latex: '\\frac{dy}{dx}=2x^{5}+2x+4x^{5}+12x^{3}' },
+          { explanation: 'Collect like terms: 2x^5 and 4x^5 combine to 6x^5.', latex: '\\frac{dy}{dx}=6x^{5}+12x^{3}+2x' },
+        ],
+        answer: '6x^{5}+12x^{3}+2x',
+      },
+      {
+        id: 'ex-prod-2',
+        title: 'Differentiate y = x^2 sin(x)',
+        prompt: 'y=x^{2}\\sin(x)',
+        steps: [
+          { explanation: 'Name the factors: u is x squared, v is sin(x).', latex: 'u=x^{2},\\quad v=\\sin(x)' },
+          { explanation: 'Differentiate each: the power rule gives 2x, and the derivative of sin is cos.', latex: "u'=2x,\\quad v'=\\cos(x)" },
+          { explanation: 'Apply the product rule and leave the answer tidy - there are no like terms to collect here.', latex: '\\frac{dy}{dx}=2x\\sin(x)+x^{2}\\cos(x)' },
+        ],
+        answer: '2x\\sin(x)+x^{2}\\cos(x)',
+      },
+    ],
+    tryIt: generateProductRule,
+  },
+  {
+    id: 'lesson-03',
+    title: 'Quotient rule',
+    intro: 'For one expression divided by another, use the quotient rule: (derivative of top times bottom, minus top times derivative of bottom), all over the bottom squared. The subtraction order matters - top first.',
+    examples: [
+      {
+        id: 'ex-quot-1',
+        title: 'Differentiate y = (3x+4)/(9x+2)',
+        prompt: 'y=\\frac{3x+4}{9x+2}',
+        steps: [
+          { explanation: 'Name the parts: u is the top (numerator), v is the bottom (denominator).', latex: 'u=3x+4,\\quad v=9x+2' },
+          { explanation: 'Differentiate each part. Both are straight lines, so the derivatives are just the x-coefficients.', latex: "u'=3,\\quad v'=9" },
+          { explanation: "Apply the quotient rule: (u'v - uv') over v squared.", latex: "\\frac{dy}{dx}=\\frac{u'v-uv'}{v^{2}}=\\frac{3(9x+2)-9(3x+4)}{(9x+2)^{2}}" },
+          { explanation: 'Expand the top: 27x + 6 - 27x - 36. The x terms cancel.', latex: '\\frac{dy}{dx}=\\frac{-30}{(9x+2)^{2}}' },
+        ],
+        answer: '\\frac{-30}{(9x+2)^{2}}',
+      },
+      {
+        id: 'ex-quot-2',
+        title: 'Differentiate y = x^2/(x+1)',
+        prompt: 'y=\\frac{x^{2}}{x+1}',
+        steps: [
+          { explanation: 'Name the parts: u is x squared on top, v is x+1 on the bottom.', latex: 'u=x^{2},\\quad v=x+1' },
+          { explanation: 'Differentiate each part.', latex: "u'=2x,\\quad v'=1" },
+          { explanation: 'Apply the quotient rule.', latex: '\\frac{dy}{dx}=\\frac{2x(x+1)-x^{2}\\cdot 1}{(x+1)^{2}}' },
+          { explanation: 'Expand and simplify the top: 2x^2 + 2x - x^2 leaves x^2 + 2x.', latex: '\\frac{dy}{dx}=\\frac{x^{2}+2x}{(x+1)^{2}}' },
+        ],
+        answer: '\\frac{x^{2}+2x}{(x+1)^{2}}',
+      },
+    ],
+    tryIt: generateQuotientRule,
+  },
+  {
+    id: 'lesson-04',
+    title: 'Chain rule',
+    intro: 'The chain rule handles a function wrapped inside another function - like a bracket raised to a power, or sin of something. Differentiate the outside function first (leaving the inside untouched), then multiply by the derivative of the inside.',
+    examples: [
+      {
+        id: 'ex-chain-1',
+        title: 'Differentiate y = (2x+9)^3',
+        prompt: 'y=(2x+9)^{3}',
+        steps: [
+          { explanation: 'Spot the structure: something (the inside, 2x+9) raised to the power 3 (the outside).', latex: '\\text{inside}=2x+9,\\quad \\text{outside}=(\\ )^{3}' },
+          { explanation: 'Differentiate the outside with the power rule, keeping the inside exactly as it is: bring the 3 down, reduce the power to 2.', latex: '3(2x+9)^{2}' },
+          { explanation: 'Now multiply by the derivative of the inside. The inside 2x+9 differentiates to 2.', latex: '\\frac{dy}{dx}=3(2x+9)^{2}\\cdot 2' },
+          { explanation: 'Tidy up: 3 times 2 is 6.', latex: '\\frac{dy}{dx}=6(2x+9)^{2}' },
+        ],
+        answer: '6(2x+9)^{2}',
+      },
+      {
+        id: 'ex-chain-2',
+        title: 'Differentiate y = sin(5x)',
+        prompt: 'y=\\sin(5x)',
+        steps: [
+          { explanation: 'Spot the structure: the inside is 5x, the outside is sin of something.', latex: '\\text{inside}=5x,\\quad \\text{outside}=\\sin(\\ )' },
+          { explanation: 'Differentiate the outside: sin becomes cos, inside untouched.', latex: '\\cos(5x)' },
+          { explanation: 'Multiply by the derivative of the inside: 5x differentiates to 5.', latex: '\\frac{dy}{dx}=5\\cos(5x)' },
+        ],
+        answer: '5\\cos(5x)',
+      },
+    ],
+    tryIt: generateChainRule,
+  },
+  {
+    id: 'lesson-05',
+    title: 'Trig, exponential & log derivatives',
+    intro: 'A few derivatives you simply memorise: sin goes to cos, cos goes to minus sin, e to the x stays itself, and ln(x) goes to 1 over x. Combined with the chain rule, these cover most functions you will meet.',
+    examples: [
+      {
+        id: 'ex-trig-1',
+        title: 'Differentiate y = 4sin(3x)',
+        prompt: 'y=4\\sin(3x)',
+        steps: [
+          { explanation: 'The standard result: sin differentiates to cos. Because the inside is 3x (not just x), the chain rule also multiplies by 3.', latex: '\\frac{d}{dx}\\sin(kx)=k\\cos(kx)' },
+          { explanation: 'Apply it with k = 3, keeping the 4 in front.', latex: '\\frac{dy}{dx}=4\\cdot 3\\cos(3x)' },
+          { explanation: 'Tidy up.', latex: '\\frac{dy}{dx}=12\\cos(3x)' },
+        ],
+        answer: '12\\cos(3x)',
+      },
+      {
+        id: 'ex-trig-2',
+        title: 'Differentiate y = e^(2x)',
+        prompt: 'y=e^{2x}',
+        steps: [
+          { explanation: 'e to the x is the function that is its own derivative. With 2x in the power, the chain rule multiplies by the derivative of 2x, which is 2.', latex: '\\frac{d}{dx}e^{kx}=ke^{kx}' },
+          { explanation: 'Apply it with k = 2.', latex: '\\frac{dy}{dx}=2e^{2x}' },
+        ],
+        answer: '2e^{2x}',
+      },
+      {
+        id: 'ex-trig-3',
+        title: 'Differentiate y = ln(4x)',
+        prompt: 'y=\\ln(4x)',
+        steps: [
+          { explanation: 'Use a log law first: ln(4x) splits into ln(4) + ln(x). ln(4) is just a constant number, and constants vanish when differentiated.', latex: 'y=\\ln(4)+\\ln(x)' },
+          { explanation: 'The standard result: ln(x) differentiates to 1 over x.', latex: '\\frac{dy}{dx}=\\frac{1}{x}' },
+        ],
+        answer: '\\frac{1}{x}',
+      },
+    ],
+    tryIt: generateTrigExpLog,
+  },
+  {
+    id: 'lesson-06',
+    title: 'Implicit differentiation',
+    intro: 'Sometimes y is tangled up with x in one equation and you cannot make y the subject. Implicit differentiation says: differentiate both sides with respect to x, and every time you differentiate a y-term, tag on a dy/dx (because y secretly depends on x). Then solve for dy/dx.',
+    examples: [
+      {
+        id: 'ex-impl-1',
+        title: 'Find dy/dx for x^2 + y^2 = 25',
+        prompt: 'x^{2}+y^{2}=25',
+        steps: [
+          { explanation: 'Differentiate every term with respect to x. The x-term is normal. The y-term gets differentiated too, but tagged with dy/dx. The constant 25 differentiates to 0.', latex: "2x+2y\\,y'=0" },
+          { explanation: "Move the x-term across and divide by the coefficient of dy/dx (written y' for short).", latex: "2y\\,y'=-2x" },
+          { explanation: 'Divide both sides by 2y.', latex: "y'=-\\frac{x}{y}" },
+        ],
+        answer: '-\\frac{x}{y}',
+      },
+      {
+        id: 'ex-impl-2',
+        title: 'Find dy/dx for x^2 y = 8',
+        prompt: 'x^{2}y=8',
+        steps: [
+          { explanation: 'The left side is a product of x^2 and y, so use the product rule while differentiating. The y-factor contributes a dy/dx tag.', latex: "2xy+x^{2}y'=0" },
+          { explanation: 'Isolate the dy/dx term.', latex: "x^{2}y'=-2xy" },
+          { explanation: 'Divide by x squared and cancel one x.', latex: "y'=-\\frac{2y}{x}" },
+        ],
+        answer: '-\\frac{2y}{x}',
+      },
+    ],
+    tryIt: () => drawFrom(implicitSlice),
+  },
+  {
+    id: 'lesson-07',
+    title: 'Higher-order derivatives',
+    intro: 'The second derivative is simply the derivative of the derivative - differentiate once, then differentiate the result again. It measures how the slope itself is changing, which is why it shows up in acceleration and in max/min tests.',
+    examples: [
+      {
+        id: 'ex-high-1',
+        title: 'Find the second derivative of y = x^4',
+        prompt: 'y=x^{4}',
+        steps: [
+          { explanation: 'Differentiate once with the power rule.', latex: "y'=4x^{3}" },
+          { explanation: 'Differentiate the result again: bring down the 3, multiply by 4, drop the power to 2.', latex: "y''=12x^{2}" },
+        ],
+        answer: '12x^{2}',
+      },
+      {
+        id: 'ex-high-2',
+        title: 'Find the second derivative of y = e^(2x)',
+        prompt: 'y=e^{2x}',
+        steps: [
+          { explanation: 'First derivative: e to the 2x stays itself, times the chain-rule factor 2.', latex: "y'=2e^{2x}" },
+          { explanation: 'Differentiate again: another factor of 2 comes down.', latex: "y''=4e^{2x}" },
+        ],
+        answer: '4e^{2x}',
+      },
+    ],
+    tryIt: () => drawFrom(higherOrderSlice),
+  },
+  {
+    id: 'lesson-08',
+    title: 'Parametric differentiation',
+    intro: 'When x and y are each given in terms of a third variable t (a parameter), you do not need y as a function of x. Differentiate both with respect to t, then divide: dy/dx equals (dy/dt) over (dx/dt).',
+    examples: [
+      {
+        id: 'ex-param-1',
+        title: 'Find dy/dx for x = t^2, y = t^3',
+        prompt: 'x=t^{2},\\ y=t^{3}',
+        steps: [
+          { explanation: 'Differentiate each equation with respect to t.', latex: '\\frac{dx}{dt}=2t,\\quad \\frac{dy}{dt}=3t^{2}' },
+          { explanation: 'Divide dy/dt by dx/dt.', latex: '\\frac{dy}{dx}=\\frac{3t^{2}}{2t}' },
+          { explanation: 'Cancel one t.', latex: '\\frac{dy}{dx}=\\frac{3t}{2}' },
+        ],
+        answer: '\\frac{3t}{2}',
+      },
+      {
+        id: 'ex-param-2',
+        title: 'Find dy/dx for x = 2t, y = t^2',
+        prompt: 'x=2t,\\ y=t^{2}',
+        steps: [
+          { explanation: 'Differentiate each with respect to t.', latex: '\\frac{dx}{dt}=2,\\quad \\frac{dy}{dt}=2t' },
+          { explanation: 'Divide and simplify: 2t over 2 is t.', latex: '\\frac{dy}{dx}=\\frac{2t}{2}=t' },
+        ],
+        answer: 't',
+      },
+    ],
+    tryIt: () => drawFrom(parametricSlice),
+  },
+  {
+    id: 'lesson-09',
+    title: 'Partial differentiation',
+    intro: 'For a function of two variables like f(x, y), a partial derivative asks: how does f change if I nudge just one variable and freeze the other? Differentiate with respect to the chosen variable and treat the other one exactly like a constant number.',
+    examples: [
+      {
+        id: 'ex-part-1',
+        title: 'Find both first partials of f = x^2 + 3xy + y^2',
+        prompt: 'f(x,y)=x^{2}+3xy+y^{2}',
+        steps: [
+          { explanation: 'For the partial with respect to x, pretend y is a constant. x^2 gives 2x; 3xy is (3y) times x, so it gives 3y; y^2 is a pure constant, giving 0.', latex: '\\frac{\\partial f}{\\partial x}=2x+3y' },
+          { explanation: 'For the partial with respect to y, pretend x is a constant. x^2 gives 0; 3xy gives 3x; y^2 gives 2y.', latex: '\\frac{\\partial f}{\\partial y}=3x+2y' },
+        ],
+        answer: '2x+3y',
+      },
+      {
+        id: 'ex-part-2',
+        title: 'Find the mixed partial f_xy of f = x^2 y^3',
+        prompt: 'f(x,y)=x^{2}y^{3}',
+        steps: [
+          { explanation: 'First differentiate with respect to x (y frozen): y^3 rides along as a constant.', latex: 'f_{x}=2xy^{3}' },
+          { explanation: 'Now differentiate that result with respect to y (x frozen): bring down the 3.', latex: 'f_{xy}=6xy^{2}' },
+        ],
+        answer: '6xy^{2}',
+      },
+    ],
+    tryIt: () => drawFrom(partialDifferentiationQuestions),
+  },
+  {
+    id: 'lesson-10',
+    title: 'Applications: tangents, max/min, kinematics',
+    intro: 'The derivative is a slope-measuring machine, and that has three big uses: finding tangent lines to curves, locating maximum and minimum points (where the slope is zero), and turning displacement into velocity and acceleration.',
+    examples: [
+      {
+        id: 'ex-app-1',
+        title: 'Tangent to y = x^2 at x = 3',
+        prompt: 'y=x^{2},\\ x=3',
+        steps: [
+          { explanation: 'The derivative gives the slope of the curve at any point.', latex: '\\frac{dy}{dx}=2x' },
+          { explanation: 'Substitute x = 3 to get the slope of the tangent there.', latex: '\\text{slope}=2(3)=6' },
+          { explanation: 'The point on the curve is (3, 9). Use the straight-line formula y - y1 = m(x - x1).', latex: 'y-9=6(x-3)' },
+          { explanation: 'Rearrange into y = mx + c form.', latex: 'y=6x-9' },
+        ],
+        answer: 'y=6x-9',
+      },
+      {
+        id: 'ex-app-2',
+        title: 'Minimum of y = x^2 - 6x + 5',
+        prompt: 'y=x^{2}-6x+5',
+        steps: [
+          { explanation: 'At a maximum or minimum the slope is zero, so differentiate and set the result to 0.', latex: '\\frac{dy}{dx}=2x-6=0' },
+          { explanation: 'Solve for x.', latex: 'x=3' },
+          { explanation: 'Check it is a minimum: the second derivative is 2, which is positive, so the curve bends upwards (a valley, not a hill).', latex: '\\frac{d^{2}y}{dx^{2}}=2>0' },
+          { explanation: 'Substitute x = 3 back to get the minimum value of y.', latex: 'y=9-18+5=-4' },
+        ],
+        answer: '-4',
+      },
+      {
+        id: 'ex-app-3',
+        title: 'Velocity from displacement: s = t^3 - 3t at t = 2',
+        prompt: 's=t^{3}-3t,\\ t=2',
+        steps: [
+          { explanation: 'Velocity is the rate of change of displacement - differentiate s with respect to t.', latex: 'v=\\frac{ds}{dt}=3t^{2}-3' },
+          { explanation: 'Substitute t = 2.', latex: 'v=3(4)-3=9' },
+        ],
+        answer: '9',
+      },
+    ],
+    tryIt: () => drawFrom(applicationsQuestions),
+  },
+];
+```
+
+- [ ] **Step 4: Run test to verify it passes**
+
+Run: `node --test lib/calculusLessons.test.ts`
+Expected: PASS (6 tests).
+
+- [ ] **Step 5: Run the whole suite**
+
+Run: `npm test`
+Expected: 44 tests pass (38 existing + 6 new).
+
+- [ ] **Step 6: Commit**
+
+```bash
+git add lib/calculusLessons.ts lib/calculusLessons.test.ts
+git commit -m "feat(calculus): add learn-mode lesson data with worked examples"
+```
+
+---
+
+## Task 11: Learn-mode UI
+
+**Files:**
+- Create: `app/calculus/learn/page.tsx`
+- Modify: `app/calculus/page.tsx` (add a "Learn the topics" link on the start screen)
+
+**Interfaces:**
+- Consumes: `calculusLessons`, `CalculusLesson`, `WorkedExample` from `@/lib/calculusLessons`; `CalculusQuestion` from `@/lib/calculusQuestions`; `normalizeCalculusLatex` from `@/lib/calculusAnswer`; `checkAnswer` from `@/lib/checkAnswer`; `MathDisplay`, `MathInput` components.
+- Production imports use `@/` without `.ts` extensions.
+
+- [ ] **Step 1: Write the learn page**
+
+Create `app/calculus/learn/page.tsx`:
+
+```tsx
+'use client';
+
+import { useState } from 'react';
+import Link from 'next/link';
+import { calculusLessons, CalculusLesson, WorkedExample } from '@/lib/calculusLessons';
+import { CalculusQuestion } from '@/lib/calculusQuestions';
+import { normalizeCalculusLatex } from '@/lib/calculusAnswer';
+import { checkAnswer } from '@/lib/checkAnswer';
+import MathDisplay from '@/components/MathDisplay';
+import MathInput from '@/components/MathInput';
+
+function ExampleCard({ example }: { example: WorkedExample }) {
+  const [revealed, setRevealed] = useState(0);
+  const done = revealed >= example.steps.length;
+
+  return (
+    <div className="bg-white p-6 rounded-xl shadow-sm border border-slate-100 mb-4">
+      <h3 className="font-bold text-slate-800 mb-2">{example.title}</h3>
+      <div className="text-xl text-center py-4 bg-slate-50 rounded-lg border border-slate-100 overflow-x-auto mb-4">
+        <MathDisplay latex={example.prompt} block />
+      </div>
+
+      {example.steps.slice(0, revealed).map((s, i) => (
+        <div key={i} className="mb-3 pl-4 border-l-2 border-teal-200">
+          <p className="text-sm text-slate-600 mb-1">
+            <span className="font-semibold text-teal-700">Step {i + 1}.</span> {s.explanation}
+          </p>
+          <div className="overflow-x-auto">
+            <MathDisplay latex={s.latex} block />
+          </div>
+        </div>
+      ))}
+
+      {!done ? (
+        <button
+          onClick={() => setRevealed(revealed + 1)}
+          className="mt-2 bg-teal-50 border border-teal-200 text-teal-700 font-semibold py-2 px-4 rounded-lg hover:bg-teal-100 transition-colors text-sm"
+        >
+          {revealed === 0 ? 'Show first step' : 'Show next step'}
+        </button>
+      ) : (
+        <div className="mt-2 p-3 bg-emerald-50 border border-emerald-200 rounded-lg text-emerald-800 text-sm font-medium flex items-center gap-2">
+          <span>Final answer:</span>
+          <MathDisplay latex={example.answer} />
+        </div>
+      )}
+    </div>
+  );
+}
+
+function TryIt({ lesson }: { lesson: CalculusLesson }) {
+  const [question, setQuestion] = useState<CalculusQuestion | null>(null);
+  const [answer, setAnswer] = useState('');
+  const [result, setResult] = useState<boolean | null>(null);
+  const [showSolution, setShowSolution] = useState(false);
+
+  const draw = () => {
+    setQuestion(lesson.tryIt());
+    setAnswer('');
+    setResult(null);
+    setShowSolution(false);
+  };
+
+  const check = () => {
+    if (!question) return;
+    const ok = checkAnswer(
+      'algebra',
+      normalizeCalculusLatex(question.correctAnswer),
+      normalizeCalculusLatex(answer),
+    );
+    setResult(ok);
+    setShowSolution(!ok);
+  };
+
+  if (!question) {
+    return (
+      <button
+        onClick={draw}
+        className="w-full bg-teal-600 hover:bg-teal-700 text-white font-bold py-3 px-6 rounded-lg transition-colors"
+      >
+        Try one yourself →
+      </button>
+    );
+  }
+
+  return (
+    <div className="bg-white p-6 rounded-xl shadow-sm border border-teal-200">
+      <p className="text-sm uppercase tracking-wide font-semibold text-teal-700 mb-2">Your turn</p>
+      <p className="text-slate-800 mb-3">{question.instructions}</p>
+      <div className="text-xl text-center py-4 bg-slate-50 rounded-lg border border-slate-100 overflow-x-auto mb-4">
+        <MathDisplay latex={question.prompt} block />
+      </div>
+      <MathInput key={question.id} value={answer} onChange={setAnswer} disabled={result === true} />
+      {result !== null && (
+        <div className={`mt-2 font-medium ${result ? 'text-green-600' : 'text-red-600'}`}>
+          {result ? 'Correct!' : 'Not quite - see the worked solution below, then try another.'}
+        </div>
+      )}
+      {showSolution && (
+        <div className="mt-4 p-4 bg-yellow-50 border border-yellow-200 rounded-lg text-slate-700">
+          <p className="mb-2 text-sm">
+            Correct answer: <span className="font-mono font-bold">{question.correctAnswer}</span>
+          </p>
+          <div className="overflow-x-auto">
+            <MathDisplay latex={question.solution} />
+          </div>
+        </div>
+      )}
+      <div className="flex justify-end gap-3 mt-4">
+        {result !== true && (
+          <button
+            onClick={check}
+            disabled={!answer}
+            className="bg-teal-600 hover:bg-teal-700 text-white font-bold py-2 px-6 rounded-lg transition-colors disabled:opacity-50"
+          >
+            Check Answer
+          </button>
+        )}
+        <button
+          onClick={draw}
+          className="bg-slate-800 hover:bg-slate-900 text-white font-bold py-2 px-6 rounded-lg transition-colors"
+        >
+          Try another
+        </button>
+      </div>
+    </div>
+  );
+}
+
+export default function CalculusLearnPage() {
+  const [lessonId, setLessonId] = useState<string | null>(null);
+  const lesson = calculusLessons.find((l) => l.id === lessonId) ?? null;
+
+  if (!lesson) {
+    return (
+      <div className="min-h-screen bg-slate-50 p-4">
+        <div className="max-w-2xl mx-auto py-8">
+          <div className="flex items-center justify-between mb-6">
+            <h1 className="text-2xl font-bold text-slate-800">Learn Calculus</h1>
+            <Link href="/calculus" className="text-sm text-slate-500 hover:text-slate-800">← Back to practice</Link>
+          </div>
+          <p className="text-slate-600 mb-6">
+            Pick a topic. Each lesson walks through worked examples one step at a time, then lets you try a question yourself.
+          </p>
+          <div className="grid gap-3">
+            {calculusLessons.map((l, i) => (
+              <button
+                key={l.id}
+                onClick={() => setLessonId(l.id)}
+                className="text-left bg-white p-4 rounded-xl shadow-sm border border-slate-100 hover:border-teal-300 hover:shadow-md transition-all"
+              >
+                <span className="text-xs font-semibold text-teal-600 uppercase tracking-wide">Lesson {i + 1}</span>
+                <h2 className="font-bold text-slate-800">{l.title}</h2>
+              </button>
+            ))}
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  return (
+    <div className="min-h-screen bg-slate-50 p-4">
+      <div className="max-w-2xl mx-auto py-8">
+        <div className="flex items-center justify-between mb-4">
+          <h1 className="text-2xl font-bold text-slate-800">{lesson.title}</h1>
+          <button onClick={() => setLessonId(null)} className="text-sm text-slate-500 hover:text-slate-800">
+            ← All lessons
+          </button>
+        </div>
+        <p className="text-slate-600 mb-6">{lesson.intro}</p>
+        {lesson.examples.map((ex) => (
+          <ExampleCard key={ex.id} example={ex} />
+        ))}
+        <div className="mt-6">
+          <TryIt key={lesson.id} lesson={lesson} />
+        </div>
+      </div>
+    </div>
+  );
+}
+```
+
+- [ ] **Step 2: Add the Learn link to the practice start screen**
+
+In `app/calculus/page.tsx`, on the start screen (the `if (!started)` block), immediately AFTER the `{canResume && (...)}` block and BEFORE the `<div className="space-y-4 mb-6">`, add:
+
+```tsx
+          <Link
+            href="/calculus/learn"
+            className="block w-full mb-4 text-center bg-white border border-teal-300 text-teal-700 font-semibold py-3 px-6 rounded-lg hover:bg-teal-50 transition-colors"
+          >
+            📖 Learn the topics - worked examples, step by step
+          </Link>
+```
+
+(`Link` is already imported in that file.)
+
+- [ ] **Step 3: Type-check and lint**
+
+Run: `npx tsc --noEmit -p tsconfig.json`
+Expected: no errors referencing `app/calculus/learn/page.tsx` or `app/calculus/page.tsx`.
+
+Run: `npx eslint app/calculus/learn/page.tsx app/calculus/page.tsx`
+Expected: clean.
+
+- [ ] **Step 4: Commit**
+
+```bash
+git add app/calculus/learn/page.tsx app/calculus/page.tsx
+git commit -m "feat(calculus): add learn mode with step-by-step worked examples"
+```
+
+---
+
+## Task 12: Learn-mode verification
+
+**Files:** none created; verification only.
+
+- [ ] **Step 1: Full suite, lint, build**
+
+Run: `npm test` → 44 pass. `npm run lint` → no errors in calculus files. `npm run build` → succeeds, route list includes `/calculus/learn`.
+
+- [ ] **Step 2: Browser smoke test**
+
+With the dev server running:
+1. `/calculus` start screen shows the "Learn the topics" link; clicking opens `/calculus/learn` with 10 lessons.
+2. Open Lesson 1 (Power rule): intro renders, examples show prompt with steps hidden; "Show first step"/"Show next step" reveals steps one at a time with KaTeX math; after the last step the final answer chip appears.
+3. "Try one yourself" draws a power-rule question; a correct typed answer (e.g. plain keyboard form) is marked Correct; "Try another" redraws.
+4. Open a bank-backed lesson (e.g. Lesson 6 Implicit) and confirm the try-it question is an implicit-differentiation one.
+5. "← All lessons" and "← Back to practice" navigation work.
+
+- [ ] **Step 3: Commit any fixes**
+
+```bash
+git add -A
+git commit -m "chore(calculus): learn-mode verification fixes"
+```
+
+---
+
 ## Self-Review Notes
 
 - **Spec coverage:** basic-rules generators (Task 2) ✓; implicit/higher-order bank ~30 (Task 3) ✓; partial bank ~30 (Task 4) ✓; applications bank ~30 (Task 5, added by amendment) ✓; new route `app/calculus/page.tsx` (Task 7) ✓; reuse of MathInput/MathDisplay/checkAnswer/progressTracker ✓; home card teal (Task 8) ✓; courseId `'calculus'` ✓; no `checkAnswer.ts` change ✓; integration out of scope ✓.

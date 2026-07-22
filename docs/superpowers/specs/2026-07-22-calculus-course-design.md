@@ -152,6 +152,64 @@ currently lacks):
   `clearActiveSession('calculus')`.
 - On exit-without-finishing, `clearActiveSession('calculus')`.
 
+## Learn mode (added by amendment 2, 2026-07-22)
+
+The quiz tests but does not teach. A **Learn mode** adds per-topic worked
+examples with step-by-step reveals, following the pattern: example -> guided
+steps -> try it yourself.
+
+### Lessons
+
+Ten lessons, finer-grained than the four quiz categories:
+
+1. Power rule
+2. Product rule
+3. Quotient rule
+4. Chain rule
+5. Trig, exponential & log derivatives
+6. Implicit differentiation
+7. Higher-order derivatives
+8. Parametric differentiation
+9. Partial differentiation
+10. Applications (tangents, max/min, kinematics)
+
+Each lesson: a 2-3 sentence plain-language intro, 2-3 hand-curated worked
+examples (static, not generated), and a "Try one yourself" that draws a
+matching practice question (generator-backed for lessons 1-5, filtered bank
+draw for lessons 6-10).
+
+### Data model
+
+```typescript
+interface ExampleStep { explanation: string; latex: string }
+interface WorkedExample {
+  id: string; title: string; prompt: string;
+  steps: ExampleStep[]; answer: string;
+}
+interface CalculusLesson {
+  id: string; title: string; intro: string;
+  examples: WorkedExample[];
+  tryIt: () => CalculusQuestion;
+}
+```
+
+Lives in `lib/calculusLessons.ts` (framework-free, unit-tested like the
+banks). Step explanations follow the plain-language rule: every technical
+term glossed in everyday words.
+
+### UI
+
+- `/calculus` start screen gains a "Learn the topics" link; the quiz flow is
+  otherwise unchanged.
+- New route `app/calculus/learn/page.tsx`: lesson list -> lesson view with
+  intro, then examples whose steps are hidden and revealed one at a time
+  ("Show next step"), each step showing the explanation plus its
+  KaTeX-rendered math line.
+- After the examples: "Try one yourself" - inline MathInput + Check Answer
+  using the same `normalizeCalculusLatex` + `checkAnswer` path as the quiz,
+  with a "Try another" redraw.
+- No progress tracking for Learn mode (studying, not testing).
+
 ## Out of scope / explicit non-goals
 
 - Integration (not yet taught)
