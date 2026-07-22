@@ -169,10 +169,10 @@ export const ironCarbonHeatQuestions: MaterialsQuestion[] = [
     id: 'ih-013',
     topic: 'ironCarbonHeat',
     type: 'tf',
-    prompt: 'An iron-carbon alloy containing 5% carbon would be classified as a cast iron rather than a steel.',
-    correctAnswer: true,
+    prompt: 'An iron-carbon alloy containing 5% carbon would be classified as a steel rather than a cast iron.',
+    correctAnswer: false,
     rationale:
-      'This is true: steels are limited to roughly 2% carbon or less, so an alloy with 5% carbon falls into the cast-iron carbon range instead.',
+      'This is false: steels are limited to roughly 2% carbon or less, so an alloy with 5% carbon actually falls into the cast-iron carbon range instead. Mixing this up would wrongly suggest a very high-carbon alloy like this could still be forged and shaped like a typical steel, when its high carbon content in practice makes it behave more like a brittle cast iron.',
   },
   {
     id: 'ih-014',
@@ -293,10 +293,10 @@ export const ironCarbonHeatQuestions: MaterialsQuestion[] = [
     id: 'ih-022',
     topic: 'ironCarbonHeat',
     type: 'tf',
-    prompt: 'Quenched steel is generally much harder than annealed steel, but that extra hardness comes at the cost of higher brittleness.',
-    correctAnswer: true,
+    prompt: 'Quenching steel generally leaves it softer and more bendable (more ductile) than annealing the same steel would.',
+    correctAnswer: false,
     rationale:
-      'This is true: the rapid cooling of quenching produces hard martensite instead of the softer phases seen in annealed steel, but that same trapped-carbon structure also makes the quenched steel more brittle and prone to cracking.',
+      "This is false: it is the other way around. Quenching's rapid cooling produces hard martensite instead of the soft phases seen in annealed steel, so quenched steel ends up much harder (and more brittle) than annealed steel, not softer or more bendable.",
   },
   {
     id: 'ih-023',
@@ -378,10 +378,10 @@ export const ironCarbonHeatQuestions: MaterialsQuestion[] = [
     id: 'ih-028',
     topic: 'ironCarbonHeat',
     type: 'tf',
-    prompt: 'Case hardening is well suited to gear teeth, since it leaves a wear-resistant surface while keeping the core tough enough to absorb shock loading.',
-    correctAnswer: true,
+    prompt: 'Case hardening leaves a part with a soft outer surface sitting over a hard, brittle core, which is why it suits gear teeth.',
+    correctAnswer: false,
     rationale:
-      'This is true: gear teeth repeatedly rub and impact against other gears, so case hardening gives them a hard, wear-resistant surface for that contact while the tougher, unhardened core resists sudden shock loads without shattering.',
+      'This is false: case hardening actually does the opposite, producing a hard, wear-resistant outer surface (the case) over a softer, tougher core. Gear teeth are well suited to this real arrangement because the hard surface resists the wear of repeated contact with other gears while the tough core absorbs shock loading without shattering; the reversed arrangement in this claim would leave the wearing surface soft and the shock-absorbing core brittle.',
   },
   {
     id: 'ih-029',
@@ -403,9 +403,9 @@ export const ironCarbonHeatQuestions: MaterialsQuestion[] = [
     id: 'ih-030',
     topic: 'ironCarbonHeat',
     type: 'tf',
-    prompt: 'Slowly cooling austenite, as happens during annealing, tends to produce a softer structure than rapidly quenching the same steel would.',
-    correctAnswer: true,
+    prompt: 'Rapidly quenching austenite tends to produce a softer structure than slowly cooling the same steel through annealing would.',
+    correctAnswer: false,
     rationale:
-      'This is true: slow cooling gives carbon atoms time to diffuse (spread out) and form the soft ferrite-and-cementite layers of pearlite, while rapid quenching traps the carbon in place and forms hard, brittle martensite instead.',
+      'This is false: it is the reverse. Slow cooling gives carbon atoms time to diffuse (spread out) and form the soft ferrite-and-cementite layers of pearlite, while rapid quenching traps the carbon in place and forms hard, brittle martensite, so quenching produces the harder structure, not the softer one.',
   },
 ];
