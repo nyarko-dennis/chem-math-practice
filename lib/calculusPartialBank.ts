@@ -1,0 +1,42 @@
+import type { CalculusQuestion } from './calculusTypes.ts';
+
+const pd = (
+  id: string,
+  instructions: string,
+  prompt: string,
+  correctAnswer: string,
+  solution: string,
+): CalculusQuestion => ({ id, category: 'partial', source: 'static', instructions, prompt, correctAnswer, solution });
+
+export const partialDifferentiationQuestions: CalculusQuestion[] = [
+  pd('pd-01', 'Find the partial derivative \\partial f/\\partial x (treat y as constant):', 'f(x,y)=x^{2}+y^{2}', '2x', 'Treating y as constant, \\partial f/\\partial x=2x.'),
+  pd('pd-02', 'Find the partial derivative \\partial f/\\partial y (treat x as constant):', 'f(x,y)=x^{2}+y^{2}', '2y', 'Treating x as constant, \\partial f/\\partial y=2y.'),
+  pd('pd-03', 'Find \\partial f/\\partial x:', 'f(x,y)=x^{2}y', '2xy', 'y is constant, so \\partial f/\\partial x=2xy.'),
+  pd('pd-04', 'Find \\partial f/\\partial y:', 'f(x,y)=x^{2}y', 'x^{2}', 'x^{2} is constant, so \\partial f/\\partial y=x^{2}.'),
+  pd('pd-05', 'Find \\partial f/\\partial x:', 'f(x,y)=x^{3}y^{2}', '3x^{2}y^{2}', 'y^{2} constant: \\partial f/\\partial x=3x^{2}y^{2}.'),
+  pd('pd-06', 'Find \\partial f/\\partial y:', 'f(x,y)=x^{3}y^{2}', '2x^{3}y', 'x^{3} constant: \\partial f/\\partial y=2x^{3}y.'),
+  pd('pd-07', 'Find \\partial f/\\partial x:', 'f(x,y)=x^{2}+3xy+y^{2}', '2x+3y', '\\partial f/\\partial x=2x+3y.'),
+  pd('pd-08', 'Find \\partial f/\\partial y:', 'f(x,y)=x^{2}+3xy+y^{2}', '3x+2y', '\\partial f/\\partial y=3x+2y.'),
+  pd('pd-09', 'Find \\partial f/\\partial x:', 'f(x,y)=xy+y^{3}', 'y', 'y^{3} constant in x: \\partial f/\\partial x=y.'),
+  pd('pd-10', 'Find \\partial f/\\partial y:', 'f(x,y)=xy+y^{3}', 'x+3y^{2}', '\\partial f/\\partial y=x+3y^{2}.'),
+  pd('pd-11', 'Find \\partial f/\\partial x:', 'f(x,y)=\\sin(xy)', 'y\\cos(xy)', 'Chain rule, inner derivative y: \\partial f/\\partial x=y\\cos(xy).'),
+  pd('pd-12', 'Find \\partial f/\\partial y:', 'f(x,y)=\\sin(xy)', 'x\\cos(xy)', 'Chain rule, inner derivative x: \\partial f/\\partial y=x\\cos(xy).'),
+  pd('pd-13', 'Find \\partial f/\\partial x:', 'f(x,y)=e^{xy}', 'ye^{xy}', 'Inner derivative y: \\partial f/\\partial x=ye^{xy}.'),
+  pd('pd-14', 'Find \\partial f/\\partial y:', 'f(x,y)=e^{xy}', 'xe^{xy}', 'Inner derivative x: \\partial f/\\partial y=xe^{xy}.'),
+  pd('pd-15', 'Find \\partial f/\\partial x:', 'f(x,y)=x^{2}e^{y}', '2xe^{y}', 'e^{y} constant: \\partial f/\\partial x=2xe^{y}.'),
+  pd('pd-16', 'Find \\partial f/\\partial y:', 'f(x,y)=x^{2}e^{y}', 'x^{2}e^{y}', 'x^{2} constant: \\partial f/\\partial y=x^{2}e^{y}.'),
+  pd('pd-17', 'Find \\partial f/\\partial x:', 'f(x,y)=\\ln(x^{2}+y^{2})', '\\frac{2x}{x^{2}+y^{2}}', 'Chain rule: \\partial f/\\partial x=\\frac{2x}{x^{2}+y^{2}}.'),
+  pd('pd-18', 'Find \\partial f/\\partial y:', 'f(x,y)=\\ln(x^{2}+y^{2})', '\\frac{2y}{x^{2}+y^{2}}', 'Chain rule: \\partial f/\\partial y=\\frac{2y}{x^{2}+y^{2}}.'),
+  pd('pd-19', 'Find the second partial derivative f_{xx}:', 'f(x,y)=x^{2}y^{3}', '2y^{3}', 'f_{x}=2xy^{3}, then f_{xx}=2y^{3}.'),
+  pd('pd-20', 'Find the second partial derivative f_{yy}:', 'f(x,y)=x^{2}y^{3}', '6x^{2}y', 'f_{y}=3x^{2}y^{2}, then f_{yy}=6x^{2}y.'),
+  pd('pd-21', 'Find the mixed partial derivative f_{xy}:', 'f(x,y)=x^{2}y^{3}', '6xy^{2}', 'f_{x}=2xy^{3}, then f_{xy}=6xy^{2}.'),
+  pd('pd-22', 'Find the second partial derivative f_{xx}:', 'f(x,y)=x^{3}+x^{2}y^{2}+y^{3}', '6x+2y^{2}', 'f_{x}=3x^{2}+2xy^{2}, then f_{xx}=6x+2y^{2}.'),
+  pd('pd-23', 'Find the mixed partial derivative f_{xy}:', 'f(x,y)=x^{3}+x^{2}y^{2}+y^{3}', '4xy', 'f_{x}=3x^{2}+2xy^{2}, then f_{xy}=4xy.'),
+  pd('pd-24', 'Find the mixed partial derivative f_{xy}:', 'f(x,y)=e^{x}\\sin(y)', 'e^{x}\\cos(y)', 'f_{x}=e^{x}\\sin(y), then f_{xy}=e^{x}\\cos(y).'),
+  pd('pd-25', 'Find the mixed partial derivative f_{xy}:', 'f(x,y)=xy', '1', 'f_{x}=y, then f_{xy}=1.'),
+  pd('pd-26', 'Find the second partial derivative f_{xx}:', 'f(x,y)=x^{2}+y^{2}', '2', 'f_{x}=2x, then f_{xx}=2.'),
+  pd('pd-27', 'Use the chain rule to find dz/dt:', 'z=x^{2}+y^{2},\\ x=t,\\ y=t^{2}', '2t+4t^{3}', 'dz/dt=2x(1)+2y(2t)=2t+4t^{3}.'),
+  pd('pd-28', 'Use the chain rule to find dz/dt:', 'z=xy,\\ x=t,\\ y=t^{2}', '3t^{2}', 'dz/dt=y(1)+x(2t)=t^{2}+2t^{2}=3t^{2}.'),
+  pd('pd-29', 'Use the chain rule to find dz/dt:', 'z=x^{2}y,\\ x=t,\\ y=t^{3}', '5t^{4}', 'dz/dt=2xy(1)+x^{2}(3t^{2})=2t^{4}+3t^{4}=5t^{4}.'),
+  pd('pd-30', 'Use the chain rule to find dz/dt:', 'z=\\sin(x),\\ x=t^{2}', '2t\\cos(t^{2})', 'dz/dt=\\cos(x)(2t)=2t\\cos(t^{2}).'),
+];
