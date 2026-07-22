@@ -1,4 +1,4 @@
-export type CalculusCategory = 'basicRules' | 'implicitHigherOrder' | 'partial';
+export type CalculusCategory = 'basicRules' | 'implicitHigherOrder' | 'partial' | 'applications';
 
 export interface CalculusQuestion {
   id: string;
