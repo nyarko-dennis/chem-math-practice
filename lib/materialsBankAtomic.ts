@@ -102,10 +102,10 @@ export const atomicCrystalQuestions: MaterialsQuestion[] = [
     id: 'at-008',
     topic: 'atomicCrystal',
     type: 'tf',
-    prompt: 'An ionic bond pulls charged ions together from any direction, not just along one fixed line between two specific atoms.',
-    correctAnswer: true,
+    prompt: 'An ionic bond only attracts one fixed neighboring ion along a single direction, the same way a covalent bond does.',
+    correctAnswer: false,
     rationale:
-      'The module describes the ionic bond as non-directional, meaning a positive ion is attracted to any negative ion nearby, no matter the angle or direction between them.',
+      "This is false: the module describes the ionic bond as non-directional (it pulls from any direction, not fixed toward one neighbor), which is the opposite of a covalent bond's directional character (locked toward one fixed partner atom). Mixing the two up would wrongly suggest an ionic solid like table salt bonds toward only one neighboring ion, instead of attracting any oppositely charged ion nearby.",
   },
   {
     id: 'at-009',
@@ -181,10 +181,10 @@ export const atomicCrystalQuestions: MaterialsQuestion[] = [
     topic: 'atomicCrystal',
     type: 'tf',
     prompt:
-      'Because the shared electron pool in a metal is not tied to any fixed pair of atoms, metal ions can slide into new positions without the bonding breaking down, which is why most metals are ductile and malleable.',
-    correctAnswer: true,
+      'In a metal, the pool of shared electrons stays fixed between one specific neighboring pair of atoms, much like the shared electron pair in a covalent bond.',
+    correctAnswer: false,
     rationale:
-      'Unlike a covalent bond fixed between two specific atoms, the module\'s shared electron pool in a metal is not tied to one pair, so the positive ions can slide past each other while the pool simply flows around them, letting the metal bend or stretch (ductile and malleable mean easily drawn out or shaped) without snapping apart.',
+      "This is false: the module describes the metallic bond's electron pool (sometimes called an electron cloud) as free to drift among all the positive metal ions, not tied to any one pair, unlike a covalent bond's fixed, shared electron pair. Treating the metallic pool as fixed would wrongly predict that metals are rigid like covalently bonded solids, when the free-flowing pool is exactly what lets the positive ions slide past each other so the metal bends or stretches (ductile and malleable mean easily drawn out or shaped) without the bonding breaking down.",
   },
   {
     id: 'at-015',
@@ -222,10 +222,10 @@ export const atomicCrystalQuestions: MaterialsQuestion[] = [
     topic: 'atomicCrystal',
     type: 'tf',
     prompt:
-      'In a water molecule, the shared electrons spend more time near the oxygen atom, leaving the hydrogen atoms with a small positive charge that can weakly attract a neighboring molecule.',
-    correctAnswer: true,
+      'In a water molecule, the shared electrons spend more time near the hydrogen atoms, leaving the oxygen atom with a small positive charge.',
+    correctAnswer: false,
     rationale:
-      'The module explains hydrogen bonding using water: because the covalently shared electrons linger more around oxygen, the hydrogen ends up slightly positive and the oxygen slightly negative, letting one water molecule\'s hydrogen weakly attract a neighboring molecule\'s oxygen.',
+      "This is false: the module explains that in a water molecule the shared (covalently held) electrons actually linger more around the oxygen atom, leaving oxygen slightly negative and the hydrogen atoms slightly positive - the reverse of this claim. Getting the charges backward would flip which end of the molecule weakly attracts a neighboring molecule, breaking the module's explanation of hydrogen bonding.",
   },
   {
     id: 'at-018',
@@ -246,10 +246,10 @@ export const atomicCrystalQuestions: MaterialsQuestion[] = [
     id: 'at-019',
     topic: 'atomicCrystal',
     type: 'tf',
-    prompt: 'An amorphous solid, such as ordinary glass, lacks the long-range repeating atomic pattern that defines a crystal.',
-    correctAnswer: true,
+    prompt: 'An amorphous solid, such as ordinary glass, has the same long-range repeating atomic pattern that defines a crystal.',
+    correctAnswer: false,
     rationale:
-      'This is a standard materials-science fact used alongside the module: crystals repeat their atomic arrangement regularly in three dimensions, while amorphous solids like glass have their atoms arranged randomly, without that long-range repeating order.',
+      'This is false: this is a standard materials-science fact used alongside the module. A crystal is defined by its atoms repeating in a regular pattern across all three dimensions (a space lattice), while an amorphous solid such as glass has its atoms arranged randomly, with no such long-range repeating order; that missing repeating pattern is exactly what makes a solid amorphous rather than crystalline.',
   },
   {
     id: 'at-020',
@@ -309,7 +309,7 @@ export const atomicCrystalQuestions: MaterialsQuestion[] = [
     ],
     correctIndex: 3,
     rationale:
-      'The module counts 8 corner atoms contributing one-eighth each (equal to 1 atom) plus 6 face atoms contributing one-half each (equal to 3 atoms), giving 4 atoms per FCC cell, and states its coordination number as 12.',
+      'The module counts 8 corner atoms contributing one-eighth each (equal to 1 atom) plus 6 face atoms contributing one-half each (equal to 3 atoms), giving 4 atoms per FCC cell, and states its coordination number (how many immediate neighbours each atom touches) as 12.',
   },
   {
     id: 'at-024',
@@ -324,7 +324,7 @@ export const atomicCrystalQuestions: MaterialsQuestion[] = [
     id: 'at-025',
     topic: 'atomicCrystal',
     type: 'mcq',
-    prompt: 'The module notes FCC metals pack their atoms more tightly than BCC metals (a higher packing factor). Which everyday consequence follows from this?',
+    prompt: 'The module notes FCC metals pack their atoms more tightly than BCC metals (a higher packing factor, the fraction of the space actually filled by atoms). Which everyday consequence follows from this?',
     choices: [
       'FCC metals such as copper and nickel tend to be more easily bent and drawn into shape (more ductile) than typical BCC metals',
       'FCC metals cannot be shaped at all',
@@ -348,7 +348,7 @@ export const atomicCrystalQuestions: MaterialsQuestion[] = [
     ],
     correctIndex: 2,
     rationale:
-      'The module adds up 1/6-share corner atoms, 1/2-share hexagon-center atoms on the top and bottom layers, and 3 whole atoms in the middle layer to reach 6 atoms per HCP cell, and it states the coordination number as 12, the same as FCC.',
+      'The module adds up 1/6-share corner atoms, 1/2-share hexagon-center atoms on the top and bottom layers, and 3 whole atoms in the middle layer to reach 6 atoms per HCP cell, and it states the coordination number (how many immediate neighbours each atom touches) as 12, the same as FCC.',
   },
   {
     id: 'at-027',
@@ -364,7 +364,7 @@ export const atomicCrystalQuestions: MaterialsQuestion[] = [
     topic: 'atomicCrystal',
     type: 'mcq',
     prompt:
-      'HCP metals share the same coordination number and packing factor as FCC metals, yet HCP metals such as zinc and magnesium are generally more brittle (crack more easily) than FCC metals such as copper. What is the standard reason for this?',
+      'HCP metals share the same coordination number (how many immediate neighbours each atom touches) and packing factor (the fraction of the space actually filled by atoms) as FCC metals, yet HCP metals such as zinc and magnesium are generally more brittle (crack more easily) than FCC metals such as copper. What is the standard reason for this?',
     choices: [
       'HCP metals actually pack less tightly than BCC metals',
       'HCP metals contain no metallic bonds at all',
