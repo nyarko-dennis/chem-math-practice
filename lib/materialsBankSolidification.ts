@@ -237,16 +237,16 @@ export const solidificationDefectsQuestions: MaterialsQuestion[] = [
     topic: 'solidificationDefects',
     type: 'mcq',
     prompt:
-      "In the aluminum-nickel system, nickel dissolves about 5 percent aluminum, but aluminum only dissolves about 0.04 percent nickel. Which guideline explains this lopsided (one-sided) result?",
+      "Between aluminum and nickel, solid solubility runs one way far better than the other: nickel can take in roughly 5 percent aluminum, while aluminum accepts only about 0.04 percent nickel in return. Which guideline explains why the two directions are so lopsided?",
     choices: [
-      'The valence guideline: a lower-valence metal (nickel, with lower combining power) tends to dissolve more of a higher-valence metal (aluminum) than the other way around',
+      "The valence guideline: since nickel has the lower valence (fewer typical bonds) of the pair, it acts as the more generous solvent, absorbing more aluminum than aluminum can absorb of it",
       'The atomic-size guideline alone, since nickel and aluminum atoms are identical in size',
       'The crystal-structure guideline, since nickel and aluminum never share a crystal structure',
       'Random chance, since solid solubility cannot be predicted or explained',
     ],
     correctIndex: 0,
     rationale:
-      "Valence is the combining power of an atom, meaning roughly how many bonds it typically forms. The rule of thumb is that a lower-valence solvent metal tends to dissolve a higher-valence solute (dissolved metal) more readily than the reverse. Nickel, with a lower valence than aluminum, dissolves noticeably more aluminum than aluminum dissolves nickel.",
+      "Valence measures an atom's typical combining power - roughly how many bonds it forms. As a rule of thumb, a solvent with lower valence dissolves a higher-valence solute more readily than the reverse holds true. Because nickel's valence sits below aluminum's, it can host a much larger share of aluminum atoms than aluminum can host of nickel.",
   },
   {
     id: 'sd-018',
@@ -325,7 +325,7 @@ export const solidificationDefectsQuestions: MaterialsQuestion[] = [
     topic: 'solidificationDefects',
     type: 'mcq',
     prompt:
-      "In brass, zinc atoms (radius about 0.133 nm) take the place of some copper atoms (radius about 0.128 nm) on the copper lattice (the repeating atomic arrangement of copper). What kind of point defect (a defect confined to a single atom position) does this describe?",
+      "A foreign atom can only slot neatly onto a host lattice site if it is close in size to the atom it replaces - within about 15 percent, as a rule of thumb. Copper and zinc satisfy that rule (radii of roughly 0.128 nm and 0.133 nm), which is exactly why brass can form with zinc occupying copper positions on the copper lattice (the repeating atomic arrangement of copper). What kind of point defect (a defect confined to a single atom position) does this describe?",
     choices: [
       'A vacancy: an empty lattice site with no atom in it',
       'A substitutional impurity atom, since a foreign atom of similar size has replaced a host atom on its lattice site (atom position in the crystal)',
@@ -334,7 +334,7 @@ export const solidificationDefectsQuestions: MaterialsQuestion[] = [
     ],
     correctIndex: 1,
     rationale:
-      "A substitutional impurity atom is a foreign atom that takes over a lattice site (a normal atom position) that would otherwise hold a host atom, which is possible here because zinc and copper atoms are similar in size, within about 15 percent of each other. This is the same idea as a substitutional solid solution, viewed at the level of a single point defect.",
+      "A substitutional impurity atom is a foreign atom that takes over a lattice site (a normal atom position) that would otherwise hold a host atom. This size-matching requirement is exactly what lets zinc, at about 0.133 nm, swap in for copper, at about 0.128 nm, in brass without badly straining the surrounding lattice.",
   },
   {
     id: 'sd-024',
@@ -362,11 +362,11 @@ export const solidificationDefectsQuestions: MaterialsQuestion[] = [
       'It only occurs in liquids, never in solids',
       'It involves a missing row of atoms rather than a shift in atom position',
       'It cannot move under any applied stress',
-      "The dislocation line runs perpendicular to (at a right angle to) the direction the atoms are displaced, rather than parallel to it",
+      "The dislocation line itself runs parallel to (in the same direction as) the displacement of atoms, whereas an edge dislocation's line runs perpendicular to that displacement",
     ],
     correctIndex: 3,
     rationale:
-      "In an edge dislocation, the line defect runs parallel to the direction atoms shift under stress. In a screw dislocation, shear stress, a sideways-pushing force, displaces atoms so that the dislocation line instead runs perpendicular to, at a right angle to, that displacement direction. Both types let a crystal slip, meaning atoms shift bond by bond, at much lower stress than breaking every bond across a plane at once.",
+      "In an edge dislocation, the line defect sits at a right angle to the direction atoms shift under stress. A screw dislocation flips that geometry: its line runs in the same direction as the atom displacement instead of crosswise to it. Both types still let a crystal slip, meaning atoms shift bond by bond, at much lower stress than breaking every bond across a plane at once.",
   },
   {
     id: 'sd-026',
