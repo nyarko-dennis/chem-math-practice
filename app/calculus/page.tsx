@@ -6,6 +6,7 @@ import { assembleQuiz, CalculusQuestion } from '@/lib/calculusQuestions';
 import MathDisplay from '@/components/MathDisplay';
 import MathInput from '@/components/MathInput';
 import { checkAnswer } from '@/lib/checkAnswer';
+import { normalizeCalculusLatex } from '@/lib/calculusAnswer';
 import {
   saveActiveSession,
   getActiveSession,
@@ -75,7 +76,7 @@ export default function CalculusPage() {
   const verifyAnswer = () => {
     const q = questions[currentIndex];
     const answer = answers[q.id] || '';
-    const isCorrect = checkAnswer('algebra', q.correctAnswer, answer);
+    const isCorrect = checkAnswer('algebra', normalizeCalculusLatex(q.correctAnswer), normalizeCalculusLatex(answer));
     const newFeedback = { ...feedback, [q.id]: isCorrect };
     setFeedback(newFeedback);
     setShowSolution(!isCorrect);
