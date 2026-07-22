@@ -1,0 +1,83 @@
+  Classification of Steel
+
+Focus: AISI/SAE System and Other
+     Classification Methods
+               Introduction
+• • Steel is classified to understand its
+  properties and applications.
+• • Standard classification helps engineers
+  select the right type for the job.
+• • Major systems include AISI/SAE,
+  composition-based, microstructure-based,
+  and usage-based classifications.
+   What is AISI/SAE Designation?
+• • AISI: American Iron and Steel Institute
+• • SAE: Society of Automotive Engineers
+• • Uses a 4-digit number to represent steel
+  type and carbon content.
+• • Commonly used in North America and
+  worldwide for steel standardization.
+   How the AISI/SAE 4-Digit Code
+              Works
+• • 1st digit: Steel type or major alloying
+  element
+• • 2nd digit: Sub-category or secondary
+  element (e.g., sulfur, manganese)
+• • Last 2 digits: Carbon content in hundredths
+  of a percent
+• Example: SAE 1045 = Plain carbon steel with
+  0.45% carbon
+        First Digit – Steel Type
+• • 1XXX – Plain Carbon Steel
+• • 2XXX – Nickel Steel
+• • 3XXX – Nickel-Chromium Steel
+• • 4XXX – Molybdenum Steel
+• • 5XXX – Chromium Steel
+• • 6XXX – Chromium-Vanadium Steel
+• • 9XXX – Silicon-Manganese Steel
+          Example: SAE 1045
+• • 1 = Plain Carbon Steel
+• • 0 = No secondary alloying element
+• • 45 = 0.45% carbon content
+• Properties:
+• - Medium strength
+• - Used in gears, shafts, machinery
+          Example: SAE 4340
+• • 4 = Molybdenum Steel
+• • 3 = Nickel-Chromium-Molybdenum alloy
+• • 40 = 0.40% carbon
+• Properties:
+• - High strength and toughness
+• - Used in aerospace and automotive
+        Stainless Steel Examples
+• • AISI 304: Austenitic stainless steel (18% Cr,
+  8% Ni)
+• • AISI 316: Similar to 304 but includes Mo for
+  better corrosion resistance
+• • AISI 410: Martensitic stainless steel (heat-
+  treatable)
+ Other Steel Classification Systems
+• 1. By Composition:
+• - Carbon Steel, Alloy Steel, Stainless Steel
+
+• 2. By Production Method:
+• - Bessemer, Electric Arc, Basic Oxygen
+
+• 3. By Microstructure:
+• - Ferritic, Austenitic, Martensitic, Bainitic,
+  Pearlitic
+      Why Classification Matters
+• • Helps in choosing the right steel for
+  strength, weldability, and corrosion resistance
+• • Ensures compatibility in global
+  manufacturing
+• • Aids in design, safety, and material cost
+  management
+                  Summary
+• • AISI/SAE system uses a 4-digit code to
+  classify steel by composition
+• • Other classifications include microstructure,
+  production method, and use
+• • Understanding steel classification is essential
+  for engineering and manufacturing
+

@@ -1,0 +1,1412 @@
+ENGINEERING MATERIALS
+      PENG 102
+Here are some of the commonly used
+ engineering materials
+
+
+
+
+Wood          Stone/Granite          Copper
+
+
+
+
+Steel         Aluminum           Plastics
+Wooden components and structures
+Stone/granite components and structures
+Copper components and structures
+Steel components and structures
+Aluminum components and structures
+Plastic components and structures
+Materials are used together sometimes
+    CLASSIFICATION OF
+  ENGINEERING MATERIALS
+Materials used in engineering applications
+cover a range
+– from simple daily uses like pencils and spoons
+– to most complex and extreme cases like
+  automotive vehicles, space vehicles and bio-
+  medical uses.
+
+Engineering materials used in applications
+from simple daily life to extreme ones are
+divided into following sub-classes:
+                             Engineering materials
+
+
+
+
+          A) Metals (and Alloys)                              B) Non-metals
+
+
+
+
+                       A.2) Non-ferrous              B.1)Naturals    B.2) Artificials
+A.1) Ferrous
+                       metals
+metals
+                       (iron free)
+(iron based)
+                                 A) Metals and Alloys
+
+
+
+
+A.1) Ferrous metals (iron based)              A.2) Non-ferrous metals (iron free)
+
+
+
+       Cast iron: (%2<C<%4)                             Heavy metals
+            •Gray CI                                        •Copper
+            •White CI                                       •Chromium
+            •Ductile CI                                     •Lead etc
+            •Malleable CI
+            •High alloy CI         Carbon               Light metals
+                                   content                   •Titanium
+                                   by mass                   •Beryllium etc
+      Steel: (%C<2)
+           •Plain Carbon steel                          Refractory (high temp)
+           •Alloy steel                                 metals
+                                                             •Tungusten
+                                                             •Molybdenum etc
+
+
+                                                        Precious metals
+                                                             •Gold
+                                                             •Silver etc
+                    B) Non-metals
+
+
+
+
+B.1)Naturals              B.2) Artificials
+     •wood
+     •granite etc
+                                Polymers
+                                    •Rubber
+                                    •Thermoplastics
+                                    •Thermosets etc
+
+
+                                Ceramics
+                                    •Glass
+                                    •Cermets
+
+                                 Composites
+                                    •Metal matrix composites
+                                    •Ceramic matrix composites
+                                    •Polymer matrix composites
+  Metals (ferrous metals and non-ferrous metals )
+are used to be the main engineering materials preferred
+  by mechanical engineers for centruies.
+
+  The main reasons for using metals were
+  – their abundancy (being plenty) in nature,
+  – easy processing and also
+  – their relatively more load carrying capacity.
+
+  Artificial materials, however, took place in many
+  applications because of their advantages like better
+  insulation, better heat resistance, weight saving etc.
+
+  Therefore, many different new materials were “found
+  or derived” from other materials for certain
+  advantages in different applications.
+Ferrous metals
+(cast iron and steel)
+are still the most
+widely used
+materials in many
+engineering
+applications.
+
+Steel, in particular,
+has many versions
+(alloys) with different
+advantages for
+different
+applications.
+Steel can serve in applications varying
+– from simple machine construction to extreme load
+  carrying applications and
+– from simple springy (elastic) deflection applications
+  to high temperature resistant or corrosion resistant
+  applications.
+
+
+Steels as one of the most important engineering
+materials are divided into following sub-classes:
+                         Steels (%C < 2)
+
+                                             Carbon content
+                                             by mass
+
+
+
+
+   Plain Carbon steels                      Alloy Steels
+      (Only carbon)                   (in addition to carbon)
+       (%C < 1.5)
+                                 in addition to carbon there is
+with limited other alloying      modest amount of other alloying
+         elements                           elements
+        Plain Carbon steels
+with limited alloying elements (%C
+                < 1.5)
+
+           Low carbon Steel (%C < 0.3)
+
+
+
+
+       Medium carbon Steel (0.3<%C < 0.6)
+
+
+
+
+        High carbon Steel (0.6<%C < 1.5)
+
+
+
+
+          Free machining carbon Steel
+               (with special alloys)
+            Alloy Steels
+with modest amount of alloying elements
+
+
+
+
+                        Tool Steel
+                 (used for tools and dies)
+
+
+               Stainless (rust-free) Steel
+                      (%Cr > 10.5)
+
+
+                 High strength Steel
+                   (weight saving)
+
+
+                High strength low alloy
+                     (HSLA) Steel
+
+
+
+                Iron based super alloys
+    A-METALS AND ALLOYS
+Were classified as;
+ 1) ferrous (iron based) metals & alloys,
+ i.e. Steels and cast irons
+
+ 2) non-ferrous metals & alloys; metals
+ other than iron (Fe),
+ i,e, Cu,Al,Zn,Pb etc and their alloys.
+PRODUCTION OF FERROUS METALS
+         AND ALLOYS
+Iron is always the basic part of the
+ferrous metals
+Iron is found in nature as “iron ore”
+which consist of iron
+oxides,carbonates and sulphides
+and gaunge.
+
+Iron is obtained (produced) by
+reduction of iron oxides with carbon
+(i.e. coke) in the blast furnace.
+
+Limestone is usually added into the
+blast furnace charge to remove gang
+i.e. SiO2 as calcium silicate slags.
+                         Pig iron
+
+
+
+
+Blast furnace for ıron
+production
+The product of blast furnace is
+called “pig iron” which is
+impure iron containing too
+much C,Mn,P,S and Si.
+
+Pig iron is either transformed
+into
+– “cast iron” containing > 2% C
+or
+– converted into “steels” in a
+  secondary process, where C is
+  reduced to <2%.
+Pig iron
+
+
+
+
+           Secondary process for steel production
+                     STEELS
+Steels are made
+– by the removal of excess C and other
+  impurities of pig iron by “oxidation”
+followed
+– by a “deoxidation” process and
+– addition of C and alloying elements to
+  the “required level”.
+
+Oxidation is carried out by blowing
+air or oxygen through molten pig
+iron in either
+– 1) Basic Oxygen Furnace
+– 2) Siemens-Martin (open heart
+  furnace)
+– 3) Bessemer-Thomas furnace
+– 4) Electric Furnace
+                 STEELS
+Scrap iron coming from
+industry as recycled
+product is usually converted
+into steel in electric arc
+furnaces
+
+Steels usually contain up to
+– 2%C,
+– 1%Mn,
+– 0.5%Si,
+– 0.05%S and
+– 0.05%P
+  Plain
+   ?    carbon steels and
+   And
+  Alloy
+   ?    steels
+are the two main groups of steels
+
+
+  1-Plain carbon steels are the ones
+ in which C is the significant alloying element
+ and therefore they are are termed as “plain
+ carbon steels”.
+ They contain upto 1.5%C and also 1.65%Mn
+ max, 0.6%Si max, 0.6%Cu max.
+Classification of plain carbon steels
+              Plain Carbon steels
+   with limited alloying elements (%C < 1.5)
+
+                  Low carbon Steel (%C < 0.3)
+
+
+
+
+              Medium carbon Steel (0.3<%C < 0.6)
+
+
+
+
+               High carbon Steel (0.6<%C < 1.5)
+
+
+
+
+                  Free machining carbon Steel
+                       (with special alloys)
+A) Low carbon steels
+1)Dead soft mild steels: contain <0.15%C and
+are very soft ,easily fabricated by cold forming and
+welding. used in construction where strength is not
+very important.
+ 2) Mild steels: contain 0.15%-0.30%C also
+called structural steels. used for structure and
+machine applications, structural shapes i.e.
+Channels, angles, I-beams, etc.
+B) Medium carbon steels
+   contain 0.3-0.6%C, combined properties are
+strength, toughness and wear resistance, used for
+crankshaft, axles, railway wheels and gears.
+C) High carbon steels
+   contain 0.6- 1.5%C, they have low ductility and
+are used for high strength steels, wire production etc.
+D) Free machining carbon steels
+    these are specially developed for fast and
+economic machining of parts. Machinability of the
+plain carbon steels is improved by addition of
+elements such as Pb,S,P and Te,Se,Bi.
+2-ALLOY STEELS
+(second group of the steels)
+Other than carbon, they contain modest amount
+ of other alloying elements.
+They are heat treated to improve some desired
+ mechanical properties.
+They usually contain more than 1.65%Mn,
+ 0.60%Si and 0.60%Cu.
+They have
+  – Through hardenable grades
+  – Carburizing grades and
+  – Nitriding grades
+EFFECTS OF ALLOYING ELEMENTS
+Some of the alloying elements and their effect
+ on the alloy steels are:
+ C :increase hardness and tensile strength but
+ decrease ductility and forging and welding
+ properties
+ Mn(1.65-2.1%) increases strength,
+ hardenability and corrosion resistance
+ Ni :increase strength, shock resistance,
+ corrosion resistance and heat resistance, and
+ lower the critical temperature for heat
+ treatment.
+Cr :increase hardness, hardenability, wear
+resistance, corrosion resistance and heat
+treatment, reduce resilience and promotes
+formation of carbides
+Mo :used in common with Mn and Cr to
+increase hardenability, tensile and creep
+strength.
+ Vanadium :increase hardenability
+Ti :increase yield point & weldability.
+Tungsten (Wolfram ) :increase hardness and
+tensile strength
+Al(max 1%) promotes nitriding properties
+Si(0.6-2.2%) raises the critical temperature for
+heat treatment and increases resilience
+Elemental Cu & Pb increase machinability.
+Sulphides and nitrides increase hardness
+
+P(max 0.03-0.05%) harmful
+S(max 0.025-0.05%) harmful
+P and S make steel brittle and prevent hot or
+cold forming.
+More the carbon, the harder the steel
+Harder the steel, stronger the steel (higher
+the strength)
+Harder the steel, more difficult to bend or to
+deform or to forge (hence less the ductility)
+Harder the steel, the more the brittleness
+Ductility and brittleness are opposite
+properties (higher the ductility lower the
+brittleness or vice versa)
+    HIGH ALLOY STEELS
+High alloy steels are the ones specially
+produced with certain objectives by using
+again certain elements as alloying
+elements.
+These steels are:
+– Tool steels
+– Stainless (rust free) steels
+– High strength steels
+– High strength low alloy steels and
+– Iron based alloys
+Tool steels: This type of steels are used
+mainly in tools and dies to form or machine
+other materials. These are clean,(i.e. no
+inclusion), high alloy steels produced carefully
+in elelctric furnaces. They usually contain
+Cr,V,W,Mo or Co besides C,Mn and Si. They
+are wear resistant, tough and have high hot
+hardness..
+Stainless (rust free) steels: they contain
+minimum of 10.5%Cr. Addition of higher
+amount of Cr and Ni further improve corrosion
+resistance.They have high strength, hardness,
+corrosion resistance and abrassion resistance.
+High strength steels: these steels were developed for
+specific high strength applications and used for weight
+saving in constructions.
+High strength low alloy (HSLA) steels: specially
+developed to improve mechanical properties and
+corrosion resistance while benefitting from weight
+saving too.
+Iron based super alloys: These are used primarly for
+high temperature applications, and they are cheaper
+than Co and Ni based super alloys.
+Superalloys are used at temperatures from 540C to
+1090C.
+Iron based superalloys are used at lower end of this
+range.
+             CAST IRON
+Cast iron is a four element alloy containing
+iron, carbon (2 to 4%), silicon and manganese.
+
+Some cast iron types may contain additional
+alloying elements.
+
+Cast iron contains large amount of carbon in
+the form of Fe3C (cementite) and this
+composition is not stable and decomposes
+under certain conditions:
+    Fe3C → 3Fe + C
+According to this breakdown of cementite(Fe3C),
+cast irons are classified as:
+  – 1) Gray cast iron
+  – 2) Ductile cast iron
+  – 3) white cast iron
+  – 4) malleable cast iron
+  – 5) high alloy cast iron
+             1) Gray cast iron
+In the manufacture of gray cast iron cementite
+separetes into graphite and austenite or ferrite by
+controlling the alloy composition and cooling rates
+Gray cast iron gives gray fracture surface hence called
+gray CI.
+They are widely used therefore they are important in
+engineering.
+.
+Most gray cast irons contain C between 2.5-4%.
+High compressive strength and excellent vibration
+damping of gray CI makes it well suited fpr heavy
+equipment and machine tool foundations.
+  2) Ductile (nodular) cast iron
+In production of ductile (or nodular) cast iron Mg
+(magnesium) is used as an alloying element.
+Mg causes formation of graphite in spherical or
+nodular forms.
+This operation of Mg addition to molten cast iron
+precipitates out carbon in the form of small spheres
+this, then improves some of the mechanical
+properties gray cast iron.
+Compared to gray CI, ductile CI will have improved
+tensile strength, ductility and toughness
+            3) White cast iron
+This type of cast iron is produced by a process called
+“chilling” (controlled cooling) which prevents graphite
+carbon from precipitating out.
+Either gray or ductile iron can be chilled to produce a
+surface of white iron
+In cast irons most of carbon is combined with iron as
+iron carbide (cementite) a very hard material, and
+grades of white iron depend on the amount of
+cementite in the surrounding structure.
+white iron, so called because of its very white
+structure, can be formed only during solidification.
+White CI’s are very hard and resistant to wear,
+corrosion and oxidation.
+        4) Malleable cast iron
+This is a white cast iron that has been converted to a
+malleable condition by a two stage heat treatment.
+They are, as the name malleable implies, more
+ductile and have relatively higher toughness values.
+Compared to gray CI, they can be used in
+applications which require higher tensile strengths,
+ductilities and toughness.
+Two basic types of malleable iron are ferritic and
+pearlitic.
+The third type of malleable iron -martensitic-is a
+pearlitic or ferritic grade that has been heat treated
+and transformed to a martensitic structure.
+        5) High alloy cast iron
+High alloy cast irons are ductile, gray or white
+irons that contain over 3% alloy content.
+These irons have properties that are signifiantly
+different from the unalloyed irons and are
+usually produced by specialized foundries.
+Selecting the proper metal alloy for a casting is
+difficult, primarily because the properties of the
+finished part depend strongly upon the size
+and the shape of the part.
+This is very important to bear in mind when
+deciding about the casting process.
+   DESIGNATION OF STEELS
+Similar to standards for various equipments (like
+  bolts, tanks, gears etc) and machineries there
+  are also various standardization bodies for
+  steels.
+Examples are:
+  1) American AISI & ASTM
+  2) German DIN
+  3) Turkish TS, MKE
+  4) British BS
+  5) Euro-norm
+  etc
+  Designations of equipments in standarts
+  usually require some kind of “criteria” and
+steels as materials are usually specified or
+  designated by the criteria of ;
+  1) process of manufacture
+  2) method of deoxidation
+  3) chemical composition and
+  4) mechanical properties
+2. Designation by the method of
+   deoxidation (removing excess oxygen)
+   In steel making process the primary
+   reaction involved is the combination of
+   carbon and oxygen to form a gas to
+   remove excess carbon.
+   If the (excess amount of) oxygen
+   available for this reaction is not removed
+   prior to or during casting (by the addition
+   of ferro-silicon or some other deoxidizer)
+   the gaseous products continue to evolve
+   during solidification.
+   Improper control of the amount of gas
+   evolved during solidification then cause
+   non-uniformity in the microstructure of
+   the steel and a spongy like structure will
+   be created
+Proper control of the amount of gas evolved during solidification
+  determines the type of steel (3 types: Killed steel, semi-killed
+  steel and rimmed steel).
+
+  For "killed" steels, elements such as aluminum and silicon may
+  be added to combine chemically with the oxygen, removing
+  most of oxygen from the liquid steel.
+  Killed steels are often specified for hot forging, carburizing, and
+  other processes or applications where maximum uniformity is
+  required. In sheet steel, aging is controlled by killing -- usually
+  with aluminum. Steels intended for use in the as-cast condition
+  are always killed. For this reason, steels for casting are always
+  fully deoxidized.
+
+  On the other hand, for "rimmed" steels, oxygen (in the form of
+  carbon monoxide) evolves briskly throughout the solidification
+  process. The outer skin of rimmed steels is practically free from
+  carbon and is very ductile. For these reasons, rimmed steels
+  are often specified for cold-forming applications. Rimmed steels
+  are often available in grades with less than 0.25% C and 0.60%
+  Mn.
+Segregation -- a nonuniform variation in internal
+characteristics and composition that results when
+various alloying elements redistribute themselves
+during solidification -- may be pronounced in rimmed
+steels. For this reason, they are usually not specified
+for hot forging or for applications requiring uniformity.
+
+"Capped" and "semikilled" steels fall between the
+rimmed and killed steels in behavior, properties, and
+degree of oxidation and segregation.
+
+Capped steels, for example, are suited for certain
+cold-forming applications because they have a soft,
+ductile, surface skin, which is thinner than rimmed-
+steel skin. For other cold-forming applications, such
+as cold extrusion, killed steels are more suitable
+To brief or summarize the process of de-oxidation:
+  Killed steels(R) are strongly deoxidized steels with no
+  gas evolved during solidification these steels are
+  characterized by a relationly high degree of uniformity
+  of composition and properties. Recommended for
+  forging ,piercing ,carburising and heat treating
+  applications
+  Semi killed steels (H) have relatively less uniform
+  properties & composition across the size (section) of
+  the ingot
+  Rimmed steels(U) are only slightly deoxidized. They
+  have marked differences in compositon across the
+  section and from top to bottom of the ingot.
+  Specially killed steels (RR)
+Killed steels - completely deoxidized
+steels, solidification of which does not
+cause formation of carbon monoxide
+(CO). Ingots and castings of killed steel
+have homogeneous structure and no
+gas porosity (blowholes).
+Semi-killed steels – not completely
+deoxidized steels containing some
+amount of excess oxygen, which forms
+carbon monoxide during last stages of
+solidification.
+Rimmed steels - partially deoxidized or
+non-deoxidized low carbon steels
+evolving sufficient amount of carbon
+monoxide during solidification. Ingots of
+rimmed steels are characterized by
+good surface quality and considerable
+quantity of blowholes.
+ 3)Designation by the chemical
+         composition
+Following steel groups are designated by
+their chemical compositions:
+
+– Plain carbon steels
+– Alloy steels
+    Tool steels
+    Stainless steels
+    HSLA steels and
+    Super alloys
+3)Designation by the chemical composition
+a-Plain Carbon Steels: (by German DIN, TS )
+ If Al (0.1%), Cu (0.25%), Mn (0.8%), Si (0.5%) and Ti
+  (0.1%) are not exceeded, such steel is usually
+  considered as unalloyed.
+
+ The general designation for (unalloyed) plain carbon
+ steels (which have only the carbon as alloying
+ element) is
+               CiXX (eg Ck20 or Cm40 etc)
+where XX/100 is the percentage content of the carbon;
+
+where i refers to the grade of the control of the some
+ alloying elements and also to some mechanical
+ properties (i=k, m, f, etc)
+Table AISI & MKE steels
+  1XXX carbon steel
+  – 10XX plain carbon steels
+  – 13XX manganese steels
+
+
+  2XXX     nickel steels
+  – 23XX    nickel steels with 3.5%Ni
+  – 25XX    nickel steels with 5%Ni
+
+
+  3XXX     nickel-chromium steels
+  – 31XX    nickel-cr steels with 1.25%Ni 0.6%Cr
+  – 32XX    nickel-cr steels with 1.75%Ni 1%Cr
+  – 33XX    nickel-cr steels with 3.5%Nİ 1.5%Cr
+
+
+  4XXX     molydenum steels
+5XXX     chromium steels
+– 51XX    low cr
+– 52XX     medium cr
+
+
+6XXX     chromium-vanadium
+
+7XXX      tungsten steels
+
+8XXX      chromium-nickel-molybdenum
+
+9XXX      silican mangenese steels
+            C) Tool steels
+These steels are divided into four broad
+groups.
+ The designation of carbon tool steels (group1)
+is the same as that of carbon steels.
+i.e. C60W3 with 0.60% C content
+     C110W2 with 1.10% C content etc
+The only difference is that a quality symbol
+follows the usual designation.
+The quality symbol is "W" with W1, W2 and W3
+denoting an increase in the quality in the order
+(special, extra, best quality).
+The symbol WS is used to denote a special
+purpose tool steel.
+High speed steels (Group 2 ) are designated as:
+    S xx-yy-zz-uu
+where S denotes high speed steel and
+  xx is the % content of W
+  yy is the % content of Mo
+  zz is the % content of V
+  uu is the % content of Co
+no multiplication factor is used.
+
+
+Ex.   S10-4-3-10   means 10% W, 4% Mo, 3% V and 10% Co
+      S18-0-1      means 18% W, 0% Mo, 1% V and 0% Co
+cold & hot work tool steels (Group 3&4 )
+are designated according to the designation of
+   alloy
+DIN and ASİL çelik uses the same designation
+i.e. 40NiMo10 8 means 0.40% C, 2.5%Ni and
+   0.8%Mo
+
+  – MKE uses the basic AISI designation for alloy steels
+    and tools steels are classified into groups by the
+    AISI. All these groups of tool steels and the
+    corresponding designations are shown in table 1.3
+          D) Stainless steels
+ These are the large and widely used family of
+chromium alloys known for their corrosion
+resistance, obtained by a large chromium
+content (min. 10.5%).
+
+designation of these steels is based on the
+basic SAE system (Ç51440, Ç3915 and
+Ç51420, in the same order).
+AISI designation of stainless steels is similar to the
+AISI designation of alloy steels
+ex: 30201, 30347, 51405, 51430 etc.
+
+AISI groups wrought stainless steels into four major
+categories based on metallurgical structure as
+– (1) austenitic,
+– (2) ferritic,
+– (3) martensitic, and
+– (4) precipitation hardening.
+
+
+Cast stainless steels are considered as another group.
+The DIN designation of the stainless steels is the
+same as alloy steels.
+X40 Cr 13, X12 CrNi 18 8, and X20 Cr 13 are the
+DIN designations of the three types of stainless
+steel produced by the MKE.
+
+The DIN designation of cast stainless steels is
+the same as that of the alloy steels only to be
+preceeded by the letter G to indicate casting;
+As you remember low alloy steels contain not more than
+5% of alloy elements.
+When the alloy contents exceed 5% (i.e. Stainless steel
+with 10.5% or more Chromium), these multiplication
+factors are not used (apart from that of carbon content).
+
+
+                                       Instead, the letter
+                                       “X” is put in front
+                                       of the carbon
+                                       content indicating
+                                       that the
+                                       number(s) at the
+                                       end of
+                                       designation
+                                       specify the alloy
+                                       content.
+E- Steels for Strength and HSLA Steels:
+
+The steels of very high strength are usually
+proprietary, and are not consequently specifıed
+by the standard designations,
+
+However there are some special designation or
+trade name such as;
+ – SAE J410C
+ – ASTM A 607
+ – etc
+f- super alloys :
+are designated by the AISI 600 series with the specifications of
+  high temperature & high strength.
+
+
+
+
+   616 for example is equivalent to DIN designation of
+   X20CrMoWV12 1
+4. Designation by Mechanical Properties:
+  The steels for general structural purposes are
+  designated by the mechanical properties by the DİN,
+  EURONORM, and KARABÜK D.Ç., Turkey.
+  These steels are designated by
+  – tensile strength (in kg/mm2) by the DIN and Karabük and
+  – by either the tensile or the yield strength by the
+    EURONORM.
+
+
+    St xx-y is the DIN designation
+  where xx is the tensile strength in kg/mm2 and
+  y is the quality grade number denoting maximum P
+  &S content
+ DESIGNATION OF CAST IRONS (2-4%C)
+Main four elements of cast irons are ;
+iron, carbon, silicon and manganese
+Gray cast iron is designated by its
+tensile strength.
+Some of the standarts & the
+corresponding designations for the gray
+CI are as follows:
+   standart     designation
+ TS 1111       DDL-XX kg/mm2          XX is the tensile
+ DIN 1691      GL-XX kg/mm2           strength in kg/mm2
+ ASTMA 45     class -XX lb/in2x1000
+ BS 1452       grade-XX MPa
+Ductile or nodular cast iron
+ is designated by a three letter abbrevration
+ followed by the tensile strength (xx in kg/mm2),
+ such as
+  – DDK-XX in TS 1111 and (e.g. DDK-35)
+  – GGG-XX in DIN 1693 (e.g. GGG-45)
+ ASTM designation (A339-55 and A396-58) of a
+ typical alloy is given as xx-yy-zz,
+ 60-45-15 for example, means
+  – a minimum tensile strength of 60psi
+  – a minimum Sy of 45psi and
+  – 15% elongation in 20 inches.
+White iron
+ There are no specifications for white iron unlike
+ the gray iron
+ the symbols DDB and GGW are used to
+ designate the white iron in short form by the
+ TS&DIN respectively
+
+Malleable cast iron
+is designated as
+  – DDTS-xx (and DDTB-xx) in TS 1111 and
+  – GTS-xx (and GTW-xx) DIN 1692
+followed by the minimum tensile strength (xx in
+   kg/mm2 ) of the material.
+Examples are: DDTS-35 & GTS-40
+  The ASTM designation of malleable CI is
+  based on 5digit system xxxyy
+where xxx multiplied by 100 is the Sy value
+  in psi and yy is the % elongation over 2in
+  gauge length
+e.g. 32510 means Sy=32500psi and 10% elongation
+     50005 means Sy=50000psi and 5% elongation
+      NON-FERROUS METALS
+By the definition all metalic materials that do not
+  have iron (Fe) as their major ingredent are
+  called non-ferrous metals.
+The arbitrary classifications or grouping of the
+  non-ferrous metals are:
+1)Light metals (Al,Mg,Ti,Be)
+2)Heavy metals (Cu,Zn,Pb,Sn ….)
+3)Precious metals (Au,silver,platinum)
+4)Refractory metals (tungsten,Ni,Mo,Cr)
+        LIGHT METALS
+The border of light and heavy metals is around
+5000kg/m3.
+Metals with densities below 5000kg/m3 are called
+the light metals and others above 5000kg/m3 are
+called the heavy metals
+The lightest metal is the Lithium with the density
+of 530kg/m3 and the heaviest metal is the
+osmium with density of 22500kg/m3 (density of
+water is ………kg/m3)
+The steel(iron) whereas has a density of
+7800kg/m3 only
+Some examples for light metals are Al, Be, Mg, Ti
+Aluminum (2700kg/m3)currently is probably the
+most important of the nonferrous metals.
+Aluminum and its alloys number hundreds, and are
+available in all common commercial forms.
+Aluminum is outstanding for its physical properties
+such as light weight, high thermal and electrical
+conductivity, and corrosion resistance.
+it is suitable for casting, all machining and forming
+operations.
+Aluminum materials can be classified into three major
+groups:
+1. Pure aluminum and aluminum alloys.
+2. Heat-treatable and nonheat-treatable alloys.
+3. Wrought (forged) or cast alloys.
+Beryllium is a recently emergent material which has
+  several unique properties:
+  low density (one third lighter than aluminum);
+  high modulus/density ratio (six times greater than
+  ultrahigh-strength steels);
+  high melting point;
+  dimensional stability;
+  excellent thermal conductivity and transparency to
+  X rays.
+On the other hand, it has serious deficiencies:
+  it is expensive;
+  its use is severely limited by its poor ductiiity;
+  all compounds of beryllium are dangerously toxic.
+  Beryilium is not especially receptive to alloying
+Magnesium is the lightest engineering material
+  available.
+The combination of low density and good mechanical
+  strength of magnesium alloys has made it one of the
+  most specifıed materials in aircraft, space, portable
+  power tools, luggage and similar applications,
+  competing with the aluminum alloys.
+Alloys of magnesium are the easiest of all engineering
+  metals to machine.
+They are amenable to die casting, and they are easily
+  welded.
+Furthermore, the magnesium parts can be joined by
+  rivetting and adhesive bonding
+Titanium is used in corrosive environments or in
+applications that take advantage of its
+– light weight,
+– high strength, and
+– nonmagnetic properties
+Titanium has good high temperature strength
+compared with the other light metals.
+Titanium, like steel, is allotropic; i.e., it can exist
+in two different crystallographic forms. They are
+called the alpha phase and the beta phase.
+It is also widely used in medical sector due to its
+superior properties
+          2) HEAVY METALS
+Copper is probably the first engineering metal to
+   be used;
+because, unlike other metals, it can occur in
+   nature in the metallic form as well as an ore.
+It has very good heat and electric conductivity
+   and resist to corrosion when alloyed with other
+   metals.
+Copper alloys can be grouped into two major
+   catagories as
+  – (1) cast alloys and
+  – (2) wrought (formed by forging) alloys.
+Cast copper alloys are used in the form in
+which they are originally moulded. This
+naturally restricts the subsequent operations.
+The wrought copper alloys consist of the
+following general categories.
+a. Coppers— Contain minimum 99.3% Cu.
+b. High-Copper Alloys- Contain 96-99.3% Cu.
+c. Brasses— Contain zinc as the principal
+alloying element. (5-40% Zn)
+d. Bronze— Originally, copper-tin alloys, but
+contain a variety of other elements,at present,
+in addition to tin, or other than tin.
+e. Copper nickels (Cupro nickels)— Contain
+nickel as the main alloying element.
+f. Nickel silvers— Copper-nickel-zinc alloys.
+They actually do not contain silver.
+Zinc is an inexpensive material with moderate
+strength.
+Chemically zinc is similar to magnesium.
+Mechanically,however ,zinc is more ductile but
+not as strong.
+Although its metal & alloy forms are important
+zinc is most commonly used to extend the life of
+other materials such as steel (galvanizing),
+rubber and plastic (as an aging inhibitor), and
+wood (İn paint coatings).
+Lead is a versatile material which has
+applications that derive from its special
+properties of high atomic weight and
+density, softness, ductility, low strength,
+low melting point, corrosion resistance,
+and ability to lubricate.
+Toxicity of its compounds is one of the
+chief disadvantages.
+In general, lead does not form useful alloys
+  except with other metals with low melting
+  points.
+In the free machining leaded steel alloys the
+  lead is not an alloy ingredient but an inclusion.
+Lead is alloyed with tin and antimony to form a
+  series of useful alloys, which are mainly
+  employed for their low melting points.
+Lead-base "babbitt" bearing alloys contain 75-
+  90% lead, plus antimony and tin.
+Tin is most commonly used as a coating for
+  other metals - such as the tin cans, copper
+  cooking utensils, and so on.
+  Other applications include die-casting alloys,
+  pewter chemicals, bronze, bearing alloys, and
+  solder.
+  Tin alloys are cast, rolled, drawn,and may be
+  extruded or atomized.
+  As with many metals, pure tin is too weak to
+  be used alone for most mechanical
+  applications.
+  Tin is often alloyed with elements such as
+  copper,antimony, lead, aluminum and zinc to
+  improve mechanical or physical properties.
+         REFRACTORY METALS
+Refractory metals have melting points above
+1900°C.
+These metals are characterized by high-
+temperature strength and corrosion resistance.
+Although nickel has a lower melting point
+(1455°C), because of its use in applications
+usually requiring specific corrosion resistance or
+strength at high temperatures, it is also
+categorized in this group.
+it must, however, be pointed out that the
+prominent, actual refractory metals are tungsten,
+molybdenum, tantalum and columbium.
+In addition to these, chromium and niobium are
+receiving major considerations as high
+temperature materials.
+Nickel is one of the most important of engineering
+  materials.
+Nickel and its alloys are used in a variety of applications
+  usually requiring specific corrosion resistance or
+  strength at high temperatures.
+Nickel alloys have a wide range of desirable properties
+  such as ultra-high strength, high proportional limit, and
+  high modulus of elasticity.
+Commercially pure nickel has good electrical, magnetic,
+  and magnetostrictive properties.
+Nickel alloys are strong, tough and ductile at cryogenic
+  temperatures.
+On the other hand, several nickel-based superalloys are
+  specified for high-strength applications at temperatures
+  up to 1100°C.
+High-carbon nickel-base casting alloys are used regularly
+  at moderate stresses above 1200°C.
+Tungsten and molybdenum have had industrial
+ uses for many decades, Thomas Edison's
+ experimentation with tungsten during the
+ invention of the incandescent lamp being the
+ most important application.
+Tungsten and molybdenum are the chief carbide-
+ formers in high-speed steels, molybdenum
+ tending to replace tungsten in this application
+ because of its lower weight.
+Though both metals have very desirable
+ mechanical properties at high temperatures,
+ they both have the serious defects of great
+ brittleness at room temperature and
+ pronounced oxidation at relatively low
+ temperatures.
+Tungsten is the only refractory metal that has
+ excellent erosion resistance, good electrical
+ and thermal couductivity, low coefficient of
+ expansion, and high strength-at elevated
+ temperatures.
+Molybdenum is one of the few metals that have
+ some degree of resistance to hydrofluoric acid.
+ Properties of molybdenum are similar to those
+ of tungsten, however, molybdenum is more
+ ductile, easier to fabricate, and cheaper.
+Columbium and Tantalum are distinguished by
+ excellent ductilty, even at low temperature.
+ Both metals occur together in ores and they
+ must be separated for nuclear use, since
+ tantalum has a high neutron absorption and that
+ of columbium is low
+ Columbium and tantaium can be fabricated by
+ most conventional procedures,
+ These metals are usually considered together
+ because most of their working operations are
+ identical.
+ Tantalum and columbium are usually worked at
+ room temperature.
+                     PRECIOUS METALS
+The family of metals called precious metals can be divided
+   into three subgroups:
+
+   (1) gold and gold alloys;
+   (2) silver and silver alloys; and
+   (3) "platinum group" metals.
+
+
+Most precious metals are available as sheet, tape, foil,
+    wire, tubing, gauze, discs, electrodes, cathodes,
+    crucibles, catalysts, and salts and solutions for plating
+    and coating.
+The precious metals are nearly completely corrosion
+    resistant;
+platinum metals withstand service up to 1760°C without
+    any evidence of erosion and corrosion
+                    Non-metals
+
+B.1)Naturals             B.2) Artificials
+     •wood
+     •granite etc
+                               Polymers
+                                   •Rubber
+                                   •Thermoplastics
+                                   •Thermosets etc
+
+
+                               Ceramics
+                                   •Glass
+                                   •Cermets
+
+                                Composites
+                                   •Metal matrix composites
+                                   •Ceramic matrix composites
+                                   •Polymer matrix composites
+               Polymers
+Plastics: A plastic is a synthetic material of
+high molecular weight, composed of repeating
+organic chemical units.
+Plastics can be moulded or formed into useful
+shapes by various proceses usually involving
+heat and/or pressure.
+Plastics are not found in nature.They are made
+synthetically from basic chemical raw materials
+called “monomers”.
+Plastic polymers are always composed of atoms
+  of carbon in combination with other elements.
+At present, only eight elements are utilized to
+  create thousands of different plastics.
+These eight elements are carbon, hydrogen,
+  nitrogen, oxygen, fluorine, silicon, sulfur, and
+  chlorine.
+
+ Plastics are classified into two main groups:
+ 1) thermo plastics and
+ 2) thermo setting plastics
+Thermoplastics can be re-shaped upon being heated, more
+significantly, can be reground or remolded.
+Many uses have been found for the various types of
+thermoplastic materials,and processes have been under
+development to produce economical finished and semi-
+finished parts.
+Thermoplastics can be moulded, rolled into sheets,used for
+strip coatings,and extruded into shapes.
+The material can be reused, therefore, there is little waste
+Thermoplastic materials can be obtained in any shape of any
+desired colour or mixture of colours as well as in any desired
+degree of transparency,including crystal clear and opaque.
+This is a definite advantage thus eliminating painting or other
+finishing operations required to achieve the desired sales
+appearance.
+Some examples of thermoplastics are given in Table 1.11.
+Thermo setting plastics:
+  The term thermoset means a plastic which sets, or completes
+  the polymerızation under heat and effect of ather agents.
+  The actual distinguishing factor between the two classes
+  (thermo plastic and thermosets) is whether the polymer chains
+  remain linear and separate after moulding or whether they
+  undergo three-dimensional chain combination cross-linking.
+  Linear plastics (thermo plastic) can be considered to be
+  unchanged during moulding and can be remolded over and
+  over.
+  The chains of crosslinked plastics (thermosets )are, however,
+  joined irreversibly during moulding which does not permit
+  remoulding.
+  Crosslinking can be initiated by heat, chemical agents (curing
+  agents), irradiation, or a combination of these.
+  thermo sets have improved resistance to heat (thus can not be
+  remolded), chemical attack, stress cracking,and creep in
+  comparison with the same plastic in the thermo plastic form.
+  In addition thermosets have better dimensional stability and
+  electrical properties than do the thermoplastics.
+  Most thermosets are used principally in filled and/or
+  reinforced form for improved properties or for
+  economy.
+  they are more difficult to process and are more brittle
+  than the thermoplastics.
+
+some examples of the thermo sets are;
+  – alkyd,
+  – aminos(melamine),
+  – epoxy ,
+  – polyester,
+  – polyurethan,
+  – Silicone
+  – etc
+               ADDITIVES
+Few plastics are used on their own.
+Nearly all contain a number of additives
+– to improve the properties,
+– to facilitate processing or
+– to reduce costs.
+the following are the important additives
+employed by the plastics industry:
+colourants, fillers, catalysts, plasticizers,
+stabilizers, fire reterdants, lubricants.
+Fiber-reinforced plastics (FRP) have proven to be the
+fastest growing engineering material.
+They offer properties and performance benefits
+considerably beyond those available in the
+unreinforced resins.
+Though the cost of the fiber-reinforced plastics is
+higher, it is usually more than offset by the gain in
+performance.
+These materials are extremely versatile composites
+with relatively high strength to weight ratios and
+excellent corrosion resistance.
+in addition, they can be formed economically into
+virtually any shape and size; from tiny electronic
+components to large cruising boat hulls.
+The FRP's are composed of three major components:
+  (1) matrix; (2) fiber, and (3) bonding agent
+
+ Some examples of FRP’s with different fiber and
+ matrixes are;
+  – 1)glass-reinforced thermoplastics
+  – 2)carbon reinforced thermoplastics
+  – 3)Reinforced thermosetting plastics
+  – 4)laminated plastics
+  – 5)sandwich composites
+ Each of these types aims the improvements in
+ mechanical & chemical properties as well as in the
+ final cost.
+        STRUCTURAL FOAM
+While several different methods are used to produce
+structural-foam parts, all systems disperse a gas into
+the polymer melt during processing.
+This is done
+– either by adding a chemical blowing agent to the compound
+– or by inducing a gas directly into the melt.
+The gas creates the cellular core structure in the part
+during the moulding process making the material more
+efficient in terms of strength to weight ratio compared
+to conventional mouldings
+             ELASTOMERS
+These are commonly refered to as "rubbers”
+
+The ASTM defines an elastomer as
+"a polymeric material which at room
+temperature can be stretched to at least twice
+its original length and upon immediate release
+of the stress will return quickly to approximately
+its original length".
+The raw polymer of an elastomer is generally
+composed of monomers which are linked end-
+to-end to form long chains, free to bend or
+rotate at most of the links.
+These tangled chains can slide past each other
+except where they are attacked by crosslinks
+which tie the molecular chains together and
+limit the amount of stretch.
+Crosslinking occurs during vulcanisation of the
+moulded part and is effected by catalysts in
+conjunction with heat and pressure (as in the
+case of thermo-sets).
+Some examples of elastomers are:
+  – Natural rubber
+  – Butadiene
+  – Neoprene
+  – Nitric butadiene
+  – Polyacrylics
+  – Chlorinated polyethylene
+  – Ethylene propylene
+  – Polyurathenes
+ Properties and applications for these
+ elastomers are given in detail in the textbook.
+                 CERAMICS
+Generally, ceramics are hard and brittle and cannot
+endure high tensile loads or sudden impact.
+On the other hand, ceramics have high compressive
+strengths and resistance to high temperature.
+Ceramics are made of metal oxides, metal carbides,
+and silicates, though some borides, hydrides, sulfides,
+and nitrides are also used in industry.
+Ceramics can be made into bricks, turbine blades,
+grinding wheels, carbide bits to machine materials.
+These are only few examples of the ceramic products.
+Ceramics are becoming increasingly important as
+materials used in manufacturing.
+They have had extensive use in the electrical industry
+due to high electrical resistance.
+An "engineering ceramic" is usually selected to meet any (or
+  combination) of the following design requirements:
+   – high temperature resistance,
+   – compressive loads resistance,
+   – severe abrasion resistance,
+   – Corrosion resistance,
+or the need for
+   – extreme rigidity,
+   – creep resistance,
+   – high-temperature corrosion resistance, and
+   – special physical properties.
+
+
+In fact, the behaviour and properties of a ceramic also depend on
+   how the part is made and how the ceramic particles are bonded
+   together
+Most ceramic parts are made by first compressing the particles
+   into preform and then by further processing chemically and
+   mechanically to produce the final ceramic part.
+REFRACTORY HARD METALS (RHM)
+These are a composite of ceramic and metal
+materials
+they are sometimes called “cermets” or
+“cemented carbides”
+they combine some of the high refractoriness of
+ceramics and the toughness and thermal-shock
+resistance of metals
+parts from cermet material are produced by
+pressing powders (of cermets) into moulds at
+medium and high presses, they are then
+sintered in controlled atmosphere furnaces at
+about 1650 C to bind them together
+There are four different system of RHM’s used for
+  structural applications (not for metal cutting).
+   – Tungsten carbide with 3% to 10% matrix of cobalt
+     is the most common structural cermet and often
+     specified for combined wear and impact resistance
+   – Combination of tungten carbide and tantalum
+     carbide in a matrix of nickel, cobalt, or chromium
+     provides a formulation especially suited for a
+     combination of corrosion and wear resistance
+     (nozzles, orifice plates and valve components are
+     some examles)
+   – Tungsten titanium carbides (WTiC2) in cobalt is
+     used primarily for metal forming dies and similar
+     applications.
+   – Titantium carbide has a molybdenum or nickel
+     matrix and is formulated for high-temperature
+     service (around 1100C)
+                  CARBON
+Carbon, a nonmetallic element, exists in three
+generic forms:
+    diamond,
+    graphite and
+    black, or amorphous carbon.
+All three forms are useful engineering materials.
+
+Diamond is used for engineering purposes
+primarily, because it is the hardest naturally
+occuring material, although synthetic boron
+nitride, or "borazon" has similar mechanical
+properties and will scratch diamond
+Graphite (second form of carbon) is
+ – readily machinable,
+ – resist heat and thermal shock,
+ – a good heat conductor, and
+ – is chemically inert to almost all corrosives except
+   strong oxidizing agents.
+Graphite has a unique property that its strength
+increases with temperature and therefore it is often
+used in high temp- structural applications such as
+missile-nozzle inserts, heat shields, fuel chamber
+and furnace liners etc
+Pyrolytic grades of graphites have the highest
+strength of any material above 2750C
+Black carbon, (third form of carbon) on the other
+hand, is often specified for low-friction applications
+  COMPOSITE MATERIALS
+Composite is a combination of two or more
+materials that has the properties that the
+components individually do not have by
+themselves
+composites bring the superior properties of
+components together to serve better in
+applications like:
+– high strength
+– high temperature,
+– good lubricity
+– good chemical resistance ,
+– low density,
+– ease of processing
+– etc.
+ But all of these good (or superior) properties
+ may not come together always
+ generally metals, plastics or ceramics are
+ brougth together in different proportions by
+ different methods to produce composite
+ materials with better properties
+ Composites usually consist of a matrix material
+ with the reinforcing elements of
+  – Filaments
+  – Fibres
+  – Particulate materials
+to give enhanced mechanical properties to the
+  final product
+Matrix gives the composite its bulk form and
+structural constituents determine the character
+of the composite’s internal structure.
+the structural constituents can be categorized
+as;
+Fibres       → fibre composites
+Particles     → particulate composites
+Laminates → laminar/laminated composites
+Flakes       → flake composite
+Fillers      → filled composite
+            Laminated            Sandwıch
+
+
+
+
+Honeycomb               Corrugated           Waffle
+
+
+   Examples of laminar and sandwich composites
+If you remember the FRP’s were also called as
+   composites because FRP's are composed of three
+   major components: (1) matrix; (2) fiber, and (3)
+   bonding agent
+
+  Some examples of FRP’s with different fiber and
+  matrixes were;
+   – 1)glass-reinforced thermoplastics
+   – 2)carbon reinforced thermoplastics
+   – 3)Reinforced thermosetting plastics
+   – 4)laminated plastics
+   – 5)sandwich composites
+  Each of these types aims the improvements in
+  mechanical & chemical properties as well as in the
+  final cost.
+QUIZ- 1. What are the objectives of the
+ course Engineering Materials ?
+
+ ……………………..
+ …………………….
+ ………………………
+QUIZ- 2. Make a classification of
+ engineering materials as much as you
+ learnt in this course.
+
+  A)…………………..            B)………………….
+
+
+
+
+ …………..     ……………..      …………..       ……………..
+
+   …            …         …             …
+   …            …         …             …
+   …            …         …             …
+
