@@ -285,7 +285,7 @@ export const introClassificationQuestions: MaterialsQuestion[] = [
       "The course material states that a composite's overall properties can be more desirable than what any single one of its component materials could achieve alone.",
     correctAnswer: true,
     rationale:
-      "The lecture describes composites as having 'collective properties more desirable than possible with any individual material,' which is the whole point of combining materials like glass fiber and polymer.",
+      "The lecture describes composites as having properties that result from the combination - useful qualities that neither ingredient has on its own, which is the whole point of combining materials like glass fiber and polymer.",
   },
   {
     id: 'ic-022',
@@ -300,7 +300,7 @@ export const introClassificationQuestions: MaterialsQuestion[] = [
     ],
     correctIndex: 2,
     rationale:
-      'Smart materials are described as designed to respond automatically to environmental changes (a stimulus, such as heat or pressure), unlike ordinary materials that just sit passively under load or heat.',
+      'Smart materials are described as built so they react on their own when their surroundings change (a stimulus, such as heat or pressure), unlike ordinary materials that just sit passively under load or heat.',
   },
   {
     id: 'ic-023',
@@ -316,7 +316,7 @@ export const introClassificationQuestions: MaterialsQuestion[] = [
     ],
     correctIndex: 3,
     rationale:
-      'The course material defines a shape-memory alloy as a metal that returns to its original shape when heated - exactly the behavior described.',
+      'The course material defines a shape-memory alloy as a metal that, after being bent, springs back to the shape it was made in once it is warmed - exactly the behavior described.',
   },
   {
     id: 'ic-024',
@@ -390,7 +390,7 @@ export const introClassificationQuestions: MaterialsQuestion[] = [
     ],
     correctIndex: 0,
     rationale:
-      'The lecture states engineers should be able to select a material for a given use based on considerations of cost and performance, weighing what properties are needed against what the material costs and how available it is.',
+      'The lecture states engineers should be able to choose a material by weighing what it costs against how well it does the job - balancing price and performance to match what the job needs.',
   },
   {
     id: 'ic-030',
@@ -406,6 +406,6 @@ export const introClassificationQuestions: MaterialsQuestion[] = [
     ],
     correctIndex: 1,
     rationale:
-      "Lecture 3's overview of everyday materials (wood, stone/granite, copper, steel, aluminum, plastics) explicitly notes that 'materials are used together sometimes,' meaning a real structure commonly combines several material types.",
+      "Lecture 3's overview of everyday materials (wood, stone/granite, copper, steel, aluminum, plastics) shows that real products and structures usually combine several materials, each chosen for what it does best.",
   },
 ];
