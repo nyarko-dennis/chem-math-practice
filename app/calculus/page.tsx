@@ -130,6 +130,13 @@ export default function CalculusPage() {
             </button>
           )}
 
+          <Link
+            href="/calculus/learn"
+            className="block w-full mb-4 text-center bg-white border border-teal-300 text-teal-700 font-semibold py-3 px-6 rounded-lg hover:bg-teal-50 transition-colors"
+          >
+            📖 Learn the topics - worked examples, step by step
+          </Link>
+
           <div className="space-y-4 mb-6">
             <div className="flex items-center justify-between">
               <label className="font-medium text-slate-700">Basic rules &amp; standard derivatives</label>
