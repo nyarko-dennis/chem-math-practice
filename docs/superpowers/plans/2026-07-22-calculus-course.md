@@ -2,7 +2,9 @@
 
 > **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
 
-**Goal:** Add a Calculus practice course (differentiation + partial differentiation) to the existing Next.js test-generator app, with algorithmically generated basic-rule problems and curated static banks for implicit/higher-order and partial differentiation.
+**Goal:** Add a Calculus practice course (differentiation + applications + partial differentiation) to the existing Next.js test-generator app, with algorithmically generated basic-rule problems and curated static banks for implicit/higher-order, applications of differentiation, and partial differentiation.
+
+> **Amendment (2026-07-22):** After Tasks 1-2 completed, the official Level 100 EEE syllabus (`Level100_EEE_Second_Semester_Courses_and_Topics.pdf`) confirmed "Applications" as a taught differentiation topic. A fourth category `applications` was added: new Task 5 (applications static bank + type-union extension), and Tasks 5-8 renumbered to 6-9 with config/test amendments.
 
 **Architecture:** Framework-free question logic lives in focused `lib/calculus*.ts` files (pure TypeScript, unit-tested with Node's built-in test runner). A new `app/calculus/page.tsx` route reuses the existing `MathInput`/`MathDisplay` components, `checkAnswer.ts`, and `progressTracker.ts`. The home page gains a course card.
 
@@ -26,8 +28,9 @@
 - `lib/calculusGenerators.ts` (create) - pure `build*` functions + random `generate*` wrappers for the 5 basic-rule generators + `randomBasicRuleQuestion`.
 - `lib/calculusImplicitBank.ts` (create) - `implicitHigherOrderQuestions: CalculusQuestion[]` static bank (30 items).
 - `lib/calculusPartialBank.ts` (create) - `partialDifferentiationQuestions: CalculusQuestion[]` static bank (30 items).
+- `lib/calculusApplicationsBank.ts` (create, Task 5) - `applicationsQuestions: CalculusQuestion[]` static bank (30 items); Task 5 also extends the `CalculusCategory` union in `lib/calculusTypes.ts` with `'applications'`.
 - `lib/calculusQuestions.ts` (create) - `assembleQuiz(config)` entry point + re-exports.
-- `lib/calculusGenerators.test.ts`, `lib/calculusImplicitBank.test.ts`, `lib/calculusPartialBank.test.ts`, `lib/calculusQuestions.test.ts` (create) - unit tests.
+- `lib/calculusGenerators.test.ts`, `lib/calculusImplicitBank.test.ts`, `lib/calculusPartialBank.test.ts`, `lib/calculusApplicationsBank.test.ts`, `lib/calculusQuestions.test.ts` (create) - unit tests.
 - `app/calculus/page.tsx` (create) - the quiz UI.
 - `app/page.tsx` (modify) - add the calculus course card.
 - `package.json` (modify) - add `"test": "node --test"` script.
@@ -602,18 +605,163 @@ git commit -m "feat(calculus): add partial differentiation static bank"
 
 ---
 
-## Task 5: Quiz assembly entry point
+## Task 5: Applications of differentiation static bank
+
+**Files:**
+- Modify: `lib/calculusTypes.ts` (extend `CalculusCategory` union)
+- Create: `lib/calculusApplicationsBank.ts`
+- Test: `lib/calculusApplicationsBank.test.ts`
+
+**Interfaces:**
+- Consumes: `CalculusQuestion` from `./calculusTypes.ts`.
+- Produces:
+  - `CalculusCategory` gains `'applications'` (union becomes `'basicRules' | 'implicitHigherOrder' | 'partial' | 'applications'`).
+  - `applicationsQuestions: CalculusQuestion[]` (30 items, all `category: 'applications'`, `source: 'static'`, ids `ap-01`..`ap-30`).
+
+- [ ] **Step 1: Extend the category union**
+
+In `lib/calculusTypes.ts`, change:
+
+```typescript
+export type CalculusCategory = 'basicRules' | 'implicitHigherOrder' | 'partial';
+```
+
+to:
+
+```typescript
+export type CalculusCategory = 'basicRules' | 'implicitHigherOrder' | 'partial' | 'applications';
+```
+
+- [ ] **Step 2: Write the failing test**
+
+Create `lib/calculusApplicationsBank.test.ts`:
+
+```typescript
+import { test } from 'node:test';
+import assert from 'node:assert/strict';
+import { applicationsQuestions } from './calculusApplicationsBank.ts';
+
+test('bank has at least 25 items', () => {
+  assert.ok(applicationsQuestions.length >= 25);
+});
+
+test('every item is well-formed and correctly tagged', () => {
+  for (const q of applicationsQuestions) {
+    assert.equal(q.category, 'applications');
+    assert.equal(q.source, 'static');
+    assert.ok(q.id && q.instructions && q.prompt && q.correctAnswer && q.solution);
+  }
+});
+
+test('ids are unique', () => {
+  const ids = applicationsQuestions.map((q) => q.id);
+  assert.equal(new Set(ids).size, ids.length);
+});
+
+test('spot-check known answers', () => {
+  const byId = Object.fromEntries(applicationsQuestions.map((q) => [q.id, q]));
+  assert.equal(byId['ap-01'].correctAnswer, '6');
+  assert.equal(byId['ap-13'].correctAnswer, '-4');
+  assert.equal(byId['ap-21'].correctAnswer, '7');
+});
+```
+
+- [ ] **Step 3: Run test to verify it fails**
+
+Run: `node --test lib/calculusApplicationsBank.test.ts`
+Expected: FAIL - cannot find module `./calculusApplicationsBank.ts`.
+
+- [ ] **Step 4: Write the implementation**
+
+Create `lib/calculusApplicationsBank.ts` (30 items: ap-01..ap-10 tangents & normals, ap-11..ap-20 stationary points & max/min, ap-21..ap-30 rates of change & kinematics). None of these literals contain apostrophes - all solutions use `\frac{dy}{dx}` notation, so single quotes are safe:
+
+```typescript
+import type { CalculusQuestion } from './calculusTypes.ts';
+
+const ap = (
+  id: string,
+  instructions: string,
+  prompt: string,
+  correctAnswer: string,
+  solution: string,
+): CalculusQuestion => ({ id, category: 'applications', source: 'static', instructions, prompt, correctAnswer, solution });
+
+const TAN_GRAD = 'Find the gradient of the tangent to the curve at the given x-value:';
+const TAN_EQ = 'Find the equation of the tangent to the curve at the given point (answer as y=mx+c):';
+const NORM_GRAD = 'Find the gradient of the normal to the curve at the given x-value:';
+const STAT_X = 'Find the x-coordinate of the stationary point:';
+const STAT_X_POS = 'Find the positive x-coordinate of a stationary point:';
+const MIN_V = 'Find the minimum value of y:';
+const MAX_V = 'Find the maximum value of y:';
+const VEL_AT = 'The displacement is s(t) metres after t seconds. Find the velocity at the given time:';
+const ACC_AT = 'The displacement is s(t) metres after t seconds. Find the acceleration at the given time:';
+const RATE_AT = 'Find the rate of change at the given value:';
+
+export const applicationsQuestions: CalculusQuestion[] = [
+  ap('ap-01', TAN_GRAD, 'y=x^{2},\\ x=3', '6', '\\frac{dy}{dx}=2x.\\text{ At }x=3:\\ 2(3)=6.'),
+  ap('ap-02', TAN_GRAD, 'y=x^{3},\\ x=2', '12', '\\frac{dy}{dx}=3x^{2}.\\text{ At }x=2:\\ 3(4)=12.'),
+  ap('ap-03', TAN_GRAD, 'y=x^{2}-4x,\\ x=1', '-2', '\\frac{dy}{dx}=2x-4.\\text{ At }x=1:\\ 2-4=-2.'),
+  ap('ap-04', TAN_EQ, 'y=x^{2}\\text{ at }(2,4)', 'y=4x-4', '\\text{Slope }=2x=4.\\ y-4=4(x-2)\\Rightarrow y=4x-4.'),
+  ap('ap-05', TAN_EQ, 'y=x^{2}+1\\text{ at }(1,2)', 'y=2x', '\\text{Slope }=2x=2.\\ y-2=2(x-1)\\Rightarrow y=2x.'),
+  ap('ap-06', TAN_EQ, 'y=x^{3}\\text{ at }(1,1)', 'y=3x-2', '\\text{Slope }=3x^{2}=3.\\ y-1=3(x-1)\\Rightarrow y=3x-2.'),
+  ap('ap-07', NORM_GRAD, 'y=x^{2},\\ x=1', '-\\frac{1}{2}', '\\text{Tangent slope }=2x=2.\\text{ Normal slope }=-\\frac{1}{2}.'),
+  ap('ap-08', NORM_GRAD, 'y=x^{3},\\ x=1', '-\\frac{1}{3}', '\\text{Tangent slope }=3x^{2}=3.\\text{ Normal slope }=-\\frac{1}{3}.'),
+  ap('ap-09', 'Find the x-value where the tangent to the curve is horizontal:', 'y=x^{2}-6x', '3', '\\frac{dy}{dx}=2x-6=0\\Rightarrow x=3.'),
+  ap('ap-10', 'Find the x-value where the gradient of the curve equals 10:', 'y=x^{2}+4x', '3', '\\frac{dy}{dx}=2x+4=10\\Rightarrow x=3.'),
+  ap('ap-11', STAT_X, 'y=x^{2}-4x+1', '2', '\\frac{dy}{dx}=2x-4=0\\Rightarrow x=2.'),
+  ap('ap-12', STAT_X, 'y=x^{2}+6x', '-3', '\\frac{dy}{dx}=2x+6=0\\Rightarrow x=-3.'),
+  ap('ap-13', MIN_V, 'y=x^{2}-6x+5', '-4', '\\frac{dy}{dx}=2x-6=0\\Rightarrow x=3.\\ y=9-18+5=-4.'),
+  ap('ap-14', MIN_V, 'y=x^{2}+2x+3', '2', '\\frac{dy}{dx}=2x+2=0\\Rightarrow x=-1.\\ y=1-2+3=2.'),
+  ap('ap-15', MAX_V, 'y=-x^{2}+4x+1', '5', '\\frac{dy}{dx}=-2x+4=0\\Rightarrow x=2.\\ y=-4+8+1=5.'),
+  ap('ap-16', STAT_X_POS, 'y=x^{3}-3x', '1', '\\frac{dy}{dx}=3x^{2}-3=0\\Rightarrow x=\\pm 1.\\text{ Positive: }x=1.'),
+  ap('ap-17', STAT_X_POS, 'y=x^{3}-12x', '2', '\\frac{dy}{dx}=3x^{2}-12=0\\Rightarrow x=\\pm 2.\\text{ Positive: }x=2.'),
+  ap('ap-18', 'Evaluate \\frac{d^{2}y}{dx^{2}} at the stationary point:', 'y=x^{2}-4x+1', '2', '\\frac{d^{2}y}{dx^{2}}=2\\text{ (constant), positive so the point is a minimum}.'),
+  ap('ap-19', STAT_X_POS, 'y=2x^{3}-6x', '1', '\\frac{dy}{dx}=6x^{2}-6=0\\Rightarrow x=\\pm 1.\\text{ Positive: }x=1.'),
+  ap('ap-20', MIN_V, 'y=x^{2}-2x', '-1', '\\frac{dy}{dx}=2x-2=0\\Rightarrow x=1.\\ y=1-2=-1.'),
+  ap('ap-21', VEL_AT, 's=t^{2}+3t,\\ t=2', '7', 'v=\\frac{ds}{dt}=2t+3.\\text{ At }t=2:\\ 4+3=7.'),
+  ap('ap-22', VEL_AT, 's=t^{3}-3t,\\ t=2', '9', 'v=\\frac{ds}{dt}=3t^{2}-3.\\text{ At }t=2:\\ 12-3=9.'),
+  ap('ap-23', ACC_AT, 's=t^{3},\\ t=2', '12', 'v=3t^{2},\\ a=\\frac{d^{2}s}{dt^{2}}=6t.\\text{ At }t=2:\\ 12.'),
+  ap('ap-24', VEL_AT, 's=5t^{2},\\ t=3', '30', 'v=\\frac{ds}{dt}=10t.\\text{ At }t=3:\\ 30.'),
+  ap('ap-25', 'The displacement is s(t). Find the time t>0 when the velocity is zero:', 's=t^{3}-6t^{2}', '4', 'v=3t^{2}-12t=3t(t-4)=0\\Rightarrow t=4\\ (t>0).'),
+  ap('ap-26', 'The displacement is s(t). Find the velocity as a function of t:', 's=t^{2}-4t', '2t-4', 'v=\\frac{ds}{dt}=2t-4.'),
+  ap('ap-27', RATE_AT, 'A=x^{2},\\ x=5', '10', '\\frac{dA}{dx}=2x.\\text{ At }x=5:\\ 10.'),
+  ap('ap-28', RATE_AT, 'V=x^{3},\\ x=2', '12', '\\frac{dV}{dx}=3x^{2}.\\text{ At }x=2:\\ 12.'),
+  ap('ap-29', RATE_AT, 'A=\\pi r^{2},\\ r=3', '6\\pi', '\\frac{dA}{dr}=2\\pi r.\\text{ At }r=3:\\ 6\\pi.'),
+  ap('ap-30', 'The displacement is s(t). Find the acceleration as a function of t:', 's=t^{3}-3t^{2}', '6t-6', 'v=3t^{2}-6t,\\ a=\\frac{dv}{dt}=6t-6.'),
+];
+```
+
+- [ ] **Step 5: Run test to verify it passes**
+
+Run: `node --test lib/calculusApplicationsBank.test.ts`
+Expected: PASS (4 tests).
+
+- [ ] **Step 6: Run the full lib suite to confirm the union extension broke nothing**
+
+Run: `npm test`
+Expected: all existing calculus tests still PASS (generators 8, implicit 4, partial 4, applications 4).
+
+- [ ] **Step 7: Commit**
+
+```bash
+git add lib/calculusTypes.ts lib/calculusApplicationsBank.ts lib/calculusApplicationsBank.test.ts
+git commit -m "feat(calculus): add applications-of-differentiation static bank"
+```
+
+---
+
+## Task 6: Quiz assembly entry point
 
 **Files:**
 - Create: `lib/calculusQuestions.ts`
 - Test: `lib/calculusQuestions.test.ts`
 
 **Interfaces:**
-- Consumes: `randomBasicRuleQuestion`, `randId` from `./calculusGenerators.ts`; `implicitHigherOrderQuestions` from `./calculusImplicitBank.ts`; `partialDifferentiationQuestions` from `./calculusPartialBank.ts`; types from `./calculusTypes.ts`.
+- Consumes: `randomBasicRuleQuestion`, `randId` from `./calculusGenerators.ts`; `implicitHigherOrderQuestions` from `./calculusImplicitBank.ts`; `partialDifferentiationQuestions` from `./calculusPartialBank.ts`; `applicationsQuestions` from `./calculusApplicationsBank.ts`; types from `./calculusTypes.ts`.
 - Produces:
-  - `CalculusConfig = { basicRules: boolean; implicitHigherOrder: boolean; partial: boolean; count: number }`
+  - `CalculusConfig = { basicRules: boolean; implicitHigherOrder: boolean; partial: boolean; applications: boolean; count: number }`
   - `assembleQuiz(config: CalculusConfig): CalculusQuestion[]`
-  - Re-exports: `CalculusQuestion`, `CalculusCategory`, `implicitHigherOrderQuestions`, `partialDifferentiationQuestions`.
+  - Re-exports: `CalculusQuestion`, `CalculusCategory`, `implicitHigherOrderQuestions`, `partialDifferentiationQuestions`, `applicationsQuestions`.
 
 - [ ] **Step 1: Write the failing test**
 
@@ -625,28 +773,33 @@ import assert from 'node:assert/strict';
 import { assembleQuiz } from './calculusQuestions.ts';
 
 test('returns exactly `count` questions', () => {
-  const qs = assembleQuiz({ basicRules: true, implicitHigherOrder: true, partial: true, count: 12 });
+  const qs = assembleQuiz({ basicRules: true, implicitHigherOrder: true, partial: true, applications: true, count: 12 });
   assert.equal(qs.length, 12);
 });
 
 test('respects category selection - basicRules only', () => {
-  const qs = assembleQuiz({ basicRules: true, implicitHigherOrder: false, partial: false, count: 20 });
+  const qs = assembleQuiz({ basicRules: true, implicitHigherOrder: false, partial: false, applications: false, count: 20 });
   assert.ok(qs.every((q) => q.category === 'basicRules'));
 });
 
 test('respects category selection - partial only', () => {
-  const qs = assembleQuiz({ basicRules: false, implicitHigherOrder: false, partial: true, count: 15 });
+  const qs = assembleQuiz({ basicRules: false, implicitHigherOrder: false, partial: true, applications: false, count: 15 });
   assert.ok(qs.every((q) => q.category === 'partial'));
 });
 
+test('respects category selection - applications only', () => {
+  const qs = assembleQuiz({ basicRules: false, implicitHigherOrder: false, partial: false, applications: true, count: 15 });
+  assert.ok(qs.every((q) => q.category === 'applications'));
+});
+
 test('assigns a unique id to every drawn question', () => {
-  const qs = assembleQuiz({ basicRules: false, implicitHigherOrder: true, partial: false, count: 40 });
+  const qs = assembleQuiz({ basicRules: false, implicitHigherOrder: true, partial: false, applications: false, count: 40 });
   const ids = qs.map((q) => q.id);
   assert.equal(new Set(ids).size, ids.length);
 });
 
 test('returns empty array when no categories selected', () => {
-  const qs = assembleQuiz({ basicRules: false, implicitHigherOrder: false, partial: false, count: 10 });
+  const qs = assembleQuiz({ basicRules: false, implicitHigherOrder: false, partial: false, applications: false, count: 10 });
   assert.equal(qs.length, 0);
 });
 ```
@@ -665,15 +818,18 @@ import type { CalculusQuestion, CalculusCategory } from './calculusTypes.ts';
 import { randomBasicRuleQuestion, randId } from './calculusGenerators.ts';
 import { implicitHigherOrderQuestions } from './calculusImplicitBank.ts';
 import { partialDifferentiationQuestions } from './calculusPartialBank.ts';
+import { applicationsQuestions } from './calculusApplicationsBank.ts';
 
 export type { CalculusQuestion, CalculusCategory } from './calculusTypes.ts';
 export { implicitHigherOrderQuestions } from './calculusImplicitBank.ts';
 export { partialDifferentiationQuestions } from './calculusPartialBank.ts';
+export { applicationsQuestions } from './calculusApplicationsBank.ts';
 
 export interface CalculusConfig {
   basicRules: boolean;
   implicitHigherOrder: boolean;
   partial: boolean;
+  applications: boolean;
   count: number;
 }
 
@@ -686,6 +842,7 @@ export function assembleQuiz(config: CalculusConfig): CalculusQuestion[] {
   if (config.basicRules) categories.push('basicRules');
   if (config.implicitHigherOrder) categories.push('implicitHigherOrder');
   if (config.partial) categories.push('partial');
+  if (config.applications) categories.push('applications');
 
   if (categories.length === 0) return [];
 
@@ -697,8 +854,10 @@ export function assembleQuiz(config: CalculusConfig): CalculusQuestion[] {
       q = randomBasicRuleQuestion();
     } else if (cat === 'implicitHigherOrder') {
       q = pickRandom(implicitHigherOrderQuestions);
-    } else {
+    } else if (cat === 'partial') {
       q = pickRandom(partialDifferentiationQuestions);
+    } else {
+      q = pickRandom(applicationsQuestions);
     }
     // Fresh id per drawn question so repeats of a static item don't collide as React keys.
     out.push({ ...q, id: randId() });
@@ -710,12 +869,12 @@ export function assembleQuiz(config: CalculusConfig): CalculusQuestion[] {
 - [ ] **Step 4: Run test to verify it passes**
 
 Run: `node --test lib/calculusQuestions.test.ts`
-Expected: PASS (5 tests).
+Expected: PASS (6 tests).
 
 - [ ] **Step 5: Run the whole suite**
 
 Run: `npm test`
-Expected: all calculus test files PASS (generators 7, implicit 4, partial 4, questions 5).
+Expected: all calculus test files PASS (generators 8, implicit 4, partial 4, applications 4, questions 6).
 
 - [ ] **Step 6: Commit**
 
@@ -726,7 +885,7 @@ git commit -m "feat(calculus): add quiz assembly entry point"
 
 ---
 
-## Task 6: Calculus quiz page
+## Task 7: Calculus quiz page
 
 **Files:**
 - Create: `app/calculus/page.tsx`
@@ -771,6 +930,7 @@ export default function CalculusPage() {
     basicRules: true,
     implicitHigherOrder: false,
     partial: false,
+    applications: false,
     count: 10,
   });
 
@@ -890,6 +1050,12 @@ export default function CalculusPage() {
                 onChange={(e) => setConfig({ ...config, partial: e.target.checked })}
                 className="w-5 h-5 accent-teal-600" />
             </div>
+            <div className="flex items-center justify-between">
+              <label className="font-medium text-slate-700">Applications of differentiation</label>
+              <input type="checkbox" checked={config.applications}
+                onChange={(e) => setConfig({ ...config, applications: e.target.checked })}
+                className="w-5 h-5 accent-teal-600" />
+            </div>
 
             <div className="pt-4 border-t border-slate-100">
               <label className="block font-medium text-slate-700 mb-2">Number of Questions</label>
@@ -1004,7 +1170,7 @@ git commit -m "feat(calculus): add quiz page with resume and progress tracking"
 
 ---
 
-## Task 7: Home page course card
+## Task 8: Home page course card
 
 **Files:**
 - Modify: `app/page.tsx:18` (courses array), `app/page.tsx:41` (skeleton array), `app/page.tsx:169-175` (after the surgery `renderCard` call)
@@ -1048,7 +1214,7 @@ In `app/page.tsx`, immediately after the closing `)}` of the surgery `renderCard
           {renderCard(
             'calculus',
             'Calculus Practice',
-            'Differentiation and partial differentiation: power/product/quotient/chain rules and standard derivatives (unlimited generated problems), plus curated implicit, higher-order, and partial-differentiation problems with worked solutions.',
+            'Differentiation and partial differentiation: power/product/quotient/chain rules and standard derivatives (unlimited generated problems), plus curated implicit, higher-order, applications (tangents, max/min, kinematics), and partial-differentiation problems with worked solutions.',
             'text-teal-600',
             'text-teal-700'
           )}
@@ -1068,7 +1234,7 @@ git commit -m "feat(calculus): add Calculus card to home page"
 
 ---
 
-## Task 8: Full verification (build, lint, browser)
+## Task 9: Full verification (build, lint, browser)
 
 **Files:** none created; verification only.
 
@@ -1091,9 +1257,9 @@ Expected: build succeeds; the route list includes `/calculus`.
 
 Start the dev server and open the app (use the browser preview tooling, or `npm run dev` + open `http://localhost:3000`). Verify:
   1. Home page shows the teal "Calculus Practice" card.
-  2. Clicking it opens `/calculus` with three topic checkboxes.
+  2. Clicking it opens `/calculus` with four topic checkboxes.
   3. Start a quiz with "Basic rules" only - a derivative prompt renders via KaTeX; typing an answer and "Check Answer" shows Correct/Incorrect; a wrong answer reveals the Solution panel.
-  4. Start a quiz with "Implicit & higher-order" and "Partial" enabled - static problems render correctly (fractions, trig, partial notation).
+  4. Start a quiz with "Implicit & higher-order", "Partial", and "Applications" enabled - static problems render correctly (fractions, trig, partial notation, kinematics wording).
   5. Mid-quiz, reload the page and return to `/calculus` - the "Resume in-progress session" button appears and restores position.
   6. Finish a quiz - the score screen shows; return home and confirm the Calculus card shows updated Answered/Accuracy stats.
 
@@ -1110,7 +1276,7 @@ git commit -m "chore(calculus): lint and build fixes"
 
 ## Self-Review Notes
 
-- **Spec coverage:** basic-rules generators (Task 2) ✓; implicit/higher-order bank ~30 (Task 3) ✓; partial bank ~30 (Task 4) ✓; new route `app/calculus/page.tsx` (Task 6) ✓; reuse of MathInput/MathDisplay/checkAnswer/progressTracker ✓; home card teal (Task 7) ✓; courseId `'calculus'` ✓; no `checkAnswer.ts` change ✓; integration out of scope ✓.
+- **Spec coverage:** basic-rules generators (Task 2) ✓; implicit/higher-order bank ~30 (Task 3) ✓; partial bank ~30 (Task 4) ✓; applications bank ~30 (Task 5, added by amendment) ✓; new route `app/calculus/page.tsx` (Task 7) ✓; reuse of MathInput/MathDisplay/checkAnswer/progressTracker ✓; home card teal (Task 8) ✓; courseId `'calculus'` ✓; no `checkAnswer.ts` change ✓; integration out of scope ✓.
 - **Answer-format risk:** documented as an accepted limitation matching the existing Math course; solution panel always reveals the expected string.
 - **Type consistency:** `CalculusQuestion`/`CalculusQuestionCore`/`CalculusCategory` defined once in Task 1 and imported everywhere; `assembleQuiz`/`CalculusConfig` signatures consistent between Task 5 definition and Task 6 consumption.
 - **Prime-character escaping:** Task 3 explicitly flags that `solution` strings containing `y'` must use backtick literals (or escaped quotes) - the most likely transcription bug.

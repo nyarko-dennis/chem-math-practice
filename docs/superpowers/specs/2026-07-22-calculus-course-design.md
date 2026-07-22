@@ -40,7 +40,7 @@ originally written rather than copied from a source text.
 
 ## Scope
 
-Three content categories, matching what the student has actually covered:
+Four content categories, matching what the student has actually covered:
 
 1. **Basic rules & standard derivatives** - power, product, quotient, and
    chain rule; derivatives of trig, exponential, and log functions.
@@ -48,10 +48,15 @@ Three content categories, matching what the student has actually covered:
    2nd/3rd derivatives, parametric differentiation.
 3. **Partial differentiation** - first/second-order partial derivatives,
    mixed partials, multivariable chain rule.
+4. **Applications of differentiation** - tangent/normal lines, stationary
+   points and max/min, rates of change and kinematics. (Added by amendment
+   2026-07-22: the official Level 100 EEE syllabus PDF
+   `Level100_EEE_Second_Semester_Courses_and_Topics.pdf` lists
+   "Applications" as a taught differentiation topic.)
 
-Explicitly out of scope: integration, and applications of differentiation
-(tangent/normal lines, max/min, curve sketching, related rates) - the student
-did not select these topics.
+Explicitly out of scope: integration, applications of integration,
+differential equations, and infinite series - these appear in the official
+syllabus but have not been taught yet.
 
 ## Architecture
 
@@ -76,7 +81,7 @@ Follows the existing per-course pattern in this repo (see `app/surgery/`,
 ## Data model
 
 ```typescript
-export type CalculusCategory = 'basicRules' | 'implicitHigherOrder' | 'partial';
+export type CalculusCategory = 'basicRules' | 'implicitHigherOrder' | 'partial' | 'applications';
 
 export interface CalculusQuestion {
   id: string;
