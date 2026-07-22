@@ -48,6 +48,9 @@ export default function CalculusPage() {
     setCurrentIndex(session.currentIndex || 0);
     setAnswers(session.answers || {});
     setFeedback(session.feedback || {});
+    const fb = session.feedback || {};
+    const cur = session.questions[session.currentIndex || 0];
+    if (cur && fb[cur.id] === false) setShowSolution(true);
     setStarted(true);
     setCanResume(false);
   };
@@ -166,7 +169,7 @@ export default function CalculusPage() {
             <div className="pt-4 border-t border-slate-100">
               <label className="block font-medium text-slate-700 mb-2">Number of Questions</label>
               <input type="number" min={1} max={50} value={config.count}
-                onChange={(e) => setConfig({ ...config, count: parseInt(e.target.value) || 10 })}
+                onChange={(e) => setConfig({ ...config, count: Math.min(50, Math.max(1, parseInt(e.target.value) || 10)) })}
                 className="w-full p-2 border border-slate-300 rounded-md focus:ring-2 focus:ring-teal-500 focus:outline-none" />
             </div>
           </div>

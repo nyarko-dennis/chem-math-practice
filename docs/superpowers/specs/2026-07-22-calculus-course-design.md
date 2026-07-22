@@ -134,7 +134,7 @@ questions.
 
 `app/calculus/page.tsx` mirrors `app/math/page.tsx`'s quiz flow:
 
-1. **Start screen** - checkboxes for the 3 categories + a question-count
+1. **Start screen** - checkboxes for the 4 categories + a question-count
    input, "Start Quiz" button.
 2. **Quiz loop** - `MathDisplay` renders the prompt, `MathInput` captures the
    answer, "Check Answer" calls `checkAnswer('algebra', ...)`, shows
@@ -213,8 +213,6 @@ term glossed in everyday words.
 ## Out of scope / explicit non-goals
 
 - Integration (not yet taught)
-- Applications of differentiation (tangent lines, max/min, curve sketching,
-  related rates)
 - The other 7 planned courses (Engineering Materials, Renewable Energy
   System, Applied Electricity, Environmental Studies, Leadership Development
   & Society, French II, Introduction to African Studies) - each gets its own

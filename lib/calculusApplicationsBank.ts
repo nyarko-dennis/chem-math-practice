@@ -10,7 +10,7 @@ const ap = (
 
 const TAN_GRAD = 'Find the gradient of the tangent to the curve at the given x-value:';
 const TAN_EQ = 'Find the equation of the tangent to the curve at the given point (answer as y=mx+c):';
-const NORM_GRAD = 'Find the gradient of the normal to the curve at the given x-value:';
+const NORM_GRAD = 'Find the gradient of the normal to the curve at the given x-value (answer as a fraction):';
 const STAT_X = 'Find the x-coordinate of the stationary point:';
 const STAT_X_POS = 'Find the positive x-coordinate of a stationary point:';
 const MIN_V = 'Find the minimum value of y:';

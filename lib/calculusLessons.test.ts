@@ -46,10 +46,6 @@ test('bank-backed lessons draw from the right subtopic slice', () => {
   const byId = Object.fromEntries(calculusLessons.map((l) => [l.id, l]));
   // implicit: source ids ih-01..ih-12; higher-order: ih-13..ih-24; parametric: ih-25..ih-30.
   // tryIt re-ids drawn questions, so check the prompt appears in the right slice instead.
-  const implicitPrompts = new Set(
-    ['lesson-06', 'lesson-07', 'lesson-08'].map(() => '')
-  );
-  void implicitPrompts;
   for (let i = 0; i < 10; i++) {
     assert.match(byId['lesson-06'].tryIt().instructions, /implicit/i);
     assert.match(byId['lesson-07'].tryIt().instructions, /second|third/i);

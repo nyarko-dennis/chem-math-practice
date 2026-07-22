@@ -116,7 +116,7 @@ export const calculusLessons: CalculusLesson[] = [
         prompt: 'y=\\frac{3x+4}{9x+2}',
         steps: [
           { explanation: 'Name the parts: u is the top (numerator), v is the bottom (denominator).', latex: 'u=3x+4,\\quad v=9x+2' },
-          { explanation: 'Differentiate each part. Both are straight lines, so the derivatives are just the x-coefficients.', latex: "u'=3,\\quad v'=9" },
+          { explanation: 'Differentiate each part. Both are straight lines, so the derivatives are just the numbers in front of x.', latex: "u'=3,\\quad v'=9" },
           { explanation: "Apply the quotient rule: (u'v - uv') over v squared.", latex: "\\frac{dy}{dx}=\\frac{u'v-uv'}{v^{2}}=\\frac{3(9x+2)-9(3x+4)}{(9x+2)^{2}}" },
           { explanation: 'Expand the top: 27x + 6 - 27x - 36. The x terms cancel.', latex: '\\frac{dy}{dx}=\\frac{-30}{(9x+2)^{2}}' },
         ],
@@ -218,7 +218,7 @@ export const calculusLessons: CalculusLesson[] = [
         prompt: 'x^{2}+y^{2}=25',
         steps: [
           { explanation: 'Differentiate every term with respect to x. The x-term is normal. The y-term gets differentiated too, but tagged with dy/dx. The constant 25 differentiates to 0.', latex: "2x+2y\\,y'=0" },
-          { explanation: "Move the x-term across and divide by the coefficient of dy/dx (written y' for short).", latex: "2y\\,y'=-2x" },
+          { explanation: "Move the x-term across and divide by the number multiplying dy/dx (written y' for short).", latex: "2y\\,y'=-2x" },
           { explanation: 'Divide both sides by 2y.', latex: "y'=-\\frac{x}{y}" },
         ],
         answer: '-\\frac{x}{y}',

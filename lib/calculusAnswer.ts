@@ -1,13 +1,34 @@
 // Matches a single (possibly one-level-nested) \frac{...}{...} occurrence.
 const FRAC = /\\frac\{([^{}]*(?:\{[^{}]*\}[^{}]*)*)\}\{([^{}]*(?:\{[^{}]*\}[^{}]*)*)\}/;
 
-// An operand doesn't need wrapping parens if it's a single token (no top-level
-// +/- after its first character), or if it's already a parenthesized group
-// with an optional exponent suffix, e.g. (9x+2)^{2} or (9x+2)^2.
-function wrapFracOperand(operand: string): string {
+// A numerator doesn't need wrapping parens if it's a single token (no
+// top-level +/- after its first character), or if it's already a
+// parenthesized group with an optional exponent suffix, e.g. (9x+2)^{2} or
+// (9x+2)^2. Numerator products are mathematically safe to leave bare:
+// a*(b/c) = (ab)/c.
+function wrapNumerator(operand: string): string {
   const alreadyGrouped = /^\(.*\)(\^\{?[0-9a-zA-Z]+\}?)?$/.test(operand);
   const hasTopLevelSign = /[+-]/.test(operand.slice(1));
   return hasTopLevelSign && !alreadyGrouped ? `(${operand})` : operand;
+}
+
+// A denominator, unlike a numerator, is NOT safe to leave bare unless it is a
+// single atom: a/(bc) != (a/b)c, so a multi-factor denominator like "3t" must
+// stay grouped once the fraction is flattened, or "2/3t" would be misread as
+// "(2/3)*t". Atoms (integers, single letters, letter^exponent, e^{...},
+// function calls, and already-parenthesized groups) are safe to leave bare.
+const DENOMINATOR_ATOM_PATTERNS = [
+  /^-?\d+$/,
+  /^[a-zA-Z]$/,
+  /^[a-zA-Z]\^\{?[0-9a-zA-Z]+\}?$/,
+  /^e\^\{[^{}]+\}$/,
+  /^\\?(sin|cos|tan|sec|csc|cot|ln|log)\([^()]+\)$/,
+  /^\(.*\)(\^\{?[0-9a-zA-Z]+\}?)?$/,
+];
+
+function wrapDenominator(operand: string): string {
+  const isAtom = DENOMINATOR_ATOM_PATTERNS.some((re) => re.test(operand));
+  return isAtom ? operand : `(${operand})`;
 }
 
 // Flattens \frac{X}{Y} into X/Y so fractions typed naturally with a literal
@@ -17,7 +38,7 @@ function flattenFrac(latex: string): string {
   let out = latex;
   for (let i = 0; i < 3; i++) {
     const next = out.replace(new RegExp(FRAC.source, 'g'), (_match, num: string, den: string) => {
-      return `${wrapFracOperand(num)}/${wrapFracOperand(den)}`;
+      return `${wrapNumerator(num)}/${wrapDenominator(den)}`;
     });
     if (next === out) break;
     out = next;

@@ -50,3 +50,20 @@ test('frac with sum denominator matches natural typed parens', () => {
 test('left-right sizing is stripped before flattening', () => {
   assert.equal(normalizeCalculusLatex('\\frac{-30}{\\left(9x+2\\right)^{2}}'), normalizeCalculusLatex('-30/(9x+2)^2'));
 });
+
+test('product denominator keeps its grouping when flattened (ih-26 shape)', () => {
+  assert.notEqual(normalizeCalculusLatex('\\frac{2}{3t}'), normalizeCalculusLatex('\\frac{2}{3}t'));
+  assert.equal(normalizeCalculusLatex('\\frac{2}{3t}'), '2/(3t)');
+});
+
+test('product denominator keeps its grouping when flattened (ih-09 shape)', () => {
+  assert.notEqual(normalizeCalculusLatex('-\\frac{x}{4y}'), normalizeCalculusLatex('-\\frac{x}{4}y'));
+  assert.equal(normalizeCalculusLatex('-\\frac{x}{4y}'), '-x/(4y)');
+});
+
+test('atomic denominators stay bare after the atom rule', () => {
+  assert.equal(normalizeCalculusLatex('-\\frac{x}{y}'), '-x/y');
+  assert.equal(normalizeCalculusLatex('\\frac{1}{\\cos(y)}'), normalizeCalculusLatex('1/cos(y)'));
+  assert.equal(normalizeCalculusLatex('\\frac{1}{e^{y}}'), '1/e^y');
+  assert.equal(normalizeCalculusLatex('\\frac{-30}{(9x+2)^{2}}'), normalizeCalculusLatex('-30/(9x+2)^2'));
+});
