@@ -74,10 +74,10 @@ export const ironCarbonHeatQuestions: MaterialsQuestion[] = [
     id: 'ih-006',
     topic: 'ironCarbonHeat',
     type: 'tf',
-    prompt: 'Of the four main iron-carbon phases, cementite is the hardest phase and ferrite is the softest.',
+    prompt: 'Of the four main iron-carbon phases, cementite is the hardest one.',
     correctAnswer: true,
     rationale:
-      'This is true: cementite (iron carbide) is a very hard, brittle compound, while ferrite is a soft, low-carbon form of iron; pearlite and austenite fall in between, with pearlite blending the two extremes and austenite existing only at high temperature.',
+      'This is true: cementite (iron carbide) is a very hard, brittle compound, making it the hardest of the four main iron-carbon phases.',
   },
   {
     id: 'ih-007',
@@ -157,13 +157,13 @@ export const ironCarbonHeatQuestions: MaterialsQuestion[] = [
       'Alloys in the cast-iron carbon range can go through a eutectic reaction, a transformation that happens directly from the liquid at one specific temperature. What mixture does this reaction produce on further cooling?',
     choices: [
       'Pure ferrite, with no cementite present at all',
-      'Ledeburite, a fine mixture of austenite and cementite formed directly from the liquid',
+      'Ledeburite, a very fine blend in which austenite and cementite are interleaved, formed directly from the liquid',
       'Pure liquid metal that never solidifies',
       'Martensite, which only forms through rapid quenching (fast cooling)',
     ],
     correctIndex: 1,
     rationale:
-      'Cast-iron-range alloys can solidify straight from the liquid into ledeburite, a fine, mixed structure of austenite and cementite, at a fixed eutectic temperature; this is a separate transformation from the eutectoid one that happens later in fully solid steel.',
+      'Cast-iron-range alloys can solidify straight from the liquid into ledeburite, a very fine blend in which austenite and cementite are interleaved, at a fixed eutectic temperature; this is a separate transformation from the eutectoid one that happens later in fully solid steel.',
   },
   {
     id: 'ih-013',
@@ -239,10 +239,10 @@ export const ironCarbonHeatQuestions: MaterialsQuestion[] = [
     id: 'ih-018',
     topic: 'ironCarbonHeat',
     type: 'tf',
-    prompt: 'Annealing is mainly used to soften steel, relieve internal stress, and leave it with a more workable grain structure.',
+    prompt: 'Annealing is mainly used to soften steel.',
     correctAnswer: true,
     rationale:
-      'This is true: annealing\'s slow furnace cooling produces a soft, coarse structure that lowers hardness, relieves built-up internal stress, and refines the grains (the individual crystal regions of the metal) for easier machining or further shaping.',
+      "This is true: annealing's slow furnace cooling produces a soft, coarse structure, which lowers the steel's hardness and makes it easier to machine or shape further.",
   },
   {
     id: 'ih-019',
@@ -378,10 +378,10 @@ export const ironCarbonHeatQuestions: MaterialsQuestion[] = [
     id: 'ih-028',
     topic: 'ironCarbonHeat',
     type: 'tf',
-    prompt: 'Case hardening leaves a part with a soft outer surface sitting over a hard, brittle core, which is why it suits gear teeth.',
+    prompt: 'Case hardening leaves a part with a soft outer surface sitting over a hard, brittle core.',
     correctAnswer: false,
     rationale:
-      'This is false: case hardening actually does the opposite, producing a hard, wear-resistant outer surface (the case) over a softer, tougher core. Gear teeth are well suited to this real arrangement because the hard surface resists the wear of repeated contact with other gears while the tough core absorbs shock loading without shattering; the reversed arrangement in this claim would leave the wearing surface soft and the shock-absorbing core brittle.',
+      'This is false: it is the reverse. Case hardening actually produces a hard, wear-resistant outer surface (the case) over a softer, tougher core, not a soft surface over a hard core.',
   },
   {
     id: 'ih-029',
