@@ -15,3 +15,11 @@ test('ids are globally unique', () => {
   const ids = materialsQuestions.map((q) => q.id);
   assert.equal(new Set(ids).size, ids.length);
 });
+
+test('TF answers are roughly balanced within every topic', () => {
+  for (const topic of Object.keys(MATERIALS_TOPIC_LABELS)) {
+    const tf = materialsQuestions.filter((q) => q.topic === topic && q.type === 'tf');
+    const trues = tf.filter((q) => q.type === 'tf' && q.correctAnswer).length;
+    assert.ok(trues >= 3 && trues <= 5, `${topic}: ${trues} true of ${tf.length} TF`);
+  }
+});

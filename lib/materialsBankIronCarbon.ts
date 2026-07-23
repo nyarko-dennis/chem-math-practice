@@ -86,13 +86,13 @@ export const ironCarbonHeatQuestions: MaterialsQuestion[] = [
     prompt: 'On the iron-carbon diagram, the eutectoid point sits at roughly which carbon content and temperature?',
     choices: [
       'About 4.3% carbon at roughly 1148 degrees C',
-      'About 0.8% carbon at roughly 727 degrees C',
+      'About 0.8% carbon at roughly 723 degrees C',
       'About 2% carbon at roughly 900 degrees C',
       'About 0.1% carbon at roughly 500 degrees C',
     ],
     correctIndex: 1,
     rationale:
-      'The eutectoid point marks a specific spot on the diagram, at about 0.8% carbon and roughly 727 degrees C, where a single solid phase changes directly into two other solid phases on cooling.',
+      'The eutectoid point marks a specific spot on the diagram, at about 0.8% carbon and roughly 723 degrees C, where a single solid phase changes directly into two other solid phases on cooling.',
   },
   {
     id: 'ih-008',

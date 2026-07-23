@@ -101,10 +101,10 @@ export const introClassificationQuestions: MaterialsQuestion[] = [
     topic: 'introClassification',
     type: 'tf',
     prompt:
-      'Smart materials are listed as one of the module\'s six main classes of engineering materials, alongside metals, polymers, ceramics, composites, and electronic materials.',
-    correctAnswer: true,
+      'The course module classifies engineering materials into only three main classes: metals, polymers, and ceramics.',
+    correctAnswer: false,
     rationale:
-      "Chapter One's classification section adds composite, electronic, and smart materials to the three traditional classes (metal, polymer, ceramic), making six classes in total.",
+      "This misses half the list. Chapter One's classification section adds composite, electronic, and smart materials on top of the three traditional classes (metal, polymer, ceramic) that students often assume are the whole set, bringing the true total to six.",
   },
   {
     id: 'ic-009',
@@ -282,10 +282,10 @@ export const introClassificationQuestions: MaterialsQuestion[] = [
     topic: 'introClassification',
     type: 'tf',
     prompt:
-      "The course material states that a composite's overall properties can be more desirable than what any single one of its component materials could achieve alone.",
-    correctAnswer: true,
+      "A composite material's overall properties are simply the mathematical average of its component materials' properties.",
+    correctAnswer: false,
     rationale:
-      "The lecture describes composites as having properties that result from the combination - useful qualities that neither ingredient has on its own, which is the whole point of combining materials like glass fiber and polymer.",
+      "That undersells what a composite does. The whole point of pairing materials like glass fiber and polymer resin is to pick up useful qualities - strength from one ingredient, easy shaping from the other - that beat a plain average and that neither ingredient delivers by itself.",
   },
   {
     id: 'ic-022',
