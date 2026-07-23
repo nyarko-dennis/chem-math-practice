@@ -299,16 +299,16 @@ export const corrosionAdvancedQuestions: MaterialsQuestion[] = [
     id: 'ca-023',
     topic: 'corrosionAdvanced',
     type: 'mcq',
-    prompt: 'Nitinol, a nickel-titanium alloy, is described as a shape-memory alloy. What does that mean?',
+    prompt: 'A protective coating is engineered so that when a tiny crack starts to open up inside it, tiny embedded capsules burst and release a bonding agent that seals the crack shut, with nobody stepping in to patch it by hand. Which smart-material behavior does this describe, as distinct from shape-memory, piezoelectric, or magnetostrictive behavior?',
     choices: [
-      'It is a metal that, after being bent or deformed, snaps back to its earlier shape once it is warmed up',
-      'It is a metal that melts at room temperature and reforms when cooled',
-      'It is a metal that becomes permanently softer every time it is heated',
-      'It is a metal that only exists as a thin gas at normal temperatures',
+      'Self-healing behavior: a material built to seal up its own internal cracks or damage on its own, stretching out its working life without any outside repair',
+      'Shape-memory behavior, where the coating snaps back toward an earlier shape once it is warmed up',
+      'Piezoelectric behavior, where squeezing the coating produces a small voltage across it',
+      'Magnetostrictive behavior, where the coating changes length only when placed in a magnetic field',
     ],
     correctIndex: 0,
     rationale:
-      'A shape-memory alloy such as nitinol can be bent out of shape, but heating it triggers an internal shift back to its original crystal arrangement, so the part snaps back to the shape it "remembers".',
+      'A self-healing material is designed so a tiny crack forming inside it sets off its own repair, here a bonding agent bursting out of embedded capsules to seal the damage shut, extending the part\'s working life with no outside repair; that is different from snapping back to a remembered shape, generating a voltage under pressure, or changing length in a magnetic field.',
   },
   {
     id: 'ca-024',
