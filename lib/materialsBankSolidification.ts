@@ -205,7 +205,7 @@ export const solidificationDefectsQuestions: MaterialsQuestion[] = [
     topic: 'solidificationDefects',
     type: 'mcq',
     prompt:
-      "According to the atomic-size guideline used to predict substitutional solid solubility (how completely one metal can dissolve into another by substitution), extensive solid solubility is expected only when the atomic radii (sizes) of solute and solvent differ by roughly:",
+      "According to the atomic-size guideline used to predict substitutional solid solubility (how completely one metal can dissolve into another by substitution), extensive solid solubility is expected only when the atomic radii (sizes) of solute (the dissolved atoms) and solvent (the host metal) differ by roughly:",
     choices: [
       'More than 50 percent',
       'Exactly 100 percent',
@@ -230,7 +230,7 @@ export const solidificationDefectsQuestions: MaterialsQuestion[] = [
     ],
     correctIndex: 3,
     rationale:
-      "Complete substitutional solid solubility, meaning one metal can dissolve fully into another by swapping lattice positions, generally requires both metals to share the same crystal structure, the repeating three-dimensional pattern their atoms are arranged in, such as both being face-centered cubic (atoms at the corners and face centers of a cube).",
+      "Complete substitutional solid solubility, meaning one metal can dissolve fully into another by swapping lattice positions (the repeating atomic arrangement), generally requires both metals to share the same crystal structure, the repeating three-dimensional pattern their atoms are arranged in, such as both being face-centered cubic (atoms at the corners and face centers of a cube).",
   },
   {
     id: 'sd-017',
@@ -239,14 +239,14 @@ export const solidificationDefectsQuestions: MaterialsQuestion[] = [
     prompt:
       "Between aluminum and nickel, solid solubility runs one way far better than the other: nickel can take in roughly 5 percent aluminum, while aluminum accepts only about 0.04 percent nickel in return. Which guideline explains why the two directions are so lopsided?",
     choices: [
-      "The valence guideline: since nickel has the lower valence (fewer typical bonds) of the pair, it acts as the more generous solvent, absorbing more aluminum than aluminum can absorb of it",
+      "The valence guideline: since nickel has the lower valence (fewer typical bonds) of the pair, it acts as the more generous solvent (the host metal), absorbing more aluminum than aluminum can absorb of it",
       'The atomic-size guideline alone, since nickel and aluminum atoms are identical in size',
       'The crystal-structure guideline, since nickel and aluminum never share a crystal structure',
       'Random chance, since solid solubility cannot be predicted or explained',
     ],
     correctIndex: 0,
     rationale:
-      "Valence measures an atom's typical combining power - roughly how many bonds it forms. As a rule of thumb, a solvent with lower valence dissolves a higher-valence solute more readily than the reverse holds true. Because nickel's valence sits below aluminum's, it can host a much larger share of aluminum atoms than aluminum can host of nickel.",
+      "Valence measures an atom's typical combining power - roughly how many bonds it forms. As a rule of thumb, a solvent with lower valence dissolves a higher-valence solute (the dissolved atoms) more readily than the reverse holds true. Because nickel's valence sits below aluminum's, it can host a much larger share of aluminum atoms than aluminum can host of nickel.",
   },
   {
     id: 'sd-018',
@@ -411,7 +411,7 @@ export const solidificationDefectsQuestions: MaterialsQuestion[] = [
       "Metals are often strengthened on purpose by adding fine grains (small crystals), alloying atoms, or heavy cold working (deforming the metal while it is cold). What do all of these strengthening approaches have in common?",
     choices: [
       'They all melt the metal and let it resolidify into a new shape',
-      "They all introduce obstacles - such as grain boundaries, foreign solute atoms, or tangles of other dislocations - that block or pin dislocations (line defects that carry plastic, or permanent, deformation), raising the stress needed for the dislocations to move and produce slip",
+      "They all introduce obstacles - such as grain boundaries (the borders where two crystals meet), foreign solute atoms, or tangles of other dislocations - that block or pin dislocations (line defects that carry plastic, or permanent, deformation), raising the stress needed for the dislocations to move and produce slip",
       'They all remove every defect from the crystal, leaving it perfect',
       "They all work by lowering the metal's melting point",
     ],
@@ -427,6 +427,6 @@ export const solidificationDefectsQuestions: MaterialsQuestion[] = [
       'Blocking the movement of dislocations (line defects that carry permanent deformation) inside a metal makes that metal easier to bend permanently.',
     correctAnswer: false,
     rationale:
-      "This is backwards: dislocations, line defects that carry permanent deformation, are what let a metal deform, or change shape, permanently under relatively low stress by moving through the crystal. Blocking or pinning their movement with grain boundaries, foreign solute atoms, or other dislocations forces more stress to be applied before the metal can bend, which is exactly how strengthening and work hardening make a metal harder to permanently deform.",
+      "This is backwards: dislocations, line defects that carry permanent deformation, are what let a metal deform, or change shape, permanently under relatively low stress by moving through the crystal. Blocking or pinning their movement with grain boundaries (the borders where two crystals meet), foreign solute atoms (dissolved atoms), or other dislocations forces more stress to be applied before the metal can bend, which is exactly how strengthening and work hardening make a metal harder to permanently deform.",
   },
 ];

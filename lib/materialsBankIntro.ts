@@ -173,7 +173,7 @@ export const introClassificationQuestions: MaterialsQuestion[] = [
       'Very high density (heavy for their size), similar to metals',
       'Low density (light for their size) and relatively low softening or melting temperatures',
       'Excellent electrical conductivity',
-      'A tightly packed metallic crystal lattice',
+      'A tightly packed metallic crystal lattice (the repeating atomic arrangement)',
     ],
     correctIndex: 1,
     rationale:

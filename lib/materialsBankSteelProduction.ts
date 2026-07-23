@@ -137,7 +137,7 @@ export const steelProductionQuestions: MaterialsQuestion[] = [
     prompt: 'In a blast furnace, molten slag sinks below the molten iron because slag is the denser of the two liquids.',
     correctAnswer: false,
     rationale:
-      'It is the opposite: slag is less dense than molten iron, so it floats on top of the iron and can be skimmed or tapped off separately.',
+      'It is the opposite: slag (the waste material left over from ironmaking) is less dense than molten iron, so it floats on top of the iron and can be skimmed or tapped off separately.',
   },
   {
     id: 'sp-012',

@@ -48,7 +48,7 @@ export const ironCarbonHeatQuestions: MaterialsQuestion[] = [
     choices: [
       'A soft, easily bent form of pure iron',
       'A liquid mixture of iron and carbon that resists turning solid',
-      'Another name used for austenite',
+      'Another name used for austenite (the form iron takes when very hot)',
       'Iron carbide, a compound of iron and carbon with a fixed composition that is very hard and brittle (it breaks rather than bends)',
     ],
     correctIndex: 3,
@@ -59,7 +59,7 @@ export const ironCarbonHeatQuestions: MaterialsQuestion[] = [
     id: 'ih-005',
     topic: 'ironCarbonHeat',
     type: 'mcq',
-    prompt: 'Pearlite forms when austenite cools slowly and splits into thin alternating layers. What are those two layers made of?',
+    prompt: 'Pearlite forms when austenite (the form iron takes when very hot) cools slowly and splits into thin alternating layers. What are those two layers made of?',
     choices: [
       'Soft ferrite and hard cementite, arranged as thin alternating bands',
       'Two different layers, both made purely of carbon',
@@ -100,8 +100,8 @@ export const ironCarbonHeatQuestions: MaterialsQuestion[] = [
     type: 'mcq',
     prompt: 'What transformation happens as a steel cools slowly through the eutectoid temperature?',
     choices: [
-      'Ferrite melts and turns into a liquid',
-      'Cementite converts directly back into austenite',
+      'Ferrite (the soft, nearly pure-iron form) melts and turns into a liquid',
+      'Cementite (hard, brittle iron carbide) converts directly back into austenite',
       'Austenite breaks down into pearlite, the layered ferrite-cementite mixture',
       'Pearlite melts and turns back into liquid steel',
     ],
@@ -116,8 +116,8 @@ export const ironCarbonHeatQuestions: MaterialsQuestion[] = [
     prompt:
       'A steel sample contains 0.3% carbon, below the roughly 0.8% carbon content of the eutectoid point. What is this type of steel called, and what does its room-temperature structure mostly consist of?',
     choices: [
-      'Hypoeutectoid steel, whose room-temperature structure is mostly leftover (proeutectoid) ferrite plus pearlite',
-      'Hypereutectoid steel, whose structure is mostly leftover cementite plus pearlite',
+      'Hypoeutectoid steel, whose room-temperature structure is mostly leftover (proeutectoid) ferrite (the soft, nearly pure-iron form) plus pearlite (a layered mix of soft iron and hard iron carbide)',
+      'Hypereutectoid steel, whose structure is mostly leftover cementite (hard, brittle iron carbide) plus pearlite',
       'Eutectoid steel, made up entirely of pearlite',
       'Cast iron, made up mostly of ledeburite',
     ],
@@ -132,7 +132,7 @@ export const ironCarbonHeatQuestions: MaterialsQuestion[] = [
     prompt: 'A steel sample containing 1.2% carbon, which is above the roughly 0.8% eutectoid carbon content, is classified as a hypereutectoid steel.',
     correctAnswer: true,
     rationale:
-      'This is true: any steel with more carbon than the eutectoid point (about 0.8%) is called hypereutectoid, and its room-temperature structure consists of leftover (proeutectoid) cementite plus pearlite.',
+      'This is true: any steel with more carbon than the eutectoid point (about 0.8%) is called hypereutectoid, and its room-temperature structure consists of leftover (proeutectoid) cementite (hard, brittle iron carbide) plus pearlite (a layered mix of soft iron and hard iron carbide).',
   },
   {
     id: 'ih-011',
@@ -156,14 +156,14 @@ export const ironCarbonHeatQuestions: MaterialsQuestion[] = [
     prompt:
       'Alloys in the cast-iron carbon range can go through a eutectic reaction, a transformation that happens directly from the liquid at one specific temperature. What mixture does this reaction produce on further cooling?',
     choices: [
-      'Pure ferrite, with no cementite present at all',
-      'Ledeburite, a very fine blend in which austenite and cementite are interleaved, formed directly from the liquid',
+      'Pure ferrite (the soft, nearly pure-iron form), with no cementite (hard, brittle iron carbide) present at all',
+      'Ledeburite, a very fine blend in which austenite (the form iron takes when very hot) and cementite are interleaved, formed directly from the liquid',
       'Pure liquid metal that never solidifies',
       'Martensite, which only forms through rapid quenching (fast cooling)',
     ],
     correctIndex: 1,
     rationale:
-      'Cast-iron-range alloys can solidify straight from the liquid into ledeburite, a very fine blend in which austenite and cementite are interleaved, at a fixed eutectic temperature; this is a separate transformation from the eutectoid one that happens later in fully solid steel.',
+      'Cast-iron-range alloys can solidify straight from the liquid into ledeburite, a very fine blend in which austenite and cementite are interleaved, at a fixed eutectic temperature; this is a separate transformation from the eutectoid one (the special composition/temperature where austenite transforms all at once) that happens later in fully solid steel.',
   },
   {
     id: 'ih-013',
@@ -198,12 +198,12 @@ export const ironCarbonHeatQuestions: MaterialsQuestion[] = [
     choices: [
       'Martensite, the very hard but brittle phase produced by trapped carbon during rapid cooling',
       'Ferrite, the soft, low-carbon phase',
-      'Pearlite, the layered ferrite-cementite mixture typical of slow cooling',
+      'Pearlite, the layered ferrite-cementite (hard, brittle iron carbide) mixture typical of slow cooling',
       'Leftover liquid steel that never fully solidified',
     ],
     correctIndex: 0,
     rationale:
-      'Rapid quenching pushes austenite to transform into martensite, and while martensite gives excellent hardness, its distorted crystal structure also makes it brittle, so parts hardened this way can crack, especially if the shape or cooling is uneven.',
+      'Rapid quenching pushes austenite (the form iron takes when very hot) to transform into martensite, and while martensite gives excellent hardness, its distorted crystal structure also makes it brittle, so parts hardened this way can crack, especially if the shape or cooling is uneven.',
   },
   {
     id: 'ih-016',
@@ -224,7 +224,7 @@ export const ironCarbonHeatQuestions: MaterialsQuestion[] = [
     id: 'ih-017',
     topic: 'ironCarbonHeat',
     type: 'mcq',
-    prompt: 'Annealing is carried out by heating steel up into the austenite phase and then cooling it in which way?',
+    prompt: 'Annealing is carried out by heating steel up into the austenite (the form iron takes when very hot) phase and then cooling it in which way?',
     choices: [
       'Rapidly, by plunging it into water or oil',
       'In still air outside the furnace',
@@ -239,7 +239,7 @@ export const ironCarbonHeatQuestions: MaterialsQuestion[] = [
     id: 'ih-018',
     topic: 'ironCarbonHeat',
     type: 'tf',
-    prompt: 'Annealing is mainly used to soften steel.',
+    prompt: 'Annealing (heating steel, then cooling it very slowly) is mainly used to soften steel.',
     correctAnswer: true,
     rationale:
       "This is true: annealing's slow furnace cooling produces a soft, coarse structure, which lowers the steel's hardness and makes it easier to machine or shape further.",
@@ -248,7 +248,7 @@ export const ironCarbonHeatQuestions: MaterialsQuestion[] = [
     id: 'ih-019',
     topic: 'ironCarbonHeat',
     type: 'mcq',
-    prompt: 'Normalizing is carried out by heating steel up into the austenite phase and then cooling it in which way?',
+    prompt: 'Normalizing is carried out by heating steel up into the austenite (the form iron takes when very hot) phase and then cooling it in which way?',
     choices: [
       'In still air outside the furnace',
       'Very slowly inside a closed furnace',
@@ -257,18 +257,18 @@ export const ironCarbonHeatQuestions: MaterialsQuestion[] = [
     ],
     correctIndex: 0,
     rationale:
-      'Normalizing means heating steel into the austenite phase and then letting it cool in still air outside the furnace, which is faster than furnace cooling but much gentler than quenching in a liquid.',
+      'Normalizing means heating steel into the austenite phase and then letting it cool in still air outside the furnace, which is faster than furnace cooling but much gentler than quenching (rapid cooling) in a liquid.',
   },
   {
     id: 'ih-020',
     topic: 'ironCarbonHeat',
     type: 'mcq',
-    prompt: 'Compared with annealing, normalizing generally leaves steel stronger and with a finer internal structure. What is the reason for this?',
+    prompt: 'Compared with annealing (heating steel, then cooling it very slowly), normalizing generally leaves steel stronger and with a finer internal structure. What is the reason for this?',
     choices: [
-      'Because normalizing always ends up as pure martensite while annealing never does',
+      'Because normalizing always ends up as pure martensite (the very hard, brittle structure from rapid cooling) while annealing never does',
       'Because normalizing uses a higher final carbon content than annealing',
-      'Because air cooling happens faster than furnace cooling, so the resulting pearlite forms with thinner, more closely spaced layers',
-      'Because normalizing never involves reaching the austenite phase at all',
+      'Because air cooling happens faster than furnace cooling, so the resulting pearlite (a layered mix of soft iron and hard iron carbide) forms with thinner, more closely spaced layers',
+      'Because normalizing never involves reaching the austenite (the form iron takes when very hot) phase at all',
     ],
     correctIndex: 2,
     rationale:
@@ -278,7 +278,7 @@ export const ironCarbonHeatQuestions: MaterialsQuestion[] = [
     id: 'ih-021',
     topic: 'ironCarbonHeat',
     type: 'mcq',
-    prompt: 'Quenching (hardening) means heating steel into the austenite phase and then cooling it in which way?',
+    prompt: 'Quenching (hardening) means heating steel into the austenite (the form iron takes when very hot) phase and then cooling it in which way?',
     choices: [
       'Slowly, inside a closed furnace',
       'Rapidly, typically by plunging it into water or oil',
@@ -287,13 +287,13 @@ export const ironCarbonHeatQuestions: MaterialsQuestion[] = [
     ],
     correctIndex: 1,
     rationale:
-      'Quenching, also called hardening, means heating steel into the austenite phase and then cooling it very rapidly, usually by dropping it into water or oil, so that martensite forms instead of the softer phases produced by slower cooling.',
+      'Quenching, also called hardening, means heating steel into the austenite phase and then cooling it very rapidly, usually by dropping it into water or oil, so that martensite (the very hard, brittle structure from rapid cooling) forms instead of the softer phases produced by slower cooling.',
   },
   {
     id: 'ih-022',
     topic: 'ironCarbonHeat',
     type: 'tf',
-    prompt: 'Quenching steel generally leaves it softer and more bendable (more ductile) than annealing the same steel would.',
+    prompt: 'Quenching steel generally leaves it softer and more bendable (more ductile) than annealing (heating steel, then cooling it very slowly) the same steel would.',
     correctAnswer: false,
     rationale:
       "This is false: it is the other way around. Quenching's rapid cooling produces hard martensite instead of the soft phases seen in annealed steel, so quenched steel ends up much harder (and more brittle) than annealed steel, not softer or more bendable.",
@@ -302,7 +302,7 @@ export const ironCarbonHeatQuestions: MaterialsQuestion[] = [
     id: 'ih-023',
     topic: 'ironCarbonHeat',
     type: 'mcq',
-    prompt: 'Tempering is carried out on steel that has already been hardened by quenching. What does the tempering step actually involve?',
+    prompt: 'Tempering is carried out on steel that has already been hardened by quenching (fast cooling in water or oil). What does the tempering step actually involve?',
     choices: [
       "Reheating the quenched steel to a temperature below its critical (transformation) temperature, then cooling it again",
       'Reheating the steel above the austenite temperature a second time',
@@ -311,16 +311,16 @@ export const ironCarbonHeatQuestions: MaterialsQuestion[] = [
     ],
     correctIndex: 0,
     rationale:
-      'Tempering reheats already-quenched steel to a temperature below the point where austenite would form again, holds it there briefly, and then cools it, which adjusts the hardened structure without undoing the hardening entirely.',
+      'Tempering reheats already-quenched steel to a temperature below the point where austenite (the form iron takes when very hot) would form again, holds it there briefly, and then cools it, which adjusts the hardened structure without undoing the hardening entirely.',
   },
   {
     id: 'ih-024',
     topic: 'ironCarbonHeat',
     type: 'mcq',
-    prompt: 'What trade-off does tempering a quenched steel produce?',
+    prompt: 'What trade-off does tempering (a gentle reheat after quenching) a quenched (rapidly cooled) steel produce?',
     choices: [
       'It makes the steel harder and more brittle than it was right after quenching',
-      'It converts any remaining austenite back into liquid steel',
+      'It converts any remaining austenite (the form iron takes when very hot) back into liquid steel',
       "It has no measurable effect on the steel's properties",
       'It gives up some hardness in exchange for greater toughness (better resistance to cracking) and reduced brittleness',
     ],
@@ -352,7 +352,7 @@ export const ironCarbonHeatQuestions: MaterialsQuestion[] = [
       'Removing all of the carbon from the entire part',
       'Melting the whole part down and recasting it',
       'Adding extra carbon into the surface layer only, so the surface becomes high-carbon while the interior stays low-carbon',
-      'Coating the part in pure cementite with no heating step involved',
+      'Coating the part in pure cementite (hard, brittle iron carbide) with no heating step involved',
     ],
     correctIndex: 2,
     rationale:
@@ -366,9 +366,9 @@ export const ironCarbonHeatQuestions: MaterialsQuestion[] = [
       'A large steel gear needs a hardened surface, but heating the whole part in a furnace would be slow and impractical. Which surface-hardening approach heats only a thin outer layer directly, using a torch or an induction coil, before it is rapidly quenched?',
     choices: [
       'Flame or induction hardening, which rapidly heats only a thin surface layer and leaves the core largely unaffected',
-      'Full annealing of the entire gear',
+      'Full annealing (heating steel, then cooling it very slowly) of the entire gear',
       'Slow furnace cooling of the entire gear',
-      'Tempering the gear without ever reheating it into the austenite phase',
+      'Tempering (a gentle reheat after quenching) the gear without ever reheating it into the austenite (the form iron takes when very hot) phase',
     ],
     correctIndex: 0,
     rationale:
@@ -388,7 +388,7 @@ export const ironCarbonHeatQuestions: MaterialsQuestion[] = [
     topic: 'ironCarbonHeat',
     type: 'mcq',
     prompt:
-      'As the cooling rate applied to austenite increases, moving from slow furnace cooling toward rapid water quenching, what generally happens to the resulting structure and hardness?',
+      'As the cooling rate applied to austenite (the form iron takes when very hot) increases, moving from slow furnace cooling toward rapid water quenching, what generally happens to the resulting structure and hardness?',
     choices: [
       'The structure and hardness stay exactly the same no matter how fast the steel is cooled',
       'The structure shifts from coarse pearlite toward finer pearlite and eventually toward hard, brittle martensite, and hardness rises along with it',
@@ -403,9 +403,9 @@ export const ironCarbonHeatQuestions: MaterialsQuestion[] = [
     id: 'ih-030',
     topic: 'ironCarbonHeat',
     type: 'tf',
-    prompt: 'Rapidly quenching austenite tends to produce a softer structure than slowly cooling the same steel through annealing would.',
+    prompt: 'Rapidly quenching (fast cooling in water or oil) austenite (the form iron takes when very hot) tends to produce a softer structure than slowly cooling the same steel through annealing (heating then very slow cooling) would.',
     correctAnswer: false,
     rationale:
-      'This is false: it is the reverse. Slow cooling gives carbon atoms time to diffuse (spread out) and form the soft ferrite-and-cementite layers of pearlite, while rapid quenching traps the carbon in place and forms hard, brittle martensite, so quenching produces the harder structure, not the softer one.',
+      'This is false: it is the reverse. Slow cooling gives carbon atoms time to diffuse (spread out) and form the soft ferrite-and-cementite (hard, brittle iron carbide) layers of pearlite, while rapid quenching traps the carbon in place and forms hard, brittle martensite, so quenching produces the harder structure, not the softer one.',
   },
 ];

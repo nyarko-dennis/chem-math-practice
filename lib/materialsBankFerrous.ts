@@ -20,16 +20,16 @@ export const ferrousSteelsQuestions: MaterialsQuestion[] = [
     id: 'fs-002',
     topic: 'ferrousSteels',
     type: 'mcq',
-    prompt: 'Within the ferrous family, how are steel and cast iron told apart?',
+    prompt: 'Cast iron sits in a noticeably higher carbon band than steel. What practical consequence does that extra carbon have for how each material is used?',
     choices: [
-      'Steel is any metal with zero carbon, while cast iron always has some carbon',
-      'Steel holds carbon roughly up to about 2%, while cast iron sits in a noticeably higher carbon band above that',
-      'Steel is a non-ferrous alloy and cast iron is a ferrous one',
-      'There is no chemical difference; the names simply describe how the part was shaped',
+      'The extra carbon makes cast iron more flexible than steel, which is why cast iron is chosen for springs',
+      'The extra carbon lets cast iron melt and pour into molds more easily, but leaves the solid part brittle, while lower-carbon steel stays tough enough to be forged, rolled, and bent without cracking',
+      'The extra carbon makes cast iron rust-proof, while steel always corrodes quickly',
+      'The extra carbon makes cast iron much lighter than steel, which is why it suits aircraft parts',
     ],
     correctIndex: 1,
     rationale:
-      'Both are iron-carbon alloys, but steel keeps its carbon content in a lower band, while cast iron carries noticeably more dissolved carbon, which is what makes cast iron easier to pour into a mold but more brittle once solid.',
+      "The higher carbon band lowers cast iron's melting behavior, so it flows well into molds - but once solid, much of that carbon sits as hard, brittle constituents, so cast parts crack rather than bend. Steel's lower carbon leaves it tough (able to take a knock without shattering) and workable, so it can be shaped by forging (hammering or pressing, usually while hot) and rolling instead of only casting.",
   },
   {
     id: 'fs-003',
@@ -253,7 +253,7 @@ export const ferrousSteelsQuestions: MaterialsQuestion[] = [
     type: 'mcq',
     prompt: 'Kitchen sinks and food-processing equipment are commonly made from "18-8" stainless steel. What does that "18-8" shorthand describe?',
     choices: [
-      'A martensitic grade hardened by quenching in oil',
+      'A martensitic grade hardened by quenching (rapid cooling) in oil',
       'A cast iron with 18% carbon and 8% silicon',
       'A ferritic grade with 18% chromium and no nickel at all',
       'An austenitic grade with roughly 18% chromium and 8% nickel',
@@ -386,7 +386,7 @@ export const ferrousSteelsQuestions: MaterialsQuestion[] = [
     prompt: 'Historically, wrought iron generally contained more carbon than a typical modern plain carbon steel.',
     correctAnswer: false,
     rationale:
-      'This is false: wrought iron was worked to be nearly free of carbon, with strands of glassy slag trapped through it giving a fibrous texture, so it actually held less carbon than plain carbon steel, not more.',
+      'This is false: wrought iron was worked to be nearly free of carbon, with strands of glassy slag (waste material left over from ironmaking) trapped through it giving a fibrous texture, so it actually held less carbon than plain carbon steel, not more.',
   },
   {
     id: 'fs-030',
