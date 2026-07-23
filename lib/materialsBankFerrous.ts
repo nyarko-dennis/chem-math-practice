@@ -80,10 +80,10 @@ export const ferrousSteelsQuestions: MaterialsQuestion[] = [
     id: 'fs-006',
     topic: 'ferrousSteels',
     type: 'tf',
-    prompt: 'Across the plain carbon steel family, raising the carbon percentage generally makes the steel harder but less ductile.',
+    prompt: 'Raising the carbon percentage of a plain carbon steel generally makes it harder.',
     correctAnswer: true,
     rationale:
-      'This is true: as carbon content climbs from low-carbon through to high-carbon steel, hardness and wear resistance go up while ductility (the ability to stretch or bend without breaking) goes down.',
+      'True. Higher carbon raises hardness and wear resistance, but the trade-off is lower ductility (the ability to stretch or bend without breaking).',
   },
   {
     id: 'fs-007',
@@ -149,10 +149,10 @@ export const ferrousSteelsQuestions: MaterialsQuestion[] = [
     id: 'fs-011',
     topic: 'ferrousSteels',
     type: 'tf',
-    prompt: 'Grade SAE 4340 is a nickel-chromium-molybdenum alloy steel valued for combining high strength with good toughness.',
+    prompt: 'SAE 4340 is a nickel-chromium-molybdenum alloy steel.',
     correctAnswer: true,
     rationale:
-      'This is true: 4340 blends nickel, chromium, and molybdenum, and that combination is exactly why the grade is picked for demanding, high-strength, high-toughness parts such as aircraft and vehicle components.',
+      'True. That blend of nickel, chromium, and molybdenum gives 4340 high strength along with good toughness, which is why it is picked for demanding parts such as aircraft and vehicle components.',
   },
   {
     id: 'fs-012',
@@ -191,7 +191,7 @@ export const ferrousSteelsQuestions: MaterialsQuestion[] = [
     prompt: "Manganese's main contribution to steel is boosting its resistance to rust and chemical corrosion.",
     correctAnswer: false,
     rationale:
-      'This is false: that corrosion-fighting role belongs mainly to chromium. Manganese instead raises strength and hardenability and helps tie up sulfur impurities that would otherwise weaken the steel.',
+      'This is false: that corrosion-fighting role belongs mainly to chromium. Manganese instead raises strength and hardenability (how deep below the surface a steel can be hardened) and helps tie up sulfur impurities that would otherwise weaken the steel.',
   },
   {
     id: 'fs-015',
@@ -202,11 +202,11 @@ export const ferrousSteelsQuestions: MaterialsQuestion[] = [
       'Sub-zero cold, with no benefit when the part gets hot',
       'Underwater use only, due to added buoyancy',
       'Purely decorative finishing, with no strength effect',
-      'Elevated temperatures, where it helps the steel keep its strength and hardenability',
+      'Elevated temperatures, where it helps the steel keep its strength and hardenability (how deep below the surface a steel can be hardened)',
     ],
     correctIndex: 3,
     rationale:
-      'Molybdenum is valued because it helps a steel hold onto its strength and hardenability even when working temperatures climb, which matters for parts that run hot.',
+      'Molybdenum is valued because it helps a steel hold onto its strength and hardenability (how deep below the surface a steel can be hardened) even when working temperatures climb, which matters for parts that run hot.',
   },
   {
     id: 'fs-016',
@@ -284,7 +284,7 @@ export const ferrousSteelsQuestions: MaterialsQuestion[] = [
     ],
     correctIndex: 3,
     rationale:
-      'Martensitic stainless steel carries enough carbon to respond to quenching (fast cooling) followed by tempering, which is how it reaches a hard, sharp-holding edge, though that same structure leaves it more brittle and harder to weld than other stainless types.',
+      'Martensitic stainless steel carries enough carbon to respond to quenching (fast cooling) followed by tempering (a gentle reheat after quenching to trade a little hardness for toughness), which is how it reaches a hard, sharp-holding edge, though that same structure leaves it more brittle and harder to weld than other stainless types.',
   },
   {
     id: 'fs-022',
@@ -359,10 +359,10 @@ export const ferrousSteelsQuestions: MaterialsQuestion[] = [
     id: 'fs-027',
     topic: 'ferrousSteels',
     type: 'tf',
-    prompt: 'Nodular (ductile) cast iron holds its graphite in rounded spherical particles rather than flakes, which makes it tougher than grey cast iron.',
+    prompt: 'Ductile (nodular) cast iron holds its graphite as rounded spherical particles rather than flakes.',
     correctAnswer: true,
     rationale:
-      'This is true: because the graphite forms as rounded spheres instead of sharp-edged flakes, there are fewer built-in crack starters in the structure, so nodular cast iron can bend and absorb impact better than grey cast iron.',
+      'True. Rounded graphite spheres leave fewer built-in crack starters than sharp-edged flakes, which is why nodular cast iron can bend and absorb impact better than grey cast iron.',
   },
   {
     id: 'fs-028',
@@ -401,6 +401,6 @@ export const ferrousSteelsQuestions: MaterialsQuestion[] = [
     ],
     correctIndex: 0,
     rationale:
-      'An 18-8 austenitic stainless grade resists corrosion thanks to its chromium and nickel content, and unlike the martensitic stainless family it firms up through cold working rather than needing a quench-and-temper heat treatment, matching a fastener that needs corrosion resistance but not extreme hardness.',
+      'An 18-8 austenitic stainless grade resists corrosion thanks to its chromium and nickel content, and unlike the martensitic stainless family it firms up through cold working rather than needing quenching and tempering (a gentle reheat after quenching to trade a little hardness for toughness), matching a fastener that needs corrosion resistance but not extreme hardness.',
   },
 ];
