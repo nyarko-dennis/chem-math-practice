@@ -22,6 +22,9 @@ import {
   getDrillsByKinds,
   getDrillCountByKind,
 } from '@/lib/researchDrills';
+import ReviewList, { ReviewItem } from '@/components/ReviewList';
+import { pickSpacedQuestions, recordAttempt } from '@/lib/practiceStats';
+import { saveCourseProgress } from '@/lib/progressTracker';
 
 type Mode = 'quick' | 'calc' | 'drill';
 
@@ -147,11 +150,13 @@ export default function ResearchPage() {
       alert('Please select at least one topic.');
       return;
     }
-    const chosen = getQuestionsByTopics(selectedTopicList, quickCount);
-    if (chosen.length === 0) {
+    const pool = getQuestionsByTopics(selectedTopicList, Number.MAX_SAFE_INTEGER);
+    if (pool.length === 0) {
       alert('No questions available for the selected topics.');
       return;
     }
+    // Spaced repetition: prioritize due / previously-missed / unseen questions.
+    const chosen = pickSpacedQuestions('research', pool, quickCount);
     const sh: Record<string, ShuffledMCQ> = {};
     chosen.forEach((q) => {
       if (q.type === 'mcq') {
@@ -205,12 +210,19 @@ export default function ResearchPage() {
 
   const checkCurrentQuick = () => {
     const q = questions[qIndex];
-    if (q.id in selections) setChecked({ ...checked, [q.id]: true });
+    if (q.id in selections) {
+      setChecked({ ...checked, [q.id]: true });
+      recordAttempt('research', { questionId: q.id, topicKey: q.topic, correct: isQuickCorrect(q) });
+    }
   };
 
   const goNextQuick = () => {
     if (qIndex < questions.length - 1) setQIndex(qIndex + 1);
-    else setFinished(true);
+    else {
+      const correct = questions.filter((q) => checked[q.id] && isQuickCorrect(q)).length;
+      saveCourseProgress('research', { type: 'quick', correct, total: questions.length });
+      setFinished(true);
+    }
   };
 
   const isQuickCorrect = (q: ResearchQuestion): boolean => {
@@ -474,12 +486,54 @@ export default function ResearchPage() {
   if (finished) {
     if (mode === 'quick') {
       const correctCount = questions.filter((q) => checked[q.id] && isQuickCorrect(q)).length;
+      const reviewItems: ReviewItem[] = questions.map((q) => {
+        let yourAnswer = '';
+        let correctAnswer = '';
+        if (q.type === 'mcq') {
+          const s = shuffles[q.id];
+          correctAnswer = s ? s.displayChoices[s.correctDisplayIndex] : '';
+          const sel = selections[q.id];
+          yourAnswer = s && typeof sel === 'number' ? s.displayChoices[sel] : '';
+        } else {
+          correctAnswer = q.correctAnswer ? 'True' : 'False';
+          const sel = selections[q.id];
+          yourAnswer = sel === undefined ? '' : sel ? 'True' : 'False';
+        }
+        return {
+          id: q.id,
+          topicLabel: TOPIC_LABELS[q.topic],
+          prompt: q.prompt,
+          yourAnswer,
+          correctAnswer,
+          explanation: q.rationale,
+          correct: !!checked[q.id] && isQuickCorrect(q),
+        };
+      });
       return (
-        <FinishedCard
-          title="Quiz Complete!"
-          headline={`${correctCount} / ${questions.length}`}
-          onReset={resetAll}
-        />
+        <div className="min-h-screen bg-slate-50 flex items-center justify-center p-4">
+          <div className="bg-white p-8 rounded-xl shadow-lg w-full max-w-2xl">
+            <div className="text-center">
+              <h2 className="text-3xl font-bold mb-4 text-slate-800">Quiz Complete!</h2>
+              <div className="text-xl mb-6">
+                Score: <span className="font-bold text-indigo-600">{correctCount}</span> / {questions.length}
+              </div>
+            </div>
+            <div className="mb-6">
+              <ReviewList items={reviewItems} accent="text-indigo-600" />
+            </div>
+            <div className="flex flex-col gap-3 text-center">
+              <button
+                onClick={resetAll}
+                className="bg-slate-800 hover:bg-slate-900 text-white font-bold py-3 px-8 rounded-lg transition-colors"
+              >
+                Start New Practice
+              </button>
+              <Link href="/" className="text-slate-500 hover:text-slate-800 text-sm">
+                ← Back to Home
+              </Link>
+            </div>
+          </div>
+        </div>
       );
     }
     if (mode === 'calc') {

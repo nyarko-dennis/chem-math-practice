@@ -5,8 +5,10 @@ import Link from 'next/link';
 import { assembleQuiz, CalculusQuestion } from '@/lib/calculusQuestions';
 import MathDisplay from '@/components/MathDisplay';
 import MathInput from '@/components/MathInput';
+import ReviewList, { ReviewItem } from '@/components/ReviewList';
 import { checkAnswer } from '@/lib/checkAnswer';
 import { normalizeCalculusLatex } from '@/lib/calculusAnswer';
+import { recordAttempt } from '@/lib/practiceStats';
 import {
   saveActiveSession,
   getActiveSession,
@@ -83,6 +85,12 @@ export default function CalculusPage() {
     const newFeedback = { ...feedback, [q.id]: isCorrect };
     setFeedback(newFeedback);
     setShowSolution(!isCorrect);
+    // Track per-category accuracy; curated (static) items also get per-question stats.
+    recordAttempt('calculus', {
+      questionId: q.source === 'static' ? q.id : undefined,
+      topicKey: q.category,
+      correct: isCorrect,
+    });
     persist(questions, currentIndex, answers, newFeedback);
   };
 
@@ -185,17 +193,36 @@ export default function CalculusPage() {
 
   if (finished) {
     const correctCount = Object.values(feedback).filter(Boolean).length;
+    const reviewItems: ReviewItem[] = questions.map((q) => ({
+      id: q.id,
+      topicLabel: q.category,
+      prompt: q.prompt,
+      promptIsLatex: true,
+      yourAnswer: answers[q.id] || '',
+      correctAnswer: q.correctAnswer,
+      answerIsLatex: true,
+      explanation: q.solution,
+      explanationIsLatex: true,
+      correct: !!feedback[q.id],
+    }));
     return (
       <div className="min-h-screen bg-slate-50 flex items-center justify-center p-4">
-        <div className="bg-white p-8 rounded-xl shadow-lg w-full max-w-md text-center">
-          <h2 className="text-3xl font-bold mb-4 text-slate-800">Quiz Complete!</h2>
-          <div className="text-xl mb-6">
-            Score: <span className="font-bold text-teal-600">{correctCount}</span> / {questions.length}
+        <div className="bg-white p-8 rounded-xl shadow-lg w-full max-w-2xl">
+          <div className="text-center">
+            <h2 className="text-3xl font-bold mb-4 text-slate-800">Quiz Complete!</h2>
+            <div className="text-xl mb-6">
+              Score: <span className="font-bold text-teal-600">{correctCount}</span> / {questions.length}
+            </div>
           </div>
-          <button onClick={resetQuiz}
-            className="bg-slate-800 hover:bg-slate-900 text-white font-bold py-3 px-8 rounded-lg transition-colors">
-            Start New Quiz
-          </button>
+          <div className="mb-6">
+            <ReviewList items={reviewItems} accent="text-teal-600" />
+          </div>
+          <div className="text-center">
+            <button onClick={resetQuiz}
+              className="bg-slate-800 hover:bg-slate-900 text-white font-bold py-3 px-8 rounded-lg transition-colors">
+              Start New Quiz
+            </button>
+          </div>
         </div>
       </div>
     );

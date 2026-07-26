@@ -14,6 +14,9 @@ import {
   getCasesByTopics,
   getCaseCountByTopic,
 } from '@/lib/palliativeCases';
+import ReviewList, { ReviewItem } from '@/components/ReviewList';
+import { pickSpacedQuestions, recordAttempt } from '@/lib/practiceStats';
+import { saveCourseProgress } from '@/lib/progressTracker';
 
 type Mode = 'quick' | 'case';
 type SelectedTopics = Record<PalliativeTopic, boolean>;
@@ -95,11 +98,13 @@ export default function PalliativePage() {
       alert('Please select at least one topic.');
       return;
     }
-    const chosen = getQuestionsByTopics(selectedTopicList, quickCount);
-    if (chosen.length === 0) {
+    const pool = getQuestionsByTopics(selectedTopicList, Number.MAX_SAFE_INTEGER);
+    if (pool.length === 0) {
       alert('No questions available for the selected topics.');
       return;
     }
+    // Spaced repetition: prioritize due / previously-missed / unseen questions.
+    const chosen = pickSpacedQuestions('palliative', pool, quickCount);
     const sh: Record<string, ShuffledMCQ> = {};
     chosen.forEach((q) => {
       if (q.type === 'mcq') {
@@ -120,12 +125,17 @@ export default function PalliativePage() {
     const q = questions[qIndex];
     if (q.id in selections) {
       setChecked({ ...checked, [q.id]: true });
+      recordAttempt('palliative', { questionId: q.id, topicKey: q.topic, correct: isQuickCorrect(q) });
     }
   };
 
   const goNextQuick = () => {
     if (qIndex < questions.length - 1) setQIndex(qIndex + 1);
-    else setFinished(true);
+    else {
+      const correct = questions.filter((q) => checked[q.id] && isQuickCorrect(q)).length;
+      saveCourseProgress('palliative', { type: 'quick', correct, total: questions.length });
+      setFinished(true);
+    }
   };
 
   const isQuickCorrect = (q: PalliativeQuestion): boolean => {
@@ -328,14 +338,42 @@ export default function PalliativePage() {
   if (finished) {
     if (mode === 'quick') {
       const correctCount = questions.filter((q) => checked[q.id] && isQuickCorrect(q)).length;
+      const reviewItems: ReviewItem[] = questions.map((q) => {
+        let yourAnswer = '';
+        let correctAnswer = '';
+        if (q.type === 'mcq') {
+          const s = shuffles[q.id];
+          correctAnswer = s ? s.displayChoices[s.correctDisplayIndex] : '';
+          const sel = selections[q.id];
+          yourAnswer = s && typeof sel === 'number' ? s.displayChoices[sel] : '';
+        } else {
+          correctAnswer = q.correctAnswer ? 'True' : 'False';
+          const sel = selections[q.id];
+          yourAnswer = sel === undefined ? '' : sel ? 'True' : 'False';
+        }
+        return {
+          id: q.id,
+          topicLabel: TOPIC_LABELS[q.topic],
+          prompt: q.prompt,
+          yourAnswer,
+          correctAnswer,
+          explanation: q.rationale,
+          correct: !!checked[q.id] && isQuickCorrect(q),
+        };
+      });
       return (
         <div className="min-h-screen bg-slate-50 flex items-center justify-center p-4">
-          <div className="bg-white p-8 rounded-xl shadow-lg w-full max-w-md text-center">
-            <h2 className="text-3xl font-bold mb-4 text-slate-800">Quiz Complete!</h2>
-            <div className="text-xl mb-6">
-              Score: <span className="font-bold text-violet-600">{correctCount}</span> / {questions.length}
+          <div className="bg-white p-8 rounded-xl shadow-lg w-full max-w-2xl">
+            <div className="text-center">
+              <h2 className="text-3xl font-bold mb-4 text-slate-800">Quiz Complete!</h2>
+              <div className="text-xl mb-6">
+                Score: <span className="font-bold text-violet-600">{correctCount}</span> / {questions.length}
+              </div>
             </div>
-            <div className="flex flex-col gap-3">
+            <div className="mb-6">
+              <ReviewList items={reviewItems} accent="text-violet-600" />
+            </div>
+            <div className="flex flex-col gap-3 text-center">
               <button
                 onClick={resetAll}
                 className="bg-slate-800 hover:bg-slate-900 text-white font-bold py-3 px-8 rounded-lg transition-colors"
