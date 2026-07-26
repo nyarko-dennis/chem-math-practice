@@ -2,6 +2,7 @@
 
 import { useMemo, useState, useEffect } from 'react';
 import Link from 'next/link';
+import CourseTabs from '@/components/CourseTabs';
 import {
   saveActiveSession,
   clearActiveSession,
@@ -355,10 +356,7 @@ export default function SurgeryPage() {
     return (
       <div className="min-h-screen bg-slate-50 flex items-center justify-center p-4">
         <div className="bg-white p-8 rounded-xl shadow-lg w-full max-w-lg">
-          <div className="flex items-center justify-between mb-6">
-            <h1 className="text-2xl font-bold text-slate-800">Surgery & Surgical Nursing II</h1>
-            <Link href="/" className="text-sm text-slate-500 hover:text-slate-800">← Home</Link>
-          </div>
+          <CourseTabs courseId="surgery" active="practice" />
 
           {hasSavedSession && (
             <div className="bg-amber-50 border border-amber-200 rounded-lg p-4 mb-6 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 shadow-sm">

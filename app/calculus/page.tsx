@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
+import CourseTabs from '@/components/CourseTabs';
 import { assembleQuiz, CalculusQuestion } from '@/lib/calculusQuestions';
 import MathDisplay from '@/components/MathDisplay';
 import MathInput from '@/components/MathInput';
@@ -156,10 +157,7 @@ export default function CalculusPage() {
     return (
       <div className="min-h-screen bg-slate-50 flex items-center justify-center p-4">
         <div className="bg-white p-8 rounded-xl shadow-lg w-full max-w-md">
-          <div className="flex items-center justify-between mb-6">
-            <h1 className="text-2xl font-bold text-slate-800">Calculus Practice</h1>
-            <Link href="/" className="text-sm text-slate-500 hover:text-slate-800">← Home</Link>
-          </div>
+          <CourseTabs courseId="calculus" active="practice" />
 
           {canResume && (
             <button

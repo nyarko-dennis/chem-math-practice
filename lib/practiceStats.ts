@@ -247,6 +247,28 @@ export interface TopicMastery {
   accuracy: number; // 0..1, 0 when unseen
 }
 
+export interface MasteryBreakdown {
+  learning: number; // boxes 1-2
+  reviewing: number; // boxes 3-4
+  mastered: number; // box 5
+  total: number;
+}
+
+/** Group a course's tracked questions into learning / reviewing / mastered. */
+export function getMasteryBreakdown(courseId: string): MasteryBreakdown {
+  const stats = loadStats(courseId);
+  let learning = 0;
+  let reviewing = 0;
+  let mastered = 0;
+  for (const id in stats.questions) {
+    const box = stats.questions[id].box;
+    if (box >= 5) mastered++;
+    else if (box >= 3) reviewing++;
+    else learning++;
+  }
+  return { learning, reviewing, mastered, total: learning + reviewing + mastered };
+}
+
 /** Count questions currently due for review (dueAt in the past) for a course. */
 export function countDueQuestions(courseId: string): number {
   const stats = loadStats(courseId);

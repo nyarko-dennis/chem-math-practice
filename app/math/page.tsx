@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import Link from 'next/link';
+import CourseTabs from '@/components/CourseTabs';
 import {
   generateArithmeticQuestion,
   generateAlgebraQuestion,
@@ -135,10 +135,7 @@ export default function Home() {
     return (
       <div className="min-h-screen bg-slate-50 flex items-center justify-center p-4">
         <div className="bg-white p-8 rounded-xl shadow-lg w-full max-w-md">
-          <div className="flex items-center justify-between mb-6">
-            <h1 className="text-2xl font-bold text-slate-800">Chem & Math Practice</h1>
-            <Link href="/" className="text-sm text-slate-500 hover:text-slate-800">← Home</Link>
-          </div>
+          <CourseTabs courseId="math" active="practice" />
 
           <div className="space-y-4 mb-6">
             <div className="flex items-center justify-between">

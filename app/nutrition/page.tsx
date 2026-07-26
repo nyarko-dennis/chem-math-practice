@@ -2,6 +2,7 @@
 
 import { useMemo, useState } from 'react';
 import Link from 'next/link';
+import CourseTabs from '@/components/CourseTabs';
 import {
   NutritionQuestion,
   NutritionTopic,
@@ -129,10 +130,7 @@ export default function NutritionPage() {
     return (
       <div className="min-h-screen bg-slate-50 flex items-center justify-center p-4">
         <div className="bg-white p-8 rounded-xl shadow-lg w-full max-w-lg">
-          <div className="flex items-center justify-between mb-6">
-            <h1 className="text-2xl font-bold text-slate-800">Nutrition & Dietetics Practice</h1>
-            <Link href="/" className="text-sm text-slate-500 hover:text-slate-800">← Home</Link>
-          </div>
+          <CourseTabs courseId="nutrition" active="practice" />
 
           <p className="text-sm text-slate-500 mb-4">Choose the topics you want to be tested on.</p>
 
