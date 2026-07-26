@@ -5,28 +5,52 @@ import { useEffect, useState } from 'react';
 import {
   getCourseProgress,
   hasActiveSession,
+  getStreak,
   CourseProgress,
 } from '@/lib/progressTracker';
+import { getTopicMastery, countDueQuestions } from '@/lib/practiceStats';
+import { labelForTopic } from '@/lib/courseLabels';
+
+interface FocusArea {
+  label: string;
+  accuracy: number;
+}
 
 export default function Home() {
   const [mounted, setMounted] = useState(false);
   const [stats, setStats] = useState<Record<string, CourseProgress | null>>({});
   const [activeSessions, setActiveSessions] = useState<Record<string, boolean>>({});
+  const [focus, setFocus] = useState<Record<string, FocusArea | null>>({});
+  const [dueCounts, setDueCounts] = useState<Record<string, number>>({});
+  const [streak, setStreak] = useState(0);
 
   useEffect(() => {
     setMounted(true);
     const courses = ['math', 'nutrition', 'palliative', 'research', 'pharmacology', 'surgery', 'calculus', 'materials'];
     const loadedStats: Record<string, CourseProgress | null> = {};
     const loadedActive: Record<string, boolean> = {};
+    const loadedFocus: Record<string, FocusArea | null> = {};
+    const loadedDue: Record<string, number> = {};
 
     courses.forEach((c) => {
       loadedStats[c] = getCourseProgress(c);
       loadedActive[c] = hasActiveSession(c);
+      loadedDue[c] = countDueQuestions(c);
+      // Weakest practiced topic (needs a little data, and room to improve).
+      const weakest = getTopicMastery(c).find((t) => t.seen >= 2 && t.accuracy < 0.85);
+      loadedFocus[c] = weakest
+        ? { label: labelForTopic(c, weakest.key), accuracy: Math.round(weakest.accuracy * 100) }
+        : null;
     });
 
     setStats(loadedStats);
     setActiveSessions(loadedActive);
+    setFocus(loadedFocus);
+    setDueCounts(loadedDue);
+    setStreak(getStreak().current);
   }, []);
+
+  const totalDue = Object.values(dueCounts).reduce((a, b) => a + b, 0);
 
   if (!mounted) {
     // Render static skeleton during SSR to avoid hydration flash
@@ -61,6 +85,8 @@ export default function Home() {
   ) => {
     const progress = stats[id];
     const isActive = activeSessions[id];
+    const focusArea = focus[id];
+    const due = dueCounts[id] ?? 0;
 
     return (
       <Link
@@ -70,12 +96,19 @@ export default function Home() {
         <div>
           <div className={`text-sm uppercase tracking-wide ${textColor} font-semibold mb-2 flex items-center justify-between`}>
             <span>Course</span>
-            {isActive && (
-              <span className="bg-rose-50 text-rose-700 text-xs px-2.5 py-0.5 rounded-full font-medium flex items-center gap-1.5 animate-pulse">
-                <span className="w-1.5 h-1.5 bg-rose-500 rounded-full"></span>
-                In Progress
-              </span>
-            )}
+            <span className="flex items-center gap-1.5">
+              {due > 0 && (
+                <span className="bg-amber-50 text-amber-700 text-xs px-2.5 py-0.5 rounded-full font-medium">
+                  {due} due
+                </span>
+              )}
+              {isActive && (
+                <span className="bg-rose-50 text-rose-700 text-xs px-2.5 py-0.5 rounded-full font-medium flex items-center gap-1.5 animate-pulse">
+                  <span className="w-1.5 h-1.5 bg-rose-500 rounded-full"></span>
+                  In Progress
+                </span>
+              )}
+            </span>
           </div>
           <h2 className={`text-xl font-bold text-slate-800 mb-2 group-hover:${hoverText}`}>
             {title}
@@ -109,6 +142,13 @@ export default function Home() {
             );
           })()}
 
+          {focusArea && (
+            <div className="mb-3 text-xs text-slate-500">
+              <span className="font-semibold text-slate-600">Focus area:</span>{' '}
+              {focusArea.label} <span className="text-amber-600 font-medium">({focusArea.accuracy}%)</span>
+            </div>
+          )}
+
           <span className={`inline-flex items-center ${textColor} font-semibold text-sm`}>
             {isActive ? 'Resume practice session →' : 'Start practicing →'}
           </span>
@@ -120,10 +160,25 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-slate-50 flex items-center justify-center p-4">
       <div className="w-full max-w-3xl py-12">
-        <div className="text-center mb-10">
+        <div className="text-center mb-6">
           <h1 className="text-3xl md:text-4xl font-bold text-slate-800 mb-2">Practice Test Generator</h1>
           <p className="text-slate-500">Choose a course to begin a practice session.</p>
         </div>
+
+        {(streak > 0 || totalDue > 0) && (
+          <div className="flex flex-wrap items-center justify-center gap-3 mb-8">
+            {streak > 0 && (
+              <span className="inline-flex items-center gap-1.5 bg-orange-50 text-orange-700 border border-orange-100 px-3.5 py-1.5 rounded-full text-sm font-semibold">
+                🔥 {streak}-day streak
+              </span>
+            )}
+            {totalDue > 0 && (
+              <span className="inline-flex items-center gap-1.5 bg-amber-50 text-amber-700 border border-amber-100 px-3.5 py-1.5 rounded-full text-sm font-semibold">
+                {totalDue} question{totalDue === 1 ? '' : 's'} due for review
+              </span>
+            )}
+          </div>
+        )}
 
         <div className="grid gap-4 md:grid-cols-2">
           {renderCard(

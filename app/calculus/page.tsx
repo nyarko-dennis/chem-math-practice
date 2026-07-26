@@ -26,6 +26,8 @@ export default function CalculusPage() {
   const [feedback, setFeedback] = useState<{ [key: string]: boolean }>({});
   const [showSolution, setShowSolution] = useState(false);
   const [canResume, setCanResume] = useState(false);
+  const [attempts, setAttempts] = useState<{ [key: string]: number }>({});
+  const [retry, setRetry] = useState(false);
 
   const [config, setConfig] = useState({
     basicRules: true,
@@ -55,6 +57,8 @@ export default function CalculusPage() {
     if (cur && fb[cur.id] === false) setShowSolution(true);
     setStarted(true);
     setCanResume(false);
+    setAttempts({});
+    setRetry(false);
   };
 
   const persist = (q: CalculusQuestion[], idx: number, ans: Record<string, string>, fb: Record<string, boolean>) => {
@@ -75,6 +79,8 @@ export default function CalculusPage() {
     setFeedback({});
     setShowSolution(false);
     setCanResume(false);
+    setAttempts({});
+    setRetry(false);
     persist(newQuestions, 0, {}, {});
   };
 
@@ -82,16 +88,36 @@ export default function CalculusPage() {
     const q = questions[currentIndex];
     const answer = answers[q.id] || '';
     const isCorrect = checkAnswer('algebra', normalizeCalculusLatex(q.correctAnswer), normalizeCalculusLatex(answer));
-    const newFeedback = { ...feedback, [q.id]: isCorrect };
-    setFeedback(newFeedback);
-    setShowSolution(!isCorrect);
-    // Track per-category accuracy; curated (static) items also get per-question stats.
-    recordAttempt('calculus', {
-      questionId: q.source === 'static' ? q.id : undefined,
-      topicKey: q.category,
-      correct: isCorrect,
-    });
-    persist(questions, currentIndex, answers, newFeedback);
+    const firstTry = (attempts[q.id] ?? 0) === 0;
+
+    // Record the first attempt only — honest first-recall for spaced repetition.
+    // Curated (static) items also get per-question stats.
+    if (firstTry) {
+      recordAttempt('calculus', {
+        questionId: q.source === 'static' ? q.id : undefined,
+        topicKey: q.category,
+        correct: isCorrect,
+      });
+    }
+
+    if (isCorrect) {
+      const newFeedback = { ...feedback, [q.id]: true };
+      setFeedback(newFeedback);
+      setShowSolution(false);
+      setRetry(false);
+      persist(questions, currentIndex, answers, newFeedback);
+    } else if (firstTry) {
+      // First miss: allow one more attempt before revealing the solution.
+      setAttempts({ ...attempts, [q.id]: 1 });
+      setRetry(true);
+    } else {
+      const newFeedback = { ...feedback, [q.id]: false };
+      setFeedback(newFeedback);
+      setShowSolution(true);
+      setRetry(false);
+      setAttempts({ ...attempts, [q.id]: (attempts[q.id] ?? 1) + 1 });
+      persist(questions, currentIndex, answers, newFeedback);
+    }
   };
 
   const nextQuestion = () => {
@@ -99,6 +125,7 @@ export default function CalculusPage() {
       const nextIdx = currentIndex + 1;
       setCurrentIndex(nextIdx);
       setShowSolution(false);
+      setRetry(false);
       persist(questions, nextIdx, answers, feedback);
     } else {
       const correctCount = Object.values(feedback).filter(Boolean).length;
@@ -117,6 +144,8 @@ export default function CalculusPage() {
     setAnswers({});
     setFeedback({});
     setCanResume(false);
+    setAttempts({});
+    setRetry(false);
   };
 
   if (!mounted) {
@@ -258,6 +287,11 @@ export default function CalculusPage() {
             {hasAnswered && (
               <div className={`mt-2 font-medium ${feedback[currentQ.id] ? 'text-green-600' : 'text-red-600'}`}>
                 {feedback[currentQ.id] ? 'Correct!' : 'Incorrect'}
+              </div>
+            )}
+            {!hasAnswered && retry && (
+              <div className="mt-2 font-medium text-amber-600">
+                Not quite — try once more before the solution shows.
               </div>
             )}
           </div>

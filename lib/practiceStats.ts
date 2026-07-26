@@ -247,6 +247,17 @@ export interface TopicMastery {
   accuracy: number; // 0..1, 0 when unseen
 }
 
+/** Count questions currently due for review (dueAt in the past) for a course. */
+export function countDueQuestions(courseId: string): number {
+  const stats = loadStats(courseId);
+  const now = Date.now();
+  let due = 0;
+  for (const id in stats.questions) {
+    if (stats.questions[id].dueAt <= now) due++;
+  }
+  return due;
+}
+
 /** Per-topic accuracy summary for analytics, sorted weakest-first. */
 export function getTopicMastery(courseId: string): TopicMastery[] {
   const stats = loadStats(courseId);

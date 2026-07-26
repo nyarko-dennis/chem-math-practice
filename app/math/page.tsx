@@ -10,7 +10,8 @@ import {
   generateMolarMassQuestion,
   generateGasLawQuestion,
   generateDensityQuestion,
-  Question
+  Question,
+  Difficulty
 } from '@/lib/generators';
 import MathDisplay from '@/components/MathDisplay';
 import MathInput from '@/components/MathInput';
@@ -27,6 +28,8 @@ export default function Home() {
   const [answers, setAnswers] = useState<{ [key: string]: string }>({});
   const [feedback, setFeedback] = useState<{ [key: string]: boolean }>({});
   const [showSolution, setShowSolution] = useState(false);
+  const [attempts, setAttempts] = useState<{ [key: string]: number }>({});
+  const [retry, setRetry] = useState(false);
 
   const [config, setConfig] = useState({
     arithmetic: true,
@@ -36,6 +39,7 @@ export default function Home() {
     molarMass: false,
     gasLaws: false,
     density: false,
+    difficulty: 'medium' as Difficulty,
     count: 10
   });
 
@@ -43,7 +47,7 @@ export default function Home() {
     const newQuestions: Question[] = [];
     // Map stable type keys -> generators. Keys match Question.type so that
     // recorded per-type accuracy drives which type is generated next.
-    const generatorMap: Record<string, () => Question> = {};
+    const generatorMap: Record<string, (d: Difficulty) => Question> = {};
     if (config.arithmetic) generatorMap['arithmetic'] = generateArithmeticQuestion;
     if (config.algebra) generatorMap['algebra'] = generateAlgebraQuestion;
     if (config.units) generatorMap['Dimensional Analysis'] = generateUnitQuestion;
@@ -61,7 +65,7 @@ export default function Home() {
     for (let i = 0; i < config.count; i++) {
       // Weakness targeting: weaker/unseen types are generated more often.
       const key = pickWeightedType('math', keys);
-      newQuestions.push(generatorMap[key]());
+      newQuestions.push(generatorMap[key](config.difficulty));
     }
 
     setQuestions(newQuestions);
@@ -71,26 +75,44 @@ export default function Home() {
     setAnswers({});
     setFeedback({});
     setShowSolution(false);
+    setAttempts({});
+    setRetry(false);
   };
 
   const verifyAnswer = () => {
     const q = questions[currentIndex];
     const answer = answers[q.id] || '';
 
-    // Use the new checkAnswer utility
     const isCorrect = checkAnswer(q.type, q.correctAnswer, answer);
+    const firstTry = (attempts[q.id] ?? 0) === 0;
 
-    setFeedback({ ...feedback, [q.id]: isCorrect });
-    setShowSolution(!isCorrect);
+    // Record the first attempt only — first-recall is the honest signal for
+    // spaced repetition and weakness targeting.
+    if (firstTry) {
+      recordAttempt('math', { topicKey: q.type, correct: isCorrect });
+    }
 
-    // Track per-type accuracy for weakness targeting.
-    recordAttempt('math', { topicKey: q.type, correct: isCorrect });
+    if (isCorrect) {
+      setFeedback({ ...feedback, [q.id]: isCorrect });
+      setShowSolution(false);
+      setRetry(false);
+    } else if (firstTry) {
+      // First miss: let them try once more before revealing the solution.
+      setAttempts({ ...attempts, [q.id]: 1 });
+      setRetry(true);
+    } else {
+      setFeedback({ ...feedback, [q.id]: false });
+      setShowSolution(true);
+      setRetry(false);
+      setAttempts({ ...attempts, [q.id]: (attempts[q.id] ?? 1) + 1 });
+    }
   };
 
   const nextQuestion = () => {
     if (currentIndex < questions.length - 1) {
       setCurrentIndex(currentIndex + 1);
       setShowSolution(false);
+      setRetry(false);
     } else {
       const correct = Object.values(feedback).filter(Boolean).length;
       saveCourseProgress('math', { type: 'math', correct, total: questions.length });
@@ -105,6 +127,8 @@ export default function Home() {
     setCurrentIndex(0);
     setAnswers({});
     setFeedback({});
+    setAttempts({});
+    setRetry(false);
   };
 
   if (!started) {
@@ -182,6 +206,24 @@ export default function Home() {
             </div>
 
             <div className="pt-4 border-t border-slate-100">
+              <label className="block font-medium text-slate-700 mb-2">Difficulty</label>
+              <div className="grid grid-cols-3 gap-2 mb-4">
+                {(['easy', 'medium', 'hard'] as Difficulty[]).map((d) => (
+                  <button
+                    key={d}
+                    type="button"
+                    onClick={() => setConfig({ ...config, difficulty: d })}
+                    className={`py-2 rounded-md text-sm font-semibold capitalize transition-colors border ${
+                      config.difficulty === d
+                        ? 'bg-blue-600 text-white border-blue-600'
+                        : 'bg-white text-slate-600 border-slate-300 hover:bg-slate-50'
+                    }`}
+                  >
+                    {d}
+                  </button>
+                ))}
+              </div>
+
               <label className="block font-medium text-slate-700 mb-2">Number of Questions</label>
               <input
                 type="number"
@@ -278,6 +320,11 @@ export default function Home() {
             {hasAnswered && (
               <div className={`mt-2 font-medium ${feedback[currentQ.id] ? 'text-green-600' : 'text-red-600'}`}>
                 {feedback[currentQ.id] ? 'Correct!' : 'Incorrect'}
+              </div>
+            )}
+            {!hasAnswered && retry && (
+              <div className="mt-2 font-medium text-amber-600">
+                Not quite — try once more before the solution shows.
               </div>
             )}
           </div>
