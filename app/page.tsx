@@ -8,6 +8,7 @@ import { COURSES } from '@/lib/courses';
 import { getCourseProgress, getStreak } from '@/lib/progressTracker';
 import { countDueQuestions, getMasteryBreakdown, getTopicMastery } from '@/lib/practiceStats';
 import { labelForTopic } from '@/lib/courseLabels';
+import AccountMenu from '@/components/AccountMenu';
 
 interface FocusItem {
   courseId: string;
@@ -120,6 +121,8 @@ export default function DashboardPage() {
           <h1 className="text-2xl font-extrabold text-slate-800 tracking-tight">Dashboard</h1>
           <p className="text-slate-500 text-sm">Welcome back — here&apos;s where to focus today.</p>
         </div>
+
+        <AccountMenu />
 
         {/* Hero */}
         <div className="relative overflow-hidden bg-white rounded-2xl border border-slate-100 shadow-sm p-6 mb-5 flex items-center justify-between gap-6 flex-wrap">

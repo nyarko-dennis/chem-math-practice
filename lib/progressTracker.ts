@@ -1,5 +1,7 @@
 'use client';
 
+import { syncSession } from './supabase/sync';
+
 export interface SessionHistoryItem {
   date: string;
   type: 'quick' | 'drill' | 'math';
@@ -110,6 +112,15 @@ export function saveCourseProgress(
   } catch (e) {
     console.error('Error saving course progress:', e);
   }
+
+  // Fire-and-forget cloud backup. No-ops in local-only mode; never blocks or
+  // throws into the caller.
+  void syncSession({
+    courseId,
+    type: session.type,
+    correct: session.correct,
+    total: session.total,
+  });
 }
 
 /**
