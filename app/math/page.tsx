@@ -14,7 +14,10 @@ import {
 } from '@/lib/generators';
 import MathDisplay from '@/components/MathDisplay';
 import MathInput from '@/components/MathInput';
+import ReviewList, { ReviewItem } from '@/components/ReviewList';
 import { checkAnswer } from '@/lib/checkAnswer';
+import { pickWeightedType, recordAttempt } from '@/lib/practiceStats';
+import { saveCourseProgress } from '@/lib/progressTracker';
 
 export default function Home() {
   const [started, setStarted] = useState(false);
@@ -38,23 +41,27 @@ export default function Home() {
 
   const startQuiz = () => {
     const newQuestions: Question[] = [];
-    const types = [];
-    if (config.arithmetic) types.push(generateArithmeticQuestion);
-    if (config.algebra) types.push(generateAlgebraQuestion);
-    if (config.units) types.push(generateUnitQuestion);
-    if (config.sigfigs) types.push(generateSigFigQuestion);
-    if (config.molarMass) types.push(generateMolarMassQuestion);
-    if (config.gasLaws) types.push(generateGasLawQuestion);
-    if (config.density) types.push(generateDensityQuestion);
+    // Map stable type keys -> generators. Keys match Question.type so that
+    // recorded per-type accuracy drives which type is generated next.
+    const generatorMap: Record<string, () => Question> = {};
+    if (config.arithmetic) generatorMap['arithmetic'] = generateArithmeticQuestion;
+    if (config.algebra) generatorMap['algebra'] = generateAlgebraQuestion;
+    if (config.units) generatorMap['Dimensional Analysis'] = generateUnitQuestion;
+    if (config.sigfigs) generatorMap['sigfigs'] = generateSigFigQuestion;
+    if (config.molarMass) generatorMap['stoichiometry'] = generateMolarMassQuestion;
+    if (config.gasLaws) generatorMap['gasLaws'] = generateGasLawQuestion;
+    if (config.density) generatorMap['density'] = generateDensityQuestion;
 
-    if (types.length === 0) {
+    const keys = Object.keys(generatorMap);
+    if (keys.length === 0) {
       alert('Please select at least one topic.');
       return;
     }
 
     for (let i = 0; i < config.count; i++) {
-      const generator = types[Math.floor(Math.random() * types.length)];
-      newQuestions.push(generator());
+      // Weakness targeting: weaker/unseen types are generated more often.
+      const key = pickWeightedType('math', keys);
+      newQuestions.push(generatorMap[key]());
     }
 
     setQuestions(newQuestions);
@@ -76,9 +83,8 @@ export default function Home() {
     setFeedback({ ...feedback, [q.id]: isCorrect });
     setShowSolution(!isCorrect);
 
-    if (isCorrect) {
-      // Auto advance logic if desired
-    }
+    // Track per-type accuracy for weakness targeting.
+    recordAttempt('math', { topicKey: q.type, correct: isCorrect });
   };
 
   const nextQuestion = () => {
@@ -86,6 +92,8 @@ export default function Home() {
       setCurrentIndex(currentIndex + 1);
       setShowSolution(false);
     } else {
+      const correct = Object.values(feedback).filter(Boolean).length;
+      saveCourseProgress('math', { type: 'math', correct, total: questions.length });
       setFinished(true);
     }
   };
@@ -199,19 +207,38 @@ export default function Home() {
 
   if (finished) {
     const correctCount = Object.values(feedback).filter(Boolean).length;
+    const reviewItems: ReviewItem[] = questions.map((q) => ({
+      id: q.id,
+      topicLabel: q.type,
+      prompt: q.prompt,
+      promptIsLatex: true,
+      yourAnswer: answers[q.id] || '',
+      correctAnswer: q.correctAnswer,
+      answerIsLatex: true,
+      explanation: q.solution,
+      explanationIsLatex: true,
+      correct: !!feedback[q.id],
+    }));
     return (
       <div className="min-h-screen bg-slate-50 flex items-center justify-center p-4">
-        <div className="bg-white p-8 rounded-xl shadow-lg w-full max-w-md text-center">
-          <h2 className="text-3xl font-bold mb-4 text-slate-800">Quiz Complete!</h2>
-          <div className="text-xl mb-6">
-            Score: <span className="font-bold text-blue-600">{correctCount}</span> / {questions.length}
+        <div className="bg-white p-8 rounded-xl shadow-lg w-full max-w-2xl">
+          <div className="text-center">
+            <h2 className="text-3xl font-bold mb-4 text-slate-800">Quiz Complete!</h2>
+            <div className="text-xl mb-6">
+              Score: <span className="font-bold text-blue-600">{correctCount}</span> / {questions.length}
+            </div>
           </div>
-          <button
-            onClick={resetQuiz}
-            className="bg-slate-800 hover:bg-slate-900 text-white font-bold py-3 px-8 rounded-lg transition-colors"
-          >
-            Start New Quiz
-          </button>
+          <div className="mb-6">
+            <ReviewList items={reviewItems} accent="text-blue-600" />
+          </div>
+          <div className="text-center">
+            <button
+              onClick={resetQuiz}
+              className="bg-slate-800 hover:bg-slate-900 text-white font-bold py-3 px-8 rounded-lg transition-colors"
+            >
+              Start New Quiz
+            </button>
+          </div>
         </div>
       </div>
     );

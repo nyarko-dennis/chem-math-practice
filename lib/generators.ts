@@ -247,20 +247,24 @@ export function generateMolarMassQuestion(): Question {
   // Type 2: Calculate Moles given Mass
   // Type 3: Calculate MM given mass and moles (Problem in image)
 
-  // Let's do Type 3 to match image
+  // Type 3: MM = mass / moles
   const moles = getRandomFloat(0.1, 2.0, 2); // e.g. 0.50 mol
-  const mass = moles * cmp.mm; // e.g. ~9g
+  const rawMass = moles * cmp.mm; // e.g. ~9g
 
-  // Add some noise to make it a "real" measurement calculation where MM is unknown? 
-  // Or strictly MM = mass/moles
+  // Derive the expected answer from the values actually displayed to the
+  // student (both rounded to 2 dp), so their computed answer matches exactly
+  // rather than the unrounded reference molar mass.
+  const massStr = rawMass.toFixed(2);
+  const molesStr = moles.toFixed(2);
+  const computedMM = parseFloat(massStr) / parseFloat(molesStr);
 
   return {
     id: Math.random().toString(36).substr(2, 9),
     type: 'stoichiometry',
-    instructions: `Calculate the Molar Mass given: Mass = ${mass.toFixed(2)} g, Moles = ${moles.toFixed(2)} mol.`,
-    prompt: `MM = \\frac{${mass.toFixed(2)} \\text{ g}}{${moles.toFixed(2)} \\text{ mol}}`,
-    correctAnswer: cmp.mm.toFixed(2), // Match precision of inputs roughly
-    solution: `MM = \\frac{\\text{mass}}{\\text{moles}} = \\frac{${mass.toFixed(2)}}{${moles.toFixed(2)}} = ${(mass / moles).toFixed(2)} \\text{ g/mol}`
+    instructions: `Calculate the Molar Mass given: Mass = ${massStr} g, Moles = ${molesStr} mol.`,
+    prompt: `MM = \\frac{${massStr} \\text{ g}}{${molesStr} \\text{ mol}}`,
+    correctAnswer: computedMM.toFixed(2),
+    solution: `MM = \\frac{\\text{mass}}{\\text{moles}} = \\frac{${massStr}}{${molesStr}} = ${computedMM.toFixed(2)} \\text{ g/mol}`
   };
 }
 
