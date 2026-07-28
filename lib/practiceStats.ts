@@ -195,6 +195,21 @@ function saveStats(courseId: string, stats: CoursePracticeStats): void {
   }
 }
 
+/** Overwrite the stored stats for a course. Used by cloud restore. */
+export function replaceStats(courseId: string, stats: CoursePracticeStats): void {
+  saveStats(courseId, stats);
+}
+
+/** Remove all stored stats for a course. Used when switching accounts. */
+export function clearStats(courseId: string): void {
+  if (typeof window === 'undefined') return;
+  try {
+    localStorage.removeItem(`${STATS_KEY_PREFIX}${courseId}`);
+  } catch {
+    /* ignore */
+  }
+}
+
 export interface AttemptRecord {
   /** Stable question id, when the content is a curated bank item. */
   questionId?: string;

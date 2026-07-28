@@ -1,6 +1,6 @@
 'use client';
 
-import { syncSession } from './supabase/sync';
+import { pushState } from './supabase/sync';
 
 export interface SessionHistoryItem {
   date: string;
@@ -19,6 +19,8 @@ export interface CourseProgress {
 const PROGRESS_KEY_PREFIX = 'chem_math_practice_progress_';
 const ACTIVE_SESSION_KEY_PREFIX = 'chem_math_practice_active_';
 const STREAK_KEY = 'chem_math_practice_streak';
+const STATE_UPDATED_AT_KEY = 'chem_math_practice_state_updated_at';
+const OWNER_KEY = 'chem_math_practice_owner';
 
 export interface StreakInfo {
   current: number;
@@ -50,6 +52,69 @@ export function getStreak(): StreakInfo {
     return s;
   } catch {
     return empty;
+  }
+}
+
+/** Read the local "state last changed" timestamp (ms epoch); 0 if never set. */
+export function getStateUpdatedAt(): number {
+  if (typeof window === 'undefined') return 0;
+  const raw = localStorage.getItem(STATE_UPDATED_AT_KEY);
+  return raw ? Number(raw) || 0 : 0;
+}
+
+/** Set the local "state last changed" timestamp. */
+export function setStateUpdatedAt(ts: number): void {
+  if (typeof window === 'undefined') return;
+  try {
+    localStorage.setItem(STATE_UPDATED_AT_KEY, String(ts));
+  } catch {
+    /* ignore quota errors */
+  }
+}
+
+/** The user id whose data currently populates localStorage, or null. */
+export function getStateOwner(): string | null {
+  if (typeof window === 'undefined') return null;
+  return localStorage.getItem(OWNER_KEY);
+}
+
+/** Mark localStorage as owned by a user id. */
+export function setStateOwner(userId: string): void {
+  if (typeof window === 'undefined') return;
+  try {
+    localStorage.setItem(OWNER_KEY, userId);
+  } catch {
+    /* ignore */
+  }
+}
+
+/** Overwrite a course's progress record (used by cloud restore). */
+export function replaceCourseProgress(courseId: string, progress: CourseProgress): void {
+  if (typeof window === 'undefined') return;
+  try {
+    localStorage.setItem(`${PROGRESS_KEY_PREFIX}${courseId}`, JSON.stringify(progress));
+  } catch (e) {
+    console.error('Error replacing course progress:', e);
+  }
+}
+
+/** Overwrite the streak record (used by cloud restore). */
+export function replaceStreak(streak: StreakInfo): void {
+  if (typeof window === 'undefined') return;
+  try {
+    localStorage.setItem(STREAK_KEY, JSON.stringify(streak));
+  } catch (e) {
+    console.error('Error replacing streak:', e);
+  }
+}
+
+/** Remove the streak record. Used when switching accounts. */
+export function clearStreak(): void {
+  if (typeof window === 'undefined') return;
+  try {
+    localStorage.removeItem(STREAK_KEY);
+  } catch {
+    /* ignore */
   }
 }
 
@@ -113,14 +178,10 @@ export function saveCourseProgress(
     console.error('Error saving course progress:', e);
   }
 
-  // Fire-and-forget cloud backup. No-ops in local-only mode; never blocks or
-  // throws into the caller.
-  void syncSession({
-    courseId,
-    type: session.type,
-    correct: session.correct,
-    total: session.total,
-  });
+  // Bump the local state timestamp and back the whole snapshot up to the cloud.
+  // No-ops when signed out or unconfigured; never blocks or throws into caller.
+  setStateUpdatedAt(Date.now());
+  void pushState();
 }
 
 /**

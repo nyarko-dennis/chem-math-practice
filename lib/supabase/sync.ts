@@ -1,80 +1,86 @@
 'use client';
 
 import { getSupabase } from './client';
-import { ensureAnonymousSession } from './auth';
+import { getCurrentUser } from './auth';
+import { snapshotLocal, applyToLocal, emptyState } from './state.ts';
+import { getStateOwner, setStateOwner } from '../progressTracker.ts';
+import { mergeState, snapshotSignature, type PracticeState } from './mergeState.ts';
 
-// Cloud sync for completed practice sessions.
-//
-// Writes are fire-and-forget: the local (localStorage) record remains the fast,
-// authoritative read path for the UI, and the cloud copy is the durable,
-// cross-device backup. If anything fails (offline, not configured, RLS), the
-// local record is untouched and the app keeps working.
+// Cloud sync of the whole local practice snapshot. Writes are fire-and-forget;
+// localStorage stays the authoritative read path. No-ops when unconfigured or
+// signed out.
 
-export interface SessionInsert {
-  courseId: string;
-  type: 'quick' | 'drill' | 'math';
-  correct: number;
-  total: number;
-}
+const TABLE = 'practice_state';
 
-/** Push one completed session to Supabase. Safe to call unconditionally. */
-export async function syncSession(session: SessionInsert): Promise<void> {
+/** Upsert the current local snapshot for the signed-in user. */
+export async function pushState(): Promise<void> {
   const supabase = getSupabase();
   if (!supabase) return;
-
   try {
-    const user = await ensureAnonymousSession();
+    const user = await getCurrentUser();
     if (!user) return;
-
-    const { error } = await supabase.from('practice_sessions').insert({
-      user_id: user.id,
-      course_id: session.courseId,
-      type: session.type,
-      correct: session.correct,
-      total: session.total,
-    });
-    if (error) console.warn('Session sync failed:', error.message);
+    const state = snapshotLocal();
+    const { error } = await supabase
+      .from(TABLE)
+      .upsert({ user_id: user.id, state, updated_at: new Date().toISOString() }, { onConflict: 'user_id' });
+    if (error) console.warn('pushState failed:', error.message);
   } catch (e) {
-    console.warn('Session sync error:', e);
+    console.warn('pushState error:', e);
   }
 }
 
-export interface CourseAggregate {
-  courseId: string;
-  completedSessionsCount: number;
-  totalQuestionsAnswered: number;
-  totalCorrectAnswers: number;
-}
-
 /**
- * Read per-course totals for the current user from the cloud. Returns an empty
- * map in local-only mode or on error. Used to backfill the dashboard when a
- * user signs in on a new device.
+ * On sign-in: fetch the cloud snapshot, union-merge with local, write the merged
+ * result to localStorage, and push it back. Returns true iff local was changed
+ * (so the caller can refresh the UI). Idempotent: a second call with no change
+ * returns false.
+ *
+ * Account isolation: if localStorage currently belongs to a different user
+ * (owner mismatch), the device's local data is NOT merged into this account —
+ * only this account's cloud state is restored, and the previous owner's data is
+ * cleared. This prevents one account's practice from bleeding into another's on
+ * a shared device.
  */
-export async function fetchCourseAggregates(): Promise<Record<string, CourseAggregate>> {
+export async function pullAndMerge(): Promise<boolean> {
   const supabase = getSupabase();
-  if (!supabase) return {};
-
+  if (!supabase) return false;
   try {
-    const { data, error } = await supabase
-      .from('practice_sessions')
-      .select('course_id, correct, total');
-    if (error || !data) return {};
+    const user = await getCurrentUser();
+    if (!user) return false;
 
-    const out: Record<string, CourseAggregate> = {};
-    for (const row of data as Array<{ course_id: string; correct: number; total: number }>) {
-      const agg = (out[row.course_id] ??= {
-        courseId: row.course_id,
-        completedSessionsCount: 0,
-        totalQuestionsAnswered: 0,
-        totalCorrectAnswers: 0,
-      });
-      agg.completedSessionsCount += 1;
-      agg.totalQuestionsAnswered += row.total;
-      agg.totalCorrectAnswers += row.correct;
+    const { data, error } = await supabase.from(TABLE).select('state').eq('user_id', user.id).maybeSingle();
+    if (error) {
+      console.warn('pullAndMerge fetch failed:', error.message);
+      return false;
     }
-    return out;
-  } catch {
-    return {};
+
+    const owner = getStateOwner();
+    const ownerMismatch = !!owner && owner !== user.id;
+    const onDiskKey = snapshotSignature(snapshotLocal());
+    // Local data only counts toward the merge when it belongs to this account.
+    const localForMerge = ownerMismatch ? emptyState() : snapshotLocal();
+
+    if (!data) {
+      if (ownerMismatch) {
+        applyToLocal(emptyState()); // clear the other account's data
+        setStateOwner(user.id);
+        return snapshotSignature(emptyState()) !== onDiskKey;
+      }
+      await pushState(); // first backup for this account
+      setStateOwner(user.id);
+      return false;
+    }
+
+    const cloud = data.state as PracticeState;
+    const merged = mergeState(localForMerge, cloud);
+    const localChanged = snapshotSignature(merged) !== onDiskKey;
+    const cloudChanged = snapshotSignature(merged) !== snapshotSignature(cloud);
+    if (localChanged) applyToLocal(merged);
+    setStateOwner(user.id);
+    if (localChanged || cloudChanged) await pushState();
+    return localChanged;
+  } catch (e) {
+    console.warn('pullAndMerge error:', e);
+    return false;
   }
 }

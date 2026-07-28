@@ -40,3 +40,9 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# Personal course materials that live in this working dir but are not part of
+# the app (kept on disk, never committed). Added after a broad `git add` swept
+# them into a commit by accident.
+/electrical-engineering/
+/Surgical Nursing II_ Definitive 50-Question Exam Review.md
