@@ -2,11 +2,14 @@
 
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
+import CourseTabs from '@/components/CourseTabs';
 import { assembleQuiz, CalculusQuestion } from '@/lib/calculusQuestions';
 import MathDisplay from '@/components/MathDisplay';
 import MathInput from '@/components/MathInput';
+import ReviewList, { ReviewItem } from '@/components/ReviewList';
 import { checkAnswer } from '@/lib/checkAnswer';
 import { normalizeCalculusLatex } from '@/lib/calculusAnswer';
+import { recordAttempt } from '@/lib/practiceStats';
 import {
   saveActiveSession,
   getActiveSession,
@@ -24,6 +27,8 @@ export default function CalculusPage() {
   const [feedback, setFeedback] = useState<{ [key: string]: boolean }>({});
   const [showSolution, setShowSolution] = useState(false);
   const [canResume, setCanResume] = useState(false);
+  const [attempts, setAttempts] = useState<{ [key: string]: number }>({});
+  const [retry, setRetry] = useState(false);
 
   const [config, setConfig] = useState({
     basicRules: true,
@@ -53,6 +58,8 @@ export default function CalculusPage() {
     if (cur && fb[cur.id] === false) setShowSolution(true);
     setStarted(true);
     setCanResume(false);
+    setAttempts({});
+    setRetry(false);
   };
 
   const persist = (q: CalculusQuestion[], idx: number, ans: Record<string, string>, fb: Record<string, boolean>) => {
@@ -73,6 +80,8 @@ export default function CalculusPage() {
     setFeedback({});
     setShowSolution(false);
     setCanResume(false);
+    setAttempts({});
+    setRetry(false);
     persist(newQuestions, 0, {}, {});
   };
 
@@ -80,10 +89,36 @@ export default function CalculusPage() {
     const q = questions[currentIndex];
     const answer = answers[q.id] || '';
     const isCorrect = checkAnswer('algebra', normalizeCalculusLatex(q.correctAnswer), normalizeCalculusLatex(answer));
-    const newFeedback = { ...feedback, [q.id]: isCorrect };
-    setFeedback(newFeedback);
-    setShowSolution(!isCorrect);
-    persist(questions, currentIndex, answers, newFeedback);
+    const firstTry = (attempts[q.id] ?? 0) === 0;
+
+    // Record the first attempt only — honest first-recall for spaced repetition.
+    // Curated (static) items also get per-question stats.
+    if (firstTry) {
+      recordAttempt('calculus', {
+        questionId: q.source === 'static' ? q.id : undefined,
+        topicKey: q.category,
+        correct: isCorrect,
+      });
+    }
+
+    if (isCorrect) {
+      const newFeedback = { ...feedback, [q.id]: true };
+      setFeedback(newFeedback);
+      setShowSolution(false);
+      setRetry(false);
+      persist(questions, currentIndex, answers, newFeedback);
+    } else if (firstTry) {
+      // First miss: allow one more attempt before revealing the solution.
+      setAttempts({ ...attempts, [q.id]: 1 });
+      setRetry(true);
+    } else {
+      const newFeedback = { ...feedback, [q.id]: false };
+      setFeedback(newFeedback);
+      setShowSolution(true);
+      setRetry(false);
+      setAttempts({ ...attempts, [q.id]: (attempts[q.id] ?? 1) + 1 });
+      persist(questions, currentIndex, answers, newFeedback);
+    }
   };
 
   const nextQuestion = () => {
@@ -91,6 +126,7 @@ export default function CalculusPage() {
       const nextIdx = currentIndex + 1;
       setCurrentIndex(nextIdx);
       setShowSolution(false);
+      setRetry(false);
       persist(questions, nextIdx, answers, feedback);
     } else {
       const correctCount = Object.values(feedback).filter(Boolean).length;
@@ -109,6 +145,8 @@ export default function CalculusPage() {
     setAnswers({});
     setFeedback({});
     setCanResume(false);
+    setAttempts({});
+    setRetry(false);
   };
 
   if (!mounted) {
@@ -119,10 +157,7 @@ export default function CalculusPage() {
     return (
       <div className="min-h-screen bg-slate-50 flex items-center justify-center p-4">
         <div className="bg-white p-8 rounded-xl shadow-lg w-full max-w-md">
-          <div className="flex items-center justify-between mb-6">
-            <h1 className="text-2xl font-bold text-slate-800">Calculus Practice</h1>
-            <Link href="/" className="text-sm text-slate-500 hover:text-slate-800">← Home</Link>
-          </div>
+          <CourseTabs courseId="calculus" active="practice" />
 
           {canResume && (
             <button
@@ -185,17 +220,36 @@ export default function CalculusPage() {
 
   if (finished) {
     const correctCount = Object.values(feedback).filter(Boolean).length;
+    const reviewItems: ReviewItem[] = questions.map((q) => ({
+      id: q.id,
+      topicLabel: q.category,
+      prompt: q.prompt,
+      promptIsLatex: true,
+      yourAnswer: answers[q.id] || '',
+      correctAnswer: q.correctAnswer,
+      answerIsLatex: true,
+      explanation: q.solution,
+      explanationIsLatex: true,
+      correct: !!feedback[q.id],
+    }));
     return (
       <div className="min-h-screen bg-slate-50 flex items-center justify-center p-4">
-        <div className="bg-white p-8 rounded-xl shadow-lg w-full max-w-md text-center">
-          <h2 className="text-3xl font-bold mb-4 text-slate-800">Quiz Complete!</h2>
-          <div className="text-xl mb-6">
-            Score: <span className="font-bold text-teal-600">{correctCount}</span> / {questions.length}
+        <div className="bg-white p-8 rounded-xl shadow-lg w-full max-w-2xl">
+          <div className="text-center">
+            <h2 className="text-3xl font-bold mb-4 text-slate-800">Quiz Complete!</h2>
+            <div className="text-xl mb-6">
+              Score: <span className="font-bold text-teal-600">{correctCount}</span> / {questions.length}
+            </div>
           </div>
-          <button onClick={resetQuiz}
-            className="bg-slate-800 hover:bg-slate-900 text-white font-bold py-3 px-8 rounded-lg transition-colors">
-            Start New Quiz
-          </button>
+          <div className="mb-6">
+            <ReviewList items={reviewItems} accent="text-teal-600" />
+          </div>
+          <div className="text-center">
+            <button onClick={resetQuiz}
+              className="bg-slate-800 hover:bg-slate-900 text-white font-bold py-3 px-8 rounded-lg transition-colors">
+              Start New Quiz
+            </button>
+          </div>
         </div>
       </div>
     );
@@ -231,6 +285,11 @@ export default function CalculusPage() {
             {hasAnswered && (
               <div className={`mt-2 font-medium ${feedback[currentQ.id] ? 'text-green-600' : 'text-red-600'}`}>
                 {feedback[currentQ.id] ? 'Correct!' : 'Incorrect'}
+              </div>
+            )}
+            {!hasAnswered && retry && (
+              <div className="mt-2 font-medium text-amber-600">
+                Not quite — try once more before the solution shows.
               </div>
             )}
           </div>

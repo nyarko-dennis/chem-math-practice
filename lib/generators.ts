@@ -17,6 +17,13 @@ export interface Question {
   solution?: string;
 }
 
+export type Difficulty = 'easy' | 'medium' | 'hard';
+
+/** Pick a value by difficulty. 'medium' preserves the original behavior. */
+function byDifficulty<T>(d: Difficulty, easy: T, medium: T, hard: T): T {
+  return d === 'easy' ? easy : d === 'hard' ? hard : medium;
+}
+
 function getRandomInt(min: number, max: number) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
@@ -39,15 +46,18 @@ function countSigFigs(n: string): number {
 }
 
 // ARITHMETIC GENERATOR
-export function generateArithmeticQuestion(): Question {
+export function generateArithmeticQuestion(difficulty: Difficulty = 'medium'): Question {
   const isScientific = Math.random() > 0.5;
+  const expLimit = byDifficulty(difficulty, 3, 10, 15);
+  const intMin = byDifficulty(difficulty, 1, 10, 50);
+  const intMax = byDifficulty(difficulty, 20, 100, 500);
 
   if (isScientific) {
     // Format: (A * 10^B) / (C * 10^D)
     const coef1 = getRandomFloat(1, 9, 1);
-    const exp1 = getRandomInt(-10, 10);
+    const exp1 = getRandomInt(-expLimit, expLimit);
     const coef2 = getRandomFloat(1, 9, 1);
-    const exp2 = getRandomInt(-10, 10);
+    const exp2 = getRandomInt(-expLimit, expLimit);
 
     const val1 = coef1 * Math.pow(10, exp1);
     const val2 = coef2 * Math.pow(10, exp2);
@@ -63,10 +73,10 @@ export function generateArithmeticQuestion(): Question {
     };
   } else {
     // Format: (A + B) / (C + D)
-    const a = getRandomInt(10, 100);
-    const b = getRandomInt(10, 100);
-    const c = getRandomInt(10, 100);
-    const d = getRandomInt(10, 100);
+    const a = getRandomInt(intMin, intMax);
+    const b = getRandomInt(intMin, intMax);
+    const c = getRandomInt(intMin, intMax);
+    const d = getRandomInt(intMin, intMax);
 
     const result = (a + b) / (c + d);
 
@@ -82,33 +92,63 @@ export function generateArithmeticQuestion(): Question {
 }
 
 // ALGEBRA GENERATOR
-export function generateAlgebraQuestion(): Question {
-  const templates = [
-    {
-      // ax + by = c, solve for x
-      vars: ['a', 'b', 'c', 'x', 'y'],
-      target: 'x',
-      makePrompt: (v: any) => `${v.a}${v.x} + ${v.b}${v.y} = ${v.c}`,
-      makeAnswer: (v: any) => `\\frac{${v.c}-${v.b}${v.y}}{${v.a}}`
-    },
+export function generateAlgebraQuestion(difficulty: Difficulty = 'medium'): Question {
+  // Single-step isolations (easy).
+  const easyTemplates = [
     {
       // a/x = y, solve for x
       vars: ['a', 'x', 'y'],
       target: 'x',
-      makePrompt: (v: any) => `\\frac{${v.a}}{${v.x}} = ${v.y}`,
-      makeAnswer: (v: any) => `\\frac{${v.a}}{${v.y}}`
+      makePrompt: (v: Record<string, string>) => `\\frac{${v.a}}{${v.x}} = ${v.y}`,
+      makeAnswer: (v: Record<string, string>) => `\\frac{${v.a}}{${v.y}}`
     },
     {
       // y = mx + b, solve for x
       vars: ['y', 'm', 'x', 'b'],
       target: 'x',
-      makePrompt: (v: any) => `${v.y} = ${v.m}${v.x} + ${v.b}`,
-      makeAnswer: (v: any) => `\\frac{${v.y}-${v.b}}{${v.m}}`
+      makePrompt: (v: Record<string, string>) => `${v.y} = ${v.m}${v.x} + ${v.b}`,
+      makeAnswer: (v: Record<string, string>) => `\\frac{${v.y}-${v.b}}{${v.m}}`
     }
   ];
 
-  const template = templates[Math.floor(Math.random() * templates.length)];
-  const mapping: any = {};
+  // Two-variable rearrangement (medium).
+  const mediumTemplates = [
+    {
+      // ax + by = c, solve for x
+      vars: ['a', 'b', 'c', 'x', 'y'],
+      target: 'x',
+      makePrompt: (v: Record<string, string>) => `${v.a}${v.x} + ${v.b}${v.y} = ${v.c}`,
+      makeAnswer: (v: Record<string, string>) => `\\frac{${v.c}-${v.b}${v.y}}{${v.a}}`
+    }
+  ];
+
+  // Multi-step (hard): expand a bracket or clear a fraction first.
+  const hardTemplates = [
+    {
+      // a(x + b) = c, solve for x
+      vars: ['a', 'x', 'b', 'c'],
+      target: 'x',
+      makePrompt: (v: Record<string, string>) => `${v.a}(${v.x} + ${v.b}) = ${v.c}`,
+      makeAnswer: (v: Record<string, string>) => `\\frac{${v.c}-${v.a}${v.b}}{${v.a}}`
+    },
+    {
+      // (x - a)/b = c, solve for x
+      vars: ['x', 'a', 'b', 'c'],
+      target: 'x',
+      makePrompt: (v: Record<string, string>) => `\\frac{${v.x}-${v.a}}{${v.b}} = ${v.c}`,
+      makeAnswer: (v: Record<string, string>) => `${v.b}${v.c}+${v.a}`
+    }
+  ];
+
+  const pool = byDifficulty(
+    difficulty,
+    easyTemplates,
+    [...easyTemplates, ...mediumTemplates],
+    [...mediumTemplates, ...hardTemplates],
+  );
+
+  const template = pool[Math.floor(Math.random() * pool.length)];
+  const mapping: Record<string, string> = {};
 
   // Assign random letters if we wanted, but sticking to template vars is consistent with typical chemistry/physics formulas
   // For now, use the template vars directly as they are common
@@ -125,16 +165,17 @@ export function generateAlgebraQuestion(): Question {
 }
 
 // UNITS GENERATOR
-export function generateUnitQuestion(): Question {
+export function generateUnitQuestion(difficulty: Difficulty = 'medium'): Question {
   const isDivision = Math.random() > 0.5;
+  const valMax = byDifficulty(difficulty, 5, 10, 20);
 
   // Simple dimensional analysis practice
   if (isDivision) {
     const units = ['kg', 'm', 's', 'mol', 'L'];
     const unit = units[Math.floor(Math.random() * units.length)];
 
-    const val1 = getRandomInt(1, 10);
-    const val2 = getRandomInt(1, 10);
+    const val1 = getRandomInt(1, valMax);
+    const val2 = getRandomInt(1, valMax);
 
     // Problem: (val1 unit) / (val2 unit^-1)
     return {
@@ -147,8 +188,8 @@ export function generateUnitQuestion(): Question {
     };
   } else {
     // Pattern: (val1 s)(val2 m s^-2) -> val1*val2 m s^-1
-    const val1 = getRandomInt(1, 10);
-    const val2 = getRandomInt(1, 10);
+    const val1 = getRandomInt(1, valMax);
+    const val2 = getRandomInt(1, valMax);
 
     return {
       id: Math.random().toString(36).substr(2, 9),
@@ -162,8 +203,9 @@ export function generateUnitQuestion(): Question {
 }
 
 // SIG FIGS GENERATOR
-export function generateSigFigQuestion(): Question {
+export function generateSigFigQuestion(difficulty: Difficulty = 'medium'): Question {
   const type = Math.random();
+  const maxZeros = byDifficulty(difficulty, 1, 3, 4);
 
   if (type < 0.5) {
     // Counting sig figs
@@ -174,7 +216,7 @@ export function generateSigFigQuestion(): Question {
 
     if (subtype < 0.33) {
       // Decimal with leading zeros
-      const zeros = "0".repeat(getRandomInt(1, 3));
+      const zeros = "0".repeat(getRandomInt(1, maxZeros));
       const digits = getRandomInt(1, 9) + "" + getRandomInt(0, 9) + "" + getRandomInt(1, 9); // Non-zero start/end to be safe
       numStr = `0.${zeros}${digits}`;
       count = 3;
@@ -230,7 +272,7 @@ export function generateSigFigQuestion(): Question {
 }
 
 // MOLAR MASS GENERATOR
-export function generateMolarMassQuestion(): Question {
+export function generateMolarMassQuestion(difficulty: Difficulty = 'medium'): Question {
   // Simple Molar Mass problem: m = n * MM
   // Elements: C (12.01), H (1.008), O (16.00), N (14.01)
   const elements = { 'C': 12.01, 'H': 1.008, 'O': 16.00, 'N': 14.01 };
@@ -247,25 +289,30 @@ export function generateMolarMassQuestion(): Question {
   // Type 2: Calculate Moles given Mass
   // Type 3: Calculate MM given mass and moles (Problem in image)
 
-  // Let's do Type 3 to match image
-  const moles = getRandomFloat(0.1, 2.0, 2); // e.g. 0.50 mol
-  const mass = moles * cmp.mm; // e.g. ~9g
+  // Type 3: MM = mass / moles
+  const molesMax = byDifficulty(difficulty, 2.0, 2.0, 5.0);
+  const moles = getRandomFloat(0.1, molesMax, 2); // e.g. 0.50 mol
+  const rawMass = moles * cmp.mm; // e.g. ~9g
 
-  // Add some noise to make it a "real" measurement calculation where MM is unknown? 
-  // Or strictly MM = mass/moles
+  // Derive the expected answer from the values actually displayed to the
+  // student (both rounded to 2 dp), so their computed answer matches exactly
+  // rather than the unrounded reference molar mass.
+  const massStr = rawMass.toFixed(2);
+  const molesStr = moles.toFixed(2);
+  const computedMM = parseFloat(massStr) / parseFloat(molesStr);
 
   return {
     id: Math.random().toString(36).substr(2, 9),
     type: 'stoichiometry',
-    instructions: `Calculate the Molar Mass given: Mass = ${mass.toFixed(2)} g, Moles = ${moles.toFixed(2)} mol.`,
-    prompt: `MM = \\frac{${mass.toFixed(2)} \\text{ g}}{${moles.toFixed(2)} \\text{ mol}}`,
-    correctAnswer: cmp.mm.toFixed(2), // Match precision of inputs roughly
-    solution: `MM = \\frac{\\text{mass}}{\\text{moles}} = \\frac{${mass.toFixed(2)}}{${moles.toFixed(2)}} = ${(mass / moles).toFixed(2)} \\text{ g/mol}`
+    instructions: `Calculate the Molar Mass given: Mass = ${massStr} g, Moles = ${molesStr} mol.`,
+    prompt: `MM = \\frac{${massStr} \\text{ g}}{${molesStr} \\text{ mol}}`,
+    correctAnswer: computedMM.toFixed(2),
+    solution: `MM = \\frac{\\text{mass}}{\\text{moles}} = \\frac{${massStr}}{${molesStr}} = ${computedMM.toFixed(2)} \\text{ g/mol}`
   };
 }
 
 // GAS LAW GENERATOR
-export function generateGasLawQuestion(): Question {
+export function generateGasLawQuestion(difficulty: Difficulty = 'medium'): Question {
   // PV = nRT
   // R = 0.08206
   const R = 0.08206;
@@ -273,10 +320,13 @@ export function generateGasLawQuestion(): Question {
   // Choose variable to solve for: P, V, n, T
   const target = ['P', 'V', 'n', 'T'][getRandomInt(0, 3)];
 
+  const tMin = byDifficulty(difficulty, 273, 250, 200);
+  const tMax = byDifficulty(difficulty, 350, 400, 500);
+
   let P = getRandomFloat(0.5, 2.0, 2); // atm
   let V = getRandomFloat(1.0, 10.0, 1); // L
   let n = getRandomFloat(0.1, 1.0, 2); // mol
-  let T = getRandomInt(250, 400); // K
+  let T = getRandomInt(tMin, tMax); // K
 
   // Recalculate one to be valid
   if (target === 'P') P = (n * R * T) / V;
@@ -322,7 +372,7 @@ export function generateGasLawQuestion(): Question {
 }
 
 // DENSITY GENERATOR
-export function generateDensityQuestion(): Question {
+export function generateDensityQuestion(difficulty: Difficulty = 'medium'): Question {
   // d = m/V
   const compounds = [
     { name: 'Water', d: 1.00 },
@@ -333,9 +383,10 @@ export function generateDensityQuestion(): Question {
 
   const cmp = compounds[Math.floor(Math.random() * compounds.length)];
   const target = Math.random() > 0.5 ? 'density' : 'mass'; // or volume
+  const volMax = byDifficulty(difficulty, 10, 10, 50);
 
   if (target === 'density') {
-    const vol = getRandomFloat(1, 10, 1);
+    const vol = getRandomFloat(1, volMax, 1);
     const mass = vol * cmp.d;
 
     return {

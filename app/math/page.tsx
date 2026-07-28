@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import Link from 'next/link';
+import CourseTabs from '@/components/CourseTabs';
 import {
   generateArithmeticQuestion,
   generateAlgebraQuestion,
@@ -10,11 +10,15 @@ import {
   generateMolarMassQuestion,
   generateGasLawQuestion,
   generateDensityQuestion,
-  Question
+  Question,
+  Difficulty
 } from '@/lib/generators';
 import MathDisplay from '@/components/MathDisplay';
 import MathInput from '@/components/MathInput';
+import ReviewList, { ReviewItem } from '@/components/ReviewList';
 import { checkAnswer } from '@/lib/checkAnswer';
+import { pickWeightedType, recordAttempt } from '@/lib/practiceStats';
+import { saveCourseProgress } from '@/lib/progressTracker';
 
 export default function Home() {
   const [started, setStarted] = useState(false);
@@ -24,6 +28,8 @@ export default function Home() {
   const [answers, setAnswers] = useState<{ [key: string]: string }>({});
   const [feedback, setFeedback] = useState<{ [key: string]: boolean }>({});
   const [showSolution, setShowSolution] = useState(false);
+  const [attempts, setAttempts] = useState<{ [key: string]: number }>({});
+  const [retry, setRetry] = useState(false);
 
   const [config, setConfig] = useState({
     arithmetic: true,
@@ -33,28 +39,33 @@ export default function Home() {
     molarMass: false,
     gasLaws: false,
     density: false,
+    difficulty: 'medium' as Difficulty,
     count: 10
   });
 
   const startQuiz = () => {
     const newQuestions: Question[] = [];
-    const types = [];
-    if (config.arithmetic) types.push(generateArithmeticQuestion);
-    if (config.algebra) types.push(generateAlgebraQuestion);
-    if (config.units) types.push(generateUnitQuestion);
-    if (config.sigfigs) types.push(generateSigFigQuestion);
-    if (config.molarMass) types.push(generateMolarMassQuestion);
-    if (config.gasLaws) types.push(generateGasLawQuestion);
-    if (config.density) types.push(generateDensityQuestion);
+    // Map stable type keys -> generators. Keys match Question.type so that
+    // recorded per-type accuracy drives which type is generated next.
+    const generatorMap: Record<string, (d: Difficulty) => Question> = {};
+    if (config.arithmetic) generatorMap['arithmetic'] = generateArithmeticQuestion;
+    if (config.algebra) generatorMap['algebra'] = generateAlgebraQuestion;
+    if (config.units) generatorMap['Dimensional Analysis'] = generateUnitQuestion;
+    if (config.sigfigs) generatorMap['sigfigs'] = generateSigFigQuestion;
+    if (config.molarMass) generatorMap['stoichiometry'] = generateMolarMassQuestion;
+    if (config.gasLaws) generatorMap['gasLaws'] = generateGasLawQuestion;
+    if (config.density) generatorMap['density'] = generateDensityQuestion;
 
-    if (types.length === 0) {
+    const keys = Object.keys(generatorMap);
+    if (keys.length === 0) {
       alert('Please select at least one topic.');
       return;
     }
 
     for (let i = 0; i < config.count; i++) {
-      const generator = types[Math.floor(Math.random() * types.length)];
-      newQuestions.push(generator());
+      // Weakness targeting: weaker/unseen types are generated more often.
+      const key = pickWeightedType('math', keys);
+      newQuestions.push(generatorMap[key](config.difficulty));
     }
 
     setQuestions(newQuestions);
@@ -64,20 +75,36 @@ export default function Home() {
     setAnswers({});
     setFeedback({});
     setShowSolution(false);
+    setAttempts({});
+    setRetry(false);
   };
 
   const verifyAnswer = () => {
     const q = questions[currentIndex];
     const answer = answers[q.id] || '';
 
-    // Use the new checkAnswer utility
     const isCorrect = checkAnswer(q.type, q.correctAnswer, answer);
+    const firstTry = (attempts[q.id] ?? 0) === 0;
 
-    setFeedback({ ...feedback, [q.id]: isCorrect });
-    setShowSolution(!isCorrect);
+    // Record the first attempt only — first-recall is the honest signal for
+    // spaced repetition and weakness targeting.
+    if (firstTry) {
+      recordAttempt('math', { topicKey: q.type, correct: isCorrect });
+    }
 
     if (isCorrect) {
-      // Auto advance logic if desired
+      setFeedback({ ...feedback, [q.id]: isCorrect });
+      setShowSolution(false);
+      setRetry(false);
+    } else if (firstTry) {
+      // First miss: let them try once more before revealing the solution.
+      setAttempts({ ...attempts, [q.id]: 1 });
+      setRetry(true);
+    } else {
+      setFeedback({ ...feedback, [q.id]: false });
+      setShowSolution(true);
+      setRetry(false);
+      setAttempts({ ...attempts, [q.id]: (attempts[q.id] ?? 1) + 1 });
     }
   };
 
@@ -85,7 +112,10 @@ export default function Home() {
     if (currentIndex < questions.length - 1) {
       setCurrentIndex(currentIndex + 1);
       setShowSolution(false);
+      setRetry(false);
     } else {
+      const correct = Object.values(feedback).filter(Boolean).length;
+      saveCourseProgress('math', { type: 'math', correct, total: questions.length });
       setFinished(true);
     }
   };
@@ -97,16 +127,15 @@ export default function Home() {
     setCurrentIndex(0);
     setAnswers({});
     setFeedback({});
+    setAttempts({});
+    setRetry(false);
   };
 
   if (!started) {
     return (
       <div className="min-h-screen bg-slate-50 flex items-center justify-center p-4">
         <div className="bg-white p-8 rounded-xl shadow-lg w-full max-w-md">
-          <div className="flex items-center justify-between mb-6">
-            <h1 className="text-2xl font-bold text-slate-800">Chem & Math Practice</h1>
-            <Link href="/" className="text-sm text-slate-500 hover:text-slate-800">← Home</Link>
-          </div>
+          <CourseTabs courseId="math" active="practice" />
 
           <div className="space-y-4 mb-6">
             <div className="flex items-center justify-between">
@@ -174,6 +203,24 @@ export default function Home() {
             </div>
 
             <div className="pt-4 border-t border-slate-100">
+              <label className="block font-medium text-slate-700 mb-2">Difficulty</label>
+              <div className="grid grid-cols-3 gap-2 mb-4">
+                {(['easy', 'medium', 'hard'] as Difficulty[]).map((d) => (
+                  <button
+                    key={d}
+                    type="button"
+                    onClick={() => setConfig({ ...config, difficulty: d })}
+                    className={`py-2 rounded-md text-sm font-semibold capitalize transition-colors border ${
+                      config.difficulty === d
+                        ? 'bg-blue-600 text-white border-blue-600'
+                        : 'bg-white text-slate-600 border-slate-300 hover:bg-slate-50'
+                    }`}
+                  >
+                    {d}
+                  </button>
+                ))}
+              </div>
+
               <label className="block font-medium text-slate-700 mb-2">Number of Questions</label>
               <input
                 type="number"
@@ -199,19 +246,38 @@ export default function Home() {
 
   if (finished) {
     const correctCount = Object.values(feedback).filter(Boolean).length;
+    const reviewItems: ReviewItem[] = questions.map((q) => ({
+      id: q.id,
+      topicLabel: q.type,
+      prompt: q.prompt,
+      promptIsLatex: true,
+      yourAnswer: answers[q.id] || '',
+      correctAnswer: q.correctAnswer,
+      answerIsLatex: true,
+      explanation: q.solution,
+      explanationIsLatex: true,
+      correct: !!feedback[q.id],
+    }));
     return (
       <div className="min-h-screen bg-slate-50 flex items-center justify-center p-4">
-        <div className="bg-white p-8 rounded-xl shadow-lg w-full max-w-md text-center">
-          <h2 className="text-3xl font-bold mb-4 text-slate-800">Quiz Complete!</h2>
-          <div className="text-xl mb-6">
-            Score: <span className="font-bold text-blue-600">{correctCount}</span> / {questions.length}
+        <div className="bg-white p-8 rounded-xl shadow-lg w-full max-w-2xl">
+          <div className="text-center">
+            <h2 className="text-3xl font-bold mb-4 text-slate-800">Quiz Complete!</h2>
+            <div className="text-xl mb-6">
+              Score: <span className="font-bold text-blue-600">{correctCount}</span> / {questions.length}
+            </div>
           </div>
-          <button
-            onClick={resetQuiz}
-            className="bg-slate-800 hover:bg-slate-900 text-white font-bold py-3 px-8 rounded-lg transition-colors"
-          >
-            Start New Quiz
-          </button>
+          <div className="mb-6">
+            <ReviewList items={reviewItems} accent="text-blue-600" />
+          </div>
+          <div className="text-center">
+            <button
+              onClick={resetQuiz}
+              className="bg-slate-800 hover:bg-slate-900 text-white font-bold py-3 px-8 rounded-lg transition-colors"
+            >
+              Start New Quiz
+            </button>
+          </div>
         </div>
       </div>
     );
@@ -251,6 +317,11 @@ export default function Home() {
             {hasAnswered && (
               <div className={`mt-2 font-medium ${feedback[currentQ.id] ? 'text-green-600' : 'text-red-600'}`}>
                 {feedback[currentQ.id] ? 'Correct!' : 'Incorrect'}
+              </div>
+            )}
+            {!hasAnswered && retry && (
+              <div className="mt-2 font-medium text-amber-600">
+                Not quite — try once more before the solution shows.
               </div>
             )}
           </div>

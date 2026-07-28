@@ -2,6 +2,7 @@
 
 import { useMemo, useState, useEffect } from 'react';
 import Link from 'next/link';
+import CourseTabs from '@/components/CourseTabs';
 import {
   saveActiveSession,
   clearActiveSession,
@@ -20,6 +21,8 @@ import {
   MaterialsDrill,
   RubricPoint,
 } from '@/lib/materialsDrills';
+import ReviewList, { ReviewItem } from '@/components/ReviewList';
+import { pickSpacedQuestions, recordAttempt } from '@/lib/practiceStats';
 
 type Mode = 'quick' | 'drill';
 
@@ -175,7 +178,8 @@ export default function MaterialsPage() {
       alert('No questions available for the selected topics.');
       return;
     }
-    const chosen = shuffleArray(pool).slice(0, count);
+    // Spaced repetition: prioritize due / previously-missed / unseen questions.
+    const chosen = pickSpacedQuestions('materials', pool, count);
     const sh: Record<string, ShuffledMCQ> = {};
     chosen.forEach((q) => {
       if (q.type === 'mcq') {
@@ -216,6 +220,7 @@ export default function MaterialsPage() {
     const q = questions[qIndex];
     if (q.id in selections) {
       setChecked({ ...checked, [q.id]: true });
+      recordAttempt('materials', { questionId: q.id, topicKey: q.topic, correct: isQuickCorrect(q) });
     }
   };
 
@@ -346,10 +351,7 @@ export default function MaterialsPage() {
     return (
       <div className="min-h-screen bg-slate-50 flex items-center justify-center p-4">
         <div className="bg-white p-8 rounded-xl shadow-lg w-full max-w-lg">
-          <div className="flex items-center justify-between mb-6">
-            <h1 className="text-2xl font-bold text-slate-800">Engineering Materials Practice</h1>
-            <Link href="/" className="text-sm text-slate-500 hover:text-slate-800">← Home</Link>
-          </div>
+          <CourseTabs courseId="materials" active="practice" />
 
           {hasSavedSession && (
             <div className="bg-cyan-50 border border-cyan-200 rounded-lg p-4 mb-6 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 shadow-sm">
@@ -458,16 +460,45 @@ export default function MaterialsPage() {
   if (finished) {
     if (mode === 'quick') {
       const correctCount = questions.filter((q) => checked[q.id] && isQuickCorrect(q)).length;
+      const reviewItems: ReviewItem[] = questions.map((q) => {
+        let yourAnswer = '';
+        let correctAnswer = '';
+        if (q.type === 'mcq') {
+          const s = shuffles[q.id];
+          correctAnswer = s ? s.displayChoices[s.correctDisplayIndex] : '';
+          const sel = selections[q.id];
+          yourAnswer = s && typeof sel === 'number' ? s.displayChoices[sel] : '';
+        } else {
+          correctAnswer = q.correctAnswer ? 'True' : 'False';
+          const sel = selections[q.id];
+          yourAnswer = sel === undefined ? '' : sel ? 'True' : 'False';
+        }
+        return {
+          id: q.id,
+          topicLabel: MATERIALS_TOPIC_LABELS[q.topic],
+          prompt: q.prompt,
+          yourAnswer,
+          correctAnswer,
+          explanation: q.rationale,
+          correct: !!checked[q.id] && isQuickCorrect(q),
+        };
+      });
 
       return (
         <div className="min-h-screen bg-slate-50 flex items-center justify-center p-4">
-          <div className="bg-white p-8 rounded-xl shadow-lg w-full max-w-md text-center">
-            <h2 className="text-3xl font-bold mb-4 text-slate-800">Quiz Complete!</h2>
-            <div className="text-xl mb-6">
-              Score: <span className="font-bold text-cyan-600">{correctCount}</span> / {questions.length}
+          <div className="bg-white p-8 rounded-xl shadow-lg w-full max-w-2xl">
+            <div className="text-center">
+              <h2 className="text-3xl font-bold mb-4 text-slate-800">Quiz Complete!</h2>
+              <div className="text-xl mb-6">
+                Score: <span className="font-bold text-cyan-600">{correctCount}</span> / {questions.length}
+              </div>
             </div>
 
-            <div className="flex flex-col gap-3">
+            <div className="mb-6">
+              <ReviewList items={reviewItems} accent="text-cyan-600" />
+            </div>
+
+            <div className="flex flex-col gap-3 text-center">
               <button
                 onClick={resetAll}
                 className="bg-slate-800 hover:bg-slate-900 text-white font-bold py-3 px-8 rounded-lg transition-colors"

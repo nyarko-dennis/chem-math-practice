@@ -1,5 +1,7 @@
 'use client';
 
+import { syncSession } from './supabase/sync';
+
 export interface SessionHistoryItem {
   date: string;
   type: 'quick' | 'drill' | 'math';
@@ -16,6 +18,61 @@ export interface CourseProgress {
 
 const PROGRESS_KEY_PREFIX = 'chem_math_practice_progress_';
 const ACTIVE_SESSION_KEY_PREFIX = 'chem_math_practice_active_';
+const STREAK_KEY = 'chem_math_practice_streak';
+
+export interface StreakInfo {
+  current: number;
+  longest: number;
+  lastDate: string; // YYYY-MM-DD (local)
+}
+
+function localDateKey(d: Date): string {
+  const y = d.getFullYear();
+  const m = String(d.getMonth() + 1).padStart(2, '0');
+  const day = String(d.getDate()).padStart(2, '0');
+  return `${y}-${m}-${day}`;
+}
+
+/** Returns the current daily-practice streak, decayed to 0 if a day was missed. */
+export function getStreak(): StreakInfo {
+  const empty: StreakInfo = { current: 0, longest: 0, lastDate: '' };
+  if (typeof window === 'undefined') return empty;
+  try {
+    const raw = localStorage.getItem(STREAK_KEY);
+    if (!raw) return empty;
+    const s = JSON.parse(raw) as StreakInfo;
+    // If the last practice was before yesterday, the current streak is broken.
+    const today = localDateKey(new Date());
+    const yesterday = localDateKey(new Date(Date.now() - 86400000));
+    if (s.lastDate !== today && s.lastDate !== yesterday) {
+      return { current: 0, longest: s.longest ?? 0, lastDate: s.lastDate ?? '' };
+    }
+    return s;
+  } catch {
+    return empty;
+  }
+}
+
+/** Record that the user practiced today, advancing or resetting the streak. */
+export function recordPracticeDay(): void {
+  if (typeof window === 'undefined') return;
+  try {
+    const today = localDateKey(new Date());
+    const yesterday = localDateKey(new Date(Date.now() - 86400000));
+    const raw = localStorage.getItem(STREAK_KEY);
+    const prev: StreakInfo = raw
+      ? (JSON.parse(raw) as StreakInfo)
+      : { current: 0, longest: 0, lastDate: '' };
+
+    if (prev.lastDate === today) return; // already counted today
+
+    const current = prev.lastDate === yesterday ? prev.current + 1 : 1;
+    const longest = Math.max(prev.longest ?? 0, current);
+    localStorage.setItem(STREAK_KEY, JSON.stringify({ current, longest, lastDate: today }));
+  } catch (e) {
+    console.error('Error recording practice day:', e);
+  }
+}
 
 /**
  * Saves overall statistics/progress history for a completed session of a course.
@@ -51,9 +108,19 @@ export function saveCourseProgress(
     }
 
     localStorage.setItem(key, JSON.stringify(progress));
+    recordPracticeDay();
   } catch (e) {
     console.error('Error saving course progress:', e);
   }
+
+  // Fire-and-forget cloud backup. No-ops in local-only mode; never blocks or
+  // throws into the caller.
+  void syncSession({
+    courseId,
+    type: session.type,
+    correct: session.correct,
+    total: session.total,
+  });
 }
 
 /**
