@@ -81,3 +81,16 @@ test('history: identical items deduped and capped at 50', () => {
   const merged = mergeState(local, cloud);
   assert.equal(merged.courses.math.progress.history.length, 41); // dup + 40 unique, deduped
 });
+
+test('history: 120 distinct items (60 local + 60 cloud) truncated to 50', () => {
+  const localHistory = Array.from({ length: 60 }, (_, i) => ({ date: `L${i}`, type: 'math', correct: 1, total: 2 }));
+  const cloudHistory = Array.from({ length: 60 }, (_, i) => ({ date: `C${i}`, type: 'math', correct: 1, total: 2 }));
+  const local = state({ updatedAt: 1, courses: { math: course(1, 2, 1, localHistory) } });
+  const cloud = state({ updatedAt: 2, courses: { math: course(1, 2, 1, cloudHistory) } });
+  const merged = mergeState(local, cloud);
+  // 60 local + 60 cloud = 120 unique; truncated to 50 tail
+  assert.equal(merged.courses.math.progress.history.length, 50);
+  // tail of [...local, ...cloud] is C10..C59
+  assert.equal(merged.courses.math.progress.history[0].date, 'C10');
+  assert.equal(merged.courses.math.progress.history[49].date, 'C59');
+});

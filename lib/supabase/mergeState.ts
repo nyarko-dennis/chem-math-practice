@@ -28,6 +28,7 @@ function mergeHistory(a: SessionHistoryItem[], b: SessionHistoryItem[]): Session
     seen.add(key);
     out.push(item);
   }
+  // Truncate to the tail of concatenation order (local-before-cloud), approximating "keep newest"
   return out.slice(-HISTORY_CAP);
 }
 
