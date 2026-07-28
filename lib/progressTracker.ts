@@ -1,6 +1,6 @@
 'use client';
 
-import { syncSession } from './supabase/sync';
+import { pushState } from './supabase/sync';
 
 export interface SessionHistoryItem {
   date: string;
@@ -151,14 +151,10 @@ export function saveCourseProgress(
     console.error('Error saving course progress:', e);
   }
 
-  // Fire-and-forget cloud backup. No-ops in local-only mode; never blocks or
-  // throws into the caller.
-  void syncSession({
-    courseId,
-    type: session.type,
-    correct: session.correct,
-    total: session.total,
-  });
+  // Bump the local state timestamp and back the whole snapshot up to the cloud.
+  // No-ops when signed out or unconfigured; never blocks or throws into caller.
+  setStateUpdatedAt(Date.now());
+  void pushState();
 }
 
 /**
