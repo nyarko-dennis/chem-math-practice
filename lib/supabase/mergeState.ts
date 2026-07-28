@@ -82,3 +82,22 @@ export function mergeState(local: PracticeState, cloud: PracticeState): Practice
     streak,
   };
 }
+
+/**
+ * Deterministic, key-order-independent serialization of the meaningful parts of
+ * a snapshot (courses + streak; updatedAt excluded). Used to compare snapshots
+ * without being defeated by Postgres jsonb reordering object keys.
+ */
+export function snapshotSignature(s: PracticeState): string {
+  return canonical({ courses: s.courses, streak: s.streak });
+}
+
+function canonical(value: unknown): string {
+  if (value === null || typeof value !== 'object') return JSON.stringify(value);
+  if (Array.isArray(value)) return `[${value.map(canonical).join(',')}]`;
+  const obj = value as Record<string, unknown>;
+  return `{${Object.keys(obj)
+    .sort()
+    .map((k) => `${JSON.stringify(k)}:${canonical(obj[k])}`)
+    .join(',')}}`;
+}

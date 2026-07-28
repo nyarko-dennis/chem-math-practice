@@ -20,6 +20,7 @@ const PROGRESS_KEY_PREFIX = 'chem_math_practice_progress_';
 const ACTIVE_SESSION_KEY_PREFIX = 'chem_math_practice_active_';
 const STREAK_KEY = 'chem_math_practice_streak';
 const STATE_UPDATED_AT_KEY = 'chem_math_practice_state_updated_at';
+const OWNER_KEY = 'chem_math_practice_owner';
 
 export interface StreakInfo {
   current: number;
@@ -71,6 +72,22 @@ export function setStateUpdatedAt(ts: number): void {
   }
 }
 
+/** The user id whose data currently populates localStorage, or null. */
+export function getStateOwner(): string | null {
+  if (typeof window === 'undefined') return null;
+  return localStorage.getItem(OWNER_KEY);
+}
+
+/** Mark localStorage as owned by a user id. */
+export function setStateOwner(userId: string): void {
+  if (typeof window === 'undefined') return;
+  try {
+    localStorage.setItem(OWNER_KEY, userId);
+  } catch {
+    /* ignore */
+  }
+}
+
 /** Overwrite a course's progress record (used by cloud restore). */
 export function replaceCourseProgress(courseId: string, progress: CourseProgress): void {
   if (typeof window === 'undefined') return;
@@ -88,6 +105,16 @@ export function replaceStreak(streak: StreakInfo): void {
     localStorage.setItem(STREAK_KEY, JSON.stringify(streak));
   } catch (e) {
     console.error('Error replacing streak:', e);
+  }
+}
+
+/** Remove the streak record. Used when switching accounts. */
+export function clearStreak(): void {
+  if (typeof window === 'undefined') return;
+  try {
+    localStorage.removeItem(STREAK_KEY);
+  } catch {
+    /* ignore */
   }
 }
 

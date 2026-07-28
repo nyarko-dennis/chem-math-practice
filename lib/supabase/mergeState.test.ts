@@ -1,6 +1,6 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { mergeState, type PracticeState } from './mergeState.ts';
+import { mergeState, snapshotSignature, type PracticeState } from './mergeState.ts';
 
 const emptyStreak = { current: 0, longest: 0, lastDate: '' };
 
@@ -93,4 +93,14 @@ test('history: 120 distinct items (60 local + 60 cloud) truncated to 50', () => 
   // tail of [...local, ...cloud] is C10..C59
   assert.equal(merged.courses.math.progress.history[0].date, 'C10');
   assert.equal(merged.courses.math.progress.history[49].date, 'C59');
+});
+
+test('snapshotSignature ignores key order and updatedAt, but reflects real changes', () => {
+  const a = state({ updatedAt: 5, courses: { math: course(1, 10, 8) }, streak: { current: 1, longest: 2, lastDate: 'd' } });
+  // Same meaningful data: different updatedAt and a streak object built in a different key order.
+  const b = state({ updatedAt: 999, courses: { math: course(1, 10, 8) }, streak: { longest: 2, lastDate: 'd', current: 1 } as any });
+  assert.equal(snapshotSignature(a), snapshotSignature(b), 'ignores updatedAt and key order');
+
+  const c = state({ updatedAt: 5, courses: { math: course(2, 10, 8) } });
+  assert.notEqual(snapshotSignature(a), snapshotSignature(c), 'reflects a real change');
 });
