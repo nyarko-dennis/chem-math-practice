@@ -87,12 +87,13 @@ prefix + courseId. Guard all access with `typeof window` checks (these modules
 are imported by client components but functions may run during SSR).
 
 An **optional Supabase layer** (`lib/supabase/*`, wired at `saveCourseProgress`)
-adds cloud backup and sign-in on top of this: anonymous auth gives each device
-an identity, which can be upgraded in place to a magic-link email account. It is
-inert unless `NEXT_PUBLIC_SUPABASE_URL` / `NEXT_PUBLIC_SUPABASE_ANON_KEY` are
-set (see `docs/supabase-setup.md`). Sync is currently **write-only** — completed
-sessions are pushed to the cloud, but nothing reads them back yet, so signing in
-on a fresh device does not restore history. See Known follow-ups.
+adds cross-device sync on top of this via a sign-up-only **email + password**
+account (confirm-email off, no password recovery). The whole local practice
+state is snapshotted to a per-user `practice_state` JSON row on session finish
+(`pushState`), and on sign-in `pullAndMerge` union-merges the cloud snapshot back
+into localStorage (`lib/supabase/mergeState.ts` holds the pure, unit-tested merge).
+It is inert unless `NEXT_PUBLIC_SUPABASE_URL` / `NEXT_PUBLIC_SUPABASE_ANON_KEY`
+are set (see `docs/supabase-setup.md`).
 
 ## Conventions
 
@@ -110,9 +111,8 @@ on a fresh device does not restore history. See Known follow-ups.
 - **Difficulty tiers** are implemented for *generated* content only (math has an
   easy/medium/hard selector). Curated banks have no difficulty metadata and
   would need a per-question tagging pass.
-- **Cross-device read-back not wired.** The Supabase layer backs up completed
-  sessions to the cloud and supports sign-in (anonymous → magic-link email), but
-  the read path (`fetchCourseAggregates` in `lib/supabase/sync.ts`) is not called
-  anywhere. Until it backfills localStorage on sign-in, a user signing in on a
-  new device sees an empty dashboard despite having synced history. This is the
-  next piece of work ("C": merge cloud history into the local store on sign-in).
+- **Session history dedupe is tuple-based.** `SessionHistoryItem` has no stable
+  id, so the sync merge dedupes history by `(date, type, correct, total)` and can
+  collapse two genuinely-identical same-day sessions into one history entry
+  (totals are unaffected, since they come from monotonic counters). Adding a
+  stable `id` to `SessionHistoryItem` would remove this.
