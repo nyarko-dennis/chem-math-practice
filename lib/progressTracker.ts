@@ -19,6 +19,7 @@ export interface CourseProgress {
 const PROGRESS_KEY_PREFIX = 'chem_math_practice_progress_';
 const ACTIVE_SESSION_KEY_PREFIX = 'chem_math_practice_active_';
 const STREAK_KEY = 'chem_math_practice_streak';
+const STATE_UPDATED_AT_KEY = 'chem_math_practice_state_updated_at';
 
 export interface StreakInfo {
   current: number;
@@ -50,6 +51,43 @@ export function getStreak(): StreakInfo {
     return s;
   } catch {
     return empty;
+  }
+}
+
+/** Read the local "state last changed" timestamp (ms epoch); 0 if never set. */
+export function getStateUpdatedAt(): number {
+  if (typeof window === 'undefined') return 0;
+  const raw = localStorage.getItem(STATE_UPDATED_AT_KEY);
+  return raw ? Number(raw) || 0 : 0;
+}
+
+/** Set the local "state last changed" timestamp. */
+export function setStateUpdatedAt(ts: number): void {
+  if (typeof window === 'undefined') return;
+  try {
+    localStorage.setItem(STATE_UPDATED_AT_KEY, String(ts));
+  } catch {
+    /* ignore quota errors */
+  }
+}
+
+/** Overwrite a course's progress record (used by cloud restore). */
+export function replaceCourseProgress(courseId: string, progress: CourseProgress): void {
+  if (typeof window === 'undefined') return;
+  try {
+    localStorage.setItem(`${PROGRESS_KEY_PREFIX}${courseId}`, JSON.stringify(progress));
+  } catch (e) {
+    console.error('Error replacing course progress:', e);
+  }
+}
+
+/** Overwrite the streak record (used by cloud restore). */
+export function replaceStreak(streak: StreakInfo): void {
+  if (typeof window === 'undefined') return;
+  try {
+    localStorage.setItem(STREAK_KEY, JSON.stringify(streak));
+  } catch (e) {
+    console.error('Error replacing streak:', e);
   }
 }
 
