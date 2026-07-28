@@ -56,7 +56,7 @@ export default function AccountMenu() {
         <div className="flex items-center justify-between gap-3">
           <p className="text-sm text-slate-600">
             Signed in as <span className="font-semibold text-slate-800">{account.user?.email}</span>
-            <span className="block text-xs text-slate-400">Progress syncs across your devices.</span>
+            <span className="block text-xs text-slate-400">Your progress is backed up to your account.</span>
           </p>
           <button
             onClick={() => signOut()}
@@ -71,7 +71,7 @@ export default function AccountMenu() {
         <form onSubmit={submit} className="flex flex-col gap-2 sm:flex-row sm:items-center">
           <p className="flex-1 text-sm text-slate-600">
             Progress is saved on this device.
-            <span className="block text-xs text-slate-400">Sign in to sync it across devices.</span>
+            <span className="block text-xs text-slate-400">Sign in to back it up to your account.</span>
           </p>
           <div className="flex gap-2">
             <input

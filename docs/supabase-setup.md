@@ -12,9 +12,13 @@ no-ops.
 
 ## Identity model
 
-- **A — Anonymous device identity.** On first load the app calls
-  `signInAnonymously()`, giving each visitor a real (anonymous) auth user. Their
-  sessions are stored and scoped to that user by RLS. No login required.
+- **A — Anonymous device identity.** The first time a user *completes a session*
+  the app calls `signInAnonymously()`, giving them a real (anonymous) auth user
+  that the session is scoped to by RLS. No login required. Anonymous sign-in is
+  deferred to that first write (not done on page load), so visitors who never
+  finish a session never create an `auth.users` row — this keeps anonymous users
+  from accumulating on a shared project. Returning visitors reuse the persisted
+  session.
 - **B — Real account.** From the home page a user can enter their email to
   receive a magic link. If they're currently anonymous, the email is attached to
   the **same** user (upgrade in place — the uid is preserved), so their existing
@@ -56,6 +60,12 @@ Cloud sync is wired into `saveCourseProgress()` in
 [`lib/progressTracker.ts`](../lib/progressTracker.ts) — the single point every
 course funnels a completed session through. All eight courses record sessions
 there, so every course syncs automatically once credentials are configured.
+
+**Write-only for now.** Sessions are *pushed* to the cloud, but nothing reads
+them back yet — the dashboard, cards, and stats all read from localStorage. So
+signing in on a fresh device backs up new work but does not restore prior
+history. Read-back (`fetchCourseAggregates` → backfill localStorage on sign-in)
+is the next piece of work.
 
 ## Data model
 

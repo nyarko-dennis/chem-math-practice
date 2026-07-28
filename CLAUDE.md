@@ -80,10 +80,19 @@ have multiple modes (`quick` MCQ + `drill`/`case`/`calc`).
 
 ### Persistence
 
-Everything is **localStorage, per-device** — progress, spaced-repetition stats,
-streaks, and in-progress sessions. There is no auth or sync. Keys are namespaced
-by prefix + courseId. Guard all access with `typeof window` checks (these
-modules are imported by client components but functions may run during SSR).
+**localStorage, per-device** is the authoritative store — progress,
+spaced-repetition stats, streaks, and in-progress sessions all live there and
+every read (dashboard, cards, stats) comes from it. Keys are namespaced by
+prefix + courseId. Guard all access with `typeof window` checks (these modules
+are imported by client components but functions may run during SSR).
+
+An **optional Supabase layer** (`lib/supabase/*`, wired at `saveCourseProgress`)
+adds cloud backup and sign-in on top of this: anonymous auth gives each device
+an identity, which can be upgraded in place to a magic-link email account. It is
+inert unless `NEXT_PUBLIC_SUPABASE_URL` / `NEXT_PUBLIC_SUPABASE_ANON_KEY` are
+set (see `docs/supabase-setup.md`). Sync is currently **write-only** — completed
+sessions are pushed to the cloud, but nothing reads them back yet, so signing in
+on a fresh device does not restore history. See Known follow-ups.
 
 ## Conventions
 
@@ -101,5 +110,9 @@ modules are imported by client components but functions may run during SSR).
 - **Difficulty tiers** are implemented for *generated* content only (math has an
   easy/medium/hard selector). Curated banks have no difficulty metadata and
   would need a per-question tagging pass.
-- **No cross-device sync.** A Supabase (email/password) auth + sync layer was
-  scoped but not built; localStorage is the only store today.
+- **Cross-device read-back not wired.** The Supabase layer backs up completed
+  sessions to the cloud and supports sign-in (anonymous → magic-link email), but
+  the read path (`fetchCourseAggregates` in `lib/supabase/sync.ts`) is not called
+  anywhere. Until it backfills localStorage on sign-in, a user signing in on a
+  new device sees an empty dashboard despite having synced history. This is the
+  next piece of work ("C": merge cloud history into the local store on sign-in).
