@@ -191,7 +191,7 @@ export const threePhaseQuestions: AppliedElectricityQuestion[] = [
   ),
   mcq(
     'ae3ph-014',
-    'A balanced three-phase load (one drawing equal current, at the same power factor, in each of the three phases) is supplied at a line voltage (the voltage between any two supply lines) of 400 V, drawing a line current (the current in one supply line) of 20 A at a power factor (cos φ, the fraction of the supplied power that does useful work) of 0.8. Using $P=\\sqrt{3}\\,V_L I_L \\cos\\varphi$, what is the total power delivered, to the nearest kilowatt?',
+    'A balanced three-phase load (one drawing equal current, at the same power factor, in each of the three phases) is supplied at a line voltage (the voltage between any two supply lines) of 400 V, drawing a line current (the current in one supply line) of 20 A at a power factor (cos φ, the fraction of the supplied power that does useful work) of 0.8. Using $P=\\sqrt{3}\\,V_L I_L \\cos\\varphi$, what is the total power delivered, to one decimal place?',
     ['6.4 kW', '8 kW', '11.1 kW', '13.9 kW'],
     2,
     'Total power is $P=\\sqrt{3}\\,V_L I_L \\cos\\varphi = 1.732 \\times 400 \\times 20 \\times 0.8 \\approx 11{,}085$ W, or about 11.1 kW; leaving out the √3 factor would wrongly give only 6.4 kW.',
@@ -214,7 +214,7 @@ export const threePhaseQuestions: AppliedElectricityQuestion[] = [
     [
       'The supply frequency automatically increases to compensate',
       'The line voltage (the voltage between any two supply lines) between phases becomes zero',
-      'A current now flows in the neutral wire (the wire connected to the common point where the three phase windings meet, in a star, or wye, system) to carry the difference between the phases',
+      'A current now flows in the neutral wire (the wire connected to the common point where the three phase windings meet, in a star (wye) system — one end of each of the three phase windings joined at a common neutral point) to carry the difference between the phases',
       'The load can no longer be connected at all',
     ],
     2,
