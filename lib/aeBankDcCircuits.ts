@@ -129,7 +129,7 @@ const mcqs: MCQuestion[] = [
     choices: ['6 V', '14 V', '20 V', '10 V'],
     correctIndex: 1,
     rationale:
-      'Using the voltage-divider rule, the share of voltage (electrical push) across one resistor equals its own resistance (opposition to current flow) divided by the total series resistance, times the source voltage: 20 V × (70 Ω ÷ 100 Ω) = 14 V.',
+      'Using the voltage-divider rule, the share of voltage (electrical push) across one resistor equals its own resistance (opposition to current flow) divided by the total resistance of the series (components connected end to end, so the same current flows through each) chain, times the source voltage: 20 V × (70 Ω ÷ 100 Ω) = 14 V.',
   },
   {
     id: 'aedc-011',
@@ -156,7 +156,7 @@ const mcqs: MCQuestion[] = [
     choices: ['2 A', '4 A', '8 A', '6 A'],
     correctIndex: 3,
     rationale:
-      'For two resistors in parallel (sharing the same voltage), the current-divider rule sends more current down the branch with less resistance (opposition to current flow): the current through the 4 Ω resistor is 8 A × (12 Ω ÷ (4 Ω + 12 Ω)) = 8 A × 0.75 = 6 A.',
+      'For two resistors in parallel (sharing the same voltage), the current-divider rule — which describes how a shared total current splits between parallel branches in inverse proportion to their resistance — sends more current down the branch with less resistance (opposition to current flow): the current through the 4 Ω resistor is 8 A × (12 Ω ÷ (4 Ω + 12 Ω)) = 8 A × 0.75 = 6 A.',
   },
   {
     id: 'aedc-013',
@@ -236,7 +236,7 @@ const mcqs: MCQuestion[] = [
     ],
     correctIndex: 1,
     rationale:
-      'A real source’s internal resistance (built-in opposition to current flow inside the source itself) uses up some of the source’s driving voltage whenever current (flow of charge) flows, leaving less voltage available at the terminals for the rest of the circuit.',
+      'A real source’s internal resistance (built-in opposition to current flow inside the source itself) uses up some of its driving voltage (the electrical push that drives current) whenever current (flow of charge) flows, leaving less voltage available at the terminals for the rest of the circuit.',
   },
   {
     id: 'aedc-019',
@@ -312,28 +312,28 @@ const tfs: TFQuestion[] = [
     id: 'aedc-025',
     topic: 'dcCircuits',
     type: 'tf',
-    prompt: 'An open circuit has zero resistance and allows current to flow freely.',
+    prompt: 'An open circuit behaves like a path of zero resistance.',
     correctAnswer: false,
     rationale:
-      'False. An open circuit (a break in the current path) behaves like an infinitely large resistance (opposition to current flow), so it blocks current rather than letting it flow freely; a break stops current, it does not free it.',
+      'False. An open circuit (a break in the current path) actually behaves like an infinitely large resistance (opposition to current flow), not zero resistance — the break blocks the path rather than removing any opposition to it.',
   },
   {
     id: 'aedc-026',
     topic: 'dcCircuits',
     type: 'tf',
-    prompt: 'A short circuit provides a path of very low resistance, so a large current can flow through it.',
+    prompt: 'A short circuit is a path of very low resistance.',
     correctAnswer: true,
     rationale:
-      'True. A short circuit (an unintended path with very low resistance, or opposition to current flow) lets current rise well above normal, because there is almost nothing to hold it back.',
+      'True. A short circuit (an unintended path with very low resistance, or opposition to current flow) is defined by that near-zero resistance; because there is almost nothing to hold it back, the current (the flow of electric charge through it) can rise well above normal.',
   },
   {
     id: 'aedc-027',
     topic: 'dcCircuits',
     type: 'tf',
-    prompt: 'Conductance is measured in siemens and equals the reciprocal of resistance.',
+    prompt: 'Conductance is the mathematical reciprocal of resistance.',
     correctAnswer: true,
     rationale:
-      'True. Conductance is the mathematical reciprocal of resistance (opposition to current flow) — it measures how easily current can pass — and its unit is the siemens (S).',
+      'True. Conductance measures how easily current can pass through a component, and it is defined as the reciprocal of resistance (opposition to current flow) — its unit, incidentally, is the siemens (S).',
   },
   {
     id: 'aedc-028',
