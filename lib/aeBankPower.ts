@@ -63,7 +63,7 @@ export const powerQuestions: AppliedElectricityQuestion[] = [
     'What is the standard unit of real (active) power?',
     ['Volt-amperes reactive (VAR)', 'Ohms', 'Watts (W)', 'Volt-amperes (VA)'],
     2,
-    'Real power (also called active power - the power actually consumed by a load and converted to useful work or heat) is measured in watts, W; volt-amperes reactive, or VAR, measures reactive power instead, and volt-amperes, or VA, measures apparent power.',
+    'Real power (also called active power - the power actually consumed by a load and converted to useful work or heat) is measured in watts, W; volt-amperes reactive, or VAR, measures reactive power (power that flows back and forth with inductors or capacitors and does no net useful work) instead, and volt-amperes, or VA, measures apparent power (the total power the supply must provide, combining real and reactive power).',
   ),
   mcq(
     'aepow-003',
@@ -120,7 +120,7 @@ export const powerQuestions: AppliedElectricityQuestion[] = [
     'In the power triangle, the angle φ between the real-power side and the apparent-power side (the hypotenuse) is used to define which quantity?',
     ['The apparent power in VAR', 'The frequency of the supply', 'The reactive power in watts', 'The power factor, as cos φ'],
     3,
-    'The angle phi (φ - the phase angle between the real-power side, P, and the hypotenuse, apparent power S, in the power triangle) defines the power factor as cos φ; it is not itself a power quantity like reactive power (Q, correctly in VAR, not watts) or apparent power (correctly in VA, not VAR).',
+    'The angle phi (φ - the phase angle between the real-power side, P, and the hypotenuse, apparent power S, in the power triangle) defines the power factor as cos φ; it is not itself a power quantity like reactive power (Q - power that flows back and forth with inductors or capacitors and does no net useful work, correctly in VAR, not watts) or apparent power (S - the total power the supply must provide, combining real and reactive power, correctly in VA, not VAR).',
   ),
   mcq(
     'aepow-009',
@@ -181,14 +181,14 @@ export const powerQuestions: AppliedElectricityQuestion[] = [
   ),
   mcq(
     'aepow-015',
-    'An AC load has an rms voltage of 200 V, an rms current of 10 A, and a power factor of 0.8. Using $P = VI\\cos\\varphi$, what is the real power delivered?',
+    'An AC load has an rms (root-mean-square, the equivalent steady value) voltage of 200 V, an rms current of 10 A, and a power factor of 0.8. Using $P = VI\\cos\\varphi$, what is the real power delivered?',
     ['2000 W', '1000 W', '1250 W', '1600 W'],
     3,
     'Real power (P, the power actually consumed by the load, in watts) is $P = VI\\cos\\varphi = 200 \\times 10 \\times 0.8 = 1600$ W; multiplying V and I alone without the power factor (cos φ, the ratio of real to apparent power) would wrongly give the full 2000 VA of apparent power instead.',
   ),
   mcq(
     'aepow-016',
-    'For the same AC load (200 V rms, 10 A rms, power factor 0.8, so sin φ = 0.6), using $Q = VI\\sin\\varphi$, what is the reactive power?',
+    'For the same AC load (200 V rms (root-mean-square, the equivalent steady value), 10 A rms, power factor 0.8, so sin φ = 0.6), using $Q = VI\\sin\\varphi$, what is the reactive power?',
     ['2000 VAR', '1600 VAR', '1200 VAR', '600 VAR'],
     2,
     'Reactive power (Q, the power exchanged with the load\'s inductive or capacitive part, in volt-amperes reactive, VAR) is $Q = VI\\sin\\varphi = 200 \\times 10 \\times 0.6 = 1200$ VAR, distinct from the real power (P, in watts) of 1600 W found using cos φ instead of sin φ.',
