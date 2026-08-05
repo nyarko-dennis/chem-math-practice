@@ -210,7 +210,7 @@ export const acAnalysisQuestions: AppliedElectricityQuestion[] = [
   ),
   mcq(
     'aeaca-016',
-    'How is the impedance of a series RL circuit (a resistor and inductor connected in series on an AC supply) written in rectangular form (a real resistance part plus an imaginary reactance part)?',
+    'How is the impedance (a circuit\'s total opposition to alternating current, combining resistance and reactance) of a series RL circuit (a resistor and inductor connected in series on an AC supply) written in rectangular form (a real resistance part plus an imaginary reactance part)?',
     ['$Z=R-jX_L$', '$Z=R\\times X_L$', '$Z=X_L-jR$', '$Z=R+jX_L$'],
     3,
     "In rectangular form (writing impedance as a resistance part plus an imaginary reactance part), a series RL circuit's impedance is $Z=R+jX_L$, where $R$ is resistance and $X_L$ is inductive reactance (the coil's opposition to alternating current); the positive sign on the imaginary part marks it as inductive.",
@@ -224,7 +224,7 @@ export const acAnalysisQuestions: AppliedElectricityQuestion[] = [
   ),
   mcq(
     'aeaca-018',
-    'How is the impedance of a series RC circuit (a resistor and capacitor connected in series on an AC supply) written in rectangular form (a real resistance part plus an imaginary reactance part)?',
+    'How is the impedance (a circuit\'s total opposition to alternating current, combining resistance and reactance) of a series RC circuit (a resistor and capacitor connected in series on an AC supply) written in rectangular form (a real resistance part plus an imaginary reactance part)?',
     ['$Z=R+jX_C$', '$Z=R-jX_C$', '$Z=X_C-jR$', '$Z=R\\times X_C$'],
     1,
     "In rectangular form (writing impedance as a resistance part plus an imaginary reactance part), a series RC circuit's impedance is $Z=R-jX_C$, where $R$ is resistance and $X_C$ is capacitive reactance (the capacitor's opposition to alternating current); the negative sign on the imaginary part marks it as capacitive.",
@@ -246,11 +246,11 @@ export const acAnalysisQuestions: AppliedElectricityQuestion[] = [
       "The circuit's impedance cannot be determined from this information",
     ],
     1,
-    "In the series RLC impedance formula $Z=R+j(X_L-X_C)$ (combining resistance with the net reactance, the difference between inductive reactance $X_L$ and capacitive reactance $X_C$), a positive net reactance means the inductive effect dominates, so the circuit behaves as net inductive overall.",
+    "In the series RLC impedance (a circuit's total opposition to alternating current, combining resistance and reactance) formula $Z=R+j(X_L-X_C)$ (combining resistance with the net reactance, the difference between inductive reactance $X_L$ and capacitive reactance $X_C$), a positive net reactance means the inductive effect dominates, so the circuit behaves as net inductive overall.",
   ),
   mcq(
     'aeaca-021',
-    'A series RLC circuit (resistor, inductor, and capacitor connected in series on an AC supply) is tuned so that inductive reactance $X_L$ equals capacitive reactance $X_C$. What is this condition called, and what happens to the circuit\'s impedance?',
+    'A series RLC circuit (resistor, inductor, and capacitor connected in series on an AC supply) is tuned so that inductive reactance $X_L$ equals capacitive reactance $X_C$. What is this condition called, and what happens to the circuit\'s impedance (a circuit\'s total opposition to alternating current, combining resistance and reactance)?',
     [
       'Resonance; the net reactance becomes zero and impedance is minimum, equal to $R$',
       'Resonance; the net reactance doubles and impedance is maximum',
@@ -262,7 +262,7 @@ export const acAnalysisQuestions: AppliedElectricityQuestion[] = [
   ),
   mcq(
     'aeaca-022',
-    "A circuit's impedance is given in rectangular form (a real resistance part plus an imaginary reactance part) as $Z=3+j4\\ \\Omega$. What is the magnitude of this impedance when expressed in polar form (magnitude∠angle)?",
+    "A circuit's impedance (a circuit's total opposition to alternating current, combining resistance and reactance) is given in rectangular form (a real resistance part plus an imaginary reactance part) as $Z=3+j4\\ \\Omega$. What is the magnitude of this impedance when expressed in polar form (magnitude∠angle)?",
     ['7 Ω', '1 Ω', '5 Ω', '12 Ω'],
     2,
     "Converting from rectangular form (writing impedance as a resistance part, 3, plus an imaginary reactance part, 4) to polar form (writing impedance as a magnitude and an angle) uses $|Z|=\\sqrt{R^2+X^2}=\\sqrt{3^2+4^2}=\\sqrt{9+16}=\\sqrt{25}=5\\ \\Omega$; the full polar form would also need the angle, $\\theta=\\tan^{-1}(4/3)$.",
@@ -313,6 +313,6 @@ export const acAnalysisQuestions: AppliedElectricityQuestion[] = [
     'aeaca-030',
     'The impedance of a series RC circuit is written in rectangular form as $Z=R+jX_C$.',
     false,
-    "This is false: a series RC circuit's impedance (a resistor and capacitor connected in series on an AC supply) in rectangular form (a resistance part plus an imaginary reactance part) is $Z=R-jX_C$, with a negative sign, since capacitive reactance $X_C$ opposes inductive reactance in direction on the imaginary axis.",
+    "This is false: a series RC circuit's (a resistor and capacitor connected in series on an AC supply) impedance (a circuit's total opposition to alternating current, combining resistance and reactance) in rectangular form (a resistance part plus an imaginary reactance part) is $Z=R-jX_C$, with a negative sign, since capacitive reactance $X_C$ opposes inductive reactance in direction on the imaginary axis.",
   ),
 ];
