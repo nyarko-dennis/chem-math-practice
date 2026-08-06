@@ -37,5 +37,9 @@ Task 5: complete (commits 05b84bf..dbf3055, invariants 3/3 + full suite 128/128;
 Task 6: complete (commits dbf3055..bc2b5c4, review clean; 24 drills, all numerics verified)
 Task 7: complete (commits bc2b5c4..194e670, review clean; 8 lessons, 15 worked examples verified)
 Task 8: fix round 1/5 (shuffle MCQ addressed; commits 1ce3913..cf92fa1)
-Task 8: fix round 2/5 (re-review found new Important: MCQ missing-shuffle rendered TF/mis-scored; fix landed 0ba02cb) — RE-REVIEW OF 0ba02cb STILL PENDING
-STOPPED by user + pushed origin/feat/applied-electricity-course @ 0ba02cb. Remaining: re-review 0ba02cb; then Task 9 (learn page), Task 10 (registry/labels/stats/gate), final whole-branch review.
+Task 8: fix round 2/5 (re-review found new Important: MCQ missing-shuffle rendered TF/mis-scored; fix landed 0ba02cb)
+Task 8: complete (0ba02cb re-reviewed clean — all shuffles[q.id] access routes through mcqDisplayFor fail-safe; guarded non-null assertions correct)
+Task 9: complete (commit e9f612c; learn page mirrors calculus/learn, plain-text input + checkAeAnswer, sky accent; build clean, /applied-electricity/learn present)
+Task 10: complete (commit 4f351c8; COURSES card + courseLabels + stats route; full gate: 135/135 tests pass, build clean, all 3 routes present)
+FINAL WHOLE-BRANCH REVIEW: clean. Shared-layer wiring verified in practice page (pickWeightedType+pickSpacedQuestions on start, recordAttempt first-attempt on check, saveCourseProgress on finish, ReviewList on finished screen, resume w/ shuffle backfill). All 10 tasks done.
+Branch: work now on claude/applied-electricity-tasks-8-10-fqxxvm (designated push target). Ready to push.
