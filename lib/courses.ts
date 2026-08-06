@@ -93,6 +93,16 @@ export const COURSES: CourseMeta[] = [
     textColor: 'text-cyan-600',
     hoverText: 'text-cyan-700',
   },
+  {
+    id: 'applied-electricity',
+    title: 'Applied Electricity Practice',
+    shortTitle: 'Applied Elec.',
+    blurb:
+      'DC circuits, network theorems, capacitors, inductors, AC analysis, power, and three-phase - generated numeric problems plus curated MCQ/TF and drills.',
+    accent: '#EA580C',
+    textColor: 'text-orange-600',
+    hoverText: 'text-orange-700',
+  },
 ];
 
 export const COURSE_BY_ID: Record<string, CourseMeta> = Object.fromEntries(
