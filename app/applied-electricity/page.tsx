@@ -77,6 +77,23 @@ function shuffleMCQ(q: AppliedElectricityQuestion): ShuffledMCQ | null {
   };
 }
 
+// Fail-safe lookup for a curated MCQ's display order. Every MCQ drawn by
+// buildPracticeQueue gets a `shuffles` entry, but a session saved before
+// this shuffling existed (or any other gap) can resume with an mcq item
+// missing one. Falling back to the raw (unshuffled) bank order — instead of
+// treating a missing entry as "not an mcq" — keeps the item rendering as an
+// MCQ and scoring against its real answer; it also matches exactly what an
+// old, pre-shuffle session actually displayed, so any answer already picked
+// under the old code stays valid instead of silently pointing at the wrong
+// choice.
+function mcqDisplayFor(
+  q: AppliedElectricityQuestion,
+  shuffles: Record<string, ShuffledMCQ>,
+): ShuffledMCQ | null {
+  if (q.type !== 'mcq') return null;
+  return shuffles[q.id] ?? { id: q.id, displayChoices: q.choices, correctDisplayIndex: q.correctIndex };
+}
+
 export default function AppliedElectricityPage() {
   const [mounted, setMounted] = useState(false);
   const [mode, setMode] = useState<Mode>('practice');
@@ -162,13 +179,32 @@ export default function AppliedElectricityPage() {
       setTopics(session.topics ?? DEFAULT_TOPICS);
       setDifficulty(session.difficulty ?? 'medium');
       setPracticeCount(session.practiceCount ?? 10);
-      setQueue(session.queue ?? []);
+      const restoredQueue: PracticeItem[] = session.queue ?? [];
+      setQueue(restoredQueue);
       setIndex(session.index ?? 0);
       setTextAnswers(session.textAnswers ?? {});
       setSelections(session.selections ?? {});
       setFeedback(session.feedback ?? {});
       setAttempts(session.attempts ?? {});
-      setShuffles(session.shuffles ?? {});
+
+      // Backfill: a session saved before curated-MCQ shuffling existed (or
+      // any other gap) can restore a queue with a curated mcq item missing
+      // its `shuffles` entry. Fill it in with the identity (raw bank) order
+      // — the same order `mcqDisplayFor`'s fallback uses and the same order
+      // that item actually rendered in under the old code — so any answer
+      // already selected for it stays valid instead of pointing at the
+      // wrong (freshly reshuffled) choice.
+      const restoredShuffles: Record<string, ShuffledMCQ> = { ...(session.shuffles ?? {}) };
+      restoredQueue.forEach((item) => {
+        if (item.kind === 'curated' && item.q.type === 'mcq' && !restoredShuffles[item.q.id]) {
+          restoredShuffles[item.q.id] = {
+            id: item.q.id,
+            displayChoices: item.q.choices,
+            correctDisplayIndex: item.q.correctIndex,
+          };
+        }
+      });
+      setShuffles(restoredShuffles);
       setRetry(false);
     } else {
       setDrillTopics(session.drillTopics ?? DEFAULT_TOPICS);
@@ -283,8 +319,8 @@ export default function AppliedElectricityPage() {
       const sel = selections[q.id];
       let isCorrect: boolean;
       if (q.type === 'mcq') {
-        const sh = shuffles[q.id];
-        isCorrect = sh ? sel === sh.correctDisplayIndex : sel === q.correctIndex;
+        const sh = mcqDisplayFor(q, shuffles)!;
+        isCorrect = sel === sh.correctDisplayIndex;
       } else {
         isCorrect = sel === q.correctAnswer;
       }
@@ -646,10 +682,10 @@ export default function AppliedElectricityPage() {
         let yourAnswer = '';
         let correctAnswer = '';
         if (q.type === 'mcq') {
-          const sh = shuffles[q.id];
-          correctAnswer = sh ? sh.displayChoices[sh.correctDisplayIndex] : q.choices[q.correctIndex];
+          const sh = mcqDisplayFor(q, shuffles)!;
+          correctAnswer = sh.displayChoices[sh.correctDisplayIndex];
           const sel = selections[q.id];
-          yourAnswer = sh && typeof sel === 'number' ? sh.displayChoices[sel] : '';
+          yourAnswer = typeof sel === 'number' ? sh.displayChoices[sel] : '';
         } else {
           correctAnswer = q.correctAnswer ? 'True' : 'False';
           const sel = selections[q.id];
@@ -1000,7 +1036,7 @@ export default function AppliedElectricityPage() {
             (() => {
               const q = currentItem.q;
               const sel = selections[q.id];
-              const sh = q.type === 'mcq' ? shuffles[q.id] : null;
+              const sh = mcqDisplayFor(q, shuffles);
               return (
                 <>
                   <div className="mb-6">
