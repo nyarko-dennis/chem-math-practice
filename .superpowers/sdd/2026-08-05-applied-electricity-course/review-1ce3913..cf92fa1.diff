@@ -1,0 +1,353 @@
+# Review package: 1ce3913..HEAD
+
+## Commits
+cf92fa1 fix(applied-electricity): shuffle curated MCQ choices (match sibling courses)
+
+## Files changed
+ app/applied-electricity/page.tsx | 63 +++++++++++++++++++++++++++++++++-------
+ 1 file changed, 53 insertions(+), 10 deletions(-)
+
+## Diff
+diff --git a/app/applied-electricity/page.tsx b/app/applied-electricity/page.tsx
+index 608e5c1..14facc6 100644
+--- a/app/applied-electricity/page.tsx
++++ b/app/applied-electricity/page.tsx
+@@ -46,20 +46,44 @@ function shuffled<T>(arr: T[]): T[] {
+     const j = Math.floor(Math.random() * (i + 1));
+     [out[i], out[j]] = [out[j], out[i]];
+   }
+   return out;
+ }
+ 
+ function itemId(item: PracticeItem): string {
+   return item.q.id;
+ }
+ 
++interface ShuffledMCQ {
++  id: string;
++  displayChoices: string[];
++  correctDisplayIndex: number;
++}
++
++// Shuffle a curated MCQ's choice order so a fixed answer position (e.g.
++// "it's always option B") can't be memorized independent of the content —
++// the item resurfaces via spaced repetition, so this matters more here than
++// for a one-shot quiz. Mirrors app/surgery/page.tsx's shuffleMCQ.
++function shuffleMCQ(q: AppliedElectricityQuestion): ShuffledMCQ | null {
++  if (q.type !== 'mcq') return null;
++  const indexed = q.choices.map((c, i) => ({ c, i }));
++  for (let i = indexed.length - 1; i > 0; i--) {
++    const j = Math.floor(Math.random() * (i + 1));
++    [indexed[i], indexed[j]] = [indexed[j], indexed[i]];
++  }
++  return {
++    id: q.id,
++    displayChoices: indexed.map((x) => x.c),
++    correctDisplayIndex: indexed.findIndex((x) => x.i === q.correctIndex),
++  };
++}
++
+ export default function AppliedElectricityPage() {
+   const [mounted, setMounted] = useState(false);
+   const [mode, setMode] = useState<Mode>('practice');
+   const [started, setStarted] = useState(false);
+   const [finished, setFinished] = useState(false);
+   const [canResume, setCanResume] = useState(false);
+   const [resumeMode, setResumeMode] = useState<Mode | null>(null);
+ 
+   // ---- Practice config ----
+   const [topics, setTopics] = useState<SelectedTopics>(DEFAULT_TOPICS);
+@@ -67,20 +91,21 @@ export default function AppliedElectricityPage() {
+   const [practiceCount, setPracticeCount] = useState(10);
+ 
+   // ---- Practice session ----
+   const [queue, setQueue] = useState<PracticeItem[]>([]);
+   const [index, setIndex] = useState(0);
+   const [textAnswers, setTextAnswers] = useState<Record<string, string>>({});
+   const [selections, setSelections] = useState<Record<string, number | boolean>>({});
+   const [feedback, setFeedback] = useState<Record<string, boolean>>({});
+   const [attempts, setAttempts] = useState<Record<string, number>>({});
+   const [retry, setRetry] = useState(false);
++  const [shuffles, setShuffles] = useState<Record<string, ShuffledMCQ>>({});
+ 
+   // ---- Drill config ----
+   const [drillTopics, setDrillTopics] = useState<SelectedTopics>(DEFAULT_TOPICS);
+   const [drillCount, setDrillCount] = useState(6);
+ 
+   // ---- Drill session ----
+   const [drills, setDrills] = useState<AeDrill[]>([]);
+   const [dIndex, setDIndex] = useState(0);
+   const [revealed, setRevealed] = useState<Record<string, boolean>>({});
+   const [rubricChecks, setRubricChecks] = useState<Record<string, Record<string, boolean>>>({});
+@@ -136,20 +161,21 @@ export default function AppliedElectricityPage() {
+     if (session.mode === 'practice') {
+       setTopics(session.topics ?? DEFAULT_TOPICS);
+       setDifficulty(session.difficulty ?? 'medium');
+       setPracticeCount(session.practiceCount ?? 10);
+       setQueue(session.queue ?? []);
+       setIndex(session.index ?? 0);
+       setTextAnswers(session.textAnswers ?? {});
+       setSelections(session.selections ?? {});
+       setFeedback(session.feedback ?? {});
+       setAttempts(session.attempts ?? {});
++      setShuffles(session.shuffles ?? {});
+       setRetry(false);
+     } else {
+       setDrillTopics(session.drillTopics ?? DEFAULT_TOPICS);
+       setDrillCount(session.drillCount ?? 6);
+       setDrills(session.drills ?? []);
+       setDIndex(session.dIndex ?? 0);
+       setRevealed(session.revealed ?? {});
+       setRubricChecks(session.rubricChecks ?? {});
+       setExpanded(session.expanded ?? {});
+       setScoredDrills(session.scoredDrills ?? {});
+@@ -163,49 +189,55 @@ export default function AppliedElectricityPage() {
+   const discardSavedSession = () => {
+     clearActiveSession(COURSE_ID);
+     setCanResume(false);
+     setResumeMode(null);
+   };
+ 
+   // ---------------------------------------------------------------------
+   // Practice mode
+   // ---------------------------------------------------------------------
+ 
+-  const buildPracticeQueue = (): PracticeItem[] => {
++  const buildPracticeQueue = (): { items: PracticeItem[]; shuffles: Record<string, ShuffledMCQ> } => {
+     const selected = ALL_TOPICS.filter((t) => topics[t]);
+     const usedCurated = new Set<string>();
+     const items: PracticeItem[] = [];
++    const newShuffles: Record<string, ShuffledMCQ> = {};
+     for (let i = 0; i < practiceCount; i++) {
+       const topic = pickWeightedType(COURSE_ID, selected) as AppliedElectricityTopic;
+       const fullPool = appliedElectricityQuestions.filter((q) => q.topic === topic);
+       const available = fullPool.filter((q) => !usedCurated.has(q.id));
+       const wantCurated = Math.random() < 0.5;
+       if (wantCurated && available.length > 0) {
+         const [picked] = pickSpacedQuestions(COURSE_ID, available, 1);
+         if (picked) {
+           usedCurated.add(picked.id);
+           items.push({ kind: 'curated', q: picked });
++          if (picked.type === 'mcq') {
++            const sh = shuffleMCQ(picked);
++            if (sh) newShuffles[picked.id] = sh;
++          }
+           continue;
+         }
+       }
+       items.push({ kind: 'generated', q: AE_GENERATORS[topic](difficulty) });
+     }
+-    return items;
++    return { items, shuffles: newShuffles };
+   };
+ 
+   const startPractice = () => {
+     if (selectedPracticeTopics.length === 0) {
+       alert('Please select at least one topic.');
+       return;
+     }
+-    const newQueue = buildPracticeQueue();
++    const { items: newQueue, shuffles: newShuffles } = buildPracticeQueue();
+     setQueue(newQueue);
++    setShuffles(newShuffles);
+     setIndex(0);
+     setTextAnswers({});
+     setSelections({});
+     setFeedback({});
+     setAttempts({});
+     setRetry(false);
+     setMode('practice');
+     setStarted(true);
+     setFinished(false);
+     setCanResume(false);
+@@ -242,21 +274,27 @@ export default function AppliedElectricityPage() {
+         // First miss: allow one more attempt before revealing the solution.
+         setAttempts({ ...attempts, [q.id]: 1 });
+         setRetry(true);
+       } else {
+         setFeedback({ ...feedback, [q.id]: false });
+         setRetry(false);
+       }
+     } else {
+       const q = currentItem.q;
+       const sel = selections[q.id];
+-      const isCorrect = q.type === 'mcq' ? sel === q.correctIndex : sel === q.correctAnswer;
++      let isCorrect: boolean;
++      if (q.type === 'mcq') {
++        const sh = shuffles[q.id];
++        isCorrect = sh ? sel === sh.correctDisplayIndex : sel === q.correctIndex;
++      } else {
++        isCorrect = sel === q.correctAnswer;
++      }
+       recordAttempt(COURSE_ID, { questionId: q.id, topicKey: q.topic, correct: isCorrect });
+       setFeedback({ ...feedback, [q.id]: isCorrect });
+     }
+   };
+ 
+   const nextPractice = () => {
+     if (index < queue.length - 1) {
+       setIndex(index + 1);
+       setRetry(false);
+     } else {
+@@ -338,20 +376,21 @@ export default function AppliedElectricityPage() {
+         mode,
+         topics,
+         difficulty,
+         practiceCount,
+         queue,
+         index,
+         textAnswers,
+         selections,
+         feedback,
+         attempts,
++        shuffles,
+       });
+     } else {
+       saveActiveSession(COURSE_ID, {
+         mode,
+         drillTopics,
+         drillCount,
+         drills,
+         dIndex,
+         revealed,
+         rubricChecks,
+@@ -366,20 +405,21 @@ export default function AppliedElectricityPage() {
+     mode,
+     topics,
+     difficulty,
+     practiceCount,
+     queue,
+     index,
+     textAnswers,
+     selections,
+     feedback,
+     attempts,
++    shuffles,
+     drillTopics,
+     drillCount,
+     drills,
+     dIndex,
+     revealed,
+     rubricChecks,
+     expanded,
+     scoredDrills,
+   ]);
+ 
+@@ -389,20 +429,21 @@ export default function AppliedElectricityPage() {
+     setFinished(false);
+     setCanResume(false);
+     setResumeMode(null);
+     setQueue([]);
+     setIndex(0);
+     setTextAnswers({});
+     setSelections({});
+     setFeedback({});
+     setAttempts({});
+     setRetry(false);
++    setShuffles({});
+     setDrills([]);
+     setDIndex(0);
+     setRevealed({});
+     setRubricChecks({});
+     setExpanded({});
+     setScoredDrills({});
+   };
+ 
+   if (!mounted) {
+     return <div className="min-h-screen bg-slate-50" />;
+@@ -598,23 +639,24 @@ export default function AppliedElectricityPage() {
+             answerIsLatex: true,
+             explanation: q.solution,
+             explanationIsLatex: true,
+             correct: !!feedback[q.id],
+           };
+         }
+         const q = item.q;
+         let yourAnswer = '';
+         let correctAnswer = '';
+         if (q.type === 'mcq') {
+-          correctAnswer = q.choices[q.correctIndex];
++          const sh = shuffles[q.id];
++          correctAnswer = sh ? sh.displayChoices[sh.correctDisplayIndex] : q.choices[q.correctIndex];
+           const sel = selections[q.id];
+-          yourAnswer = typeof sel === 'number' ? q.choices[sel] : '';
++          yourAnswer = sh && typeof sel === 'number' ? sh.displayChoices[sel] : '';
+         } else {
+           correctAnswer = q.correctAnswer ? 'True' : 'False';
+           const sel = selections[q.id];
+           yourAnswer = sel === undefined ? '' : sel ? 'True' : 'False';
+         }
+         return {
+           id: q.id,
+           topicLabel: APPLIED_ELECTRICITY_TOPIC_LABELS[q.topic],
+           prompt: q.prompt,
+           yourAnswer,
+@@ -951,41 +993,42 @@ export default function AppliedElectricityPage() {
+                       </div>
+                     )}
+                   </>
+                 );
+               })()}
+             </>
+           ) : (
+             (() => {
+               const q = currentItem.q;
+               const sel = selections[q.id];
++              const sh = q.type === 'mcq' ? shuffles[q.id] : null;
+               return (
+                 <>
+                   <div className="mb-6">
+                     <div className="flex flex-wrap items-center gap-2 mb-3">
+                       <span className="text-sky-600 text-xs uppercase tracking-wide font-semibold">
+                         {APPLIED_ELECTRICITY_TOPIC_LABELS[q.topic]}
+                       </span>
+                       <span className="text-slate-300 text-xs">•</span>
+                       <span className="text-slate-500 text-xs uppercase tracking-wide font-semibold">
+                         {q.type === 'mcq' ? 'Multiple Choice' : 'True / False'}
+                       </span>
+                     </div>
+                     <p className="text-lg text-slate-800 leading-relaxed">{q.prompt}</p>
+                   </div>
+ 
+                   <div className="space-y-2 mb-6">
+-                    {q.type === 'mcq'
+-                      ? q.choices.map((choice, idx) => {
++                    {q.type === 'mcq' && sh
++                      ? sh.displayChoices.map((choice, idx) => {
+                           const letter = String.fromCharCode(65 + idx);
+                           const isSelected = sel === idx;
+-                          const isAnswer = idx === q.correctIndex;
++                          const isAnswer = idx === sh.correctDisplayIndex;
+                           let cls =
+                             'w-full text-left p-3 border rounded-lg transition-colors flex items-start gap-3';
+                           if (hasAnswered) {
+                             if (isAnswer) cls += ' border-green-500 bg-green-50';
+                             else if (isSelected) cls += ' border-red-500 bg-red-50';
+                             else cls += ' border-slate-200 bg-white';
+                           } else if (isSelected) cls += ' border-sky-500 bg-sky-50';
+                           else cls += ' border-slate-200 hover:border-sky-300 hover:bg-slate-50';
+                           return (
+                             <button
+@@ -997,21 +1040,21 @@ export default function AppliedElectricityPage() {
+                               <span className="font-bold text-slate-500 w-6">{letter}.</span>
+                               <span className="flex-1 text-slate-800">{choice}</span>
+                             </button>
+                           );
+                         })
+                       : [
+                           { label: 'True', value: true },
+                           { label: 'False', value: false },
+                         ].map((opt) => {
+                           const isSelected = sel === opt.value;
+-                          const isAnswer = opt.value === q.correctAnswer;
++                          const isAnswer = q.type === 'tf' && opt.value === q.correctAnswer;
+                           let cls =
+                             'w-full text-left p-3 border rounded-lg transition-colors flex items-center gap-3';
+                           if (hasAnswered) {
+                             if (isAnswer) cls += ' border-green-500 bg-green-50';
+                             else if (isSelected) cls += ' border-red-500 bg-red-50';
+                             else cls += ' border-slate-200 bg-white';
+                           } else if (isSelected) cls += ' border-sky-500 bg-sky-50';
+                           else cls += ' border-slate-200 hover:border-sky-300 hover:bg-slate-50';
+                           return (
+                             <button

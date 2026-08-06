@@ -1,0 +1,132 @@
+# Review package: 3b2ad850d7cbca09a15feb1ec683890df0355901..HEAD
+
+## Commits
+24f048a fix(applied-electricity): dcCircuits bank — decompound TF stems, gloss gaps
+
+## Files changed
+ lib/aeBankDcCircuits.ts | 18 +++++++++---------
+ 1 file changed, 9 insertions(+), 9 deletions(-)
+
+## Diff
+diff --git a/lib/aeBankDcCircuits.ts b/lib/aeBankDcCircuits.ts
+index 342686c..09b576c 100644
+--- a/lib/aeBankDcCircuits.ts
++++ b/lib/aeBankDcCircuits.ts
+@@ -122,21 +122,21 @@ const mcqs: MCQuestion[] = [
+   },
+   {
+     id: 'aedc-010',
+     topic: 'dcCircuits',
+     type: 'mcq',
+     prompt:
+       'A 20 V source is connected across two resistors in series: 30 Ω and 70 Ω. What voltage appears across the 70 Ω resistor?',
+     choices: ['6 V', '14 V', '20 V', '10 V'],
+     correctIndex: 1,
+     rationale:
+-      'Using the voltage-divider rule, the share of voltage (electrical push) across one resistor equals its own resistance (opposition to current flow) divided by the total series resistance, times the source voltage: 20 V × (70 Ω ÷ 100 Ω) = 14 V.',
++      'Using the voltage-divider rule, the share of voltage (electrical push) across one resistor equals its own resistance (opposition to current flow) divided by the total resistance of the series (components connected end to end, so the same current flows through each) chain, times the source voltage: 20 V × (70 Ω ÷ 100 Ω) = 14 V.',
+   },
+   {
+     id: 'aedc-011',
+     topic: 'dcCircuits',
+     type: 'mcq',
+     prompt:
+       'Two resistors are connected in parallel and share a total incoming current. Which statement about how that current divides between them is correct?',
+     choices: [
+       'The branch with the larger resistance carries the larger share of the current',
+       'Both branches always carry exactly equal current, regardless of resistance',
+@@ -149,21 +149,21 @@ const mcqs: MCQuestion[] = [
+   },
+   {
+     id: 'aedc-012',
+     topic: 'dcCircuits',
+     type: 'mcq',
+     prompt:
+       'A total current of 8 A splits between two resistors wired in parallel: 4 Ω and 12 Ω. How much current flows through the 4 Ω resistor?',
+     choices: ['2 A', '4 A', '8 A', '6 A'],
+     correctIndex: 3,
+     rationale:
+-      'For two resistors in parallel (sharing the same voltage), the current-divider rule sends more current down the branch with less resistance (opposition to current flow): the current through the 4 Ω resistor is 8 A × (12 Ω ÷ (4 Ω + 12 Ω)) = 8 A × 0.75 = 6 A.',
++      'For two resistors in parallel (sharing the same voltage), the current-divider rule — which describes how a shared total current splits between parallel branches in inverse proportion to their resistance — sends more current down the branch with less resistance (opposition to current flow): the current through the 4 Ω resistor is 8 A × (12 Ω ÷ (4 Ω + 12 Ω)) = 8 A × 0.75 = 6 A.',
+   },
+   {
+     id: 'aedc-013',
+     topic: 'dcCircuits',
+     type: 'mcq',
+     prompt:
+       'Which equation gives the electrical power dissipated by a resistor in terms of the voltage across it and the current through it?',
+     choices: ['P = VI', 'P = V + I', 'P = V/I', 'P = V - I'],
+     correctIndex: 0,
+     rationale:
+@@ -229,21 +229,21 @@ const mcqs: MCQuestion[] = [
+     prompt:
+       "A real battery is often modeled as an ideal voltage source in series with a small internal resistance (built-in resistance inside the source itself). What is the effect of this internal resistance when the battery supplies current to a circuit?",
+     choices: [
+       'It has no effect unless the battery is short-circuited',
+       'Some of the source’s driving voltage is used up inside the battery itself, so less voltage is available at its terminals',
+       'It increases the voltage delivered to the external circuit',
+       'It only matters for alternating current, not direct current',
+     ],
+     correctIndex: 1,
+     rationale:
+-      'A real source’s internal resistance (built-in opposition to current flow inside the source itself) uses up some of the source’s driving voltage whenever current (flow of charge) flows, leaving less voltage available at the terminals for the rest of the circuit.',
++      'A real source’s internal resistance (built-in opposition to current flow inside the source itself) uses up some of its driving voltage (the electrical push that drives current) whenever current (flow of charge) flows, leaving less voltage available at the terminals for the rest of the circuit.',
+   },
+   {
+     id: 'aedc-019',
+     topic: 'dcCircuits',
+     type: 'mcq',
+     prompt:
+       'A battery has an emf (its full driving voltage measured with no current flowing) of 9 V and an internal resistance of 0.5 Ω. While it delivers 2 A to a circuit, what is its terminal voltage (the voltage actually available at its output terminals)?',
+     choices: ['9 V', '9.5 V', '8 V', '4.5 V'],
+     correctIndex: 2,
+     rationale:
+@@ -305,42 +305,42 @@ const tfs: TFQuestion[] = [
+     prompt:
+       'Connecting two resistors in parallel always gives a total resistance greater than either resistor alone.',
+     correctAnswer: false,
+     rationale:
+       'False. Connecting resistors in parallel (wired across the same two points so they share the same voltage) actually gives a total resistance (opposition to current flow) that is always smaller than the smallest individual resistor, because the extra path gives current more ways to flow.',
+   },
+   {
+     id: 'aedc-025',
+     topic: 'dcCircuits',
+     type: 'tf',
+-    prompt: 'An open circuit has zero resistance and allows current to flow freely.',
++    prompt: 'An open circuit behaves like a path of zero resistance.',
+     correctAnswer: false,
+     rationale:
+-      'False. An open circuit (a break in the current path) behaves like an infinitely large resistance (opposition to current flow), so it blocks current rather than letting it flow freely; a break stops current, it does not free it.',
++      'False. An open circuit (a break in the current path) actually behaves like an infinitely large resistance (opposition to current flow), not zero resistance — the break blocks the path rather than removing any opposition to it.',
+   },
+   {
+     id: 'aedc-026',
+     topic: 'dcCircuits',
+     type: 'tf',
+-    prompt: 'A short circuit provides a path of very low resistance, so a large current can flow through it.',
++    prompt: 'A short circuit is a path of very low resistance.',
+     correctAnswer: true,
+     rationale:
+-      'True. A short circuit (an unintended path with very low resistance, or opposition to current flow) lets current rise well above normal, because there is almost nothing to hold it back.',
++      'True. A short circuit (an unintended path with very low resistance, or opposition to current flow) is defined by that near-zero resistance; because there is almost nothing to hold it back, the current (the flow of electric charge through it) can rise well above normal.',
+   },
+   {
+     id: 'aedc-027',
+     topic: 'dcCircuits',
+     type: 'tf',
+-    prompt: 'Conductance is measured in siemens and equals the reciprocal of resistance.',
++    prompt: 'Conductance is the mathematical reciprocal of resistance.',
+     correctAnswer: true,
+     rationale:
+-      'True. Conductance is the mathematical reciprocal of resistance (opposition to current flow) — it measures how easily current can pass — and its unit is the siemens (S).',
++      'True. Conductance measures how easily current can pass through a component, and it is defined as the reciprocal of resistance (opposition to current flow) — its unit, incidentally, is the siemens (S).',
+   },
+   {
+     id: 'aedc-028',
+     topic: 'dcCircuits',
+     type: 'tf',
+     prompt:
+       'By convention, current is assumed to flow from the negative terminal to the positive terminal through the external circuit.',
+     correctAnswer: false,
+     rationale:
+       'False. By convention, current (the flow of electric charge) is taken to flow from the positive terminal of a source, through the external circuit, to the negative terminal — the opposite of what this statement claims.',

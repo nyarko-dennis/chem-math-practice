@@ -1,0 +1,439 @@
+# Review package: 24f048aee4193a85bdf6fbbd8386d3e93c771c65..HEAD
+
+## Commits
+83f9cd7 feat(applied-electricity): networkTheorems MCQ/TF bank (30)
+
+## Files changed
+ lib/aeBankNetworkTheorems.ts | 423 +++++++++++++++++++++++++++++++++++++++++++
+ 1 file changed, 423 insertions(+)
+
+## Diff
+diff --git a/lib/aeBankNetworkTheorems.ts b/lib/aeBankNetworkTheorems.ts
+new file mode 100644
+index 0000000..14dfc66
+--- /dev/null
++++ b/lib/aeBankNetworkTheorems.ts
+@@ -0,0 +1,423 @@
++import type { MCQuestion, TFQuestion, AppliedElectricityQuestion } from './appliedElectricityTypes.ts';
++
++// Network Theorems bank: KCL, KVL, Thevenin, Norton, source transformation,
++// superposition (including when it does not apply), maximum power transfer,
++// reciprocity (idea only), Millman's theorem (idea only).
++// 22 MCQ + 8 TF (exactly 4 true / 4 false).
++
++const mcqs: MCQuestion[] = [
++  {
++    id: 'aent-001',
++    topic: 'networkTheorems',
++    type: 'mcq',
++    prompt:
++      "Kirchhoff's Current Law (KCL) (a rule about the currents meeting at a node, a point where two or more wires join) describes what happens at a node. Which statement is KCL?",
++    choices: [
++      'The current into a node is always larger than the current out of it',
++      'The voltage at a node is always zero',
++      'The algebraic sum of all currents meeting at a node equals zero',
++      'The resistance at a node equals the sum of all connected resistors',
++    ],
++    correctIndex: 2,
++    rationale:
++      "KCL states that if you add up all the currents (flows of electric charge) meeting at a node (a junction where two or more wires connect), counting current flowing in as positive and current flowing out as negative, the total is zero. In other words, whatever current arrives at a node must leave it.",
++  },
++  {
++    id: 'aent-002',
++    topic: 'networkTheorems',
++    type: 'mcq',
++    prompt:
++      "What physical principle is Kirchhoff's Current Law (KCL) (the rule that current into a node, a junction where wires meet, must equal current out) based on?",
++    choices: [
++      'Conservation of charge: electric charge cannot be created or destroyed',
++      'Conservation of momentum',
++      "Ohm's law",
++      'Conservation of mass',
++    ],
++    correctIndex: 0,
++    rationale:
++      "KCL rests on conservation of charge, the fact that electric charge (the property that makes current flow) cannot be created or destroyed at a point. Since charge cannot pile up or vanish at a node (a junction of wires), the current flowing in must equal the current flowing out.",
++  },
++  {
++    id: 'aent-003',
++    topic: 'networkTheorems',
++    type: 'mcq',
++    prompt:
++      "Kirchhoff's Voltage Law (KVL) (a rule about voltages around a closed loop, a path through the circuit that returns to its starting point) makes a statement about any closed loop. Which of these is that statement?",
++    choices: [
++      'The total resistance in the loop must equal zero',
++      'The current is the same at every point in the loop',
++      'The largest voltage source in the loop determines the total',
++      'The algebraic sum of all voltage drops and rises around the loop equals zero',
++    ],
++    correctIndex: 3,
++    rationale:
++      "KVL states that if you travel all the way around any closed loop (a path in the circuit that returns to its starting point), adding up every voltage drop (a fall in electrical push across a component) and every voltage rise (such as across a source) with their correct signs, the total comes out to zero.",
++  },
++  {
++    id: 'aent-004',
++    topic: 'networkTheorems',
++    type: 'mcq',
++    prompt: "What conservation principle is Kirchhoff's Voltage Law (KVL) (the rule that voltages sum to zero around a closed loop) based on?",
++    choices: [
++      'Conservation of charge',
++      'Conservation of energy: energy cannot be created or destroyed, only converted',
++      'Conservation of mass',
++      'Conservation of momentum',
++    ],
++    correctIndex: 1,
++    rationale:
++      "KVL is grounded in conservation of energy, the principle that energy cannot be created or destroyed, only converted from one form to another. Every unit of energy a charge gains from a source around a loop (a closed path in the circuit) must be given up again as it passes through the other components.",
++  },
++  {
++    id: 'aent-005',
++    topic: 'networkTheorems',
++    type: 'mcq',
++    prompt:
++      "Thevenin's theorem applies to a linear circuit (a network built only from components, such as resistors, whose current is directly proportional to voltage) viewed from two output terminals. What does the theorem let you do?",
++    choices: [
++      'Replace the whole network with a single voltage source in series with a resistor',
++      'Replace the whole network with two resistors in parallel only',
++      'Ignore all sources in the circuit',
++      'Replace the whole network with a single resistor and nothing else',
++    ],
++    correctIndex: 0,
++    rationale:
++      "Thevenin's theorem says that any linear circuit (a network of components whose current and voltage are directly proportional), no matter how complicated, can be replaced, as seen from two terminals, by one equivalent voltage source in series with one equivalent resistor. This simplified stand-in is called the Thevenin equivalent circuit.",
++  },
++  {
++    id: 'aent-006',
++    topic: 'networkTheorems',
++    type: 'mcq',
++    prompt:
++      "In a Thevenin equivalent circuit (a simplified stand-in for a more complex linear network, made of one voltage source and one series resistor), what does the Thevenin voltage (Vth) represent?",
++    choices: [
++      'The voltage across the load resistor while it is connected and drawing current',
++      'The current that flows if the two terminals are joined by a wire',
++      'The sum of every source voltage in the original circuit',
++      'The open-circuit voltage measured between the two terminals with the load disconnected',
++    ],
++    correctIndex: 3,
++    rationale:
++      "The Thevenin voltage (Vth) is the open-circuit voltage: the voltage you would measure between the two terminals of the network after removing the load (the component that would normally draw power from those terminals), so no current flows out of the terminals.",
++  },
++  {
++    id: 'aent-007',
++    topic: 'networkTheorems',
++    type: 'mcq',
++    prompt:
++      "How is the Thevenin resistance (Rth) (the single resistance that represents a whole network as seen from two output terminals) worked out?",
++    choices: [
++      'By dividing the supply voltage by the current through the load',
++      'By deactivating every independent source (voltage sources replaced by plain wires, current sources replaced by breaks in the wire) and finding the equivalent resistance looking into the terminals',
++      'By measuring the voltage across the load while it is connected',
++      'By adding up every resistor value in the circuit regardless of how they are connected',
++    ],
++    correctIndex: 1,
++    rationale:
++      "The Thevenin resistance (Rth) is found by deactivating (turning off) every independent source in the network, meaning each voltage source is replaced by a plain connecting wire and each current source is replaced by a break, then calculating the equivalent resistance seen looking into the two terminals.",
++  },
++  {
++    id: 'aent-008',
++    topic: 'networkTheorems',
++    type: 'mcq',
++    prompt:
++      "Norton's theorem also simplifies a linear circuit (a network whose current is directly proportional to voltage) as seen from two terminals, but with a different equivalent form than Thevenin's theorem. What is that Norton equivalent form?",
++    choices: [
++      'A single voltage source in series with a resistor',
++      'Two voltage sources connected in series',
++      'A single current source in parallel with a resistor',
++      'A single resistor with no source at all',
++    ],
++    correctIndex: 2,
++    rationale:
++      "Norton's theorem replaces the network, as seen from two terminals, with a single current source in parallel with a single resistor. This is called the Norton equivalent circuit, and it behaves exactly like the original network at those two terminals.",
++  },
++  {
++    id: 'aent-009',
++    topic: 'networkTheorems',
++    type: 'mcq',
++    prompt:
++      "What is the Norton current (In) (the current source value in a Norton equivalent circuit, made of one current source in parallel with one resistor) equal to?",
++    choices: [
++      'The short-circuit current: the current that would flow if the two terminals were joined directly by a wire',
++      'The open-circuit voltage at the two terminals',
++      'The current through the load resistor during normal operation',
++      'The average of every source current in the circuit',
++    ],
++    correctIndex: 0,
++    rationale:
++      "The Norton current (In) is the short-circuit current: the current that would flow between the two terminals if they were connected directly by a wire (a path of essentially zero resistance), with the rest of the network left as it is.",
++  },
++  {
++    id: 'aent-010',
++    topic: 'networkTheorems',
++    type: 'mcq',
++    prompt:
++      "How does the Norton resistance (Rn, the resistance in a Norton equivalent circuit) compare with the Thevenin resistance (Rth) of the same network, where both are the equivalent resistance seen looking into the terminals with all sources deactivated?",
++    choices: [
++      'Rn is always twice Rth',
++      'Rn is always half of Rth',
++      'There is no fixed relationship between them',
++      'Rn and Rth are always equal',
++    ],
++    correctIndex: 3,
++    rationale:
++      "The Norton resistance (Rn) and the Thevenin resistance (Rth) of the same network are always equal, because both are found the same way: looking into the two terminals with every independent source deactivated (voltage sources replaced by wires, current sources replaced by breaks).",
++  },
++  {
++    id: 'aent-011',
++    topic: 'networkTheorems',
++    type: 'mcq',
++    prompt:
++      "A Thevenin equivalent circuit (voltage source Vth in series with resistance Rth) is converted into its equivalent Norton circuit (current source In in parallel with the same resistance) through source transformation, the process of swapping between the two equivalent forms. What is In in terms of Vth and Rth?",
++    choices: [
++      'In = Vth + Rth',
++      'In = Rth / Vth',
++      'In = Vth x Rth',
++      'In = Vth / Rth',
++    ],
++    correctIndex: 3,
++    rationale:
++      "Source transformation converts a Thevenin equivalent (voltage source Vth in series with resistance Rth) into a Norton equivalent (current source In in parallel with the same resistance) using In = Vth / Rth, since the short-circuit current at the terminals equals the open-circuit voltage divided by the series resistance.",
++  },
++  {
++    id: 'aent-012',
++    topic: 'networkTheorems',
++    type: 'mcq',
++    prompt:
++      "The superposition theorem applies to a linear circuit (a network in which current is directly proportional to voltage) that has more than one independent source (a voltage or current source whose value does not depend on any other part of the circuit). What does the theorem let you find?",
++    choices: [
++      'The total voltage or current at a point by adding the contributions from each source acting alone, with the other sources deactivated',
++      'The total power delivered by simply adding the power from each source acting alone',
++      'The answer by keeping only the largest source and ignoring the rest',
++      'The answer by multiplying together the effects of each source',
++    ],
++    correctIndex: 0,
++    rationale:
++      "Superposition finds the total voltage or current at any point by working out the contribution of each independent source (a source whose value does not depend on other parts of the circuit) on its own, with every other source deactivated, and then adding those contributions together.",
++  },
++  {
++    id: 'aent-013',
++    topic: 'networkTheorems',
++    type: 'mcq',
++    prompt:
++      "When applying the superposition theorem (analysing a linear circuit one independent source at a time) and temporarily deactivating all sources except one, what happens to the inactive voltage sources?",
++    choices: [
++      'They are doubled in value',
++      'They are removed entirely, leaving a gap in the wire',
++      'They are replaced by a short circuit: a plain connecting wire carrying 0 V',
++      'They are replaced by a resistor equal to the load resistance',
++    ],
++    correctIndex: 2,
++    rationale:
++      "During superposition, every inactive voltage source (a source not currently being analysed) is replaced by a short circuit, meaning a plain wire that contributes 0 V, since a deactivated voltage source is treated as having no voltage of its own.",
++  },
++  {
++    id: 'aent-014',
++    topic: 'networkTheorems',
++    type: 'mcq',
++    prompt:
++      "In the same superposition procedure, what happens to an inactive independent current source (a source whose current value does not depend on any other part of the circuit)?",
++    choices: [
++      'It is replaced by an open circuit: a break in the wire carrying 0 A',
++      'It is left connected and unchanged',
++      'It is replaced by a short circuit',
++      "It is replaced by a resistor equal to the source's internal value",
++    ],
++    correctIndex: 0,
++    rationale:
++      "During superposition, every inactive current source is replaced by an open circuit, meaning a break in the wire that carries 0 A, since a deactivated current source is treated as supplying no current at all.",
++  },
++  {
++    id: 'aent-015',
++    topic: 'networkTheorems',
++    type: 'mcq',
++    prompt:
++      "Why can't the superposition theorem be used to calculate power directly in a circuit with several independent sources?",
++    choices: [
++      'Power depends on the square of current or voltage, so the power contributed by separate sources cannot simply be added together',
++      'Power calculations are only possible for AC circuits',
++      'Superposition only works for circuits with a single resistor',
++      'Power is always zero whenever more than one source is present',
++    ],
++    correctIndex: 0,
++    rationale:
++      "Power involves a squared term (P = I^2R or P = V^2/R), and squaring is not an additive operation, so the power found from each source acting alone cannot simply be added up to get the true total power. Superposition only works for quantities, like voltage and current, that add directly.",
++  },
++  {
++    id: 'aent-016',
++    topic: 'networkTheorems',
++    type: 'mcq',
++    prompt:
++      "The superposition theorem only works for linear circuits (networks in which current is directly proportional to voltage). Why does it fail for a circuit that contains a non-linear element (a component, such as a diode, whose current is not directly proportional to its voltage)?",
++    choices: [
++      'Non-linear elements always have infinite resistance',
++      'The direct proportionality between cause and effect that superposition depends on does not hold for a non-linear element',
++      'Non-linear elements can only be used with direct current',
++      'Non-linear elements have no effect on the circuit at all',
++    ],
++    correctIndex: 1,
++    rationale:
++      "Superposition relies on a direct, proportional relationship between each source and the response it produces. A non-linear element (a component whose current is not directly proportional to its voltage, such as a diode) breaks that proportionality, so contributions from separate sources can no longer simply be added.",
++  },
++  {
++    id: 'aent-017',
++    topic: 'networkTheorems',
++    type: 'mcq',
++    prompt:
++      "For maximum power transfer (delivering the greatest possible power) from a source to a load resistor (the component receiving power from the rest of the circuit), what must the load resistance (RL) equal, in terms of the Thevenin resistance (Rth) of the rest of the circuit as seen from the load terminals?",
++    choices: [
++      'RL = 0',
++      'RL = 2 x Rth',
++      'RL must be as large as possible, ideally infinite',
++      'RL = Rth',
++    ],
++    correctIndex: 3,
++    rationale:
++      "Maximum power transfer occurs when the load resistance (RL, the resistance of the component receiving power) equals the Thevenin resistance (Rth, the equivalent resistance of the rest of the circuit as seen from the load's terminals): RL = Rth.",
++  },
++  {
++    id: 'aent-018',
++    topic: 'networkTheorems',
++    type: 'mcq',
++    prompt:
++      "The reciprocity theorem applies to a linear circuit (a network in which current is directly proportional to voltage) that has a single source. In simple terms, what does it say?",
++    choices: [
++      'If the positions of a single voltage source and an ammeter (a device that measures current) are swapped, the ammeter reading stays the same',
++      'Every circuit can always be reduced to a single resistor',
++      'All currents in the circuit must be equal to each other',
++      'Power delivered by the source is always the same regardless of the load',
++    ],
++    correctIndex: 0,
++    rationale:
++      "The reciprocity theorem, in its basic idea, says that in a linear circuit (a network where current is directly proportional to voltage) with just one source, swapping the location of that source with the location of an ammeter (a current-measuring device) leaves the ammeter's reading unchanged.",
++  },
++  {
++    id: 'aent-019',
++    topic: 'networkTheorems',
++    type: 'mcq',
++    prompt: "Millman's theorem gives a quick way to find the voltage across which kind of arrangement?",
++    choices: [
++      'A single isolated resistor with no source attached',
++      'One loop containing only resistors and no sources at all',
++      'Several voltage sources, each with its own series resistance, all connected in parallel between the same two nodes (junctions where wires meet)',
++      'Two resistors connected in series with a single source',
++    ],
++    correctIndex: 2,
++    rationale:
++      "Millman's theorem, in its basic idea, provides a shortcut formula for the voltage between two nodes (junctions where multiple wires meet) when several voltage sources, each in series with its own resistor, are all connected in parallel (side by side, sharing the same two end points) between those nodes.",
++  },
++  {
++    id: 'aent-020',
++    topic: 'networkTheorems',
++    type: 'mcq',
++    prompt:
++      "A 12 V battery in series with a 4 Ohm resistor feeds a pair of terminals with no load resistor connected. What is the Thevenin voltage (Vth), the open-circuit voltage at those terminals?",
++    choices: ['0 V', '3 V', '48 V', '12 V'],
++    correctIndex: 3,
++    rationale:
++      "With no load connected, the terminals are open, so no current flows through the circuit. With zero current, there is no voltage drop (fall in electrical push) across the 4 Ohm resistor, so the full 12 V of the battery appears at the terminals as the Thevenin voltage (Vth).",
++  },
++  {
++    id: 'aent-021',
++    topic: 'networkTheorems',
++    type: 'mcq',
++    prompt:
++      "A network's Thevenin resistance (Rth), found by deactivating all independent sources and combining the remaining resistors, works out to 6 Ohm. What is the Norton resistance (Rn) of the equivalent Norton circuit for that same network?",
++    choices: ['36 Ohm', '3 Ohm', '12 Ohm', '6 Ohm'],
++    correctIndex: 3,
++    rationale:
++      "The Norton resistance (Rn) of a network is always equal to its Thevenin resistance (Rth), since both are found the same way: looking into the terminals with every independent source deactivated. Here Rth = 6 Ohm, so Rn = 6 Ohm too.",
++  },
++  {
++    id: 'aent-022',
++    topic: 'networkTheorems',
++    type: 'mcq',
++    prompt:
++      "A source network has a Thevenin resistance (Rth) of 8 Ohm. What value of load resistance (RL, the resistance of the component receiving power) delivers the maximum possible power to that load?",
++    choices: ['4 Ohm', '8 Ohm', '16 Ohm', '0 Ohm'],
++    correctIndex: 1,
++    rationale:
++      "Maximum power transfer happens when the load resistance (RL) equals the Thevenin resistance (Rth) of the rest of the circuit. Since Rth = 8 Ohm here, the load resistance that draws maximum power is also 8 Ohm.",
++  },
++];
++
++const tfs: TFQuestion[] = [
++  {
++    id: 'aent-023',
++    topic: 'networkTheorems',
++    type: 'tf',
++    prompt: "Kirchhoff's Current Law (KCL) is based on the conservation of charge.",
++    correctAnswer: true,
++    rationale:
++      "True. KCL (the rule that the currents meeting at a node, a junction where wires join, must balance) follows directly from conservation of charge, the principle that electric charge cannot be created or destroyed at a point.",
++  },
++  {
++    id: 'aent-024',
++    topic: 'networkTheorems',
++    type: 'tf',
++    prompt: "Kirchhoff's Voltage Law (KVL) is based on the conservation of charge.",
++    correctAnswer: false,
++    rationale:
++      "False. KVL (the rule that voltages sum to zero around a closed loop, a path in the circuit that returns to its start) is based on conservation of energy, not conservation of charge; that is what KCL is based on.",
++  },
++  {
++    id: 'aent-025',
++    topic: 'networkTheorems',
++    type: 'tf',
++    prompt:
++      'In a Thevenin equivalent circuit, the Thevenin resistance is found with all independent sources deactivated.',
++    correctAnswer: true,
++    rationale:
++      "True. Finding the Thevenin resistance (the single resistance representing a network as seen from two terminals) requires deactivating every independent source first, replacing voltage sources with plain wires and current sources with breaks, before combining the remaining resistors.",
++  },
++  {
++    id: 'aent-026',
++    topic: 'networkTheorems',
++    type: 'tf',
++    prompt: 'The Norton current equals the short-circuit current measured at the two terminals of the network.',
++    correctAnswer: true,
++    rationale:
++      "True. The Norton current (the current source value in a Norton equivalent circuit) is defined as the short-circuit current: the current that flows if the two output terminals are joined directly by a wire.",
++  },
++  {
++    id: 'aent-027',
++    topic: 'networkTheorems',
++    type: 'tf',
++    prompt: 'The Norton resistance of a network is always different from its Thevenin resistance.',
++    correctAnswer: false,
++    rationale:
++      "False. The Norton resistance and the Thevenin resistance of the same network are always equal, since both are the equivalent resistance found looking into the same two terminals with all independent sources deactivated.",
++  },
++  {
++    id: 'aent-028',
++    topic: 'networkTheorems',
++    type: 'tf',
++    prompt:
++      'Maximum power is transferred to a load resistor when the load resistance equals the Thevenin resistance of the source network.',
++    correctAnswer: true,
++    rationale:
++      "True. The maximum power transfer condition states that a load resistor (the component receiving power) draws the greatest possible power from a source network when its resistance equals the Thevenin resistance (the equivalent resistance of the rest of the circuit) seen from the load's terminals.",
++  },
++  {
++    id: 'aent-029',
++    topic: 'networkTheorems',
++    type: 'tf',
++    prompt: 'The superposition theorem can be used to calculate power directly by adding the power contributed by each independent source acting alone.',
++    correctAnswer: false,
++    rationale:
++      "False. Power depends on the square of current or voltage, so it cannot be found by simply adding the power contributed by each independent source (a source whose value does not depend on the rest of the circuit) acting alone; only voltages and currents can be added this way.",
++  },
++  {
++    id: 'aent-030',
++    topic: 'networkTheorems',
++    type: 'tf',
++    prompt: 'The superposition theorem applies to circuits containing non-linear elements such as diodes.',
++    correctAnswer: false,
++    rationale:
++      "False. The superposition theorem only applies to linear circuits (networks in which current is directly proportional to voltage); a non-linear element, such as a diode, breaks that proportionality, so superposition cannot be used.",
++  },
++];
++
++export const networkTheoremsQuestions: AppliedElectricityQuestion[] = [...mcqs, ...tfs];

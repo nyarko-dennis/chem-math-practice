@@ -1,0 +1,419 @@
+# Review package: 1b8b868c68589a00f9d99e57d345a1eef79abe0c..HEAD
+
+## Commits
+696f059 feat(applied-electricity): inductors MCQ/TF bank (30)
+
+## Files changed
+ lib/aeBankInductors.ts | 403 +++++++++++++++++++++++++++++++++++++++++++++++++
+ 1 file changed, 403 insertions(+)
+
+## Diff
+diff --git a/lib/aeBankInductors.ts b/lib/aeBankInductors.ts
+new file mode 100644
+index 0000000..f20c1ca
+--- /dev/null
++++ b/lib/aeBankInductors.ts
+@@ -0,0 +1,403 @@
++import type { MCQuestion, TFQuestion, AppliedElectricityQuestion } from './appliedElectricityTypes.ts';
++
++// Inductors bank: definition/energy storage in a magnetic field, induced emf
++// v = L(di/dt) and Lenz's law, series/parallel combination rules (like resistors,
++// opposite of capacitors), energy E=½LI², DC-short/AC-opposing behaviour, the RL
++// time constant, current continuity, self vs mutual inductance, the henry, and
++// factors affecting inductance (turns, core material). 22 MCQ + 8 TF (exactly
++// 4 true / 4 false).
++//
++// The source lecture deck has no standalone "inductors" section at all - it never
++// defines an inductor, never gives v = L(di/dt), E = ½LI², the series/parallel
++// rules, the RL time constant, or the henry. The deck only grounds a few adjacent
++// ideas: it lists inductors as a passive component alongside resistors and
++// capacitors (slide 11); it discusses "inductive loads" absorbing energy that is
++// "stored in the device's magnetic or electric field, only to return this energy
++// back to the source" during an AC cycle, with current lagging voltage (slide 89,
++// 411); and it covers mutual induction and electromagnetic induction in the
++// transformer and generator sections (slides 63-66, 261, 587-588). Every specific
++// fact below - the definition, v = L(di/dt), Lenz's law wording, the series/
++// parallel combination rules, E = ½LI², the DC-short/AC-opposition behaviour, the
++// RL time constant τ = L/R, current continuity, self- vs mutual inductance, the
++// henry, and the turns/core-material effects - is a standard first-year fact not
++// found in the extract.
++
++const mcqs: MCQuestion[] = [
++  {
++    id: 'aeind-001',
++    topic: 'inductors',
++    type: 'mcq',
++    prompt:
++      "An inductor (a coil-shaped component that opposes a change in the current flowing through it) stores the energy it holds mainly as a ______ once current flows through it.",
++    choices: [
++      'An electric field between two separated plates',
++      'A magnetic field around and through its coil',
++      'Chemical energy in an electrolyte',
++      'Heat dissipated in its winding resistance',
++    ],
++    correctIndex: 1,
++    rationale:
++      "An inductor (a coil-shaped component that opposes a change in the current flowing through it) stores the energy it holds as a magnetic field (a region of magnetic influence set up by the current flowing through its coil) - not as an electric field, chemical energy, or heat.",
++  },
++  {
++    id: 'aeind-002',
++    topic: 'inductors',
++    type: 'mcq',
++    prompt: "Which unit measures inductance (a measure of how strongly a coil opposes a change in the current through it)?",
++    choices: ['Farad', 'Ohm', 'Weber', 'Henry'],
++    correctIndex: 3,
++    rationale:
++      'Inductance (how strongly a coil opposes a change in the current through it) is measured in henries (H); the farad measures capacitance, the ohm measures resistance (opposition to current flow), and the weber measures magnetic flux.',
++  },
++  {
++    id: 'aeind-003',
++    topic: 'inductors',
++    type: 'mcq',
++    prompt:
++      "Which equation correctly gives the induced emf (electromotive force, the voltage a changing magnetic field generates) v across an inductor (coil-shaped, current-opposing component) with inductance L, in terms of the rate of change of current di/dt through it?",
++    choices: [
++      'v = L(di/dt)',
++      'v = L / (di/dt)',
++      'v = (di/dt) / L',
++      'v = L × i',
++    ],
++    correctIndex: 0,
++    rationale:
++      'The defining relationship for an inductor (coil-shaped, current-opposing component) is v = L(di/dt): the induced emf (electromotive force, the voltage a changing magnetic field generates) equals the inductance (opposition to a change in current) L multiplied by the rate at which the current i is changing over time.',
++  },
++  {
++    id: 'aeind-004',
++    topic: 'inductors',
++    type: 'mcq',
++    prompt:
++      "According to Lenz's law (the rule that an induced voltage opposes the change that produced it), the emf (electromotive force, induced voltage) that an inductor (coil-shaped, current-opposing component) generates when its current changes always acts to...",
++    choices: [
++      'reinforce and speed up the change in current',
++      'have no effect on the current at all',
++      'oppose the change in current that caused it',
++      'reverse the polarity of the supply permanently',
++    ],
++    correctIndex: 2,
++    rationale:
++      "Lenz's law (the rule that an induced voltage opposes the change that produced it) means the emf (electromotive force, induced voltage) an inductor (coil-shaped, current-opposing component) generates always opposes the change in current that caused it, not reinforces or ignores it.",
++  },
++  {
++    id: 'aeind-005',
++    topic: 'inductors',
++    type: 'mcq',
++    prompt:
++      "Which expression gives the energy E stored in an inductor (coil-shaped component that stores energy in a magnetic field) carrying a steady current I?",
++    choices: ['E = LI', 'E = L / I²', 'E = ½LI²', 'E = ½L²I'],
++    correctIndex: 2,
++    rationale:
++      'The energy (in joules) stored in an inductor (coil-shaped, current-opposing component) carrying a steady current is E = ½LI², where L is inductance (opposition to a change in current) and I is the current (flow of electric charge).',
++  },
++  {
++    id: 'aeind-006',
++    topic: 'inductors',
++    type: 'mcq',
++    prompt:
++      "An inductor (coil-shaped, energy-storing component) with an inductance (opposition to a change in current) of 4 H carries a steady current (flow of electric charge) of 3 A. How much energy does it store?",
++    choices: ['6 J', '18 J', '12 J', '24 J'],
++    correctIndex: 1,
++    rationale:
++      'Using E = ½LI²: energy (in joules) equals half the inductance (opposition to a change in current) multiplied by the current (flow of electric charge) squared, so E = ½ × 4 H × 3² = 18 J.',
++  },
++  {
++    id: 'aeind-007',
++    topic: 'inductors',
++    type: 'mcq',
++    prompt:
++      "Two inductors (coil-shaped, current-opposing components), 5 H and 7 H, are connected in series (one after another so the same current flows through both) with no shared magnetic coupling between them. What is their combined inductance?",
++    choices: ['2.9 H', '35 H', '1.4 H', '12 H'],
++    correctIndex: 3,
++    rationale:
++      'Inductors (coil-shaped, current-opposing components) in series (one after another, same current through each) with no shared coupling simply add: the combined inductance (opposition to a change in current) is 5 H + 7 H = 12 H.',
++  },
++  {
++    id: 'aeind-008',
++    topic: 'inductors',
++    type: 'mcq',
++    prompt:
++      "How do two inductors (coil-shaped, current-opposing components) combine when connected in parallel (side by side across the same two points)?",
++    choices: [
++      "Reciprocally, the same way two resistors in parallel combine, giving a smaller combined inductance",
++      'They add together directly, the same way two capacitors in parallel combine',
++      'Only the larger inductor matters and the smaller one is ignored',
++      'They cancel out to a combined inductance of zero',
++    ],
++    correctIndex: 0,
++    rationale:
++      "Inductors (coil-shaped, current-opposing components) in parallel (side by side across the same two points) combine reciprocally, just like resistors in parallel, giving a combined inductance (opposition to a change in current) smaller than the smallest individual inductor - this is the opposite of how capacitors combine in parallel.",
++  },
++  {
++    id: 'aeind-009',
++    topic: 'inductors',
++    type: 'mcq',
++    prompt:
++      "Two identical 6 H inductors (coil-shaped, current-opposing components) are connected in parallel (side by side across the same two points). What is the combined inductance?",
++    choices: ['12 H', '3 H', '6 H', '1.5 H'],
++    correctIndex: 1,
++    rationale:
++      'For two inductors (coil-shaped, current-opposing components) in parallel, the combined inductance (opposition to a change in current) is (6 × 6) / (6 + 6) = 36/12 = 3 H.',
++  },
++  {
++    id: 'aeind-010',
++    topic: 'inductors',
++    type: 'mcq',
++    prompt:
++      "In a circuit that has settled to a steady, unchanging DC (direct current, current that flows in one direction at a constant value) supply, an ideal inductor (coil-shaped, current-opposing component) behaves like a...",
++    choices: [
++      'open circuit (a break that blocks all current)',
++      "pure resistor equal only to its coil's wire resistance",
++      'short circuit (a very low-resistance path)',
++      'capacitor fully charged to the supply voltage',
++    ],
++    correctIndex: 2,
++    rationale:
++      'Once a DC (direct current, current flowing one way at a constant value) supply has settled to steady state, an ideal inductor (coil-shaped, current-opposing component) offers no opposition to the now-unchanging current and behaves like a short circuit (a very low-resistance path).',
++  },
++  {
++    id: 'aeind-011',
++    topic: 'inductors',
++    type: 'mcq',
++    prompt:
++      "Compared with its behaviour under steady DC (direct current, current flowing one way at a constant value), an inductor (coil-shaped, current-opposing component) offers ______ to a rapidly changing or alternating current.",
++    choices: [
++      'greater opposition',
++      'no additional opposition',
++      'less opposition',
++      'opposition only if its core is removed',
++    ],
++    correctIndex: 0,
++    rationale:
++      'An inductor (coil-shaped, current-opposing component) resists any change in the current through it, so a rapidly changing or alternating current meets far greater opposition from the inductor than a steady DC (direct current, current flowing one way at a constant value) current does.',
++  },
++  {
++    id: 'aeind-012',
++    topic: 'inductors',
++    type: 'mcq',
++    prompt:
++      "For a resistor-inductor (RL) circuit (a resistor and an inductor, a current-opposing component, in one loop), which expression gives the time constant τ - the characteristic time over which current builds up or decays?",
++    choices: ['τ = R/L', 'τ = LR', 'τ = 1/(LR)', 'τ = L/R'],
++    correctIndex: 3,
++    rationale:
++      'For an RL circuit (a resistor and an inductor, current-opposing component, in one loop), the time constant (the characteristic timescale over which current builds up or decays) is τ = L/R, where L is inductance and R is resistance (opposition to current flow).',
++  },
++  {
++    id: 'aeind-013',
++    topic: 'inductors',
++    type: 'mcq',
++    prompt:
++      "A series RL circuit (resistor and inductor, current-opposing component, in one loop) has an inductance (opposition to a change in current) of 2 H and a resistance (opposition to current flow) of 8 Ω. What is its time constant τ?",
++    choices: ['4 s', '16 s', '0.25 s', '0.5 s'],
++    correctIndex: 2,
++    rationale:
++      'The RL time constant (characteristic timescale over which current builds up or decays) is τ = L/R = 2 H ÷ 8 Ω = 0.25 s.',
++  },
++  {
++    id: 'aeind-014',
++    topic: 'inductors',
++    type: 'mcq',
++    prompt:
++      "A switch closes and current begins building up from zero in a series RL circuit (resistor and inductor, current-opposing component, in one loop) toward its final steady value. Roughly what fraction of that final current has been reached after one time constant τ has elapsed?",
++    choices: ['About 63%', '100%', '50%', 'About 37%'],
++    correctIndex: 0,
++    rationale:
++      'In a series RL circuit (resistor and inductor, current-opposing component, in one loop), the current rises to about 63% of its final steady value after one time constant τ (the characteristic build-up timescale) has passed, not the full value.',
++  },
++  {
++    id: 'aeind-015',
++    topic: 'inductors',
++    type: 'mcq',
++    prompt:
++      "Why can the current through an inductor (coil-shaped, current-opposing component) not change instantaneously?",
++    choices: [
++      'Because inductors have no resistance at all',
++      'Because an instantaneous change would require an infinite induced voltage across it',
++      "Because Ohm's law (V = IR) forbids it",
++      'Because the coil would overheat immediately',
++    ],
++    correctIndex: 1,
++    rationale:
++      'Since induced emf (electromotive force, induced voltage) is v = L(di/dt), an instant change in current (an infinitely fast di/dt) would demand an infinite induced voltage across the inductor (coil-shaped, current-opposing component); real inductors cannot supply that, so the current changes gradually instead.',
++  },
++  {
++    id: 'aeind-016',
++    topic: 'inductors',
++    type: 'mcq',
++    prompt: 'Self-inductance (a coil\'s own opposition to a change in the current flowing through itself) describes...',
++    choices: [
++      "the effect of one coil's changing current inducing a voltage in a separate, nearby coil",
++      "the resistance of the coil's own connecting wire",
++      'the capacitance between adjacent turns of the coil',
++      "a coil's changing current inducing an opposing voltage in that same coil",
++    ],
++    correctIndex: 3,
++    rationale:
++      "Self-inductance (a coil's own opposition to a change in the current flowing through itself) is the property by which a coil's own changing current induces an opposing emf (electromotive force, induced voltage) in that same coil - not in a separate coil, and not its wire resistance or capacitance.",
++  },
++  {
++    id: 'aeind-017',
++    topic: 'inductors',
++    type: 'mcq',
++    prompt: 'Mutual inductance (the magnetic coupling between two separate coils, such as in a transformer) describes...',
++    choices: [
++      "a changing current in one coil inducing a voltage in a separate, nearby coil",
++      "a single coil opposing changes in its own current",
++      'the wire resistance shared between two coils',
++      'the total inductance of several coils connected in series',
++    ],
++    correctIndex: 0,
++    rationale:
++      'Mutual inductance (the magnetic coupling between two separate coils) occurs when a changing current in one coil induces an emf (electromotive force, induced voltage) in a separate, nearby coil through their shared magnetic field - this is the principle a transformer relies on.',
++  },
++  {
++    id: 'aeind-018',
++    topic: 'inductors',
++    type: 'mcq',
++    prompt:
++      "Increasing the number of turns of wire on a coil, while keeping its core and size otherwise the same, generally has what effect on the coil's inductance (opposition to a change in current)?",
++    choices: ['Decreases it', 'Has no effect on it', 'Increases it', 'Reduces it, but only at high frequency'],
++    correctIndex: 2,
++    rationale:
++      "Adding more turns of wire to a coil, with its core and size unchanged, increases the coil's inductance (opposition to a change in current), because more turns produce a stronger magnetic field for the same current.",
++  },
++  {
++    id: 'aeind-019',
++    topic: 'inductors',
++    type: 'mcq',
++    prompt:
++      "Winding a coil around a ferromagnetic core (an iron-like material that concentrates magnetic field lines) instead of an air core typically...",
++    choices: [
++      "has no effect on the coil's inductance",
++      "sharply decreases the coil's inductance",
++      'converts the inductor into a capacitor',
++      "sharply increases the coil's inductance",
++    ],
++    correctIndex: 3,
++    rationale:
++      "A ferromagnetic core (an iron-like material that concentrates magnetic field lines) strengthens the magnetic field produced by a given current, so replacing an air core with a ferromagnetic one sharply increases the coil's inductance (opposition to a change in current).",
++  },
++  {
++    id: 'aeind-020',
++    topic: 'inductors',
++    type: 'mcq',
++    prompt:
++      "A circuit has a 4 H inductor (coil-shaped, current-opposing component) in series with the parallel combination of two 6 H inductors. What is the total inductance?",
++    choices: ['5 H', '7 H', '10 H', '16 H'],
++    correctIndex: 1,
++    rationale:
++      'The two 6 H inductors (coil-shaped, current-opposing components) in parallel combine to (6 × 6)/(6 + 6) = 3 H; adding that in series with the 4 H inductor gives a total inductance (opposition to a change in current) of 3 H + 4 H = 7 H.',
++  },
++  {
++    id: 'aeind-021',
++    topic: 'inductors',
++    type: 'mcq',
++    prompt:
++      "In a circuit that has reached steady DC (direct current, current flowing one way at a constant value) conditions, which statement about an ideal inductor and an ideal capacitor is correct?",
++    choices: [
++      'The inductor behaves as an open circuit and the capacitor as a short circuit',
++      'Both behave as open circuits',
++      'The inductor behaves as a short circuit and the capacitor as an open circuit',
++      'Both behave as short circuits',
++    ],
++    correctIndex: 2,
++    rationale:
++      'At steady DC (direct current, current flowing one way at a constant value), an ideal inductor (coil-shaped, current-opposing component) behaves as a short circuit (very low-resistance path) because it no longer opposes the now-unchanging current, while an ideal capacitor (charge-storing component) behaves as an open circuit (blocking current) because it is fully charged - the two behave oppositely.',
++  },
++  {
++    id: 'aeind-022',
++    topic: 'inductors',
++    type: 'mcq',
++    prompt:
++      "A steady current flows through an inductor (coil-shaped, current-opposing component) in series with a switch. The switch is suddenly opened, forcing the current toward zero almost instantly. What does Lenz's law (the rule that an induced voltage opposes the change that produced it) predict?",
++    choices: [
++      'The inductor generates a large voltage spike trying to keep the current flowing',
++      'The current instantly drops to zero with no other effect',
++      "The inductor's magnetic field disappears with no voltage produced",
++      'The supply voltage reverses permanently',
++    ],
++    correctIndex: 0,
++    rationale:
++      "Lenz's law (the rule that an induced voltage opposes the change that produced it) means the inductor (coil-shaped, current-opposing component) resists the sudden drop in current by generating a large induced voltage spike that tries to keep the current flowing - this is why switches on inductive circuits can arc.",
++  },
++];
++
++const tfs: TFQuestion[] = [
++  {
++    id: 'aeind-023',
++    topic: 'inductors',
++    type: 'tf',
++    prompt: 'An inductor stores the energy it holds mainly in a magnetic field.',
++    correctAnswer: true,
++    rationale:
++      'True. An inductor (a coil-shaped component that opposes a change in the current through it) stores its energy as a magnetic field (a region of magnetic influence set up around the coil by the current flowing through it).',
++  },
++  {
++    id: 'aeind-024',
++    topic: 'inductors',
++    type: 'tf',
++    prompt: 'The unit used to measure inductance is the henry.',
++    correctAnswer: true,
++    rationale:
++      'True. Inductance (a measure of how strongly a coil opposes a change in the current through it) is measured in henries (H), named after Joseph Henry.',
++  },
++  {
++    id: 'aeind-025',
++    topic: 'inductors',
++    type: 'tf',
++    prompt:
++      'When two inductors are connected in series with no shared magnetic coupling between them, their combined inductance equals the sum of the two individual values.',
++    correctAnswer: true,
++    rationale:
++      'True. Inductors (coil-shaped, current-opposing components) connected in series (one after another, same current through each) with no shared coupling simply add, the same way resistors in series add.',
++  },
++  {
++    id: 'aeind-026',
++    topic: 'inductors',
++    type: 'tf',
++    prompt: 'The current flowing through an inductor cannot change instantaneously.',
++    correctAnswer: true,
++    rationale:
++      'True. Because induced emf (electromotive force, induced voltage) is proportional to the rate of change of current, an instantaneous change in the current through an inductor (coil-shaped, current-opposing component) would require an infinite voltage, so the current can only change gradually.',
++  },
++  {
++    id: 'aeind-027',
++    topic: 'inductors',
++    type: 'tf',
++    prompt: 'Inductors connected in parallel combine by simply adding their individual inductance values.',
++    correctAnswer: false,
++    rationale:
++      'False. Inductors (coil-shaped, current-opposing components) connected in parallel (side by side across the same two points) combine reciprocally, giving a combined inductance (opposition to a change in current) smaller than the smallest individual inductor - they do not simply add.',
++  },
++  {
++    id: 'aeind-028',
++    topic: 'inductors',
++    type: 'tf',
++    prompt: 'In a circuit that has reached steady DC conditions, an ideal inductor behaves as an open circuit.',
++    correctAnswer: false,
++    rationale:
++      'False. At steady DC (direct current, current flowing one way at a constant value), an ideal inductor (coil-shaped, current-opposing component) behaves as a short circuit (a very low-resistance path), not an open circuit, because it no longer opposes the unchanging current.',
++  },
++  {
++    id: 'aeind-029',
++    topic: 'inductors',
++    type: 'tf',
++    prompt: 'The time constant of a series RL circuit is given by τ = R/L.',
++    correctAnswer: false,
++    rationale:
++      'False. The time constant (characteristic timescale over which current builds up or decays) of a series RL circuit (resistor and inductor, current-opposing component, in one loop) is τ = L/R, not R/L.',
++  },
++  {
++    id: 'aeind-030',
++    topic: 'inductors',
++    type: 'tf',
++    prompt: "Increasing the number of turns on a coil decreases its inductance.",
++    correctAnswer: false,
++    rationale:
++      "False. Adding more turns of wire to a coil increases its inductance (opposition to a change in current), because more turns produce a stronger magnetic field for the same current - the opposite of what this statement claims.",
++  },
++];
++
++export const inductorsQuestions: AppliedElectricityQuestion[] = [...mcqs, ...tfs];
