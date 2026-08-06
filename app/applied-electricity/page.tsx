@@ -53,6 +53,30 @@ function itemId(item: PracticeItem): string {
   return item.q.id;
 }
 
+interface ShuffledMCQ {
+  id: string;
+  displayChoices: string[];
+  correctDisplayIndex: number;
+}
+
+// Shuffle a curated MCQ's choice order so a fixed answer position (e.g.
+// "it's always option B") can't be memorized independent of the content —
+// the item resurfaces via spaced repetition, so this matters more here than
+// for a one-shot quiz. Mirrors app/surgery/page.tsx's shuffleMCQ.
+function shuffleMCQ(q: AppliedElectricityQuestion): ShuffledMCQ | null {
+  if (q.type !== 'mcq') return null;
+  const indexed = q.choices.map((c, i) => ({ c, i }));
+  for (let i = indexed.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [indexed[i], indexed[j]] = [indexed[j], indexed[i]];
+  }
+  return {
+    id: q.id,
+    displayChoices: indexed.map((x) => x.c),
+    correctDisplayIndex: indexed.findIndex((x) => x.i === q.correctIndex),
+  };
+}
+
 export default function AppliedElectricityPage() {
   const [mounted, setMounted] = useState(false);
   const [mode, setMode] = useState<Mode>('practice');
@@ -74,6 +98,7 @@ export default function AppliedElectricityPage() {
   const [feedback, setFeedback] = useState<Record<string, boolean>>({});
   const [attempts, setAttempts] = useState<Record<string, number>>({});
   const [retry, setRetry] = useState(false);
+  const [shuffles, setShuffles] = useState<Record<string, ShuffledMCQ>>({});
 
   // ---- Drill config ----
   const [drillTopics, setDrillTopics] = useState<SelectedTopics>(DEFAULT_TOPICS);
@@ -143,6 +168,7 @@ export default function AppliedElectricityPage() {
       setSelections(session.selections ?? {});
       setFeedback(session.feedback ?? {});
       setAttempts(session.attempts ?? {});
+      setShuffles(session.shuffles ?? {});
       setRetry(false);
     } else {
       setDrillTopics(session.drillTopics ?? DEFAULT_TOPICS);
@@ -170,10 +196,11 @@ export default function AppliedElectricityPage() {
   // Practice mode
   // ---------------------------------------------------------------------
 
-  const buildPracticeQueue = (): PracticeItem[] => {
+  const buildPracticeQueue = (): { items: PracticeItem[]; shuffles: Record<string, ShuffledMCQ> } => {
     const selected = ALL_TOPICS.filter((t) => topics[t]);
     const usedCurated = new Set<string>();
     const items: PracticeItem[] = [];
+    const newShuffles: Record<string, ShuffledMCQ> = {};
     for (let i = 0; i < practiceCount; i++) {
       const topic = pickWeightedType(COURSE_ID, selected) as AppliedElectricityTopic;
       const fullPool = appliedElectricityQuestions.filter((q) => q.topic === topic);
@@ -184,12 +211,16 @@ export default function AppliedElectricityPage() {
         if (picked) {
           usedCurated.add(picked.id);
           items.push({ kind: 'curated', q: picked });
+          if (picked.type === 'mcq') {
+            const sh = shuffleMCQ(picked);
+            if (sh) newShuffles[picked.id] = sh;
+          }
           continue;
         }
       }
       items.push({ kind: 'generated', q: AE_GENERATORS[topic](difficulty) });
     }
-    return items;
+    return { items, shuffles: newShuffles };
   };
 
   const startPractice = () => {
@@ -197,8 +228,9 @@ export default function AppliedElectricityPage() {
       alert('Please select at least one topic.');
       return;
     }
-    const newQueue = buildPracticeQueue();
+    const { items: newQueue, shuffles: newShuffles } = buildPracticeQueue();
     setQueue(newQueue);
+    setShuffles(newShuffles);
     setIndex(0);
     setTextAnswers({});
     setSelections({});
@@ -249,7 +281,13 @@ export default function AppliedElectricityPage() {
     } else {
       const q = currentItem.q;
       const sel = selections[q.id];
-      const isCorrect = q.type === 'mcq' ? sel === q.correctIndex : sel === q.correctAnswer;
+      let isCorrect: boolean;
+      if (q.type === 'mcq') {
+        const sh = shuffles[q.id];
+        isCorrect = sh ? sel === sh.correctDisplayIndex : sel === q.correctIndex;
+      } else {
+        isCorrect = sel === q.correctAnswer;
+      }
       recordAttempt(COURSE_ID, { questionId: q.id, topicKey: q.topic, correct: isCorrect });
       setFeedback({ ...feedback, [q.id]: isCorrect });
     }
@@ -345,6 +383,7 @@ export default function AppliedElectricityPage() {
         selections,
         feedback,
         attempts,
+        shuffles,
       });
     } else {
       saveActiveSession(COURSE_ID, {
@@ -373,6 +412,7 @@ export default function AppliedElectricityPage() {
     selections,
     feedback,
     attempts,
+    shuffles,
     drillTopics,
     drillCount,
     drills,
@@ -396,6 +436,7 @@ export default function AppliedElectricityPage() {
     setFeedback({});
     setAttempts({});
     setRetry(false);
+    setShuffles({});
     setDrills([]);
     setDIndex(0);
     setRevealed({});
@@ -605,9 +646,10 @@ export default function AppliedElectricityPage() {
         let yourAnswer = '';
         let correctAnswer = '';
         if (q.type === 'mcq') {
-          correctAnswer = q.choices[q.correctIndex];
+          const sh = shuffles[q.id];
+          correctAnswer = sh ? sh.displayChoices[sh.correctDisplayIndex] : q.choices[q.correctIndex];
           const sel = selections[q.id];
-          yourAnswer = typeof sel === 'number' ? q.choices[sel] : '';
+          yourAnswer = sh && typeof sel === 'number' ? sh.displayChoices[sel] : '';
         } else {
           correctAnswer = q.correctAnswer ? 'True' : 'False';
           const sel = selections[q.id];
@@ -958,6 +1000,7 @@ export default function AppliedElectricityPage() {
             (() => {
               const q = currentItem.q;
               const sel = selections[q.id];
+              const sh = q.type === 'mcq' ? shuffles[q.id] : null;
               return (
                 <>
                   <div className="mb-6">
@@ -974,11 +1017,11 @@ export default function AppliedElectricityPage() {
                   </div>
 
                   <div className="space-y-2 mb-6">
-                    {q.type === 'mcq'
-                      ? q.choices.map((choice, idx) => {
+                    {q.type === 'mcq' && sh
+                      ? sh.displayChoices.map((choice, idx) => {
                           const letter = String.fromCharCode(65 + idx);
                           const isSelected = sel === idx;
-                          const isAnswer = idx === q.correctIndex;
+                          const isAnswer = idx === sh.correctDisplayIndex;
                           let cls =
                             'w-full text-left p-3 border rounded-lg transition-colors flex items-start gap-3';
                           if (hasAnswered) {
@@ -1004,7 +1047,7 @@ export default function AppliedElectricityPage() {
                           { label: 'False', value: false },
                         ].map((opt) => {
                           const isSelected = sel === opt.value;
-                          const isAnswer = opt.value === q.correctAnswer;
+                          const isAnswer = q.type === 'tf' && opt.value === q.correctAnswer;
                           let cls =
                             'w-full text-left p-3 border rounded-lg transition-colors flex items-center gap-3';
                           if (hasAnswered) {
