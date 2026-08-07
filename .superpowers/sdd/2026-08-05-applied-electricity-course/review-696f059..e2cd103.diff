@@ -1,0 +1,307 @@
+# Review package: 696f059deeacac3c9a9d3e485cdcfbf42c668f8c..HEAD
+
+## Commits
+e2cd103 feat(applied-electricity): acFundamentals MCQ/TF bank (30)
+
+## Files changed
+ lib/aeBankAcFundamentals.ts | 291 ++++++++++++++++++++++++++++++++++++++++++++
+ 1 file changed, 291 insertions(+)
+
+## Diff
+diff --git a/lib/aeBankAcFundamentals.ts b/lib/aeBankAcFundamentals.ts
+new file mode 100644
+index 0000000..9abfe9f
+--- /dev/null
++++ b/lib/aeBankAcFundamentals.ts
+@@ -0,0 +1,291 @@
++import type { MCQuestion, TFQuestion, AppliedElectricityQuestion } from './appliedElectricityTypes.ts';
++
++// Curated MCQ/TF bank for the "acFundamentals" topic of the Applied Electricity course.
++// 22 MCQ + 8 TF (exactly 4 true / 4 false). Ids aeacf-001 .. aeacf-030.
++//
++// Facts not found in the source lecture-deck extract (docs/appliedElectricity/source-extracts/lecture-deck.txt),
++// included as standard first-year electrical-engineering facts:
++//  - rms definition/formula (Vrms = Vpeak/sqrt(2) ~= 0.707 x Vpeak) and why it matters for heating-equivalence
++//  - half-cycle average formula (Vavg = 2*Vpeak/pi ~= 0.637 x Vpeak) and its distinction from rms
++//  - peak-to-peak = 2 x peak (explicit relationship/formula)
++//  - full-cycle average of a sinusoid is zero
++//  - period T = 1/f as an explicit reciprocal relationship (the deck has only a slide title, no body content)
++//  - angular frequency omega = 2*pi*f
++//  - phase difference / lead-lag terminology and its formal definition
++//  - mains frequency of 60 Hz used in other countries (deck only states Ghana's 50 cps)
++//  - form factor (rms/average ~= 1.11) and crest factor (peak/rms ~= 1.414)
++
++const mcq = (
++  id: string,
++  prompt: string,
++  choices: [string, string, string, string],
++  correctIndex: number,
++  rationale: string,
++): MCQuestion => ({
++  id,
++  topic: 'acFundamentals',
++  type: 'mcq',
++  prompt,
++  choices,
++  correctIndex,
++  rationale,
++});
++
++const tf = (
++  id: string,
++  prompt: string,
++  correctAnswer: boolean,
++  rationale: string,
++): TFQuestion => ({
++  id,
++  topic: 'acFundamentals',
++  type: 'tf',
++  prompt,
++  correctAnswer,
++  rationale,
++});
++
++export const acFundamentalsQuestions: AppliedElectricityQuestion[] = [
++  mcq(
++    'aeacf-001',
++    'What best describes an alternating current (AC)?',
++    [
++      'A current that flows in one direction only and never changes size',
++      'A current whose direction and magnitude repeatedly reverse over time',
++      'A current that exists only inside batteries',
++      'A current with a frequency of exactly zero',
++    ],
++    1,
++    "Alternating current (AC - current whose direction and size change repeatedly over time) is defined by this periodic reversal, unlike direct current (DC - current that flows steadily in one constant direction), which does not reverse.",
++  ),
++  mcq(
++    'aeacf-002',
++    'In a sinusoidal AC waveform, what is the peak value (also called the amplitude)?',
++    [
++      'The largest instantaneous magnitude the waveform reaches in one direction',
++      'The steady DC value that would produce the same heating effect as the AC signal',
++      'The value measured exactly halfway through the cycle',
++      'The total swing from the most positive to the most negative point',
++    ],
++    0,
++    "The peak value, or amplitude (the single highest instantaneous size the wave reaches above zero), is one number describing the waveform's maximum swing; it is not the rms value (the equivalent steady heating value, option B) or the peak-to-peak value (the full top-to-bottom swing, option D).",
++  ),
++  mcq(
++    'aeacf-003',
++    'A sinusoidal mains voltage has a peak (maximum instantaneous) value of 325 V. What is its peak-to-peak value - the full swing from the most positive point to the most negative point?',
++    ['162.5 V', '325 V', '650 V', '230 V'],
++    2,
++    "Peak-to-peak (the total voltage swing from the highest positive instantaneous value to the lowest negative instantaneous value) is always twice the peak value (the single highest instantaneous value on one side): 2 x 325 V = 650 V.",
++  ),
++  mcq(
++    'aeacf-004',
++    'A sinusoidal voltage has a peak value of $V_p = 100$ V. Using the instantaneous-value relationship $v(\\theta) = V_p \\sin(\\theta)$, what is the instantaneous value (the voltage at that specific angle in the cycle) at $\\theta = 30°$?',
++    ['50 V', '86.6 V', '100 V', '0 V'],
++    0,
++    "The instantaneous value (the exact voltage at one specific moment, given by angle theta in the cycle) at 30 degrees is $V_p \\sin(30°) = 100 \\times 0.5 = 50$ V, well below the peak value (the maximum instantaneous size reached once per half-cycle) of 100 V.",
++  ),
++  mcq(
++    'aeacf-005',
++    'At what point in a sinusoidal cycle does the instantaneous value (the voltage or current at one specific moment) equal the peak value (the waveform\'s maximum size)?',
++    ['At θ = 0°', 'At θ = 45°', 'At θ = 180°', 'At θ = 90°'],
++    3,
++    "Since $v(\\theta) = V_p \\sin(\\theta)$, the instantaneous value (the voltage at one specific angle in the cycle) reaches the peak value (the waveform's maximum size) only when $\\sin(\\theta) = 1$, which happens at theta = 90 degrees.",
++  ),
++  mcq(
++    'aeacf-006',
++    'Why is the rms (root-mean-square) value of an AC waveform useful for comparing it with a DC source?',
++    [
++      'It always equals the peak value of the wave',
++      'It is the steady DC value that would deliver the same average heating power in a resistor',
++      'It is zero for every symmetrical AC waveform',
++      'It is the value measured only at the very start of the cycle',
++    ],
++    1,
++    "The rms value (root-mean-square - the steady direct-current, or DC, level that would produce the same average heating effect in a resistor as the alternating signal) lets engineers compare an alternating current (AC - current that periodically reverses direction) source to a constant DC source on equal terms.",
++  ),
++  mcq(
++    'aeacf-007',
++    'A sinusoidal voltage has a peak value of 340 V. Using $V_{rms} = V_{peak}/\\sqrt{2} \\approx 0.707 \\times V_{peak}$, what is its rms value (the equivalent steady heating value), to the nearest volt?',
++    ['170 V', '480 V', '240 V', '306 V'],
++    2,
++    "The rms value (root-mean-square - the DC-equivalent value that gives the same heating effect) is $340 \\times 0.707 \\approx 240$ V; simply halving the peak value (the waveform's maximum instantaneous size) would wrongly give 170 V.",
++  ),
++  mcq(
++    'aeacf-008',
++    'A sinusoidal current has a peak value of 10 A. Using $I_{avg} = 2I_{peak}/\\pi \\approx 0.637 \\times I_{peak}$, what is its half-cycle average value (the mean of all instantaneous values over one positive half-cycle)?',
++    ['5 A', '7.07 A', '10 A', '6.37 A'],
++    3,
++    "The half-cycle average (the mean of all the instantaneous values across one positive half of the cycle, not the rms value) is $10 \\times 0.637 = 6.37$ A, different from the rms value (equivalent steady heating value) of $10 \\times 0.707 = 7.07$ A given as a distractor.",
++  ),
++  mcq(
++    'aeacf-009',
++    'For the same sinusoidal peak value, how do the rms value and the half-cycle average value compare?',
++    [
++      'The rms value (≈0.707 × peak) is smaller than the half-cycle average (≈0.637 × peak)',
++      'The rms value (≈0.707 × peak) is larger than the half-cycle average (≈0.637 × peak)',
++      'They are always numerically identical',
++      'The half-cycle average is always zero',
++    ],
++    1,
++    "The rms value (root-mean-square - the DC-equivalent heating value, about 0.707 times the peak, or maximum instantaneous, size) is larger than the half-cycle average (the plain mean of instantaneous values over one positive half of the cycle, about 0.637 times the peak); the two are different numbers that should not be mixed up.",
++  ),
++  mcq(
++    'aeacf-010',
++    'What is the average value of a sinusoidal AC voltage taken over one complete full cycle (both the positive and negative half)?',
++    [
++      '0.637 × the peak value',
++      '0.707 × the peak value',
++      'Zero, because the positive and negative halves cancel out',
++      'Equal to the peak value',
++    ],
++    2,
++    "Over a full cycle (one complete repetition of the alternating current, or AC, waveform), the positive half exactly cancels the negative half, so the plain average is zero; the non-zero 0.637 x peak figure (peak meaning the waveform's maximum instantaneous size) applies only to a single half-cycle, not the whole cycle.",
++  ),
++  mcq(
++    'aeacf-011',
++    'The period, T, of an AC waveform is defined as:',
++    [
++      'The time taken to complete one full cycle',
++      'The number of cycles completed in one second',
++      'The maximum instantaneous value the waveform reaches',
++      'The angle at which the waveform starts',
++    ],
++    0,
++    "The period T (the time needed for one complete repetition, or cycle, of the alternating current, or AC, waveform) is measured in seconds; it is the reciprocal of frequency (the number of cycles completed per second).",
++  ),
++  mcq(
++    'aeacf-012',
++    'An AC voltage waveform completes one full cycle every 20 ms. Using $f = 1/T$, what is its frequency?',
++    ['20 Hz', '5 Hz', '100 Hz', '50 Hz'],
++    3,
++    "Frequency f (the number of complete cycles, or repetitions, occurring per second, measured in hertz) is the reciprocal of the period T (the time for one cycle): $f = 1/0.02\\text{ s} = 50$ Hz.",
++  ),
++  mcq(
++    'aeacf-013',
++    "The national electricity supply in Ghana completes its alternating cycle how many times per second (its mains frequency)?",
++    ['50 times per second (50 Hz)', '60 times per second (60 Hz)', '100 times per second (100 Hz)', '25 times per second (25 Hz)'],
++    0,
++    "Mains frequency (the fixed number of alternating-current, or AC, cycles per second supplied by the national electricity grid) in Ghana is 50 Hz, meaning the voltage completes 50 full cycles every second.",
++  ),
++  mcq(
++    'aeacf-014',
++    "Some countries, including the United States, standardise their mains frequency (the fixed rate at which the national grid's AC supply cycles) at a different value from Ghana's. What is that value?",
++    ['50 Hz', '60 Hz', '100 Hz', '120 Hz'],
++    1,
++    "While Ghana's mains frequency (the number of alternating-current, or AC, cycles the grid supply completes per second) is 50 Hz, the United States and several other countries standardise on 60 Hz instead - both are standard first-year facts about regional grid conventions.",
++  ),
++  mcq(
++    'aeacf-015',
++    'An AC supply has a frequency of 50 Hz. Using $\\omega = 2\\pi f$, what is its angular frequency (the rate at which the waveform\'s phase angle sweeps through its cycle, in radians per second)?',
++    ['≈314 rad/s', '≈50 rad/s', '≈100 rad/s', '≈628 rad/s'],
++    0,
++    "Angular frequency omega (how fast the waveform's phase angle sweeps through its cycle, in radians per second, where one full cycle is $2\\pi$ radians) is $2\\pi \\times 50 \\approx 314$ rad/s, a different number from the plain frequency f (cycles per second) of 50 Hz.",
++  ),
++  mcq(
++    'aeacf-016',
++    'An AC voltage has an angular frequency of $\\omega = 100\\pi$ rad/s. Using $f = \\omega/2\\pi$, what is its frequency?',
++    ['100 Hz', '25 Hz', '200 Hz', '50 Hz'],
++    3,
++    "Frequency f (how many complete cycles happen each second) is found from angular frequency omega (the phase-angle sweep rate in radians per second) by $f = \\omega/2\\pi = 100\\pi/2\\pi = 50$ Hz.",
++  ),
++  mcq(
++    'aeacf-017',
++    "Besides amplitude (the waveform's maximum size) and frequency (cycles per second), what third characteristic is needed to fully describe a sinusoidal AC waveform relative to a reference?",
++    ['Resistance', 'Power factor', "Phase (the waveform's position within its cycle at a chosen reference instant)", 'Capacitance'],
++    2,
++    "A sinusoidal waveform is fully described by three things: amplitude (its maximum size), frequency (how many cycles occur per second), and phase (where the wave sits in its repeating cycle at a chosen starting instant, expressed as an angle).",
++  ),
++  mcq(
++    'aeacf-018',
++    'Two AC waveforms share the same frequency but reach their peak values at different moments in time. What is this timing offset between them called?',
++    [
++      'Frequency difference',
++      'Phase difference (the offset, in angle, between corresponding points of the two waveforms)',
++      'Amplitude difference',
++      'Rms difference',
++    ],
++    1,
++    "When two waveforms of the same frequency (cycles per second) are shifted in time relative to each other, that offset is the phase difference (measured as an angle between corresponding points, such as their peaks, on the two waves).",
++  ),
++  mcq(
++    'aeacf-019',
++    'Waveform A reaches its peak value 90° before waveform B does, and both have the same frequency. Which statement correctly describes their relationship?',
++    ['A lags B by 90°', 'A and B are in phase', 'A has double the frequency of B', 'A leads B by 90°'],
++    3,
++    "Because waveform A reaches its peak (maximum instantaneous value) earlier in time than waveform B, A leads B (is ahead of it in phase, meaning its position within the repeating cycle) by the stated angle, here 90 degrees; reaching a peak later instead is called lagging.",
++  ),
++  mcq(
++    'aeacf-020',
++    'The form factor of an AC waveform is defined as the ratio of:',
++    [
++      'Its rms value to its average value',
++      'Its peak value to its rms value',
++      'Its average value to its peak value',
++      'Its frequency to its period',
++    ],
++    0,
++    "Form factor is defined as the rms value (the DC-equivalent heating value) divided by the average value (the mean of instantaneous values over a half-cycle); for a sine wave this works out to about 1.11, a standard first-year figure.",
++  ),
++  mcq(
++    'aeacf-021',
++    'For a pure sine wave, form factor = rms value ÷ average value ≈ (0.707 × peak) ÷ (0.637 × peak). What is its approximate numeric value?',
++    ['1.41', '0.90', '1.11', '2.00'],
++    2,
++    "Dividing the rms fraction (0.707 of the peak, or maximum instantaneous, value) by the half-cycle average fraction (0.637 of the peak value) gives $0.707/0.637 \\approx 1.11$, the standard form factor of a sine wave.",
++  ),
++  mcq(
++    'aeacf-022',
++    'For a sinusoidal current, crest factor ≈ peak value ÷ rms value = $V_p / (0.707V_p)$. What is its approximate numeric value?',
++    ['1.11', '1.41', '0.707', '2.00'],
++    1,
++    "Crest factor (the ratio of the peak value, the waveform's maximum instantaneous size, to the rms value, the DC-equivalent heating value) for a sine wave is $1/0.707 \\approx 1.41$, different from the form factor (rms divided by average), which is about 1.11.",
++  ),
++  tf(
++    'aeacf-023',
++    'In a sinusoidal AC waveform, the peak-to-peak value equals twice the peak value.',
++    true,
++    "This is true: peak-to-peak (the total swing from the most positive to the most negative instantaneous point) spans both the positive and negative excursions, so it is exactly double the peak value (the single highest instantaneous size on one side).",
++  ),
++  tf(
++    'aeacf-024',
++    'The rms value of a sinusoidal voltage is found by dividing its peak value by 2.',
++    false,
++    "This is false: the rms value (root-mean-square - the DC-equivalent heating value of the alternating waveform) of a sine wave is the peak value (maximum instantaneous size) divided by the square root of 2, about 1.414, not by 2.",
++  ),
++  tf(
++    'aeacf-025',
++    'Direct current (DC) has a frequency of zero.',
++    true,
++    "This is true: since direct current (DC - current flowing steadily in one direction) never reverses and has no repeating cycle, it has no cycles per second, giving it a frequency (the count of cycles per second) of zero.",
++  ),
++  tf(
++    'aeacf-026',
++    'The national electricity supply in Ghana has a mains frequency of 50 Hz.',
++    true,
++    "This is true: Ghana's grid delivers alternating current (AC - current that periodically reverses direction) at a mains frequency (the fixed cycles-per-second rate of the national supply) of 50 Hz.",
++  ),
++  tf(
++    'aeacf-027',
++    'Angular frequency is measured in the same unit as ordinary frequency, cycles per second.',
++    false,
++    "This is false: angular frequency omega (the rate at which the waveform's phase angle sweeps through its cycle) is measured in radians per second, while ordinary frequency f (cycles per second) is measured in hertz; they are related by $\\omega = 2\\pi f$ but are not the same unit.",
++  ),
++  tf(
++    'aeacf-028',
++    'The half-cycle average value of a sinusoidal waveform is exactly equal to its rms value.',
++    false,
++    "This is false: the half-cycle average (the mean of instantaneous values over one positive half-cycle, about 0.637 times the peak, or maximum instantaneous, value) is a smaller number than the rms value (the DC-equivalent heating value, about 0.707 times the peak); the two must not be treated as interchangeable.",
++  ),
++  tf(
++    'aeacf-029',
++    'Crest factor for a sine wave is defined as the peak value divided by the rms value.',
++    true,
++    "This is true: crest factor compares the peak value (the waveform's single highest instantaneous size) to the rms value (the DC-equivalent heating value), giving about 1.41 for a pure sine wave.",
++  ),
++  tf(
++    'aeacf-030',
++    'If two AC waveforms have the same frequency but different phase, they will still reach their peak values at exactly the same instant.',
++    false,
++    "This is false: a phase difference (an offset, in angle, between corresponding points of two waveforms of the same frequency) means the two waveforms reach their peak, or maximum instantaneous, values at different moments, not the same instant.",
++  ),
++];

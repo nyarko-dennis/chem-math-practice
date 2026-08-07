@@ -1,0 +1,338 @@
+import type { MCQuestion, TFQuestion, AppliedElectricityQuestion } from './appliedElectricityTypes.ts';
+
+// Curated MCQ/TF bank for the "threePhase" topic of the Applied Electricity course.
+// 22 MCQ + 8 TF (exactly 4 true / 4 false). Ids ae3ph-001 .. ae3ph-030.
+//
+// Facts not found in the source lecture-deck extract (docs/appliedElectricity/source-extracts/lecture-deck.txt):
+// the extract's only three-phase-specific content is a slide title, "A 3-phase Transformer", with no body
+// text, plus a handful of passing mentions that three-phase alternating current is used to power AC motors
+// and generates a rotating magnetic field. None of the star/delta wiring, line-vs-phase relationships,
+// phase sequence, the total-power formula, balanced/unbalanced loads, or the neutral wire's role are covered
+// in the extract at all, so essentially every fact in this bank is included as standard first-year
+// electrical-engineering material:
+//  - why three-phase supply is used (near-constant power delivery to a balanced load; more efficient,
+//    lower-conductor-material transmission than single-phase for the same power)
+//  - phase sequence (the order in which the phase voltages peak, e.g. R-Y-B) and its effect on motor
+//    rotation direction
+//  - the star (wye) connection and its line/phase voltage and current relationships, VL = sqrt(3) x Vph
+//    and IL = Iph
+//  - the delta (mesh) connection and its relationships, VL = Vph and IL = sqrt(3) x Iph
+//  - the total three-phase power formula P = sqrt(3) x VL x IL x cos(phi), and that it holds in line
+//    quantities for both star and delta connections
+//  - balanced vs. unbalanced loads, and the neutral wire's role as an unbalance-current return path in a
+//    star system (carrying zero current when the load is balanced)
+//  - four-wire (star with neutral) vs. three-wire (typically delta, no neutral) systems
+//  - the typical difference in where star vs. delta connections are used (star for four-wire distribution
+//    feeding single-phase loads; delta for motor windings and other three-wire industrial loads)
+//  - the standard 230 V phase / 400 V line numeric example
+//  - the value sqrt(3) is approximately 1.732
+
+const mcq = (
+  id: string,
+  prompt: string,
+  choices: [string, string, string, string],
+  correctIndex: number,
+  rationale: string,
+): MCQuestion => ({
+  id,
+  topic: 'threePhase',
+  type: 'mcq',
+  prompt,
+  choices,
+  correctIndex,
+  rationale,
+});
+
+const tf = (
+  id: string,
+  prompt: string,
+  correctAnswer: boolean,
+  rationale: string,
+): TFQuestion => ({
+  id,
+  topic: 'threePhase',
+  type: 'tf',
+  prompt,
+  correctAnswer,
+  rationale,
+});
+
+export const threePhaseQuestions: AppliedElectricityQuestion[] = [
+  mcq(
+    'ae3ph-001',
+    'What is the main reason three-phase supply (a power system using three alternating voltages timed 120 degrees apart) is used for generating and transmitting bulk electrical power, rather than single-phase supply (a supply using only one alternating voltage)?',
+    [
+      'A three-phase supply delivers power to a balanced load at a nearly constant rate, instead of pulsing to zero twice every cycle the way single-phase power does',
+      'A three-phase supply produces direct current, so no transformers are ever needed',
+      'A three-phase supply needs no conductors at all between the generator and the load',
+      'A three-phase supply automatically corrects a low power factor without any extra equipment',
+    ],
+    0,
+    'Because the three phase voltages of a three-phase supply (three alternating voltages timed 120 degrees apart) are spaced 120 degrees apart in time, the combined power delivered to a balanced load (one drawing equal current, at the same power factor, in each of the three phases) stays almost constant, unlike single-phase power (from one alternating voltage), which rises and falls to zero twice every cycle.',
+  ),
+  mcq(
+    'ae3ph-002',
+    'For delivering the same amount of electrical power over the same distance, why can a three-phase (three alternating voltages timed 120 degrees apart) transmission line use less total conductor material than a single-phase (one alternating voltage) line carrying the same power?',
+    [
+      'Splitting the same total power across three conductors means each one carries a smaller current, so thinner and cheaper conductors can be used for the same power delivered',
+      'Three-phase lines carry no current at all, only voltage',
+      'A three-phase supply operates at zero frequency',
+      'Three-phase power does not obey Ohm’s law, so conductor resistance no longer matters',
+    ],
+    0,
+    'Three-phase (three alternating voltages timed 120 degrees apart) transmission spreads the same total power across three conductors instead of two, so each conductor carries a smaller current for a given amount of power; that lets thinner, less costly conductors be used, which is one reason three-phase is preferred for efficient long-distance power transmission.',
+  ),
+  mcq(
+    'ae3ph-003',
+    'In a three-phase supply (three alternating voltages timed 120 degrees apart), what does the phase sequence describe?',
+    [
+      'The number of wires used to connect the supply to the load',
+      'The order in which the three phase voltages reach their peak value, one after another, such as R then Y then B',
+      'The ratio between the line voltage (the voltage measured between any two of the three supply lines) and the phase voltage (the voltage measured across one phase winding)',
+      'The total power delivered by the supply, in watts',
+    ],
+    1,
+    'Phase sequence (also called phase rotation) is the order in which the three phase voltages of a three-phase supply (three alternating voltages timed 120 degrees apart) reach their peak, for example R (red) then Y (yellow) then B (blue); getting the sequence wrong reverses the direction a connected three-phase motor turns.',
+  ),
+  mcq(
+    'ae3ph-004',
+    'A three-phase supply’s three phase voltages (the voltages across the individual windings of the supply) peak in the order R, then Y, then B, then back to R. How is this phase sequence (the order in which the phase voltages reach their peak) normally written?',
+    ['R-Y-B', 'B-Y-R', 'Y-R-B', 'R-B-Y'],
+    0,
+    'Phase sequence (the order in which the three phase voltages of a three-phase supply reach their peak) is written in the order the peaks actually occur, so voltages peaking R then Y then B give the sequence R-Y-B; writing them in a different order, such as B-Y-R, would describe a different, reversed sequence.',
+  ),
+  mcq(
+    'ae3ph-005',
+    'In a star connection (also called wye: a three-phase connection where one end of each of the three phase windings is joined at a common neutral point), how does the line voltage (the voltage measured between any two of the three supply lines) compare with the phase voltage (the voltage measured across one winding, from a line to the neutral point)?',
+    [
+      'Line voltage equals phase voltage',
+      'Line voltage is 3 times the phase voltage',
+      'Line voltage is half the phase voltage',
+      'Line voltage is √3 (about 1.732) times the phase voltage',
+    ],
+    3,
+    'In a star connection (wye: one end of each of the three phase windings joined at a common neutral point), each line voltage is formed by combining two phase voltages that are 120 degrees apart, which works out to √3 (about 1.732) times the phase voltage: $V_L = \\sqrt{3}\\,V_{ph}$.',
+  ),
+  mcq(
+    'ae3ph-006',
+    'A star-connected (wye: one end of each of the three phase windings joined at a common neutral point) three-phase source has a phase voltage (the voltage across one winding, from a line to the neutral point) of 230 V. Using $V_L=\\sqrt{3}\\,V_{ph}$, what is the line voltage (the voltage between any two supply lines), to the nearest volt?',
+    ['230 V', '690 V', '133 V', '398 V'],
+    3,
+    'For a star connection (wye), $V_L = \\sqrt{3}\\,V_{ph} = 1.732 \\times 230 \\approx 398$ V; this is the basis of the familiar 230 V phase / 400 V line supply used in many mains systems.',
+  ),
+  mcq(
+    'ae3ph-007',
+    'In a star-connected (wye: one end of each of the three phase windings joined at a common neutral point) three-phase source or load, how does the line current (the current flowing in one of the three supply lines) compare with the phase current (the current flowing through one winding)?',
+    [
+      'Line current is √3 times the phase current',
+      'Line current equals the phase current',
+      'Line current is 3 times the phase current',
+      'Line current is one third of the phase current',
+    ],
+    1,
+    'In a star connection (wye), each line conductor connects directly in series with one phase winding, so the same current flows through both: line current equals phase current, $I_L = I_{ph}$.',
+  ),
+  mcq(
+    'ae3ph-008',
+    'In a delta connection (also called mesh: a three-phase connection where the three phase windings are joined end-to-end in a closed triangle, with no neutral point), how does the line voltage (the voltage between any two supply lines) compare with the phase voltage (the voltage across one winding)?',
+    [
+      'Line voltage is √3 times the phase voltage',
+      'Line voltage is 3 times the phase voltage',
+      'Line voltage equals the phase voltage',
+      'Line voltage is half the phase voltage',
+    ],
+    2,
+    'In a delta connection (mesh: the three phase windings joined end-to-end in a closed triangle, with no neutral point), each winding is connected directly between two of the supply lines, so the full phase voltage appears directly as the line voltage: $V_L = V_{ph}$.',
+  ),
+  mcq(
+    'ae3ph-009',
+    'In a delta-connected (mesh: the three phase windings joined end-to-end in a closed triangle, with no neutral point) three-phase source or load, how does the line current (the current in one of the three supply lines) compare with the phase current (the current through one winding)?',
+    [
+      'Line current equals the phase current',
+      'Line current is 3 times the phase current',
+      'Line current is half the phase current',
+      'Line current is √3 (about 1.732) times the phase current',
+    ],
+    3,
+    'In a delta connection (mesh: windings joined end-to-end in a closed triangle, with no neutral point), the current in each line combines contributions from two windings meeting at that corner of the triangle, which works out to a line current √3 (about 1.732) times the phase current: $I_L = \\sqrt{3}\\,I_{ph}$.',
+  ),
+  mcq(
+    'ae3ph-010',
+    'A delta-connected (mesh: windings joined end-to-end in a closed triangle, with no neutral point) three-phase load has a phase current (the current through one winding) of 10 A. Using $I_L=\\sqrt{3}\\,I_{ph}$, what is the line current (the current in one supply line), to one decimal place?',
+    ['10.0 A', '30.0 A', '5.8 A', '17.3 A'],
+    3,
+    'For a delta connection (mesh), $I_L = \\sqrt{3}\\,I_{ph} = 1.732 \\times 10 \\approx 17.3$ A; mixing this up with the star connection (wye: one end of each of the three phase windings joined at a common neutral point), where line current equals phase current, is a common mistake.',
+  ),
+  mcq(
+    'ae3ph-011',
+    'A delta-connected (mesh: windings joined end-to-end in a closed triangle, with no neutral point) three-phase load draws a line current (the current in one supply line) of 34.6 A. Using $I_L=\\sqrt{3}\\,I_{ph}$, what is the phase current (the current through one winding), to the nearest ampere?',
+    ['34.6 A', '60 A', '20 A', '11.5 A'],
+    2,
+    'Rearranging $I_L=\\sqrt{3}\\,I_{ph}$ gives $I_{ph}=I_L/\\sqrt{3}=34.6/1.732\\approx 20$ A; in a delta connection (mesh), the phase current is always smaller than the line current, by a factor of √3.',
+  ),
+  mcq(
+    'ae3ph-012',
+    'A star-connected (wye: one end of each of the three phase windings joined at a common neutral point) three-phase source has a line voltage (the voltage between any two supply lines) of 400 V. Using $V_L=\\sqrt{3}\\,V_{ph}$, what is the phase voltage (the voltage from one line to the neutral point), to the nearest volt?',
+    ['400 V', '693 V', '231 V', '133 V'],
+    2,
+    'Rearranging $V_L=\\sqrt{3}\\,V_{ph}$ gives $V_{ph}=V_L/\\sqrt{3}=400/1.732\\approx 231$ V, close to the familiar 230 V phase voltage found on a 400 V star-connected (wye) supply.',
+  ),
+  mcq(
+    'ae3ph-013',
+    'Which formula gives the total power delivered to a balanced three-phase load (one drawing equal current, at the same power factor, in each of the three phases), using line voltage $V_L$ and line current $I_L$, and applies equally to a star (wye: one end of each of the three phase windings joined at a common neutral point) connection and a delta (mesh: the three phase windings joined end-to-end in a closed triangle, with no neutral point) connection?',
+    [
+      '$P = V_L I_L \\cos\\varphi$',
+      '$P = \\sqrt{3}\\,V_L I_L \\cos\\varphi$',
+      '$P = 3 V_L I_L \\cos\\varphi$',
+      '$P = \\sqrt{3}\\,V_L I_L \\sin\\varphi$',
+    ],
+    1,
+    'Total three-phase power delivered to a balanced load (one drawing equal current, at the same power factor, in each phase) is $P=\\sqrt{3}\\,V_L I_L \\cos\\varphi$, where $V_L$ and $I_L$ are the line voltage and line current and $\\cos\\varphi$ is the power factor (the fraction of the supplied power that does useful work); this single formula, written in line quantities, holds for both a star (wye) and a delta (mesh) connection.',
+  ),
+  mcq(
+    'ae3ph-014',
+    'A balanced three-phase load (one drawing equal current, at the same power factor, in each of the three phases) is supplied at a line voltage (the voltage between any two supply lines) of 400 V, drawing a line current (the current in one supply line) of 20 A at a power factor (cos φ, the fraction of the supplied power that does useful work) of 0.8. Using $P=\\sqrt{3}\\,V_L I_L \\cos\\varphi$, what is the total power delivered, to one decimal place?',
+    ['6.4 kW', '8 kW', '11.1 kW', '13.9 kW'],
+    2,
+    'Total power is $P=\\sqrt{3}\\,V_L I_L \\cos\\varphi = 1.732 \\times 400 \\times 20 \\times 0.8 \\approx 11{,}085$ W, or about 11.1 kW; leaving out the √3 factor would wrongly give only 6.4 kW.',
+  ),
+  mcq(
+    'ae3ph-015',
+    'What does it mean for a three-phase load to be balanced?',
+    [
+      'The load draws the same current, at the same power factor, in each of the three phases',
+      'The load is connected in delta (mesh: windings joined end-to-end in a closed triangle, with no neutral point) rather than star (wye: one end of each of the three phase windings joined at a common neutral point)',
+      'The load has no neutral wire connected at all',
+      'The load draws power from only one of the three phases',
+    ],
+    0,
+    'A balanced three-phase load draws equal current, at the same power factor (cos φ, the fraction of the supplied power that does useful work), from each of the three phases; when this is not the case, the load is described as unbalanced.',
+  ),
+  mcq(
+    'ae3ph-016',
+    'What is the main practical consequence of a three-phase load being unbalanced (drawing unequal current across its three phases) rather than balanced (drawing equal current in each phase)?',
+    [
+      'The supply frequency automatically increases to compensate',
+      'The line voltage (the voltage between any two supply lines) between phases becomes zero',
+      'A current now flows in the neutral wire (the wire connected to the common point where the three phase windings meet, in a star (wye) system — one end of each of the three phase windings joined at a common neutral point) to carry the difference between the phases',
+      'The load can no longer be connected at all',
+    ],
+    2,
+    'When a three-phase load is unbalanced (drawing unequal current across its three phases), the currents in the three lines no longer cancel out at the star point of a star connection (wye: one end of each phase winding joined at a common neutral point), so the leftover imbalance current flows back through the neutral wire (the wire connected to that common point) instead of summing to zero.',
+  ),
+  mcq(
+    'ae3ph-017',
+    'In a star-connected (wye: one end of each of the three phase windings joined at a common neutral point) three-phase system, what is the main role of the neutral wire (the wire connected to the common point where the three phase windings meet)?',
+    [
+      'It always carries the full current of all three phases added directly together',
+      'It sets the phase sequence (the order in which the phase voltages reach their peak) of the supply',
+      'It boosts the line voltage (the voltage between any two supply lines) by a factor of √3',
+      'It carries the return, or unbalance, current caused by any difference between the currents in the three phases',
+    ],
+    3,
+    'The neutral wire in a star connection (wye: one end of each phase winding joined at a common neutral point) provides a return path for any unbalance current, the leftover current that does not cancel out when the three phase currents are not exactly equal; it does not set the phase sequence (the order the phase voltages peak) or affect the line voltage.',
+  ),
+  mcq(
+    'ae3ph-018',
+    'A star-connected (wye: one end of each of the three phase windings joined at a common neutral point) three-phase load is perfectly balanced (drawing equal current, at the same power factor, in each of the three phases). What current flows in the neutral wire (the wire connected to the common star point)?',
+    ['Three times the line current', 'Equal to the line current', '√3 times the line current', 'Zero'],
+    3,
+    'When a star-connected (wye) load is perfectly balanced (drawing equal current, at the same power factor, in each phase), the three phase currents, spaced 120 degrees apart, add up to exactly zero at the star point, so no current needs to flow in the neutral wire, which otherwise provides a return path for any unbalance.',
+  ),
+  mcq(
+    'ae3ph-019',
+    'What is a four-wire three-phase system?',
+    [
+      'A delta connection (mesh: windings joined end-to-end in a closed triangle, with no neutral point) with an extra line added for redundancy',
+      'A star-connected (wye: one end of each of the three phase windings joined at a common neutral point) system with the three line conductors plus a neutral wire (the wire connected to the common star point) included',
+      'Any three-phase system rated above 400 V',
+      'A single-phase system split into four separate circuits',
+    ],
+    1,
+    'A four-wire system is a star-connected (wye) three-phase supply that includes the three line conductors plus the neutral wire (the wire connected to the common star point, providing a return path for unbalance current); the fourth wire is what lets both line voltage and a lower phase voltage be supplied to different loads.',
+  ),
+  mcq(
+    'ae3ph-020',
+    'Why can a delta-connected (mesh: the three phase windings joined end-to-end in a closed triangle, with no neutral point) three-phase system normally operate as a three-wire system, using only the three line conductors with no neutral wire?',
+    [
+      'A delta connection has no common point between the windings that a neutral wire could connect to',
+      'Delta-connected loads never draw any current',
+      'A delta connection automatically balances any unbalanced load',
+      'The line voltage in a delta connection is always zero',
+    ],
+    0,
+    'A delta connection (mesh) joins the three phase windings end-to-end in a closed triangle with no common star point, so there is nowhere for a neutral wire (a wire connected to a common winding point, providing a return path for unbalance current) to attach; delta systems are therefore normally wired as three-wire systems, using only the three line conductors.',
+  ),
+  mcq(
+    'ae3ph-021',
+    'Which statement correctly compares typical uses of star (wye: one end of each of the three phase windings joined at a common neutral point) and delta (mesh: windings joined end-to-end in a closed triangle, with no neutral point) three-phase connections?',
+    [
+      'Star (wye) is normally chosen when a neutral wire is needed to supply single-phase loads, such as household circuits, at a lower voltage, while delta (mesh), with no neutral, is common for connecting three-phase motor windings and heavy industrial loads',
+      'Delta (mesh) is normally chosen when a neutral wire is needed to supply single-phase loads at a lower voltage, while star (wye) is used only for very high-power motors',
+      'Star (wye) and delta (mesh) always deliver exactly the same line voltage and line current, so the choice makes no practical difference',
+      'Delta (mesh) always requires a neutral wire, while star (wye) never does',
+    ],
+    0,
+    'Because a star connection (wye) provides a neutral wire (the wire connected to the common star point), it suits four-wire distribution supplying single-phase loads (loads using one alternating voltage) at the lower phase voltage alongside three-phase loads at the line voltage; a delta connection (mesh), which has no neutral, is instead commonly used for three-phase motor windings and other balanced industrial loads.',
+  ),
+  mcq(
+    'ae3ph-022',
+    'For a star-connected (wye: one end of each of the three phase windings joined at a common neutral point) three-phase source, with $V_L$/$I_L$ the line voltage/line current and $V_{ph}$/$I_{ph}$ the phase voltage/phase current, which pair of relationships is correct?',
+    [
+      '$V_L = V_{ph}$ and $I_L = \\sqrt{3}\\,I_{ph}$',
+      '$V_L = \\sqrt{3}\\,V_{ph}$ and $I_L = I_{ph}$',
+      '$V_L = \\sqrt{3}\\,V_{ph}$ and $I_L = \\sqrt{3}\\,I_{ph}$',
+      '$V_L = V_{ph}$ and $I_L = I_{ph}$',
+    ],
+    1,
+    'For a star connection (wye), the line voltage is boosted by √3 relative to the phase voltage while the line current equals the phase current directly, $V_L=\\sqrt{3}\\,V_{ph}$ and $I_L=I_{ph}$; the first choice wrongly swaps in the delta-connection (mesh: the three phase windings joined end-to-end in a closed triangle, with no neutral point) current relationship, where it is the current, not the voltage, that gets the √3 factor.',
+  ),
+  tf(
+    'ae3ph-023',
+    'In a star connection (wye: one end of each of the three phase windings joined at a common neutral point), the line voltage (the voltage between any two supply lines) is √3, or about 1.732, times the phase voltage (the voltage from one line to the neutral point).',
+    true,
+    'This is true: in a star connection (wye), combining two phase voltages that are 120 degrees apart gives a line voltage √3 (about 1.732) times the phase voltage, $V_L=\\sqrt{3}\\,V_{ph}$.',
+  ),
+  tf(
+    'ae3ph-024',
+    'In a delta connection (mesh: the three phase windings joined end-to-end in a closed triangle, with no neutral point), the line current (the current in one supply line) is equal to the phase current (the current through one winding).',
+    false,
+    'This is false: in a delta connection (mesh), the line current is √3 (about 1.732) times the phase current, $I_L=\\sqrt{3}\\,I_{ph}$, not equal to it; equal line and phase current is instead the relationship for a star connection (wye: one end of each of the three phase windings joined at a common neutral point).',
+  ),
+  tf(
+    'ae3ph-025',
+    'A three-phase supply (three alternating voltages timed 120 degrees apart) delivers power to a balanced load in pulses that drop to zero twice during every cycle, the same way a single-phase supply (one alternating voltage) does.',
+    false,
+    'This is false: because the three phase voltages are spaced 120 degrees apart, the combined power delivered to a balanced load (one drawing equal current, at the same power factor, in each phase) stays nearly constant rather than pulsing to zero, unlike single-phase power, which does drop to zero twice per cycle.',
+  ),
+  tf(
+    'ae3ph-026',
+    'In a star connection (wye: one end of each of the three phase windings joined at a common neutral point), the neutral wire (the wire connected to that common point) carries zero current when the load is perfectly balanced.',
+    true,
+    'This is true: with a perfectly balanced load (one drawing equal current, at the same power factor, in each of the three phases), the three phase currents cancel out exactly at the star point, so no current needs to return through the neutral wire.',
+  ),
+  tf(
+    'ae3ph-027',
+    'A delta-connected (mesh: the three phase windings joined end-to-end in a closed triangle, with no neutral point) three-phase system requires a neutral wire in order to operate.',
+    false,
+    'This is false: a delta connection (mesh) has no common point between its windings for a neutral wire to attach to, so delta systems normally operate as three-wire systems, using only the three line conductors, with no neutral needed.',
+  ),
+  tf(
+    'ae3ph-028',
+    'The formula $P=\\sqrt{3}\\,V_L I_L \\cos\\varphi$ for total three-phase power, using line voltage $V_L$ and line current $I_L$, applies to both a star-connected (wye: one end of each of the three phase windings joined at a common neutral point) balanced load and a delta-connected (mesh: the three phase windings joined end-to-end in a closed triangle, with no neutral point) balanced load.',
+    true,
+    'This is true: written in terms of line voltage and line current, the total power formula $P=\\sqrt{3}\\,V_L I_L \\cos\\varphi$ (where cos φ, the power factor, is the fraction of the supplied power that does useful work) gives the same result for a balanced load (one drawing equal current, at the same power factor, in each phase) whether it is connected in star (wye) or delta (mesh).',
+  ),
+  tf(
+    'ae3ph-029',
+    'Phase sequence describes the order in which the three phase voltages of a three-phase supply reach their peak value.',
+    true,
+    'This is true: phase sequence (also called phase rotation) is exactly this, the order, such as R-Y-B, in which the three phase voltages of a three-phase supply (three alternating voltages timed 120 degrees apart) peak one after another; reversing it reverses the rotation direction of a connected three-phase motor.',
+  ),
+  tf(
+    'ae3ph-030',
+    'In a star connection (wye: one end of each of the three phase windings joined at a common neutral point), the line current (the current in one supply line) is √3, or about 1.732, times the phase current (the current through one winding).',
+    false,
+    'This is false: in a star connection (wye), the line current equals the phase current directly, $I_L=I_{ph}$; it is the delta connection (mesh: the three phase windings joined end-to-end in a closed triangle, with no neutral point) where the line current is √3 (about 1.732) times the phase current instead.',
+  ),
+];

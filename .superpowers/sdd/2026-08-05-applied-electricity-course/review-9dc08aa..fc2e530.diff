@@ -1,0 +1,108 @@
+# Review package: 9dc08aa..HEAD
+
+## Commits
+fc2e530 fix(applied-electricity): acAnalysis bank — gloss impedance in standalone items
+
+## Files changed
+ lib/aeBankAcAnalysis.ts | 12 ++++++------
+ 1 file changed, 6 insertions(+), 6 deletions(-)
+
+## Diff
+diff --git a/lib/aeBankAcAnalysis.ts b/lib/aeBankAcAnalysis.ts
+index 95be558..ff23e4d 100644
+--- a/lib/aeBankAcAnalysis.ts
++++ b/lib/aeBankAcAnalysis.ts
+@@ -203,35 +203,35 @@ export const acAnalysisQuestions: AppliedElectricityQuestion[] = [
+   ),
+   mcq(
+     'aeaca-015',
+     'A pure capacitor is connected to an AC voltage source whose waveform reaches its peak value at $t=90°$ (90 degrees into the cycle). Since current leads voltage by 90° in a pure capacitor (a component with reactance but no resistance), at what angle does the current waveform reach its peak?',
+     ['At 0°', 'At 90°, the same instant', 'At 180°', 'At 270°'],
+     0,
+     "Since the current leads the voltage by 90° in a pure capacitor (a component with reactance but no resistance) - meaning it reaches corresponding points earlier in time than the voltage - the current reaches its peak, or maximum instantaneous, value 90° before the voltage, so at $90°-90°=0°$.",
+   ),
+   mcq(
+     'aeaca-016',
+-    'How is the impedance of a series RL circuit (a resistor and inductor connected in series on an AC supply) written in rectangular form (a real resistance part plus an imaginary reactance part)?',
++    'How is the impedance (a circuit\'s total opposition to alternating current, combining resistance and reactance) of a series RL circuit (a resistor and inductor connected in series on an AC supply) written in rectangular form (a real resistance part plus an imaginary reactance part)?',
+     ['$Z=R-jX_L$', '$Z=R\\times X_L$', '$Z=X_L-jR$', '$Z=R+jX_L$'],
+     3,
+     "In rectangular form (writing impedance as a resistance part plus an imaginary reactance part), a series RL circuit's impedance is $Z=R+jX_L$, where $R$ is resistance and $X_L$ is inductive reactance (the coil's opposition to alternating current); the positive sign on the imaginary part marks it as inductive.",
+   ),
+   mcq(
+     'aeaca-017',
+     'A series RL circuit (a resistor and inductor connected in series on an AC supply) has $R=8\\ \\Omega$ and inductive reactance $X_L=6\\ \\Omega$. Using $|Z|=\\sqrt{R^2+X_L^2}$, what is the magnitude of its impedance?',
+     ['14 Ω', '2 Ω', '10 Ω', '48 Ω'],
+     2,
+     "The magnitude of impedance (the circuit's total opposition to alternating current) for this series RL circuit is $|Z|=\\sqrt{8^2+6^2}=\\sqrt{64+36}=\\sqrt{100}=10\\ \\Omega$, a 6-8-10 right-triangle relationship.",
+   ),
+   mcq(
+     'aeaca-018',
+-    'How is the impedance of a series RC circuit (a resistor and capacitor connected in series on an AC supply) written in rectangular form (a real resistance part plus an imaginary reactance part)?',
++    'How is the impedance (a circuit\'s total opposition to alternating current, combining resistance and reactance) of a series RC circuit (a resistor and capacitor connected in series on an AC supply) written in rectangular form (a real resistance part plus an imaginary reactance part)?',
+     ['$Z=R+jX_C$', '$Z=R-jX_C$', '$Z=X_C-jR$', '$Z=R\\times X_C$'],
+     1,
+     "In rectangular form (writing impedance as a resistance part plus an imaginary reactance part), a series RC circuit's impedance is $Z=R-jX_C$, where $R$ is resistance and $X_C$ is capacitive reactance (the capacitor's opposition to alternating current); the negative sign on the imaginary part marks it as capacitive.",
+   ),
+   mcq(
+     'aeaca-019',
+     'A series RC circuit (a resistor and capacitor connected in series on an AC supply) has $R=9\\ \\Omega$ and capacitive reactance $X_C=12\\ \\Omega$. Using $|Z|=\\sqrt{R^2+X_C^2}$, what is the magnitude of its impedance?',
+     ['21 Ω', '3 Ω', '108 Ω', '15 Ω'],
+     3,
+     "The magnitude of impedance (the circuit's total opposition to alternating current) for this series RC circuit is $|Z|=\\sqrt{9^2+12^2}=\\sqrt{81+144}=\\sqrt{225}=15\\ \\Omega$, a 9-12-15 right-triangle relationship (a scaled 3-4-5 triangle).",
+@@ -239,37 +239,37 @@ export const acAnalysisQuestions: AppliedElectricityQuestion[] = [
+   mcq(
+     'aeaca-020',
+     'A series RLC circuit (a resistor, inductor, and capacitor connected in series on an AC supply) has inductive reactance $X_L$ greater than capacitive reactance $X_C$. Using $Z=R+j(X_L-X_C)$, what does this tell us about the circuit\'s overall reactive behaviour?',
+     [
+       'The circuit behaves as net capacitive, since $X_L-X_C$ is positive',
+       'The circuit behaves as net inductive, since $X_L-X_C$ is positive',
+       'The circuit behaves as purely resistive, since the reactances cancel',
+       "The circuit's impedance cannot be determined from this information",
+     ],
+     1,
+-    "In the series RLC impedance formula $Z=R+j(X_L-X_C)$ (combining resistance with the net reactance, the difference between inductive reactance $X_L$ and capacitive reactance $X_C$), a positive net reactance means the inductive effect dominates, so the circuit behaves as net inductive overall.",
++    "In the series RLC impedance (a circuit's total opposition to alternating current, combining resistance and reactance) formula $Z=R+j(X_L-X_C)$ (combining resistance with the net reactance, the difference between inductive reactance $X_L$ and capacitive reactance $X_C$), a positive net reactance means the inductive effect dominates, so the circuit behaves as net inductive overall.",
+   ),
+   mcq(
+     'aeaca-021',
+-    'A series RLC circuit (resistor, inductor, and capacitor connected in series on an AC supply) is tuned so that inductive reactance $X_L$ equals capacitive reactance $X_C$. What is this condition called, and what happens to the circuit\'s impedance?',
++    'A series RLC circuit (resistor, inductor, and capacitor connected in series on an AC supply) is tuned so that inductive reactance $X_L$ equals capacitive reactance $X_C$. What is this condition called, and what happens to the circuit\'s impedance (a circuit\'s total opposition to alternating current, combining resistance and reactance)?',
+     [
+       'Resonance; the net reactance becomes zero and impedance is minimum, equal to $R$',
+       'Resonance; the net reactance doubles and impedance is maximum',
+       'Saturation; the net reactance becomes zero and impedance is zero',
+       'Resonance; resistance becomes zero',
+     ],
+     0,
+     "This condition is called resonance (the state in a series RLC circuit where inductive reactance $X_L$ and capacitive reactance $X_C$ are equal): they cancel in the reactance term $X_L-X_C$, so the net reactance is zero and the impedance drops to its minimum value, equal to the resistance $R$ alone.",
+   ),
+   mcq(
+     'aeaca-022',
+-    "A circuit's impedance is given in rectangular form (a real resistance part plus an imaginary reactance part) as $Z=3+j4\\ \\Omega$. What is the magnitude of this impedance when expressed in polar form (magnitude∠angle)?",
++    "A circuit's impedance (a circuit's total opposition to alternating current, combining resistance and reactance) is given in rectangular form (a real resistance part plus an imaginary reactance part) as $Z=3+j4\\ \\Omega$. What is the magnitude of this impedance when expressed in polar form (magnitude∠angle)?",
+     ['7 Ω', '1 Ω', '5 Ω', '12 Ω'],
+     2,
+     "Converting from rectangular form (writing impedance as a resistance part, 3, plus an imaginary reactance part, 4) to polar form (writing impedance as a magnitude and an angle) uses $|Z|=\\sqrt{R^2+X^2}=\\sqrt{3^2+4^2}=\\sqrt{9+16}=\\sqrt{25}=5\\ \\Omega$; the full polar form would also need the angle, $\\theta=\\tan^{-1}(4/3)$.",
+   ),
+   tf(
+     'aeaca-023',
+     'Inductive reactance rises as the frequency of an AC supply increases.',
+     true,
+     "This is true: inductive reactance $X_L$ (a coil's, or inductor's, opposition to alternating current, measured in ohms) is calculated as $X_L=2\\pi fL$, which grows directly as frequency $f$ (cycles per second) increases.",
+   ),
+@@ -306,13 +306,13 @@ export const acAnalysisQuestions: AppliedElectricityQuestion[] = [
+   tf(
+     'aeaca-029',
+     "A phasor diagram shows how a sinusoidal quantity's instantaneous value changes second by second over a full cycle.",
+     false,
+     "This is false: a phasor (a rotating arrow representing a sinusoidal quantity's magnitude and phase at a single instant) is a static snapshot used to simplify AC analysis, not a moment-by-moment plot of the waveform over time; that kind of second-by-second plot is a waveform graph, not a phasor diagram.",
+   ),
+   tf(
+     'aeaca-030',
+     'The impedance of a series RC circuit is written in rectangular form as $Z=R+jX_C$.',
+     false,
+-    "This is false: a series RC circuit's impedance (a resistor and capacitor connected in series on an AC supply) in rectangular form (a resistance part plus an imaginary reactance part) is $Z=R-jX_C$, with a negative sign, since capacitive reactance $X_C$ opposes inductive reactance in direction on the imaginary axis.",
++    "This is false: a series RC circuit's (a resistor and capacitor connected in series on an AC supply) impedance (a circuit's total opposition to alternating current, combining resistance and reactance) in rectangular form (a resistance part plus an imaginary reactance part) is $Z=R-jX_C$, with a negative sign, since capacitive reactance $X_C$ opposes inductive reactance in direction on the imaginary axis.",
+   ),
+ ];

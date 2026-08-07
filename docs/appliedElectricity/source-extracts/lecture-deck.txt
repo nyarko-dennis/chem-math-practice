@@ -1,0 +1,679 @@
+=== slide 0 ===
+APPLIED ELECTRICTY
+SUBMITTED BY REV. ING. PAUL K. AMOAH
+
+=== slide 1 ===
+A list of basic electrical laws and theorems
+To solve electrical circuits, you also need to apply multiple Electrical Laws and Theorems so that you can calculate the required values for various parameters.
+ 1. Ohm’s Law
+ 2.Electric and Magnetic Circuits Kirchhoff Law
+There are two types of Kirchhoff’s Law.
+Kirchhoff Current Law
+Kirchhoff Voltage Law
+3.Here is the list of 9 theorems.
+          Superposition Theorem
+          Thevenin Theorem
+          Norton Theorem
+
+
+.
+
+=== slide 2 ===
+Ohm’s Laws
+Ohm‘s Law (1)
+
+=== slide 4 ===
+Kirchhoff’s Laws
+Kirchhoff’s laws are two basic, essential laws needed to perform electrical circuit network analysis. The two laws are:
+ Kirchoff’s current law Kirchoff’s voltage law
+
+=== slide 5 ===
+Kirchhoff’s Current Law (KCL)
+According to Kirchhoff’s current law, the algebraic sum of currents meeting at a junction in an electric circuit is zero.
+ The law can be otherwise stated as the sum of incoming currents at a junction in an electric circuit is equal to the sum of outgoing currents. 
+KCL is also called Kirchhoff’s junction, or nodal rule.
+ KCL is based on the law of conservation of charge.
+
+=== slide 6 ===
+Kirchhoff’s Current Law (KCL) cont’d
+
+=== slide 8 ===
+Kirchhoff’s Voltage Law
+According to Kirchhoff’s voltage law, in a closed mesh, the algebraic sum of potential differences or voltages is zero.
+ In a resistive electric current, KVL can be defined as the algebraic sum of voltage drops that access the resistors and voltage sources equal to zero. 
+By using KVL, the current flowing through any closed loop can be calculated, provided the component value and voltage sources are known
+
+=== slide 9 ===
+Kirchhoff’s Voltage Law
+
+=== slide 10 ===
+Kirchhoff’s Voltage Law
+
+=== slide 11 ===
+What is Thevenin's Theorem for Circuit Analysis?
+Thevenin’s theorem states that any linear circuit, no matter how complex, can be simplified to an equivalent circuit consisting of a single voltage source with a series resistance connected to a load.
+. Applying Thevenin’s theorem allows us to simplify any linear circuit to its Thevenin equivalent circuit with a single voltage source and series resistance. This simplification can make it easier to evaluate the effects of changing the connected load
+The circuit will be linear if it contains only passive components such as resistors, inductors, and capacitors. 
+. In a linear circuit, all the underlying equations must be linear (no exponents or roots).
+
+=== slide 12 ===
+With that in mind, we will explain Thevenin’s theorem using the example circuit of Figure 1.
+Figure 1. Circuit schematic for explaining Thevenin’s theorem.
+
+=== slide 13 ===
+The advantage of Thevenin’s theorem
+Let’s suppose we designate R2 as the load resistor in this circuit. We could use those other network analysis methods to determine the voltage across R2 and current through R2. However, each of these methods can be time-consuming. 
+Imagine repeating any of these methods over and over to find out what would happen if the load resistance changed. This analysis of changing load resistance is common in power systems, as multiple loads get switched on and off as needed, and the total resistance of the parallel connections depends on how many are connected at a time. This could potentially involve a lot of work! We need a better solution. Thus enters Thevenin’s theorem.
+
+=== slide 14 ===
+Advantages of Thevenin’s Theorem and Thevenin’s Equivalent Circuit
+Thevenin’s theorem can make this analysis easy by temporarily removing the load resistance from the original circuit and reducing what’s left to an equivalent circuit composed of a single voltage source and series resistance. 
+The load resistance can then be re-connected to the Thevenin equivalent circuit, and calculations carried out as if the whole network were nothing but a simple series circuit.
+After Thevenin conversion, our circuit in Figure 1 can be reduced to the Thevenin equivalent circuit in Figure 2.
+Figure 2. Thevenin equivalent circuit with the load resistor.
+
+=== slide 15 ===
+Thevenin equivalent circuit with the load resistor.
+Figure 2. Thevenin equivalent circuit with the load resistor.
+
+=== slide 16 ===
+A Thevenin equivalent circuit is the electrical equivalent of B1, B2, R1, and R3, as seen from the two points where our load resistor (R2) connects.
+The Thevenin equivalent circuit, if correctly derived, will behave exactly the same as the original circuit. In other words, the load resistor’s (R2) voltage and current will be exactly the same for the same load resistance value in the two circuits. The load resistor, R2, cannot tell the difference between the original network of B1, B2, R1, and R3,  and the Thevenin equivalent circuit of VThevenin, and RThevenin, provided that the values for VThevenin and RThevenin have been calculated correctly.
+The advantage of performing the Thevenin conversion to the simpler circuit is that it makes load voltage and load current easier to solve than in the original network.
+
+=== slide 17 ===
+Calculate Thevenin Equivalent Circuits—Thevenin Voltage and Thevenin Resistance
+
+=== slide 18 ===
+Step 2: Calculate the Thevenin Voltage
+Step 2: Calculate the Thevenin Voltage
+Next, the voltage between the two points where the load resistor used to be attached is determined. We can do this using any of our circuit analysis methods. 
+In this case, the original circuit with the load resistor removed is nothing more than a simple series circuit with opposing batteries. Thus, we can determine the voltage across the open load terminals by applying the rules of series circuits, Ohm’s law, and Kirchhoff’s voltage law (KVL). 
+We’ll begin by recognizing that the voltage drop across the two resistors is 28 - 7 = 21 V. We can complete our analysis using the table method, as shown in Table 1.
+
+=== slide 19 ===
+Step 2: Calculate the Thevenin Voltage
+
+=== slide 20 ===
+Step 2: Calculate the Thevenin Voltage cont’d
+
+=== slide 21 ===
+Step 2: Calculate the Thevenin Voltage cont’d
+
+=== slide 22 ===
+Step 3: Replace the Power Sources
+
+=== slide 23 ===
+Step 4: Calculate the Thevenin Resistance
+
+=== slide 24 ===
+Step 5: Draw the Thevenin Equivalent Circuit
+
+=== slide 25 ===
+Applying the Thevenin Equivalent Circuit
+
+=== slide 26 ===
+The superposition theorem
+The superposition theorem states that any linear circuit with more than one power source can be analyzed by summing the currents and voltages from each individual power source
+Lets go step-by-step process to apply the superposition theorem to easily analyze circuits with multiple voltages and/or current sources supplying power.
+The strategy used in the superposition theorem is to eliminate all but one source of power within a network at a time. Then, we use series and parallel circuit analysis techniques to determine voltage drops and currents within the modified network for each power source separately. 
+This process is then repeated sequentially by individually evaluating the circuit for every voltage and current source in the system. After each individual analysis has been completed, the voltage and current values are all “superimposed” on top of each other (added algebraically) to find the actual voltage drops and currents with all sources active.
+
+=== slide 27 ===
+Step 1: Replace All of the Power Sources Except for One
+When replacing the power supplies in the circuits, we must follow these two rules:
+Replace all voltage sources with short circuits (wires)
+Replace all current sources with open circuits (breaks)
+Since we only have voltage sources (batteries) in our example circuit in Figure 4.9, we will replace every inactive source during analysis with a short circuit wire.
+
+=== slide 28 ===
+Superposition theorem
+
+=== slide 29 ===
+SUPERPOSITION THEOREM CONT’D
+
+=== slide 30 ===
+SUPERPOSITION THEOREM CONT’D
+
+=== slide 31 ===
+SUPERPOSITION THEOREM CONT’D
+
+=== slide 32 ===
+SUPERPOSITION THEOREM CONT’D
+
+=== slide 35 ===
+NORTON’S THEOREM
+
+=== slide 37 ===
+NORTON’s THEOREM CONT’D
+
+=== slide 38 ===
+NORTON’s THEOREM EXAMPLE 2
+
+=== slide 39 ===
+Norton’s Theorem Step 1
+
+=== slide 40 ===
+Step 2: Calculate the Norton Current
+
+=== slide 41 ===
+Step 3: Replace the Power Sources
+
+=== slide 42 ===
+Step 4: Calculate the Norton Resistance
+
+=== slide 43 ===
+Step 5: Draw the Norton Equivalent Circuit
+
+=== slide 44 ===
+Alternating Voltages and Currents
+An alternating voltage is any voltage that varies in both magnitude and polarity with respect to time. The voltage may vary in a regular, predictable manner, or the voltage may vary in an irregular, nonrepetitive manner with respect to time. In either case, the voltage is considered to be an alternating voltage.
+An alternating current is any current that varies in both magnitude and direction. As with alternating voltages, there are no limitations on rate of change or waveshape. An alternating current is simply a current that changes magnitude and direction with time.
+
+=== slide 45 ===
+AC WAVEFORMS
+
+=== slide 46 ===
+Frequency and Period of AC Waveforms
+DC voltages and currents are easily defined in magnitude. Alternating voltages and currents, however, can not be exactly defined in terms of magnitude only. All alternating voltages and currents have three characteristics: amplitude, frequency, and phase. 
+The great majority of all AC voltages and currents change in magnitude and direction at predetermined rates ,that is an AC voltage rises to a maximum value, decreases from maximum to zero, then rises to maximum value of the opposite polarity, and again decreases to zero. It repeats this process continuously
+A cycle of alternating voltage or current consists of one complete transition from some point on an AC waveform to the same point on the following AC waveform. For example, one cycle of the AC waveform of the figure above may be measured between points a and d, b and e, or c and f.
+The number of cycles per second is defined as the frequency of an AC voltage or current. For example, common power-line frequency in Ghana is 50 cycles per second (cps),
+
+=== slide 47 ===
+Mathematical relationships between frequency and Time
+
+=== slide 48 ===
+Magnitude of Sinusoidal Voltages and Currents
+A unique waveform for AC voltage or current is the sine wave. In preceding sections, it has been stated that an alternating voltage or current may have any waveshape. This is indeed true, but this very fact could make mathematical analysis of alternating-current circuits very laborious. However, it can be shown mathematically and demonstrated graphically that any waveshape, no matter how irregular, consists of various combinations of sinusoidal waveshapes. Therefore, the unique feature of the sine wave is that it is basic to all AC voltages and currents!
+In the sine wave, one complete cycle is represented by 360° or 2π radians. Hence, if the period of a sine wave is 0.2 s, then each degree of the cycle represents 0.556 ms. At any instant, the instantaneous value of the sine wave equals the product of the maximum value of the sine wave and the sine of the angle corresponding to time. The equation for a sine wave of voltage is
+
+=== slide 49 ===
+Magnitude of Sinusoidal Voltages and Currents
+
+=== slide 50 ===
+Phasor representation of a sine wave of voltage showing instantaneous                     values at 28°, 70°, and 225°.
+
+=== slide 51 ===
+Types of AC Waveforms
+Square Wave         
+        
+Sine Wave
+       Triangle Wave
+
+=== slide 52 ===
+Applications of AC
+AC is used for long-distance transmission for Offices and Homes
+Energy Loss in AC is less so widely used in transmission
+The AC current can be converted into a high voltage to low voltage and low to high voltage efficiently using the transformer
+AC power is used in larger applications and appliances like Freezers, AC, Dishwashers, washing machines, Fans, and Bulbs
+
+=== slide 53 ===
+What is DC Current?
+The DC current also known as Direct Current is a unidirectional flow of current or electric charge unlike AC it does not change the magnitude and polarity with time. The DC current has constant magnitude and direction and as the direction and magnitude not changes so the frequency of the DC current is zero. The electrons in DC current flow from high electron density to low electron density.
+We can get DC from Ac current using the process called rectification and the device that does this is called a rectifier
+
+=== slide 54 ===
+Applications of DC Current
+DC current is widely used in small electronic devices and gadgets
+DC current is not suitable for long-distance transmission but storage of dc current is easy in the form of Battery.
+DC power is used in Cell phones, laptops, radios, and other electronic gadgets
+DC Current are used in flashlights
+DC current are used in EV and hybrid cars and automobile
+
+=== slide 55 ===
+Difference Between AC and DC
+Ac current changes its direction during flow while the DC current does not change its direction during flow and remains constant.
+The AC current has a frequency that shows how many times the direction of current flow changes during flow while the frequency of the direct current is zero as it does not change the direction of flow.
+The power factor of AC is 0 to 1 While DC is Constant Zero.
+The AC current is generated by the alternator while the Photovoltaic cells, generators, and batteries generate DC current.
+The AC load can be capacitive, inductive, or resistive but the load on DC is always resistive.
+
+=== slide 56 ===
+Difference Between AC and DC cont’d
+The DC current graph has a constant line showing magnitude and direction is constant while the AC current can be a sinusoidal wave, square wave, or triangular wave.
+The AC is converted into DC using a device named rectifier while the DC is converted into AC named inverter.
+AC is widely used in industrial equipment and consumer electronics like AC, Freezer, Cooler, washing machines, lights, and fans; While DC is used in electronic gadgets and small devices like clocks, laptops, cell phones, and Sensors.
+Ac can be transmitted over long distances with some loss while DC can be transmitted very long distances with very low loss using HVDC
+
+=== slide 57 ===
+Which is safer AC or DC?
+Comparatively, neither AC nor DC is entirely safe, and both can indeed be lethal under certain conditions. However, Alternating Current (AC) is typically portrayed as more dangerous than Direct Current (DC). This is due to AC's ability to cause harmful effects like fibrillation in (Atrial fibrillation (AF) is a common abnormal heart rhythm. It causes your heart to beat abnormally) the human heart, primarily because our bodies' impedance is lower under fluctuating high frequencies than it is under constant DC currents.
+ Furthermore, the 'let‐go' threshold of AC is lower compared to DC, meaning a person has a greater chance of releasing a live conductor under DC than AC
+
+=== slide 58 ===
+Series and Parallel Circuits
+
+=== slide 59 ===
+Series Circuits Defined
+
+=== slide 60 ===
+Calculating Equivalent Resistances in Series Circuits
+
+=== slide 61 ===
+Parallel Circuits Defined
+
+=== slide 62 ===
+Calculating Equivalent Resistances in Parallel Circuits
+
+=== slide 63 ===
+What Is a Transformer?
+A transformer is a static electrical device used in the  transmission of electric energy. The transmission current is AC. It is commonly used to increase or decrease the supply voltage without a change in the frequency of AC between circuits. The transformer works on the basic principles of electromagnetic induction and mutual induction.
+The transformer, in a simple way, can be described as a device that steps up or steps down voltage. In a step-up transformer, the output voltage is increased, and in a step-down transformer, the output voltage is decreased. The step-up transformer will decrease the output current, and the step-down transformer will increase the output current to keep the input and output power of the system equal. 
+ Transformer is normally utilized in the transmission and distribution of alternating current power and it is fundamentally a voltage control device. Transformer are used for a wide range of purposes, including increasing the voltage from electric generators to enable long-distance transmission of electricity and decreasing the voltage of conventional power circuits to run low-voltage devices like doorbells and toy electric trains.
+
+=== slide 64 ===
+Principle of operation of a Transformer
+
+=== slide 65 ===
+A 3-phase Transformer
+
+=== slide 66 ===
+Overall, a transformer carries out the following operations:
+Transfer of electrical energy from one circuit to another
+Transfer of electrical power through electromagnetic induction
+Electric power transfer without any change in frequency
+Two circuits are linked with mutual induction
+
+=== slide 67 ===
+The major parts of a single-phase transformer
+1. Core
+The core acts as a support to the winding in the transformer. It also provides a low reluctance path to the flow of magnetic flux. The winding is wound on the core, as shown in the picture. It is made up of a laminated soft iron core in order to reduce the losses in a transformer. The factors, such as operating voltage, current, power, etc., decide core composition. The core diameter is directly proportional to copper losses and inversely proportional to iron losses.
+2. Windings
+Windings are the set of copper wires wound over the transformer core. Copper wires are used due to the following:
+The high conductivity of copper minimises the loss in a transformer because when the conductivity increases, resistance to current flow decreases.
+The high ductility of copper is the property of metals that allows it to be made into very thin wires.
+There are mainly two types of windings: primary windings and secondary windings.
+Primary winding: The set of turns of windings to which the supply current is fed.
+Secondary winding: The set of turns of winding from which output is taken.
+The primary and secondary windings are insulated from each other using insulation coating agents.
+
+=== slide 68 ===
+The major parts of a transformer cont’d
+3. Insulation Agents
+Insulation is necessary for transformers to separate windings from each other and to avoid short circuits. This facilitates mutual induction. Insulation agents have an influence on the durability and stability of a transformer.
+The following are used as insulation mediums in a transformer:
+Insulating oil
+Insulating tape
+Insulating paper
+Wood-based lamination
+
+=== slide 69 ===
+The major parts of a transformer cont’d
+Radiators and Fans
+ The majority of the power lost in the transformer is dissipated as heat. Radiators and fans aid in the dissipation of heat generated by the transformer and provide protection against failure. The majority of dry transformer are cooled by natural air.
+Tank
+A transformer main tank serves two purposes:
+The core and the windings are protected from the elements, such as rain and dust.
+It functions as an oil container as well as a support for all other transformer attachments.
+Transformer Oil  The majority of the huge transformer are submerged in oil. The transformer oil adds insulation between the conductors, improves heat dissipation from the coils, and has fault-detecting capabilities. Transformer oil is typically made of hydrocarbon mineral oil.
+Oil Conservators The oil conservator is situated above the transformer tank and bushings. Some transformer oil conservators contain a rubber bladder. When a transformer is loaded, the ambient temperature rises, causing the amount of oil inside the transformer to increase. The transformer conservator tank has enough room for the increased transformer oil. It also serves as a reservoir for oil that is used to insulate buildings.
+Breather  All oil-immersed transformer with conservator tank includes it. It aids in the protection of the oil against moisture.
+
+=== slide 71 ===
+EMF Equation of a Transformer
+
+=== slide 72 ===
+EMF Equation of a Transformer cont’d
+
+=== slide 73 ===
+EMF Equation of a Transformer cont’d
+
+=== slide 74 ===
+Voltage Transformation Ratio of a Transformer
+
+=== slide 75 ===
+Voltage Transformation Ratio of a Transformer
+
+=== slide 76 ===
+Turns Ratio of a Transformer
+
+=== slide 77 ===
+Efficiency of Transformer
+The efficiency of a transformer is also known as commercial efficiency. It is represented by the letter ‘η’. The efficiency of a Transformer is described as the ratio of output (in W or kW) to input (in W or kW).
+Hence, the efficiency of transformer may be expressed as follows:
+Efficiency (η) = (Power Output / Power Input)
+The above equation can be used for an ideal transformer in which there are no transformer losses and all input energy is transferred to the output. As a result, the following equation is mostly used if transformer wastes are taken into account and the efficiency of the transformer is evaluated across the practical states.
+Efficiency = ((Power O/P) / (Power O/P + Losses)) × 100%
+or
+Efficiency = (Power i/p – Losses) / Power i/p × 100 = 1− (Losses/ i/p Power) × 100
+
+=== slide 78 ===
+Types of Transformer
+Step-down Transformer: The primary voltage is converted to a lower voltage across the secondary output using a step-down transformer. The number of windings on the primary side of a step-down transformer is more than on the secondary side. As a result, the overall secondary-to-primary winding ratio will always be less than one. Step-down transformers are used in electrical systems that distribute electricity over long distances and operate at extremely high voltages to ensure minimum loss and economical solutions. Step-down transformer are used to change high-voltage into low-voltage supply lines.
+Step-up Transformer: The secondary voltage of a step-up transformer is raised from the low primary voltage. Because the primary winding has fewer turns than the secondary winding in this sort of transformer, the ratio of the primary to secondary winding will be greater than one. Step-up transformer are frequently used in electronics stabilizers, inverters, and other devices that convert low voltage to a significantly higher voltage. A step-up transformer is also used in the distribution of electrical power. For applications connected to power distribution, high voltage is necessary. In the grid, a step-up transformer is used to raise the voltage level prior to distribution.
+
+=== slide 79 ===
+Types of Transformer cont’d
+
+=== slide 80 ===
+Types of Transformer based on Usage
+Transformer come in a wide range of variants, each of which operates in a distinct field. Thus, based on their proposed use, transformer can be categorized as follows:
+Power Transformer: The energy is transferred to the substation or the general electrical supply using a larger power transformer. Between the major distribution grid and the power generator, this transformer serves as a link. Power Transformer can be further divided into three groups based on their power rating and specification-
+Small power transformer, 
+Medium power transformer, and 
+Large power transformer
+Measurement Transformer: Instrument transformer is another name for measurement transformer. This is yet another measurement tool that is usually utilized in the power domain. To separate the primary power and convert the current and voltage in a smaller ratio to its secondary output, a measuring transformer is used. 
+Distribution Transformer: The distribution transformer function as a step-down transformer, converting high grid voltage to the appropriate voltage for the end user, typically 110V or 230V. Depending on the conversion capacity or ratings, the distribution transformer might be less in size or larger.
+Pulse Transformer: One of the most popular PCB-mounted transformer that generates electrical pulses with a consistent amplitude are pulse transformer. It is utilized in a number of digital circuits where the demand for isolated pulse creation exists. 
+Audio Output Transformer: Another frequent transformer in the electronics industry is the audio transformer. It is specifically usedin applications involving audio where impedance matching is necessary.
+
+=== slide 81 ===
+Energy Losses in a Transformer
+We used an ideal transformer in the previous equations (without any energy losses). However, some energy losses do occur in actual transformer for the following reasons:
+Flux Leakage: Because some flux leaks from the core, not all flux generated by the primary coil make it to the secondary coil. This occurs as a result of the core’s inadequate design or the presence of air holes in the core. It is possible to lower it by wrapping the primary and secondary coils over each other. It can also be lowered if the core is well-designed.
+Windings Resistance: Because the wire used for the windings has some electrical resistance, energy is wasted as a result of the heat generated in the windings. These are mitigated in high current, low voltage windings by utilizing thick wire with a high conductive substance.
+Eddy Currents: The alternating magnetic flux creates eddy currents in the iron core, resulting in energy losses through heating. By using a laminated core, the impact is decreased.
+Hysteresis Loss: In each AC cycle, the alternating magnetic field reverses the magnetization of the core. The loss of energy in the core occurs as heat owing to hysteresis loss, which is minimized by employing a magnetic material with a low hysteresis loss.
+
+=== slide 82 ===
+What are considerations to select transformer for substation?
+Transformers are critical components in power systems, and selecting the right transformer for your needs is essential for ensuring proper functioning and optimal performance. Whether you are choosing a transformer for industrial, commercial, or residential use, there are several factors to consider to ensure that you make the right choice. In this blog post, we will discuss some of the most important factors to consider when selecting a transformer.
+ Power Requirements One of the primary factors to consider when selecting a transformer is the power requirements of your application. This includes the required voltage and current levels, as well as the frequency of the AC power source. Transformers are designed to convert AC power from one voltage level to another, and choosing the right transformer with the appropriate power rating is essential for ensuring that your equipment operates correctly.
+Efficiency
+ Efficiency is another crucial factor to consider when selecting a transformer. A more efficient transformer will convert more of the input power into the desired output power, resulting in less energy waste and reduced operating costs. The efficiency of a transformer can be affected by factors such as the quality of the core materials, the design of the windings, and the type of cooling used.
+
+=== slide 83 ===
+Considerations for transformer selection cont’d
+Load Characteristics
+The load characteristics of your application will also affect the selection of the transformer. This includes the type of load (inductive, capacitive, or resistive), the level of harmonics, and the overall power factor of the load. Different types of loads require different types of transformers, and selecting the wrong transformer can result in reduced efficiency, increased heat, and potential damage to the equipment.Environmental Conditions
+ The environmental conditions in which the transformer will operate are also an essential consideration. Transformers can generate heat, and the ambient temperature of the environment can affect their performance. In addition, transformers can be affected by humidity, dust, and other environmental factors. Transformers that will be used in harsh environments such as outdoors or in industrial settings may require additional protection or special designs to ensure optimal performance.
+ Type of Transformer
+ Transformers come in different types, including step-up transformers, step-down transformers, isolation transformers, autotransformers, and more. Each type of transformer has its own unique characteristics and advantages, and selecting the right type of transformer is essential for ensuring that your equipment operates correctly.
+ Size and Weight
+ The size and weight of the transformer are also essential factors to consider when selecting a transformer. The size of the transformer will depend on the amount of power it needs to handle, and the weight of the transformer will depend on the type of core materials used. It is important to ensure that the transformer you select is appropriately sized and can be easily installed in your application.
+
+=== slide 84 ===
+The Rating of a Transformer
+The power rating of a transformer is the maximum amount of power that it can handle. It is usually expressed in kilovolt-amperes (kVA) or megavolt-amperes (MVA)
+Let’s explain in more detail to get the idea of why a transformer is rated in VA instead of kW?
+When manufacturers design a transformer, they have no idea which kind of load will be connected to the transformer e.g. they are not sure about the exact applications of transformers in different scenarios. The load may be resistive (R), inductive (L), capacitive (C) or mixed load (R, L and C). It means, there would be different power factor (P.F) at the secondary (load) side on different kinds of connected loads which additionally depends on R, L and C. This way, the rating of a transformer is expressed in Volt-Amps (VA) instead of  Watts (W) in case of Transformer
+
+=== slide 85 ===
+POWER FACTOR OF AN A.C. CIRCUIT
+The power factor is defined as the ratio of real power to apparent power. As power is transferred along a transmission line, it does not consist purely of real power that can do work once transferred to the load, but rather consists of a combination of real and reactive power, called apparent power. The power factor describes the amount of real power transmitted along a transmission line relative to the total apparent power flowing in the line. 
+Power Factor of an alternating current circuit is the ratio of true power dissipation to the apparent power dissipation in the circuit. The value of the power factor of an a.c circuit lies between 0 and 1. For a purely inductive or capacitive circuit, it is 0 and for the purely resistive circuit, it is 1.
+
+The power factor can also be computed as the cosine of the angle θ by which the current waveform lags or leads the voltage waveform,
+
+=== slide 86 ===
+Power Triangle
+
+=== slide 87 ===
+Lagging, leading and unity power factors
+
+=== slide 88 ===
+How to calculate power factor
+
+=== slide 89 ===
+Lagging, leading and unity power factors cont’d
+Since the units are consistent, the power factor is by definition a dimensionless number between 0 and 1. When power factor is equal to 0, the energy flow is entirely reactive and stored energy in the load returns to the source on each cycle. When the power factor is 1, referred to as unity power factor, all the energy supplied by the source is consumed by the load. Power factors are usually stated as leading or lagging to show the sign of the phase angle. Capacitive loads are leading (current leads voltage), and inductive loads are lagging (current lags voltage).
+If a purely resistive load is connected to a power supply, current and voltage will change polarity in step, the power factor will be 1, and the electrical energy flows in a single direction across the network in each cycle. Inductive loads such as induction motors (any type of wound coil) consume reactive power with the current waveform lagging the voltage. Capacitive loads such as capacitor banks or buried cables generate reactive power with the current phase leading the voltage. Both types of loads will absorb energy during part of the AC cycle, which is stored in the device's magnetic or electric field, only to return this energy back to the source during the rest of the cycle
+
+=== slide 90 ===
+Lagging, leading and unity power factors cont’d
+For example, to get 1 kW of real power, if the power factor is unity, 1 kVA of apparent power needs to be transferred (1 kW ÷ 1 = 1 kVA). At low values of power factor, more apparent power needs to be transferred to get the same real power. To get 1 kW of real power at 0.2 power factor, 5 kVA of apparent power needs to be transferred (1 kW ÷ 0.2 = 5 kVA). This apparent power must be produced and transmitted to the load and is subject to losses in the production and transmission processes.
+Electrical loads consuming alternating current power consume both real power and reactive power. The vector sum of real and reactive power is the complex power, and its magnitude is the apparent power. The presence of reactive power causes the real power to be less than the apparent power, and so, the electric load has a power factor of less than 1.
+A negative power factor (0 to −1) can result from returning active power to the source, such as in the case of a building fitted with solar panels when surplus power is fed back into the supply.
+
+=== slide 91 ===
+Power factor correction
+Power factor correction is the process of compensating for the lagging current by creating a leading current by connecting capacitors to the supply. A sufficient capacitance is connected so that the power factor is adjusted to be as close to unity as possible. Power factor correction is normally achieved by the addition of capacitors to the electrical network which compensate for the reactive power demand of the inductive load and thus reduce the burden on the supply. To reduce losses in the distribution system, and to reduce the electricity bill, power factor correction, usually in the form of capacitors, is added to neutralize as much of the magnetizing current as possible. Capacitors contained in most power factor correction equipment draw current that leads the voltage, thus producing a leading power factor. If capacitors are connected to a circuit that operates at a nominally lagging power factor, the extent that the circuit lags is reduced proportionately
+
+=== slide 92 ===
+Power   factor correction
+
+=== slide 93 ===
+Power Factor Correction Example
+
+=== slide 94 ===
+Power Factor Correction Example cont’d
+
+=== slide 95 ===
+Power Factor Correction Example cont’d
+
+=== slide 96 ===
+RL Series Circuit
+
+=== slide 97 ===
+R and L Vector Diagrams
+
+=== slide 98 ===
+Phasor Diagram for the Series RL Circuit
+
+=== slide 99 ===
+What is an electric motor?
+It is an electrical device that transforms electrical energy into usable mechanical energy. Almost every electric motor operates by the interplay between the motor’s electric current and magnetic field in the form of torque exerted on the shaft of the motor.
+
+=== slide 100 ===
+AC and DC MOTORS
+. 
+AC Motor
+The AC electric motor converts AC (Alternating Current) electrical energy into mechanical energy. These electric motors are powered using a single-phase or three-phase alternating current. The basic working principle of AC motor is the rotating magnetic field (RMF) generated by the stator winding when an alternating current is passed through it. The rotor (having its own magnetic field) follows the RMF & starts rotation.
+DC Motor
+The DC motor is another main type of electrical motor that only runs on DC or Direct Current. There are no phases in direct current that is why DC electric motors only uses 2 wires to run. They are the first motors to be invented. It is easier to control its speed by only varying the supply voltage. It offers simple starting, stopping, accelerating & reversing mechanisms. The installation cost of DC motor is very cheap but they do require maintenance whose cost increases significantly with increasing the size & power of the motor
+
+=== slide 101 ===
+Types of AC and DC motors
+We know there are generally two types of motors, AC motor, and DC motor. AC motors are flexible for speed control and demand low power during start. On the other hand, DC motors are widely used due to its initial cost of low power units is less compared to AC and can be easily installed
+
+=== slide 102 ===
+AC MOTORS
+Synchronous Motors
+In this kind of motors, the speed remains constant with varying loads and the supply current frequency is synchronized with rotor rotation. That is why this motor helps to drive motors at a constant speed and is used in machines.
+Asynchronous(Induction) Motors
+This motor works on the principle of electromagnetic induction which is produced from the magnetic field on the rotor. These are classified into two types according to the load capacity:
+Single-Phase
+Three-Phase
+The single-phase induction motors are used for smaller loads such as household appliances
+The three-phase induction motors are used in industries applications such as conveyor belts, lifting gears, etc.
+
+=== slide 103 ===
+SYNCHRONOUS MOTOR TYPES
+Excited Synchronous Motor
+Such synchronous motor requires DC excitation. The DC excitation means that the rotor has a separate DC supply to generate its own magnetic flux. This flux reacts with the revolving flux of the stator to generate rotation. The utilize wire wound rotor with commutator & brushes assembly to supply current to the rotor’s windings.
+Single Phase Synchronous Motor
+Such synchronous motor runs on single-phase AC supply. To be precise, it actually uses two-phase, the second one being derived from the first phase. The reason for using two phases is that a single phase cannot generate a rotating magnetic field. Such motor can start in either direction i.e. its direction is unidentified, which is why there is an extra starting arrangement used for giving it a direction.
+The speed of such a motor only depends on the supply frequency. They are used in recording instruments, electric wall clocks.
+Three Phase Synchronous Motor
+These synchronous motor runs on three-phase power supply. The benefit of a three-phase alternating current is that it generates a rotating magnetic field in the stator while the arrangement of the phases decides the direction of the rotation. These motor does not need any special starting mechanism to decide its direction. However, the rotor still needs an extra DC source for excitation.
+They are used in industries for applications that require constant speed over a range of loads & require precise positioning in robotics
+Unexcited Synchronous Motor
+Such synchronous motor that does not require DC excitation i.e. the rotor does not require separate DC supply for generating magnetic flux. They utilize squirrel cage rotors such as the one used in induction motor.
+
+=== slide 104 ===
+Asynchronous Motor
+Asynchronous Motor
+The type of AC motor that never runs at synchronous speed is called asynchronous speed. Its rotor speed is always less than the synchronous speed. It does not require separate rotor excitation.
+The asynchronous motors are briefly classified into two types;
+Induction Motor
+Commutator Motor
+
+=== slide 105 ===
+Asynchronous Motor
+
+=== slide 106 ===
+Induction Motor and Its Working
+A machine that converts electrical energy into mechanical energy is called electric motor. These are simple in design, easily used, low cost, high efficiency, low maintenance, and reliable. Three-phase induction motors are one of the types and different from other types of electric motors. The main difference is that there is no electrical connection from the rotor winding to any source of supply. The required current and voltage in the rotor circuit are provided by induction from the stator winding. This is the reason to call is as an induction motor.
+
+=== slide 107 ===
+Rotor and stator of an induction motor
+.
+
+=== slide 108 ===
+Squirrel Cage Rotor
+
+=== slide 109 ===
+What Is Rotor vs Motor?
+The terms "rotor" and "motor" are closely related and often used together to describe different parts of an electric machine. The difference between the two is this; 
+Rotor: The rotor refers to the rotating part of an electric machine, such as an electric motor or generator. It is the component that spins or rotates within the machine. The rotor can be either wound or contain permanent magnets. In an electric motor, the rotor is the part that receives electrical energy and converts it into mechanical motion. In a generator, the rotor is the part that is driven by an external power source and generates electrical power.
+Motor: A motor, specifically an electric motor, is a machine that converts electrical energy into mechanical energy. It consists of two main parts: the stator and the rotor. The stator is the stationary part of the motor, usually comprising a series of coils or windings that produce a magnetic field when electric current flows through them. The rotor, as mentioned earlier, is the rotating part that interacts with the stator's magnetic field and converts the electrical energy into mechanical motion.
+In summary, the rotor is the rotating part of an electric machine, while the motor is the complete device that converts electrical energy into mechanical energy. The rotor is an essential component of the motor, enabling its operation and the conversion of energy
+
+=== slide 110 ===
+What is a Stator in Electrical Machines?
+
+=== slide 111 ===
+Squirrel Cage Induction Motor
+The rotor of such an induction motor resembles a squirrel cage. It is made from copper bars connected at both ends using a conductive ring to make a closed-loop circuit. There is no electrical connection to the rotor.
+The stator’s varying magnetic field induces a current in the rotor’s bars. The induced current generates its own magnetic field in the rotor which interacts with the stator’s revolving magnetic field & tries to eliminate it by revolving with it in the same direction.
+It has a simple design, inexpensive & it is more reliable. Since there are no electrical connection or commutator & brush assembly, it requires less maintenance
+
+=== slide 112 ===
+DC MOTORS            Brushed Motors
+These are the traditional variety of DC motors which are used for basic applications where there is a very simple control system. These are used in consumer applications and basic industrial applications. These are classified into four types:
+Series Wound
+Shunt Wound
+Compound Wound
+Permanent Magnet
+In the series wound DC motors, the rotor winding is connected in series with the field winding. Varying the supply voltage will help in controlling the speed. These are used in lifts, cranes, and hoists, etc.
+
+=== slide 113 ===
+Brushed Motors cont’d
+In the shunt wound DC motors, the rotor winding is connected in parallel with the field winding. It can deliver higher torque without any reduction in the speed and increases the motor current. Due to its medium level of starting torque along with constant speed, it is used in conveyors, grinders, vacuum cleaners, etc
+In the compound wound DC motors, the polarity of the shunt winding gets added to that of the series fields. It has a high starting torque and runs smoothly even if the load varies smoothly. This is used in elevators, circular saws, centrifugal pumps, etc.
+Permanent magnet as the name suggests are used for precise control and lower torque such as robotics.
+
+=== slide 114 ===
+DC MOTORS                                                   Brushless Motors
+These motors have a simpler design and have a higher life span when used in higher applications. This has little maintenance and high efficiency. These types of motors are used in appliances that use speed and position control such as fans, compressors, and pumps.
+
+=== slide 115 ===
+TYPES OF ELECTRIC MOTORS
+
+=== slide 116 ===
+What is a motor control?
+Motor controls are used almost everywhere today. These motor controls regulate the speed and performance of the motors so that the equipment is working within the optimal range and do not exceed their limits whether to execute the use of pumps in different applications or to control the movements of machines or conveyor belts. A key point of this motor control is the energy efficiency and the economy, but also the simplicity of implementation is an essential feature of the control of motors. To accomplish these tasks, modern and sophisticated inverter or frequency inverter to control the machines are deployed and used. The motor should not overheat and has to provide the full power without losing energy..
+
+=== slide 117 ===
+Motor Control Circuits Cont’d
+
+=== slide 118 ===
+Motor Control Circuits Cont’d
+When the “Forward” pushbutton is actuated, M1 will energize, closing the normally-open auxiliary contact in parallel with that switch. When the pushbutton is released, the closed M1 auxiliary contact will maintain current to the coil of M1, thus latching the “Forward” circuit in the “on” state. The same sort of thing will happen when the “Reverse” pushbutton is pressed. These parallel auxiliary contacts are sometimes referred to as seal-in contacts, the word “seal” meaning essentially the same thing as the word latch. However, this creates a new problem: how to stop the motor! As the circuit exists right now, the motor will run either forward or backward once the corresponding pushbutton switch is pressed and will continue to run as long as there is power. To stop either circuit (forward or backward), we require some means for the operator to interrupt power to the motor contactors. We’ll call this new switch, Stop:
+
+=== slide 119 ===
+Motor Control Circuits Cont’d
+
+=== slide 120 ===
+Motor Control Circuits Cont’d
+Let’s consider another practical aspect of our motor control scheme before we quit adding to it. If our hypothetical motor turned a mechanical load with a lot of momentum, such as a large air fan, the motor might continue to coast for a substantial amount of time after the stop button had been pressed. This could be problematic if an operator were to try to reverse the motor direction without waiting for the fan to stop turning. If the fan was still coasting forward and the “Reverse” pushbutton was pressed, the motor would struggle to overcome that inertia of the large fan as it tried to begin turning in reverse, drawing excessive current and potentially reducing the life of the motor, drive mechanisms, and fan. What we might like to have is some kind of a time-delay function in this motor control system to prevent such a premature startup from happening. Let’s begin by adding a couple of time-delay relay coils, one in parallel with each motor contactor coil. If we use contacts that delay returning to their normal state, these relays will provide us a “memory” of which direction the motor was last powered to turn.
+
+=== slide 121 ===
+Motor Control Circuits Cont’d
+When the stop button is pressed, contact TD1 waits for the specified amount of time before returning to its normally-closed state, thus holding the reverse pushbutton circuit open for the duration so M2 can’t be energized. When TD1 times out, the contact will close and the circuit will allow M2 to be energized if the reverse pushbutton is pressed. In like manner, TD2 will prevent the “Forward” pushbutton from energizing M1 until the prescribed time delay after M2 (and TD2) have been de-energized.
+
+=== slide 122 ===
+Motor Control Circuits Cont’d
+
+=== slide 123 ===
+Electric Power Generation, Transmission and Distribution Network in Ghana
+
+=== slide 124 ===
+How electricity is generated
+Electromagnetic generators use an electromagnet—a magnet produced by electricity—not a traditional magnet. A basic electromagnetic generator has a series of insulated wire coils that form a stationary cylinder—called a stator—surrounding an electromagnetic shaft—called a rotor. Turning the rotor makes an electric current flow in each section of the wire coil, and each section becomes a separate electric conductor. The currents in the individual sections combine to form one large current. This current is the electricity that moves from generators through power lines to consumers. Electromagnetic generators driven by kinetic (mechanical) prime movers account for nearly all U.S. electricity generation.
+
+=== slide 125 ===
+Turbine driven generators
+What is the process of a power generator?
+             
+The force of the fluid on the blades spins (rotates) the rotor shaft of a generator. The generator, in turn, converts the mechanical (kinetic) energy of the rotor to electrical energy
+
+=== slide 126 ===
+Turbine driven generators
+
+=== slide 127 ===
+POWER GENERATION PROCESS
+Electric generators transform kinetic energy into electricity. This is the most used form for generating electricity and is based on Faraday's law. It can be seen experimentally by rotating a magnet within closed loops of conducting material, e.g. copper wire. Almost all commercial electrical generation is done using electromagnetic induction, in which mechanical energy forces a generator to rotate
+Electric generators were known in simple forms from the discovery of electromagnetic induction in the 1830s. In general, some form of prime mover such as an engine or the turbines, drives a rotating magnetic field past stationary coils of wire thereby turning mechanical energy into electricity. The only commercial scale forms of electricity production that do not employ a generator are photovoltaic solar and fuel cells.
+
+=== slide 128 ===
+Power Generation Process Cont’d
+To produce electricity, a turbine generator set converts mechanical energy to electrical energy. In the cases of natural gas, coal, nuclear fission, biomass, petroleum, geothermal, and solar thermal, the heat that is produced is used to create steam, which moves the blades of the turbine. In the cases of wind power and hydropower, turbine blades are moved directly by flowing wind and water, respectively. Solar photovoltaic panels convert sunlight directly to electricity using semiconductors
+
+=== slide 129 ===
+SOURCES OF POWER GENERATIONElectrochemistry Power Generation
+
+=== slide 130 ===
+Photovoltaic effect
+The photovoltaic effect is the transformation of light into electrical energy, as in solar cells. Photovoltaic panels convert sunlight directly to DC electricity. Power inverters can then convert that to AC electricity if needed. Although sunlight is free and abundant, solar power electricity is still usually more expensive to produce than large-scale mechanically generated power due to the cost of the panels
+Until recently, photovoltaics were most commonly used in remote sites where there is no access to a commercial power grid, or as a supplemental electricity source for individual homes and businesses. Recent advances in manufacturing efficiency and photovoltaic technology, combined with subsidies driven by environmental concerns, have dramatically accelerated the deployment of solar panels. Installed capacity is growing by around 20% per year[2] led by increases in Germany, Japan, United States, China, and India.
+
+=== slide 131 ===
+Sources of Power Generation cont’d
+Hydropower, also known as water power, is the use of falling or fast-running water to produce electricity or to power machines. This is achieved by converting the gravitational potential or kinetic energy of a water source to produce power. Hydropower is a method of sustainable energy production.
+Wind energy, or wind power, refers to the process of using the movement of air to convert it into mechanical power or electricity. Wind energy is categorized as a form of solar power because it is generated as a result of the passage of air relative to the surface of the Earth
+Nuclear power comes from nuclear fissionNuclear power reactors use heat produced during atomic fission to boil water and produce pressurized steam. The steam is routed through the reactor steam system to spin large turbines blades that drive magnetic generators to produce electricity
+
+=== slide 132 ===
+Electricity Transmission and Distribution
+Electricity from generating facilities often travels long distances to local distribution substations through a transmission grid of several kilometres of high-voltage transmission lines. Generating facilities provide power to the grid at low voltage, from 480 volts (V) in small generating facilities to 22 kilovolts (kV) in larger power plants. Once electricity leaves a generating facility, the voltage is increased, or "stepped up," by a transformer (typical ranges of 100 kV to 1,000 kV) to minimize the power losses over long distances. As electricity is transmitted through the grid and arrives in the load areas, the voltage is stepped down by substation transformers (ranges of 70 kV to 4 kV). To prepare for customer interconnection, the voltage is lowered again (residential customers use 120/240 V; commercial and industrial customers typically use 208/120 V, or 480/277 V
+
+=== slide 133 ===
+Power Transmission & Distribution System
+Electricity transmission is the process by which large amounts of Electricity produced at power plants (such as hydro, geothermal, thermal and wind), is transported over long distances for eventual use by consumers. Due to the large amount of power involved, and the properties of Electricity, transmission normally takes place at high voltage (132-kilovolt or above) to reduce losses that occur over long distances. 
+Electricity is usually transmitted to a substation near a populated area. At the substation, the high voltage Electricity is converted to lower voltages suitable for consumer use, and then transmitted to end users through relatively low-voltage Electricity distribution lines that are owned and operated by the national Electricity utility
+ Transmission and distribution refers to the different stages of carrying electricity over poles and wires from generators to a home or a business. The primary distinction between the two is the voltage level at which electricity moves in each stage.
+
+=== slide 134 ===
+Power Transmission & Distribution System
+
+=== slide 135 ===
+What is a Conductor
+Copper was the preferred material for overhead conductors in earlier days, but, aluminum has replaced copper because of the much lower cost and lighter weight of the aluminum conductor compared with a copper conductor of the same resistance. Following are some materials that are good conductors.
+
+=== slide 136 ===
+TROPICAL CABLE & CONDUCTOR LIMITED
+
+=== slide 137 ===
+Types of Conductors cont’d
+AAC : All Aluminum ConductorThis type is sometimes also referred as ASC (Aluminum Stranded Conductor). It is made up of strands of EC grade or Electrical Conductor grade aluminum. AAC conductor has conductivity about 61% IACS (International Annealed Copper Standard). Despite having a good conductivity, because of its relatively poor strength, AAC has limited use in transmission and rural distribution lines. However, AAC can be seen in urban areas for distribution where spans are usually short but higher conductivity is required.
+AAAC : All Aluminum Alloy ConductorThese conductors are made from aluminum alloy 6201 which is a high strength Aluminum-Magnesium-Silicon alloy. This alloy conductor offers good electrical conductivity (about 52.5% IACS) with better mechanical strength. Because of AAAC’s lighter weight as compared to ACSR of equal strength and current capacity, AAAC may be used for distribution purposes. However, it is not usually preferred for transmission. Also, AAAC conductors can be employed in coastal areas because of their excellent corrosion resistance.
+ACSR : Aluminum Conductor, Steel ReinforcedACSR consists of a solid or stranded steel core with one or more layers of high purity aluminum (aluminum 1350) wires wrapped in spiral. The core wires may be zinc coated (galvanized) steel or aluminum coated (aluminized) steel. Galvanization or aluminization coatings are thin and are applied to protect the steel from corrosion. The central steel core provides additional mechanical strength and, hence, sag is significantly less than all other aluminum conductors. ACSR conductors are available in a wide range of steel content – from 6% to 40%. ACSR with higher steel content is selected where higher mechanical strength is required, such as river crossing. ASCR conductors are very widely used for all transmission and distribution purposes.
+ACAR : Aluminum Conductor, Alloy ReinforcedACAR conductor is formed by wrapping strands of high purity aluminum (aluminum 1350) on high strength Aluminum-Magnesium-Silicon alloy (6201 aluminum alloy) core. ACAR has better electrical as well as mechanical properties than equivalent ACSR conductors. ACAR conductors may be used in overhead transmission as well as distribution lines.
+
+=== slide 138 ===
+Electrical Conductivity
+The conductivity of the material is the capacity of the material to transmit something like electricity or heat. Electrical conductors are the materials or substances in which the electrons, electrical charge carriers, are abundantly available. Electrons are the particles which make easy the electricity to pass through the material when voltage is applied across it. In the electrical conductors, the electrons can flow in either direction. Metals are the good conductors of electricity.  
+The electrical conductivity of the material is managed by the electrons which are lightly attached to the atom and are easily available to be separated from it. When the electric current flows through the material, electrons carry the electric current from one end to another but they do not move from their places. When electricity passes, they get charged and vibrate at their places. This vibration transfers the charge from them to nearby electrons and nearby electrons then start vibrating and transfer the charge to neighbouring electrons. This way, electricity transfers from one place to another. When the electricity is not passing through the conductor, the electrons do not have any charge difference and therefore they do not vibrate and do not disturb neighbouring electrons
+
+=== slide 139 ===
+Types of Conductors
+Copper: Copper has a high conductivity and greater tensile strength. So, copper in hard drawn stranded form is a great option for overhead lines. Copper has a high current density which means more current carrying capacity per unit cross-sectional area. Therefore, copper conductors have relatively smaller cross-sectional area. Also, copper is durable and has high scrap value. However, due to its higher cost and non-availability, copper is rarely used for overhead power lines.
+Aluminum: Aluminum has about 60% of the conductivity of copper; that means, for the same resistance, the diameter of an aluminum conductor is about 1.26 times than that of a copper conductor. However, an aluminum conductor has almost half the weight of an equivalent copper conductor. Also, tensile strength of aluminum is less than that of copper. Considering combined factors of cost, conductivity, tensile strength, weight etc., aluminum has an edge over copper. Therefore, aluminum is being widely used for overhead conductors.
+Cadmium-copper: Cadmium-copper alloys contain approximately 98 to 99% of copper and up to 1.5% of cadmium. Addition of about 1% of cadmium to copper increases the tensile strength by up to 50% and the conductivity is reduced only by about 15%. Therefore, cadmium-copper conductors can be useful for exceptionally long spans. However, due to high cost of cadmium, such conductors may be uneconomical in many cases.
+Other materials: There are many other metals and alloys that conduct electricity. Silver is more conductive than copper, but due to its high cost, it is not practical in most of the cases. Galvanized steel may also be used as a conductor. Although steel has very high tensile strength, steel conductors are not suitable for transmitting power efficiently due to the poor conductivity and high resistance of steel. High strength alloys such as phosphor-bronze may also be used sometimes at extreme conditions.
+
+=== slide 140 ===
+Types of Conductors cont’d
+As it is already mentioned above, aluminum conductors have an edge over copper conductors considering combined factors of cost, conductivity, tensile strength, weight etc. Aluminum conductors have completely replaced copper conductors in overhead power lines because of their lower cost and lower weight. Though an aluminum conductor has larger diameter than that of a copper conductor of same resistance, this is an advantage when ‘Corona’ is taken into consideration. Corona reduces considerably with increase in the conductor diameter. Following are four common types of overhead conductors that are used for overhead transmission and distribution to carry generated power from generating stations to the end users. Generally, all types of conductors are in stranded form in order to increase the flexibility. Solid wires, except for very small cross sectional area, are very difficult to handle and, also, they tend to crystallize at the point of support because of swinging in winds.
+AAC : All Aluminum Conductor
+AAAC : All Aluminum Alloy Conductor
+ACSR : Aluminum Conductor, Steel Reinforced
+ACAR : Aluminum Conductor, Alloy Reinforced
+
+=== slide 141 ===
+Selection of conductors
+Overhead conductors are hanged on poles, so the lower point of the conductor, which is a parabola between the structures (Sag), should be at a safe distance from the ground level for safety considerations. So, the weight of material should be as low as possible and it should withstand tension during installation and worst weather case conditions. But the foremost important application of overhead conductor is to carry current so, material electrical conductivity also needs to be considered for selecting a suitable material for overhead conductor. To deliver power to all the load locations across the globe, the transmission and distribution lines will be constructed in huge lengths, which requires vast quantity of materials, so cost and availability should also be considered.
+Hence, three main parameters which are vital for selection of material for overhead conductors are 1) Electrical Conductivity 2) Density and 3) Tensile strength.
+The sag formula is represented as S:
+      W- is the weight
+      L – is the span length distance between two structure
+      T – Tension
+So, strength to weight ratio is the key factor for mechanical requirements. Electrical conductivity to weight ratio for electrical requirements of overhead conductors.
+Aluminium is preferable when compared to copper because of these two ratios, so became the choice of material for transmission design engineers in the late 1890’s.
+
+=== slide 142 ===
+Selection of conductors
+
+=== slide 143 ===
+Selection of conductors
+we can say that the conductor is one of the most crucial components in a power system network. There is no way we can overlook it in the transmission and distribution of electric power. The money spent on conductor material is a substantial and a significant part of the cost of the power system network. And as such, there is need to ascertain the best conductor material and the proper size that will be employed for a given project. The choice is often influenced by several characteristics of the conductor and also the application and environment in which the conductors will operate.
+These attributes that are sought for includes:
+High electric conductivity (very low specific resistance)
+It should be easily available
+It should also be cheap so that it can be used for long-distance transmission and distribution without putting a strain on the finances of the utility.
+
+=== slide 144 ===
+Selection of conductors
+It should have a high mechanical strength (high tensile strength). This attribute is essential because the conductors of the overhead line are often subjected to both wind and ice loading. And because of weather variation, it has been experienced that during cold weather, the conductor contracts thereby shortening its length. If this contraction is coupled with wind load as a result of wind force acting on the conductor with simultaneous ice loading as a result of snow, it constitutes the worst possible condition for the conductor. Wind load act horizontally to the surface of the conductor while ice loading and the weight of the conductors acts vertically downwards. The resultant force of the conductor is the vector sum of the wind and that of the weight of the conductor plus ice.
