@@ -65,7 +65,7 @@ export const conceptsQuestions: LeadershipQuestion[] = [
     ],
     correctIndex: 3,
     rationale:
-      'Misallocation of human resources - putting underqualified people on critical tasks - is described as leading to delays, safety risks, and reputational damage. Leaders must balance expertise, workload, and motivation when assigning people.',
+      'Misallocation of human resources - putting underqualified people on critical tasks - is described as leading to delays, safety risks, and reputational damage. When assigning people, a leader has to weigh each person’s expertise, their current workload, and what motivates them.',
   },
   {
     id: 'ldcon-005',
