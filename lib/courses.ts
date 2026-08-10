@@ -103,6 +103,16 @@ export const COURSES: CourseMeta[] = [
     textColor: 'text-orange-600',
     hoverText: 'text-orange-700',
   },
+  {
+    id: 'leadership-development',
+    title: 'Leadership & Development',
+    shortTitle: 'Leadership',
+    blurb:
+      'MCQ/TF on leadership concepts, theories, styles, communication, decision making, team building, emotional intelligence, and development, plus subjective drills.',
+    accent: '#DB2777',
+    textColor: 'text-pink-600',
+    hoverText: 'text-pink-700',
+  },
 ];
 
 export const COURSE_BY_ID: Record<string, CourseMeta> = Object.fromEntries(

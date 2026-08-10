@@ -9,6 +9,7 @@ import { PHARM_TOPIC_LABELS } from './pharmacologyQuestions';
 import { SURGERY_TOPIC_LABELS } from './surgeryQuestions';
 import { MATERIALS_TOPIC_LABELS } from './materialsTypes';
 import { APPLIED_ELECTRICITY_TOPIC_LABELS } from './appliedElectricityTypes';
+import { LEADERSHIP_TOPIC_LABELS } from './leadershipTypes';
 
 // Generated-content courses have no bank label map; label their type/category keys here.
 const MATH_LABELS: Record<string, string> = {
@@ -38,6 +39,7 @@ export const COURSE_TOPIC_LABELS: Record<string, Record<string, string>> = {
   surgery: SURGERY_TOPIC_LABELS,
   materials: MATERIALS_TOPIC_LABELS,
   'applied-electricity': APPLIED_ELECTRICITY_TOPIC_LABELS,
+  'leadership-development': LEADERSHIP_TOPIC_LABELS,
 };
 
 /** Human label for a topic/type key within a course, falling back to the raw key. */
