@@ -1,0 +1,1473 @@
+# Renewable Energy - lecture deck (Isaac Kuma Yeboah)
+# source: Alternative Renewable Energy Presentation By Isaac Kuma Yeboah.ppt
+# NOTE: legacy .ppt; extracted via raw TextChars/TextBytes atoms (no soffice). Slide order approximate; template boilerplate stripped.
+
+ALTERNATIVE/RENEWABLE ENERGY 
+BY 
+ISAAC KUMA YEBOAH.
+
+--- text block ---
+What is Renewable Energy?
+
+--- text block ---
+“energy that is derived from natural process that are replenished constantly” -- defined by the Renewable Energy Working Party of the International Energy Agency.  
+ As the name suggests, exists perpetually and in abundant in the environment
+Ready to be harnessed, inexhaustible
+It is a clean alternative to fossil fuels
+
+--- text block ---
+Natural energy sources
+
+--- text block ---
+SOLAR ENERGY (the power comes from the sun and it can turned into electricity and heat).
+WIND POWER (conversion of wind energy into electricity). 
+HYDRO POWER ( the power of water).
+BIOMASS (organic materials from plants).
+GEOTHERMAL ENERGY(is generated in the earth core).
+OCEAN ENERGY(produce mechanical energy from the tides and waves).
+The following are the different types of Ocean energy TIDAL ENERGY and WAVE ENERGY
+
+--- text block ---
+Renewable vs. Non-renewable
+
+--- text block ---
+Conventional energy sources
+
+--- text block ---
+These are fossil fuels;coal,oil,petroleum and natural gas.
+Fossil fuels,that contain hydrocarbons, found top layer of the Earth’s crust.
+‘Non-renewable’ sources; they cannot be produced again after they have been used.
+They produce a lot of pollution and environmental problems.
+
+--- text block ---
+GLOBAL THREAT
+
+--- text block ---
+Can alternative energy supply the World’s Energy Needs?
+
+--- text block ---
+Can they be used instead of anti-environmental sources all over the world?
+
+--- text block ---
+Global Consumption and Alternative production
+
+--- text block ---
+Production
+
+--- text block ---
+usage
+
+--- text block ---
+THERE IS AN ALTERNATIVE
+
+--- text block ---
+Cost is important but environmental harms of fossil fuels.
+Consumption of fossil reserves push us to develop the usage of renewable and sustainable energy sources.
+High costs of renewables are started to go down.
+So,it’s clear that renewable energy sources should be increased all over the world. !
+
+--- text block ---
+We need renewable energy
+
+--- text block ---
+Renewable energy technologies are clean sources of energy that have a much lower environmental impact than conventional energy technologies.
+Renewable energy will not run out. Ever.
+Other sources of energy are finite and will some day be depleted.
+
+--- text block ---
+Overview of Ghana
+
+--- text block ---
+Total Energy Consumption 2010
+
+--- text block ---
+Electricity Supply Infrastructure
+
+--- text block ---
+Natural Resources in Ghana
+
+--- text block ---
+Ghana – China Relationship
+
+--- text block ---
+Solar Resource Potential
+
+--- text block ---
+Wind Resource Potential
+
+--- text block ---
+Hydro Power
+
+--- text block ---
+Energy Sector Vision
+
+--- text block ---
+Medium Term Policy Focus for the Energy Sector
+
+--- text block ---
+Energy Sector Policy Targets
+
+--- text block ---
+Strategies to attain 10% RE in the Electricity Generation Mix by 2020
+
+--- text block ---
+Significant Achievements
+
+--- text block ---
+Conclusion
+
+--- text block ---
+Solar power
+
+--- text block ---
+The SUN
+Source of all Energy
+Produces Energy from H2
+
+--- text block ---
+The Sun’s Structure
+
+--- text block ---
+The outer layer of the convective zone is called the photosphere, whose edge is sharply defined, opaque, gases here are strongly ionized and is the source of most radiation.
+The emitted solar radiation is the composite result of several layers that emit and absorb radiation of various wavelengths.
+
+--- text block ---
+Outside the photosphere is a layer of cooler gases several hundred kilometers deep called the reversing layer and after this 10,000 km deep layer called Chromosphere.  
+Further there is Corona with very low density and of very high temperature.
+
+--- text block ---
+Internal Structure of the Solid Earth
+
+--- text block ---
+Spectral Distribution of Extraterrestrial Radiation
+
+--- text block ---
+In addition to the total energy in the solar spectrum (i.e. the solar constant), it is useful to know the spectral distribution of the extraterrestrial solar radiation, that is, the solar radiation that would be received in the absence of the atmosphere.
+A standard spectral irradiance curve based on high altitude and space measurements is shown here which is found to be similar to the 5777K blackbody spectrum. 
+From this figure following observations are made:
+The peak solar intensity is 2028.8 w/m2 at a wavelength of 0.48 m.
+The solar spectrum varies from 0.2 – 3.0 m, 
+The energy in various spectral ranges is as follows:
+
+--- text block ---
+Ultravoilet
+
+--- text block ---
+Visible
+
+--- text block ---
+Infrared
+
+--- text block ---
+Wavelength
+Energy (W/m2) 
+Percent
+
+--- text block ---
+0.2 – 0.38m)
+88
+6
+
+--- text block ---
+(0.38 – 0.78 m)
+656
+48
+
+--- text block ---
+(0.78 – 3.0 m)
+623
+46
+
+--- text block ---
+The WRC standard spectral irradiance curve at mean earth-sun distance
+
+--- text block ---
+Solar Radiation Spectrum
+
+--- text block ---
+Global Radiation Budget
+
+--- text block ---
+Scattering of Light
+
+--- text block ---
+Solar radiation passing through earth's atmosphere is scattered by gases, aerosols, and dust.
+At the horizon sunlight passes through more scatterers, leaving longer wavelengths and redder colors revealed.
+
+--- text block ---
+The distance travelled by the sunbeam in the earth’s atmosphere is responsible for the amount of scattering, absorption and reflection of solar radiation. The shortest distance travelled by the sunbeam in the atmosphere is when the sun is at the Zenith and is longest when the sun is rising or setting. Airmass ‘m’ is defined as :
+
+--- text block ---
+= cosec  = Sec Z
+                          m = 0 when outside the earth atmosphere
+                          m = 1 when sun is at the Zenith
+                          m = 2 when Zenith angle is 60
+
+--- text block ---
+Uses of Solar Energy
+
+--- text block ---
+Heating of Water
+Heating of Houses (active systems)
+Distillation of Water
+Cooking of Food
+Greenhouse Heating
+Drying of Food
+Power Generation
+Refrigeration and Airconditioning
+Passive Heating and Cooling
+Production of Very High Temperatures
+Industrial Process Heat Systems
+Pumping of Water
+Direct Conversion of Electricity (PV)
+
+--- text block ---
+Solar Thermal Power Generation
+
+--- text block ---
+Solar Thermal Technologies for Power Generation: Global Trends
+
+--- text block ---
+Basic Systems
+Collector
+Receiver
+Transport Storage
+Power Conversion
+Major Varieties
+Parabolic Trough Solar Energy Generating Systems (SEGS)
+Central Receiver Power Plants
+Solar Chimney Power Plants
+Dish Sterling Systems
+Solar Pond Power Plants
+
+--- text block ---
+DIRECT CONVERSION
+ Photovoltaic
+ Photoemissive
+ Photogalvanic
+ Photomagnetic
+
+--- text block ---
+SOLAR 
+ENERGY
+
+--- text block ---
+THERMAL
+ENERGY
+
+--- text block ---
+HEAT
+ENGINE
+
+--- text block ---
+ELECTRIC
+GENERATION
+
+--- text block ---
+ELEC.
+ENERGY
+
+--- text block ---
+THERMAL ENERGY
+Thermoelectric 
+Thermionic
+Ferroelectricity
+Magnetohydrodynamics
+Electrogasdynamics
+
+--- text block ---
+Few schemes of converting solar energy into electricity
+
+--- text block ---
+Solar Technologies :Thermal
+
+--- text block ---
+Solar Tower
+
+--- text block ---
+Concentrated solar thermal (CST)
+
+--- text block ---
+Concentrated solar thermal (CST) is used to produce renewable heat.
+ CST systems use parabolic lenses or mirrors and tracking systems to focus a large area of sunlight onto a small area.
+ Each concentration method is capable of producing high temperatures and correspondingly high thermodynamic efficiencies
+They vary in the way that they track the Sun and focus light.
+ Solar thermal is more efficient method to produce heat.
+
+--- text block ---
+Solar Technologies
+
+--- text block ---
+Solar Chimney
+
+--- text block ---
+One 200 MW plant is planned in Australia
+ Internal estimates for 1 MW plant
+ Collection diameter of solar glass roof : 1153 m
+ Chimney height 	: 250 m
+ Installed Cost		: Rs. 30.00 Cr.
+ COG 			: Rs. 6.20 / kWh
+
+--- text block ---
+Solar Trough 
+Light Concentration through parabolic troughs- Steel, Al or mirrors
+Trough being very large- only single axis tracking possible
+Hence low collection efficiency – about 55%
+Also max. temp : 450 Deg C
+Runs a steam turbine – Overall system efficiency :  about 15%
+
+--- text block ---
+To improve plant use, hybridization with Fossil Fuels possible
+
+--- text block ---
+Solar Trough 
+The earlier systems used ‘heat transfer fluids’ to collect heat
+Steam generation through heat exchangers
+Latest Advancements:
+Direct steam generation : To reduce cost and increase efficiency
+
+--- text block ---
+The three basic DSG processes (once-through, injection and recirculation)
+
+--- text block ---
+Proven Technology: SEGS plants
+
+--- text block ---
+SEGS: Solar Electric Generating System
+9 plants at three locations (Daggett, Kramer Junction, Harper Lake), Mojave desert (CA) 
+Individual unit size: 14 to 80 MWe
+Installed between 1984 and 1990
+Total size: 354 Mwe
+Still operating: actual operator of units III to IX is FPL Energy; electricity customer is SCE
+
+--- text block ---
+Concentrated solar power systems
+
+--- text block ---
+Concentrated solar power systems are divided into :
+ concentrated solar thermal (CST)
+ concentrated photovoltaic (CPV)
+ concentrating photovoltaic and thermal (CPT)
+ Principle : Concentrate the sunlight at particular point to convert that energy into another form of energy.
+
+--- text block ---
+Fig : Using Flat mirror reflector. (Courtesy of www.visualdictionaryonline.com)
+
+--- text block ---
+Fig : Using parabolic reflector. (Courtesy of www.visualdictionaryonline.com)
+
+--- text block ---
+Fig : Combination of previous both method (Courtesy of www.visualdictionaryonline.com)
+
+--- text block ---
+Concentrated photovoltaic (CPV)
+
+--- text block ---
+Concentrated photovoltaic (CPV) systems employ sunlight concentrated onto photovoltaic surfaces for the purpose of electrical power production.
+ Concentrated photovoltaic (CPV) systems classified as follows:
+ Low concentration CPV (concentration of 2-100 suns)
+ Medium concentration CPV (concentration of 100-300 suns)
+  High concentration (concentration of 300 or more suns)
+ Concentration method using solar collector is cheaper then solar cell as solar cell is costlier than solar collector.
+ Electricity cost for solar collector is about $3/watt.
+ Electricity cost for solar cell is about $3-5/watt.
+
+--- text block ---
+Solar chimney power plant
+
+--- text block ---
+Principle : It uses the principle of solar energy & wind energy both. It also use the principle of green house effect.
+ It has a high chimney. (Height arround 1000 mtr.)
+ This is surrounded by a large collector roof made from glass or resistive plastic supported on a framework.(Diameter in order of 130 mtr.)
+ In the center of the chimney there is a wind turbine, which generate electricity using wind velocity which is due to the solar Energy.
+
+--- text block ---
+Vent Chimney
+
+--- text block ---
+Schematic cross-section of a typical flat plate solar collector illustrating the major functional parts
+
+--- text block ---
+Improving Efficiency of a Flat-Plat Collector
+
+--- text block ---
+The efficiency can be improved by:
+Improving transmittance - absortance product,
+Reducing thermal losses (conduction, convection and radiation),
+Improving heat transfer coefficient from absorbing plate to the working fluid,
+Optimizing collector configuration for better heat exchanger efficiency,
+Optimizing tilt, orientation and exposure of collector
+
+--- text block ---
+Longterm Average Performance of Flat-Plate Collectors
+
+--- text block ---
+Generally the performance of solar collectors is given by instantaneous efficiency on clear days.
+The true performance of solar collector will depend on cloudiness of atmosphere and varying angle of incidence.
+Longterm performance can help in optimizing the design and evaluation of economics.
+Two methods are generally employed for longterm performance:
+Computer simulation method using longterm weather data
+ii) Utilizability (Φ) method as given by Liu and Jordan using monthly average hourly radiation and temperature data
+Using Hottel-Whillier-Bliss equations and longterm monthly average solar radiation and ambient temperature data, utilizability curves were produced for various cloudiness indices or cities of USA.
+Using the same analogy design curves of several Indian stations both for summer months and winter months were produced by Garg for flat-plate liquid heating collectors.
+
+--- text block ---
+A typical air-heating solar collector
+
+--- text block ---
+Flat plate air heating collectors
+
+--- text block ---
+A Conventional air heater is typically a flat passage between two parallel plates.  One of the plates is blackened to absorb incident solar radiation.  One or more transparent covers are located above the absorbing surface.  Insulation around the sides and base of the unit is necessary to keep heat losses to a minimum.
+There are eight variables that a designer concerns himself with in the construction of an air heater;
+Heater configuration is the aspect ratio of the duct and the length of the duct through which the air passes.
+Airflow: Air must be pumped through the heater; increasing the air velocity results in higher collection efficiencies, but also in increased operating costs.
+The type and number of layers of glazing must be considered and spectral transmittance properties must be examined.
+
+--- text block ---
+TUBULAR SOLAR ENERGY COLLECTORS
+
+--- text block ---
+Several versions of evacuated tube collectors are manufactured by industries such as Philips in Holland and Sanyo in Japan. 
+With the recent advances in vacuum technology evacuated tube collectors are reliably mass produced mainly in China.
+Their high temperature effectiveness is essential for the efficient operation of solar air-conditioning systems and process heat systems and now even for water heating.
+
+--- text block ---
+Schematic diagram of concentric-tube collector optics; (b) cut-way view of evacuated tube solar collector manufactured by Owens-Illinois, Inc., USA
+
+--- text block ---
+Chinese Solar tube collector
+
+--- text block ---
+Chinese Solar Tubes
+
+--- text block ---
+Borosilicate Glass (3.3)
+Glass-glass seal (not metal to glass)
+Selective absorber coating (sputtered)
+Thermal absorption of 92%
+Excellent thermal insulation = performance
+Passively track sun throughout the day
+Silver (barium getter) vacuum indicator
+Strong (excellent hail resistance)
+Long lasting performance
+Cheap and easy to replace if damaged
+
+--- text block ---
+Solar Water Heating
+
+--- text block ---
+Solar Water Heaters (SWH) have been extensively used for the last more than 8 decades.
+The countries where these are extensively studied are USA, Australia, U.K., Israel, South Africa and India.
+The countries in which Solar Water Heaters are extensively used are : USA, Australia, U.K., Germany, India, Jordan, Israel, Cyprus, China, Greece, Japan, Sweden and several other countries.
+In recent years considerable knowledge has been developed about solar hot water systems.
+Basically solar water heaters are either for domestic applications, large applications or swimming pool water heating applications.
+
+--- text block ---
+TYPES OF SOLAR WATER HEATER
+
+--- text block ---
+Built-in-storage  type Solar Water Heater (Integrated – collector storage type)
+Domestic Solar Water Heaters               (Natural Circulation type / thermosyphon type)
+Large Size Solar Water Heater            (Industrial type)
+Swimming Pool Water Heater
+
+--- text block ---
+Edge Angle
+
+--- text block ---
+Focal Length
+
+--- text block ---
+Absorber Diameter
+
+--- text block ---
+Aperture
+
+--- text block ---
+Parabolic Trough Concýÿÿÿ1
+
+--- text block ---
+Feature
+
+--- text block ---
+From
+
+--- text block ---
+To
+
+--- text block ---
+1.8m
+
+--- text block ---
+5.76m
+
+--- text block ---
+Length
+
+--- text block ---
+20m
+
+--- text block ---
+90m
+
+--- text block ---
+Operating Temperature
+
+--- text block ---
+200C
+
+--- text block ---
+400C
+
+--- text block ---
+Optical Efficiency
+
+--- text block ---
+Unit Capacity
+
+--- text block ---
+10MW
+
+--- text block ---
+80MW
+
+--- text block ---
+Turbine Cycle efficiency
+
+--- text block ---
+Collector Cost
+
+--- text block ---
+Rs. 4000/m2
+
+--- text block ---
+Rs. 2500/m2
+
+--- text block ---
+Improvements in the parabolic trough concentrators and systems since 1982
+
+--- text block ---
+Many different designs of solar water heaters are possible and they may be classified in many ways.  Each type has its own advantages and disadvantages, and depending on the situation a particular design is recommended.  Some of the solar water heating configurations are as follows :
+ A direct natural circulation solar water heater.
+ An indirect natural circulation solar water heater.
+ An indirect forced circulation type solar water heater.
+ A single cylinder indirect forced circulation solar water heater.
+ An indirect system with air heat collectors.
+In general it can be said that a solar water heating system consists of the following components :
+ Flat plate collectors
+ Storage tank
+ Heat exchanger
+ Automatic control
+ Pumps, pipe work, valves and fittings
+
+--- text block ---
+Domestic Solar Water Heaters
+
+--- text block ---
+Natural circulation type solar water heater (Schematic)
+
+--- text block ---
+It has been experimentally observed that in a SWH, the inlet (Ti) and outlet (To) water temperature rise for a collector is nearly constant and generally it is about 10C.  Thus
+
+--- text block ---
+Simple model for Natural Circulation Type SWH
+
+--- text block ---
+(To-Ti) = 10C
+Thus we can calculate the natural flow rate
+
+--- text block ---
+using collector equation
+
+--- text block ---
+and
+
+--- text block ---
+Thus
+
+--- text block ---
+Substituting the values of FR we get,
+
+--- text block ---
+litres /m2 hr
+
+--- text block ---
+Collector inlet (Ti) and outlet (To) temperature for a natural circulation water heater
+
+--- text block ---
+(Ti)
+
+--- text block ---
+(To)
+
+--- text block ---
+Solar  Water  Heaters
+
+--- text block ---
+Hot water at 60-80oC  for hotels, hospitals, restaurants, dairies, industry and domestic use.
+System comprises one or more collectors, storage tank, piping etc. Heat exchanger and pumps added, if necessary.
+About 2.15 million sq.m. collector area installed.
+BIS standard for collectors introduced in 1990/1992. Standards updated recently.
+60 BIS approved manufacturers with production capacity of  over 300,000 sq. m. collector area per annum.
+
+--- text block ---
+SOLAR DOMESTIC HOT WATER SYSTEMS IN ISRAEL
+
+--- text block ---
+SOLAR DOMESTIòòòòòòòòò
+
+--- text block ---
+Why Solar Cookers ?
+
+--- text block ---
+High cost or Unavailability of commercial fuels – Kerosene, Coal, Gas, Electricity
+Deforestation caused by Increasing Firewood Consumption
+Use of Dung and Agricultural Waste as Fuels Instead of for Soil Enrichment
+Diversion of Human Resource for Fuel Gathering
+
+--- text block ---
+Direct or focusing type solar cooker
+
+--- text block ---
+In these cookers some kind of single or multifacet solar energy concentrator (parabolic, spherical, cylindrical, fresnel) is used which when directed towards the sun focus the solar radiation on a focal point or area where a cooking pot or frying pan is placed. 
+ In these cookers the convection heat loss from cooking vessel is large and the cooker utilizes only the direct solar radiation.
+
+--- text block ---
+Indirect or Box type Solar Cooker
+
+--- text block ---
+In these cookers an insulated hot box (square, rectangular, cylindrical) painted black from inside and insulated from all sides except window side which is double glazed is used.  
+Single plane or multiple plane reflectors are used.  Some times these are also known as oven type solar cookers.  These can be electrical cum solar cookers and some cookers utilize a kind of latent heat storage material.
+
+--- text block ---
+Advanced type Solar Cooker
+
+--- text block ---
+In these cookers, the problem of cooking outdoors is avoided to some extent. The cookers use either a flat plate collector, cylindrical (PTC) concentrator, or a multifacet or large parabolic (mosaic type) concentrator which collect or focuses the solar heat and transfers or reflect from a secondary reflector to the cooking vessel. 
+The cooking in some cases can either be done with stored heat or the solar heat is directly transferred to the cooking vessel in the kitchen.
+
+--- text block ---
+Solar Box-type Cooker : Cooking Time for Recipes
+
+--- text block ---
+It takes about 2 – 2.25 hours for cooking depending upon the kind of food and season. 
+Different items like dal, rice, vegetables etc. are normally cooked simultaneously in separate containers. 
+The time taken for cooking is less in summer than in winter.
+
+--- text block ---
+BOX SOLAR COOKER
+
+--- text block ---
+Component
+
+--- text block ---
+Material
+
+--- text block ---
+Thickness / size
+
+--- text block ---
+Requirements / Remarks
+
+--- text block ---
+Outer Box
+
+--- text block ---
+Galvanished iron
+Aluminium
+FRP
+
+--- text block ---
+0.48 mm thick
+(60 x 60 x 17 cm)
+0.56 mm thick
+(60 x 60 x 17 cm)
+2 mm thick
+(60 x 60 x 17 cm)
+
+--- text block ---
+Resistant to ultraviolet radiation and atmospheric variations
+
+--- text block ---
+Inner Cooking Box
+
+--- text block ---
+Aluminium
+
+--- text block ---
+0.56 mm thick
+(50 x 50 x 10 cm)
+
+--- text block ---
+Painted dull black 
+Should not touch outer body
+
+--- text block ---
+Insulation (Back and side)
+
+--- text block ---
+Glass fibres in the form of pads
+
+--- text block ---
+5 cm or more thick 
+k = 0.052 W/m K
+
+--- text block ---
+Free from resin binders Stable upto 250C
+
+--- text block ---
+Glazing (Double glass lid)
+
+--- text block ---
+Water white glass (Temperated / toughned)
+
+--- text block ---
+3-4 mm thick
+50 x 50 cm size
+spacing between sheets
+1 cm
+
+--- text block ---
+Double glass system must be air tight 
+Transmittance > 85%
+
+--- text block ---
+Reflector 
+(Mirror)
+
+--- text block ---
+Silvered or 
+Glass aluminized
+
+--- text block ---
+4 mm thick
+54 x 54 cm
+
+--- text block ---
+Reflectivity > 85%
+Scratch resistant 
+Resistant to solar radiation and atmospheric variation
+
+--- text block ---
+Cooking Containers
+
+--- text block ---
+Aluminium alloy sheet
+Stainless Steel sheet
+
+--- text block ---
+1.2 mm thick
+Two pots – dia 200 m
+Two pots – dia 150 mm
+Depth of pots – 67 mm
+
+--- text block ---
+Dull black painted stable upto 250C
+Very good adhesive characteristics
+
+--- text block ---
+Solar Box – type Cooker : Design Details
+
+--- text block ---
+SK - Type Solar Cookers (SK-10, SK-12, SK-14, SK-98)
+
+--- text block ---
+SK – Solar Cooker uses parabolic reflector made of thin, hard aluminium sheets with protected, high reflecting surface mounted at a rigid basket structure.
+Reflector with short focal distance for safety reasons, long tracking intervals and high efficiency.
+Cooking pot in a standard 12 – litres pot of black enameled steel with a diameter of 28 cm.
+Tracking is done by moving the whole cooker (azimuth) and by turning the reflector  around the horizontal axis (elevation), adjustment of the reflector to the sun by use of a shadow indicator.
+
+--- text block ---
+Technical Data (SK Type Solar Cooker)
+
+--- text block ---
+Reflector diameter 	:	140 cm
+Nominal effective power	:	0.6 kW
+Pot capacity		:	12 litres
+Pot diameter		:	28 cm
+Max. temperature		:	200C
+Capacity			:	Boils 48 litre  
+                                           		of water in a day
+Tracking 			:	Manual
+Cost			:	INR Rs. 6000/-
+Cooking Food		:	10-15 people at a time
+
+--- text block ---
+Parabolic solar cooker, 
+not only for cooking …
+
+--- text block ---
+… but also for baking, frying, conserving, and much more …
+
+--- text block ---
+Parabolic Domestic Solar Cooker (SK 14)
+
+--- text block ---
+World's Largest Solar Steam Cooking System at Tirupati, Andhra Pradesh
+
+--- text block ---
+Location 
+Installed at the temple town of Tirumala, Andhra Pradesh with nearly 50 percent funding from MNRE.
+System
+Employs automatic tracking solar dish concentrators to convert water into  high pressure steam which Is used for cooking purpose  in the community kitchen.
+Technical Details
+Solar dish concentrators (106 Nos) with total reflector area of about 1000m2.
+Modular in nature and consists of several units (parallel & series) connected to central pipe-line system.
+Each dish consists of scheffler mirrors with an aperture area of 9.4 sq.m.
+Generates 4,000 kg of steam per day at 180°C and 10 Kg/cm2.
+Cook meals for around 15,000 persons per day.
+The cooker saves about 1,20,000 litres of diesel per year.
+The total cost of the system is about Rs. 110 lakh.
+Implementing Agency
+Ministry of New & Renewable Energy (MNRE).
+
+--- text block ---
+World’s Largest Solar Steam Cooking System
+
+--- text block ---
+WORLD’S LARGEST SOLAR STEAM COOKING SYSTEM AT TIRUPATI
+
+--- text block ---
+Solar Steam Cooking System at Army Mess, Ladakh, Jammu & Kashmir (Installation 12.04.05)
+
+--- text block ---
+Solar Bowl Cooking Concentrator
+Developed at Centre for Scientific Research, Auroville
+Capable of Cooking food for 1000 people.
+System consists of :
+15 m. diameter non-tracking solar Bowl concentrator
+Automatic tracking receiver
+Use of thermic fluid to transfer energy collected by receiver for generating steam
+Heat storage tank with heat exchanger
+Double jacketed cooking pots
+
+--- text block ---
+Bowl Concentrator (15 m dia) for Community Cooking (1000 people) at Auroville, Pondicherry
+
+--- text block ---
+Reasons for the non-acceptance of the solar cookers
+
+--- text block ---
+Too expensive for individual family ownership
+Incompatible with traditional cooking practices
+too complicated to handle
+cooking can be done only in the direct sun
+can not cook at night
+can not cook in cloudy weather
+can not cook indoors
+danger of getting burned or eye damage
+are not locally available
+less durable; needs repair or replacement of parts which are not easily available
+The cooker needs frequent adjustment towards the sun and exposure of the cooking pot to the blowing dust and sand effected the food taste
+Easy availability of alternative cooking fuels like wood and fuel wood
+There is no provision of storing the heat therefore cooking of food was not possible where there are clouds or sun is not strong
+No proper education, training and involvement of women folk
+
+--- text block ---
+Technical issues need attention for the wider use of solar cookers
+
+--- text block ---
+Reliability
+Efficiency
+Quality
+Durability 
+Utility
+Maintenance
+Weight
+Servicing
+Affordability
+
+--- text block ---
+Cost effectiveness
+Compatibility with food habits
+Training and education
+Micro level financing 
+Marketing strategy
+Local availability
+Involvement of rural folk
+Dedication and commitments
+Provision of storage material 
+Cooking indoors
+
+--- text block ---
+The function of a Building or a house is to provide shelter to its occupants from weather.  
+Since weather conditions vary from one place to another and vary widely over the year, and humans feel comfortable within certain range of temperatures and humidities, the house are made to provide everyday living comfort. 
+The heating of house in winter and cooling in summer to provide comfort using solar energy or other natural concepts is an ancient concept and is in use since men started to build habitations. 
+Basically solar heating or cooling systems are of two types :  Passive heating and cooling and active heating & cooling. 
+Passive systems do not need any mechanical system and are designed such as the glazed area, walls and roofs are made use of collecting, storing and distributing the heat indoors by natural processes of convection, conduction and radiation. 
+Five basic concepts of passive heating are : direct gains, collector storage wall, sunspace collector - storage roof and convective zone. 
+Components of active heating system are : (I) solar collector, (ii) storage device, (iii) auxiliary heating system (iv) Distribution system including fan, duct and controls. 
+To provide near comfort conditions the most cost effective method is to Judiciously make use of both passive and active systems.
+
+--- text block ---
+Solar  Buildings
+
+--- text block ---
+Solar Passive Building of Solar Energy Centre
+
+--- text block ---
+PHYSICS OF SOLAR DRYING
+
+--- text block ---
+Heat by convection and radiation to Surface of product
+ Goes to interior of product 
+Increase in temperature 
+Formation of water vapour 
+ Evaporation of moisture from Surface 
+Drying can be accelerated by: 
+Increasing flow rate of air 
+Increasing temperature of drying air 
+Initial Drying - Surface drying, later on drying depends on type of materials. 
+Non hygroscopic- drying possible upto zero moisture content. 
+Hygroscopic -  grains, fruit, food stuff have residual moisture.
+
+--- text block ---
+RATIONALE FOR CONTROLLED DRYING
+
+--- text block ---
+1. Grain 
+ Improves product quality, 
+ Improves storage capability, 
+ Reduces time and space requirement for drying, 
+ Facilitates quick preparation of fields for next cropping, 
+ Facilitates wet season harvesting and storage, 
+ Improves drying hygene. 
+2. Timber 
+ Improves product quality, 
+ Reduces period capitoltied up in drying stock, 
+ Improves low expertise, low capital, improved drying options, 
+ Expands range of usable timber species, 
+ Improves attainable drying level. 
+3. Fruits, Vegetables & Fish 
+ Reduces product seasonability, 
+ Improves marketing control of farmer, 
+ Reduces spoilage, 
+ Improves drying hygene, 
+ Improves storage capability, 
+ Reduces nutritional fluctuations.
+
+--- text block ---
+DIRECT TYPE DRYERS
+
+--- text block ---
+In direct or natural convection type dryers, the agricultural product is placed in shallow layers in a blackened enclosure with a transparent cover.
+ The solar radiations are directly absorbed by the product itself. 
+The food product is heated up and the moisture from the product evaporates and goes out by the natural convection.
+
+--- text block ---
+INDIRECT TYPE DRYERS
+
+--- text block ---
+In these dryers the food product is placed in a drying chamber. 
+The air is heated in solar air heaters and then blown through the drying chamber. 
+In some of the designs, dryers receive direct solar radiations and also heated air from solar air heaters. 
+In these dryers manipulation of temperature, humidity and drying rate is possible to some extent.
+
+--- text block ---
+FORCED CIRCULATION TYPE DRYERS
+
+--- text block ---
+In these dryers, hot air is continuously blown over the food product. 
+The food product itself is loaded or unload continuously or periodically. 
+These kind of dryers are comparatively thermodynamically efficient, faster and can be used for drying large agricultural product. 
+These dryers can be of cross-flow type, concurrent flow type or counter-flow type.
+
+--- text block ---
+(c) Forced circulation type solar dryers
+
+--- text block ---
+(a) Direct type solar dryers
+
+--- text block ---
+(b) Indirect type solar dryers
+
+--- text block ---
+TYPE OF SOLAR DRYERS
+
+--- text block ---
+Types of Solar Green Houses
+
+--- text block ---
+Passive Solar Green Houses: The green houses where the energy is stored directly in heavy brickwalls or rockwalls and/or water pools or water containers exposed to solar radiation and heat is distributed inside the green house by natural means, are known as passive greenhouses.
+Active Solar Green Houses: In houses where solar energy is collected and stored and distributed and where some auxiliary energy is employed either for circulation or for distribution or for both.
+	Generally a combination of both active and passive features are employed in solar green house with an objective to minimize the use of auxiliary energy either for heating the green house or for collection –storage-distribution system.
+
+--- text block ---
+Green house & Agriculture
+
+--- text block ---
+Agriculture seek to optimize the capture of solar energy in order to optimize the productivity of plants. 
+ Greenhouses convert solar light to heat, enabling year-round production and the growth (in enclosed environments) of specialty crops and other plants not naturally suited to the local climate.
+
+--- text block ---
+GEOTHERMAL ENERGY
+
+--- text block ---
+INTRODUCTION
+
+--- text block ---
+Geothermal power (from the Greek roots geo, meaning earth, and thermos, meaning heat) is power extracted from heat stored in the earth.
+This geothermal energy originates from the original formation of the planet, from radioactive decay of minerals, and from solar energy absorbed at the surface.
+
+--- text block ---
+Geothermal Energy: Introduction
+
+--- text block ---
+What is geothermal energy?
+Geothermal energy- energy that comes from the ground; power extracted from heat stored in the earth
+
+--- text block ---
+World Wide Geothermal Uses and Potential
+
+--- text block ---
+Sources of Earth’s Internal Energy
+
+--- text block ---
+70% comes from the decay of radioactive nuclei with long half lives that are embedded within the Earth
+Some energy is from residual heat left over from Earths formation.
+The rest of the energy comes from meteorite impacts.
+
+--- text block ---
+Different Geothermal Energy Sources
+
+--- text block ---
+Hot Water Reservoirs: These are reservoirs of hot underground water.  There is a large amount of them in the world, but they are more suited for space heating than for electricity production.
+Natural Steam Reservoirs:  In this case a hole dug into the ground can cause steam to come to the surface.  This type of resource is rare in the world.   
+Geo-pressured Reservoirs:  In this type of reserve, brine completely saturated with natural gas in stored under pressure from the weight of overlying rock.  This type of resource can be used for both heat and for natural gas.
+
+--- text block ---
+HOW DOES GEOTHERMAL HEAT GET UP TO EARTH'S SURFACE?
+
+--- text block ---
+Conduction:
+Heat from the Earth’s
+interior flows outward. It is
+transferred to the outer
+layer of rock or the crust.
+
+--- text block ---
+Convection:
+In some regions, the
+mantle beneath the
+crust may be hot
+enough to partly melt
+and create magma.
+Magma rising upward
+out of the mantle can
+bring intense
+shallow
+
+--- text block ---
+Rainwater seeping downward through pores
+and crevices in the crust to depths of a mile or
+more is heated. The heated water may be
+stored at depth in geothermal reservoirs, or the
+hot water may flow upward out the reservoirs
+to the surface as hot springs, or boil near the
+surface to create geysers, fumaroles, and
+mud pots.
+
+--- text block ---
+Normal Geothermal Gradient: At any place on the planet, there is a normal temperature gradient of  +300C per km dug into the earth.  Therefore, if one digs 20,000 feet the temperature will be about 1900C above the surface temperature.  This difference will be enough to produce electricity.  However, no useful and economical technology has been developed to extracted this large source of energy.  
+Hot Dry Rock:  This type of condition exists in 5% of the world.  It is similar to Normal Geothermal Gradient, but the gradient is 400C/km dug underground.  
+Molten Magma:  No technology exists to tap into the heat reserves stored in magma.
+
+--- text block ---
+Methods of Heat Extraction
+
+--- text block ---
+Geothermal Energy Generation
+
+--- text block ---
+Direct
+Small scale uses
+Heating homes
+Hot springs
+Greenhouse heating
+Food dehydration plants
+Agriculture
+Crop drying
+Milk pasteurization
+
+--- text block ---
+Electrical
+Dry steam
+Flash steam
+Binary cycle
+
+--- text block ---
+HOW HAVE PEOPLE USED GEOTHERMAL
+ENERGY IN THE PAST?
+
+--- text block ---
+Bathing:
+Ancient civilizations used hot springs for bathing
+Medical Therapy:
+Early Romans used geothermal water to treat eye and skin disease
+Cooking:
+Native Americans and others used geothermal water for cooking
+Heating:
+Early Romans used geothermal water to heat their homes in Pompeii
+
+--- text block ---
+How Geothermal Works
+
+--- text block ---
+Earth’s core heat
+Water → steam → drive electrical generators
+Turbines
+Area specific
+Geothermal energy is localized
+
+--- text block ---
+Example of a Power Plant in Larderello Today
+
+--- text block ---
+Geothermal Energy: History
+
+--- text block ---
+1960: Pacific Gas and Electric has first successful geothermal electric power plant in US at The Geysers
+Turbine lasted more than 30 years
+
+--- text block ---
+United States and Geothermal
+
+--- text block ---
+Dry Steam/Flash Steam/Binary Cycles
+
+--- text block ---
+Each uses the heat from underground in some manner to generate energy
+Different combinations of water temperatures create different effects
+How Geothermal Energy Works
+
+--- text block ---
+Generation of Electricity is appropriate for sources >150oC
+
+--- text block ---
+Dry Steam Plants: These were the first type of plants created.  They use underground steam to directly turn the turbines.
+
+--- text block ---
+Flash Steam Plants: These are the most common plants.  These systems pull deep, high pressured hot water that reaches temperatures of 3600F or more to the surface.  This water is transported to low pressure chambers, and the resulting steam drives the turbines.  The remaining water and steam are then injected back into the source from which they were taken.
+
+--- text block ---
+Binary Cycle Plants: This system passes moderately hot geothermal water past a liquid, usually an organic fluid, that has a lower boiling point.  The resulting steam from the organic liquid drives the turbines.  This process does not produce any emissions and the water temperature needed for the water is lower than that needed in the Flash Steam Plants (2500F – 3600F).
+
+--- text block ---
+Environmental Effects/ Benefits
+
+--- text block ---
+Remarkable difference of environmental effects compared to fossil fuels
+Leaves almost no footprints
+Most hardware used to extract geothermal energy is underground
+Minimal use of surface
+
+--- text block ---
+(http://www.geothermal.nau.edu/about/enviroment.shtmlNorthern Arizona University. 2009 Oct 27)
+
+--- text block ---
+Environmental Effects/Benefits
+
+--- text block ---
+Easy to operate
+Open up economy
+Much more efficient use of land
+
+--- text block ---
+Power Source
+
+--- text block ---
+Land Requirement (ac/mW)
+
+--- text block ---
+Geothermal
+
+--- text block ---
+Nuclear
+
+--- text block ---
+Coal
+
+--- text block ---
+Environmental Effects/ Disadvantages
+
+--- text block ---
+Fluids drawn from the deep earth carry a mixture of gases
+Pollutants contribute to global warming and acid rain 
+Construction of Plants can adversely affect land stability
+Sources may hold trace amounts of toxic chemicals/mineral deposits
+Loud Noises
+Initial start up cost (expensive)
+
+--- text block ---
+Operation
+
+--- text block ---
+Noise Level (dBa)
+
+--- text block ---
+Air drilling
+
+--- text block ---
+Mud drilling
+
+--- text block ---
+Discharging wells after drilling (to remove drilling debris)
+
+--- text block ---
+Up to 120
+
+--- text block ---
+Well testing
+
+--- text block ---
+Diesel engines (to operate compressors and provide electricity)
+
+--- text block ---
+Heavy machinery (e.g., for earth moving during construction)
+
+--- text block ---
+Up to 90
+
+--- text block ---
+Ground Heat Collectors
+
+--- text block ---
+This system uses horizontal loops filled with circulating water at a depth of 80 to 160 cm underground.
+
+--- text block ---
+Borehole Heat Exchange
+
+--- text block ---
+This type uses one or two underground  vertical loops that extend 150 meters below the surface.
+
+--- text block ---
+1926: a deep geothermal well was used to heat greenhouses.
+
+--- text block ---
+Availability of Geothermal Energy
+
+--- text block ---
+On average, the Earth emits 1/16 W/m2.  However, this number can be much higher in areas such as regions near volcanoes, hot springs and fumaroles.
+As a rough rule, 1 km3 of hot rock cooled by 1000C will yield 30 MW of electricity over thirty years.  
+It is estimated that the world could produce 600,000 EJ over 5 million years.  
+There is believed to be enough heat radiating from the center of the Earth to fulfill human energy demands for the remainder of the biosphere’s lifetime.
+Geothermal production of energy is 3rd highest among renewable energies.  It is behind hydro and biomass, but before solar and wind.
+Iceland is one of the more countries successful in using geothermal energy:
+86% of their space heating uses geothermal energy.
+16% of their electricity generation uses geothermal energy.
+
+--- text block ---
+Can Geothermal Energy run out?
+
+--- text block ---
+100% renewable
+Earth’s core is always going to be heated
+As long as there is a way to extract the energy from the heat, the energy will always be available
+
+--- text block ---
+Advantages to Geothermal Power
+
+--- text block ---
+Geothermal energy does not 
+     produce any pollution, and 
+     does not contribute to the
+     greenhouse effect.
+The power stations do not take up much room, so there is not much impact on the environment.
+No fuel is needed.
+Once you've built a geothermal power station, the energy is almost free. 
+It may need a little energy to run a pump, but this can be taken from the energy being generated.
+
+--- text block ---
+Disadvantages to Geothermal Power
+
+--- text block ---
+The big problem is that there are not many places where you can build a geothermal power station. 
+You need hot rocks of a suitable type, at a depth where we can drill down to them. 
+The type of rock above is also important, it must be of a type that we can easily drill through. 
+Sometimes a geothermal site may "run out of steam", perhaps for decades. 
+Hazardous gases and minerals may come up from underground, and can be difficult to safely dispose of.
+
+--- text block ---
+Opposition to Geothermal Energy
+
+--- text block ---
+Not everyone agrees that geothermal energy is a solution to our energy crisis
+Too costly
+Noise
+Use of fresh water
+Land surveying
+The technology is not quite there
+Some people just believe that our fossil fuels will “never” run out
+Don’t believe that fossil fuels are finite
+
+--- text block ---
+WIND ENERGY
+
+--- text block ---
+Wind or air in motion contains the “kinetic energy”,which is converted into mechanical power by means of a wind turbine. 
+ wind strikes in wind turbine blade as shown the fig-1.
+ The wind turbine is connected to a generator
+    for producing  electricity.
+ The potential for wind energy is immense,and 
+   experts suggest wind power can supply up to
+   20% of world  electricity 
+ Betz’ law
+
+--- text block ---
+WIND POWER HISTORY
+
+--- text block ---
+FIRST ELECTRICITY GENERATING
+WIND TURBINE WAS BULIT IN
+DENMARK BY POUL LACOUR IN 1891
+
+--- text block ---
+TILL 1950 WIND ENERGY WAS USED  IN    INDIA TO PUMP WATER FOR DOMESTIC  USE AND IRRIGATION
+
+--- text block ---
+MAJOR TECHNOLGY UPGRADATION HAS TAKEN PLACE IN LAST 20 YEARS
+
+--- text block ---
+WIND ENERGY - What is it?
+
+--- text block ---
+All renewable energy (except tidal and geothermal power), ultimately comes from the sun
+The earth receives 1.74 x 1017 watts of power (per hour) from the sun
+About one or 2 percent of this energy is converted to wind energy (which is about 50-100 times more than the energy converted to biomass by all plants on earth
+Differential heating of the earth’s surface
+     and atmosphere induces vertical and horizontal
+     air currents that are affected by the earth’s 
+     rotation and contours of the land  WIND.
+     ~  e.g.:  Land Sea Breeze Cycle
+
+--- text block ---
+WHY WIND ENERGY IS REQUIRED?
+
+--- text block ---
+1.The Cheapest source of electrical energy
+2. Wind Turbine Technology is available which is technically feasible.
+3. No marketing risks, as the product is Electrical energy.
+4. Wind Energy is considered as an important input for the economic development of any country.
+5. This led to a search for environmental friendly renewable Energy sources.
+6. Wind mill can be constructed near the load centre.
+7. Wind mill can be immediately erected with in one month.
+8. Can supply up to 20% of electricity demand.
+
+--- text block ---
+P/m^2 = 6.1 x 10^-4  v^3
+
+--- text block ---
+*The power in wind is proportional to the cubic wind speed ( v^3 ).
+WHY?
+~ Kinetic energy of an air mass is proportional to v^2
+~ Amount of air mass moving past a given point is proportional to wind velocity (v)
+
+--- text block ---
+PRINCIPLE OF OPERATION
+
+--- text block ---
+LARGE TURBINES:
+Able to deliver electricity at lower cost than smaller turbines, because foundation costs, planning costs, etc. are independent of size.
+Well-suited for offshore wind plants.
+In areas where it is difficult to find sites, one large turbine on a tall tower uses the wind extremely efficiently.
+
+--- text block ---
+SMALL TURBINES:
+ Local electrical grids may not be able to handle the large electrical output from a large turbine, so smaller turbines may be more suitable.
+ High costs for foundations for large turbines may not be economical in some areas.
+ Landscape considerations
+
+--- text block ---
+TYPES OF  WIND TURBINE
+
+--- text block ---
+1.Horizontal Turbine
+Horizontal-axis wind turbines (HAWT) have the main rotor shaft and electrical generator at the top of a tower, and must be pointed into the wind.
+
+--- text block ---
+2.Vertical Turbine
+Vertical-axis wind turbines (VAWTs) are a type of wind turbine where the main rotor shaft is set vertically and the main components are located at the base of the turbine.
+
+--- text block ---
+Wind Turbines: Number of Blades
+ Most common design is the three-bladed turbine.  The most important reason is the stability of the turbine. A rotor with an odd number of rotor blades (and at least three blades) can be considered to be similar to a disc when calculating the dynamic properties of the machine.
+ A rotor with an even number of blades will give stability problems for a machine with a stiff structure. The reason is that at the very moment when the uppermost blade bends backwards, because it gets the maximum power from the wind, the lowermost blade passes into the wind shade in front of the tower.
+
+--- text block ---
+WORLD’S LARGEST TURBINE
+
+--- text block ---
+The German RePower turbines have a power output of 5 Megawatts.
+ It has rotor blade diameter of 126 metres sweeping an area of over 12,000 square metres. 
+Maximum power output is achieved at around 30 mph, but a couple of MW are generated even in a fresh breeze. 
+Rotors start turning at around 7 mph, and are automatically braked at 70mph.
+
+--- text block ---
+The generator is attached at one end to the wind turbine, which provides the mechanical energy.
+ At the other end, the generator is connected to the electrical grid.
+ Wind power generators convert wind energy (mechanical energy) to electrical energy.
+ The generator needs to have a cooling system to make sure there is no overheating.
+
+--- text block ---
+SMALL GENERATORS:
+ Require less force to turn than a larger ones, but give much lower power output.
+ Less efficient
+i.e..  If you fit a large wind turbine rotor with a small generator it will be producing electricity during many hours of the year, but it will capture only a small part of the energy content of the wind at high wind speeds.
+LARGE GENERATORS:
+ Very efficient at high wind speeds, but unable to turn at low wind speeds.
+i.e.. If the generator has larger coils, and/or a stronger internal magnet, it will require more force (mechanical) to start in motion.
+
+--- text block ---
+SYNCHRONOUS MACHINE WITHOUT GEAR
+
+--- text block ---
+1.Rotor blade
+ 2.Wind measurement device
+ 3.Synchronous Generator
+ 4.Winch
+ 5.Nacelle control cabinet   
+ 6.Yaw drives    
+ 7.Blade adapter
+ 8.Pitch drive
+
+--- text block ---
+Single-line diagram of Synchronous machine connected to grid
+
+--- text block ---
+Wind machine with a gear system
+
+--- text block ---
+Figure: Wind machine with a gear system
+
+--- text block ---
+INDIRECT CONNECTION WIND TURBINES
+
+--- text block ---
+Advantages of Wind Energy
+ The wind blows day and night, which allows windmills to produce electricity throughout the day.  (Faster during the day)
+ Energy output from a wind turbine will vary as the wind varies, although the most rapid variations will to some extent be compensated for by the inertia of the wind turbine rotor. 
+Wind turbines take up less space than the average power station. Windmills only have to occupy a few square meters for the base, this allows the land around the turbine to be used for many purposes, for example agriculture.
+ The decreasing cost of wind power and the growing interest in renewable energy sources should ensure that wind power will become a viable energy source in the United States and worldwide. 
+Wind turbines are a great resource to generate energy in remote locations, such as mountain communities and remote countryside. Wind turbines can be a range of different sizes in order to support varying population levels.
+
+--- text block ---
+Disadvantages Of Wind Energy
+
+--- text block ---
+The main disadvantage regarding wind power is down to the winds unreliability factor. In many areas, the winds strength is too low to support a wind turbine or wind farm, and this is where the use of solar power or geothermal power could be great alternatives.
+Wind turbines generally produce allot less electricity than the average fossil fuelled power station, requiring multiple wind turbines to be built in order to make an impact. 
+Wind turbine construction can be very expensive and costly to surrounding wildlife during the build process. 
+The noise pollution from commercial wind turbines is sometimes similar to a small jet engine. 
+This is fine if you live miles away, where you will hardly notice the noise, but what if you live within a few hundred meters of a turbine? This is a major disadvantage. 
+Protests and/or petitions usually confront any proposed wind farm development. People feel the countryside should be left in tact for everyone to enjoy it's beauty.
+
+--- text block ---
+CLEAN POWER
+GREEN POWER
+
+--- text block ---
+WIND POWER
+
+--- text block ---
+LAST TO SAY

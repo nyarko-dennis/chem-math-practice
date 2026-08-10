@@ -1,0 +1,492 @@
+# Environmental Studies - Introduction (lecture)
+# source: Introduction 2 Environmental_Studies.pdf
+
+I N T R 0 D U C T I O N TO
+
+ENVIRONMENTAL
+STUDIES
+Understanding Our Natural World & Human Impact
+
+What is Environmental Studies?
+An interdisciplinary field at the heart of our planet's future
+
+   Environmental Studies is the systematic, interdisciplinary examination
+   of the environment and the relationship between humans and the
+   natural world.
+
+    Natural Sciences                                                                                 Why it matters
+    Biology, chemistry, ecology, geology — understanding how natural systems work.
+                                                                                       › Climate change is accelerating
+
+    Social Sciences                                                                    › Biodiversity loss threatens ecosystems
+    Economics, political science, anthropology — how societies shape and are shaped
+    by the environment.                                                                › Pollution affects human health
+
+    Humanities                                                                         › Resource depletion challenges economies
+    History, ethics, philosophy — our values, culture, and moral responsibilities to
+    nature.                                                                            › Sustainable solutions are urgently needed
+
+Introduction to Environmental Studies | First Year Lecture
+
+Scope & Key Components
+What does environmental studies cover?
+
+            Ecology & Ecosystems                                           Pollution & Health
+
+   Interactions among organisms and their physical environment —    Air, water, and soil pollution, their sources, effects on human and
+   food webs, nutrient cycles, biomes.                              ecosystem health, and mitigation.
+
+            Water Resources                                                Energy Systems
+
+   Freshwater scarcity, watersheds, water quality, the global       Fossil fuels vs. renewables, energy efficiency, and the transition to a
+   hydrological cycle, and governance.                              low-carbon economy.
+
+            Environmental Policy                                           Human Dimensions
+
+   Laws, treaties, and governance frameworks that protect natural   Population growth, consumption patterns, environmental justice,
+   resources and regulate industry.                                 and sustainable development.
+
+Introduction to Environmental Studies | First Year Lecture
+
+Ecosystems & Biodiversity
+The web of life that sustains our planet
+
+ What is an Ecosystem?                                                                  Biodiversity at a Glance
+
+   A community of living organisms interacting with each other and their
+   non-living environment (air, water, soil) as a system.
+                                                                                  8.7M Estimated species on Earth
+                                  Plants & algae that capture solar energy via
+   Producers
+                                  photosynthesis
+                                                                                  ~80% Species still undiscovered
+   Consumers                      Animals that eat producers or other consumers
+
+                                  Fungi & bacteria that break down dead organic
+                                                                                  1M+         Species threatened with extinction
+   Decomposers
+                                  matter
+
+                                                                                              Decline in wildlife populations
+   Abiotic Factors                Climate, water, soil minerals, sunlight          68%        since 1970
+
+Introduction to Environmental Studies | First Year Lecture
+
+Climate Change: The Defining Challenge
+Understanding causes, effects, and responses
+
+                       Causes                                                         Effects                                                 Responses
+
+         Burning fossil fuels (CO₂, CH₄)                               Rising global temperatures                                     Transition to renewable energy
+
+         Deforestation reduces carbon sinks                            Sea level rise & coastal flooding                              Carbon capture technologies
+
+                                                                                                                                      International treaties (Paris
+         Industrial processes & agriculture                            Extreme weather events
+                                                                                                                                      Agreement)
+
+         Land-use change                                               Ecosystem disruption                                           Adaptation & resilience planning
+
+                                                Global average temperature has risen by ~1.2 °C since pre-industrial times (IPCC, 2023)
+Introduction to Environmental Studies | First Year Lecture
+
+Types of Environmental Pollution
+Air · Water · Soil · Noise · Light
+
+                  Air Pollution                                                    Water Pollution
+
+    Particulate matter (PM2.5), NOₓ, SO₂, ozone. Causes                 Pathogens, heavy metals, pesticides, microplastics. Affects 2B
+    respiratory diseases; 7M deaths/year (WHO).                         people lacking safe drinking water.
+
+                  Soil Pollution                                                   Noise Pollution
+
+    Pesticides, heavy metals, industrial waste degrade soil fertility   Traffic, industry, aircraft noise. Linked to cardiovascular
+    and enter the food chain.                                           disease and cognitive impairment.
+
+Introduction to Environmental Studies | First Year Lecture
+
+Natural Resources & Human Use
+Renewable vs. Non-Renewable
+
+Renewable Resources                                                      Non-Renewable Resources
+
+✓ Solar energy                                                           ✗ Coal & petroleum
+
+✓ Wind energy                                                            ✗ Natural gas
+
+✓ Hydropower                                                             ✗ Uranium (nuclear)
+
+✓ Biomass & geothermal                                                   ✗ Mineral ores
+
+✓ Fresh water (if managed)                                               ✗ Fossil groundwater
+
+       Key Concept: Sustainable resource use means meeting today's needs without compromising future generations' ability to meet theirs
+   (Brundtland Commission, 1987)
+
+Introduction to Environmental Studies | First Year Lecture
+
+Energy & Sustainability
+Powering the world without destroying it
+
+                        Global Primary Energy Mix (2023 approx.)                    Environmental
+  35
+                            31                                                      Protect ecosystems, reduce emissions, conserve
+  30                                                                                biodiversity
+              26
+  25                                     23
+                                                                                    Economic
+  20
+
+  15                                                                                Promote green jobs, clean tech investment,
+                                                                                    resource efficiency
+  10                                                           7
+                                                        5
+                                                                      4
+    5                                                                         3     Social
+    0                                                                               Ensure energy access, equity, and healthy
+            Coal           Oil       Natural Nuclear         Hydro   Wind   Solar   communities for all
+                                      Gas
+
+                                                                                             Three Pillars of Sustainability
+Introduction to Environmental Studies | First Year Lecture
+
+Environmental Policy & Law
+From local regulations to global treaties
+
+                              Paris Agreement (2015) — climate · Convention on Biological Diversity · Montreal Protocol — ozone layer ·
+         Global               Basel Convention — hazardous waste
+
+                              EU Green Deal & Emissions Trading Scheme · ASEAN Agreement on Transboundary Haze · African Convention on
+       Regional               Nature & Natural Resources
+
+                              Environmental protection agencies (e.g. EPA, NEPA) · Clean Air & Clean Water Acts · Environmental Impact
+       National               Assessment (EIA) laws
+
+          Local               City zoning & land-use regulations · Waste management by-laws · Local air quality monitoring programs
+
+Introduction to Environmental Studies | First Year Lecture
+
+The UN Sustainable Development Goals (SDGs)
+17 goals to achieve a better future by 2030
+
+   Adopted in 2015 by all 193 UN member states, the SDGs provide a shared blueprint for peace and prosperity for people and
+   the planet.
+
+   SDG 1                                                     SDG 3                       SDG 6
+
+   No Poverty                                                Good Health                 Clean Water
+
+   SDG 7                                                     SDG 11                      SDG 13
+
+   Clean Energy                                              Sustainable Cities          Climate Action
+
+   SDG 14                                                    SDG 15                      SDG 17
+
+   Life Below Water                                          Life on Land                Partnerships
+
+Introduction to Environmental Studies | First Year Lecture
+
+Environmental Ethics
+How should humans relate to the natural world?
+
+   Anthropocentrism                                                    Biocentrism
+
+   Humans are the central or most significant species. Nature has      All living organisms have inherent value. Associated with
+   value only insofar as it benefits people. Dominant in Western       thinkers like Albert Schweitzer ('reverence for life') and Peter
+   industrial thought.                                                 Singer.
+
+   Ecocentrism                                                         Environmental Justice
+
+   The entire ecosystem has intrinsic value. Associated with Aldo      Environmental burdens (pollution, climate impacts) fall
+   Leopold's 'Land Ethic' — what is right preserves the integrity of   disproportionately on marginalized communities. Justice
+   the biotic community.                                               demands equitable distribution of risks and benefits.
+
+Introduction to Environmental Studies | First Year Lecture
+
+Case Study: Environmental Challenges in Ghana
+Connecting global concepts to local realities
+
+            Water & Sanitation                                                  Deforestation
+
+   Less than 15% of the population has access to safely managed
+                                                                         Ghana has lost over 90% of its forest cover since 1900. Illegal
+   sanitation. Open defecation and river dumping remain widespread
+                                                                         logging (galamsey) and charcoal production are major drivers.
+   challenges.
+
+            Galamsey & Mining Pollution                                         Solid Waste Management
+
+   Illegal artisanal gold mining contaminates rivers including the Pra   Accra generates over 2,000 tonnes of waste daily; collection rates
+   and Ankobra, threatening water supplies for millions.                 are below 70%. E-waste at Agbogbloshie is a global concern.
+
+Introduction to Environmental Studies | First Year Lecture
+
+Tools & Methods in Environmental Studies
+How we investigate environmental problems
+
+            Field Sampling & Lab Analysis                                         Remote Sensing & GIS
+
+   Collecting soil, water, and air samples for chemical, biological, and   Satellite imagery and Geographic Information Systems (GIS) to map
+   physical analysis.                                                      land use, deforestation, and pollution.
+
+            Environmental Impact Assessment                                       Social Surveys & Participatory Research
+
+   EIA evaluates the potential effects of proposed projects on the         Interviews, focus groups, and community-based research to
+   environment before decisions are made.                                  understand human dimensions of environmental issues.
+
+            Life Cycle Assessment (LCA)                                           Systems Thinking & Modelling
+
+   Evaluates the environmental impact of a product 'from cradle to         Computer models simulate complex interactions in climate,
+   grave' — from raw materials to disposal.                                ecological, or economic systems over time.
+
+Introduction to Environmental Studies | First Year Lecture
+
+Careers in Environmental Studies
+Where can this degree take you?
+
+      Government &              Environmental officer, policy analyst,   NGOs & Civil    Conservation officer, advocacy
+         Policy                 urban planner, regulator                   Society       coordinator, project manager
+
+                                Sustainability manager, ESG analyst,      Research &     Environmental scientist, lecturer, think-
+      Private Sector
+                                environmental consultant                   Academia      tank researcher
+
+                                UNEP, World Bank, FAO — programme        Engineering &   Environmental engineer, waste
+    International Orgs
+                                officers, technical advisors               Planning      management specialist, EIA consultant
+
+Introduction to Environmental Studies | First Year Lecture
+
+                                           Key Takeaways
+Environmental Studies is inherently interdisciplinary — science, policy, ethics, and social dimensions all matter.
+
+Ecosystems provide services essential for human wellbeing; biodiversity loss threatens these services.
+
+Climate change is the most urgent global environmental challenge, requiring both mitigation and adaptation.
+
+Pollution, resource depletion, and habitat destruction are interconnected crises demanding systemic solutions.
+
+The SDGs provide a global framework; local action — like Ghana's sanitation challenges — is equally vital.
+
+Environmental scientists use diverse methods: field work, modelling, GIS, policy analysis, and community research.
+
+CHAPTER 02
+
+Natural Resources
+
+Types, Uses, Overexploitation & Conservation Strategies
+
+Chapter 2 – Types of Natural Resources
+
+Renewable Resources                      Non-Renewable Resources
+
+ •    Solar & Wind Energy                •    Fossil Fuels (Coal, Oil, Natural Gas)
+ •    Water (Rainfall & Rivers)          •    Minerals & Metal Ores
+ •    Forests & Vegetation               •    Land (finite area)
+ •    Air (Atmosphere)                   •    Nuclear minerals (Uranium, Thorium)
+ •    Soil (sustainably managed)         •    Groundwater (overdrawn)
+ •    Living organisms & biodiversity    •    Non-metallic minerals
+
+Chapter 2 – Major Resource Categories
+
+Forest Resources                  Water Resources                   Mineral Resources                   Energy Resources
+
+Provide timber, fuel, fodder &    Dams, rivers, groundwater for     Metallic & non-metallic minerals.   Fossil fuels are finite; renewables
+habitat. Deforestation leads to   irrigation & drinking. Overuse    Mining causes habitat               (solar, wind, hydro) are essential
+soil erosion, climate change &    causes depletion, conflicts and   destruction, land degradation &     for a sustainable energy future.
+biodiversity loss.                drought.                          pollution.
+
+Chapter 2 – Conservation & Sustainable Use
+
+Conservation Strategies                  Sustainable Practices
+
+ •    Reduce, Reuse & Recycle (3Rs)          •   Fuel-efficient technologies
+ •    Rainwater harvesting                   •   Organic & precision farming
+ •    Watershed management                   •   Integrated water management
+ •    Community forest management            •   Alternative energy promotion
+ •    Protected area networks                •   Wildlife trade regulation (CITES)
+ •    Environmental laws & regulations       •   International conventions (Ramsar, CBD)
+
+CHAPTER 03
+
+Ecosystems
+
+Structure, Function, Energy Flow & Nutrient Cycling
+
+Chapter 3 – Types of Ecosystems
+
+Forest Ecosystem                    Grassland Ecosystem                  Aquatic Ecosystem             Desert Ecosystem
+
+Tropical, temperate & boreal        Tropical savannas and temperate      Freshwater (lakes, rivers,    Extreme temperature & low
+forests. High biodiversity; major   prairies. Support large herbivores   wetlands) & marine (oceans,   rainfall. Highly adapted
+carbon sinks of the planet.         and specialized flora.               estuaries, coral reefs).      xerophytic plants and specialized
+                                                                                                       fauna.
+
+Chapter 3 – Ecosystem Structure & Function
+
+Structural Components                              Ecosystem Functions
+
+ •    Producers (Autotrophs) – Plants, Algae       •    Energy flow: Sun → Producers → Consumers
+ •    Primary, Secondary & Tertiary Consumers      •    10% Energy Transfer Rule per trophic level
+ •    Decomposers & Detritivores                   •    Food chains & complex food webs
+ •    Abiotic components (sunlight, water, soil)   •    Biogeochemical cycles (C, N, P, S, W)
+ •    Habitat & Niche concept                      •    Carbon, Nitrogen & Phosphorus cycles
+ •    Trophic levels & ecological pyramids         •    Succession – Primary & Secondary types
+
+CHAPTER 04
+
+Biodiversity & Its Conservation
+
+Genetic, Species & Ecosystem Diversity – Value, Threats & Protection
+
+Chapter 4 – Levels & Value of Biodiversity
+
+Genetic Diversity                   Species Diversity                 Ecosystem Diversity                Value of Biodiversity
+
+Variation within species enabling   Variety of species in a region.   Variety of habitats, communities   Direct (food, medicine, timber) &
+adaptation. Essential for crop      India is a mega-diverse country   & ecological processes across      indirect (pollination, water
+improvement & disease               with unique endemic species.      landscapes.                        purification, climate regulation).
+resistance.
+
+Chapter 4 – Threats & Conservation Approaches
+
+Major Threats to Biodiversity             Conservation Methods
+
+ •    Habitat loss & fragmentation        •    In-situ: National Parks, Sanctuaries, Biosphere
+ •    Overexploitation of wild species         Reserves
+
+ •    Invasive alien species              •    Ex-situ: Zoos, Botanical Gardens, Gene Banks
+
+ •    Climate change & global warming     •    IUCN Red List categories for threatened species
+
+ •    Pollution of air, water & soil      •    Biodiversity hotspots (34 globally identified)
+
+ •    Poaching & illegal wildlife trade   •    Convention on Biological Diversity (CBD)
+                                          •    Wildlife Protection Act & CITES enforcement
+
+CHAPTER 05
+
+Environmental Pollution
+
+Causes, Effects & Control of Air, Water, Soil, Noise & Radioactive Pollution
+
+Chapter 5 – Types of Environmental Pollution
+
+Air Pollution                      Water Pollution                 Soil Pollution                       Noise Pollution
+
+SO₂, NOₓ, CO, PM from industries   Industrial effluents, sewage,   Pesticides, heavy metals & plastic   Transport, industrial noise >85
+& vehicles. Causes smog, acid      agricultural runoff causing     waste degrade soil health and        dB causes hearing loss and
+rain & respiratory diseases.       eutrophication & waterborne     agricultural productivity.           psychological stress.
+                                   diseases.
+
+Chapter 5 – Effects & Control Measures
+
+Environmental & Health Effects                   Pollution Control Measures
+
+ •    Greenhouse effect & global warming         •    Electrostatic precipitators & scrubbers
+ •    Ozone layer depletion (CFCs)               •    Effluent Treatment Plants (ETP)
+ •    Acid rain damaging forest & water bodies   •    Catalytic converters in vehicles
+ •    Bioaccumulation & biomagnification         •    Bioremediation of contaminated soil
+ •    Health impacts: cancer, asthma, cholera    •    Solid Waste Management systems
+ •    Soil degradation & reduced crop yield      •    Environmental legislation (EPA, Water Act, Air Act)
+
+Chapter 5 – Solid & Hazardous Waste Management
+
+ Municipal Solid Waste                                             Biomedical Waste
+
+ Segregation at source, composting, sanitary landfill, waste-to-   Categorized hospital waste; autoclaving & high-temp incineration
+ energy incineration.                                              required.
+
+ Industrial Hazardous Waste                                        E-Waste Management
+
+ Toxic chemicals & heavy metals; secure landfills & chemical       Lead & mercury in electronics; authorized recyclers & extended
+ neutralization.                                                   producer responsibility.
+
+ Radioactive Waste                                                 3Rs Principle
+
+ Nuclear plant waste stored in deep geological repositories with   Reduce → Reuse → Recycle: circular economy principles minimize
+ strict protocols.                                                 waste at source.
+
+CHAPTER 06
+
+Social Issues & the Environment
+
+Sustainability, Environmental Movements, Legislation & Urban Challenges
+
+Chapter 6 – Key Social & Environmental Issues
+
+Sustainable Development          Urban Environmental Issues         Water Conservation                Resettlement Issues
+
+Meeting present needs without    Unplanned growth, slums, water     Watershed programs, rainwater     Displacement from dams, mining
+compromising future              scarcity, traffic pollution &      harvesting, groundwater           & protected areas affects
+generations. Balances economy,   inadequate sanitation in cities.   recharge & efficient irrigation   indigenous & vulnerable
+environment & equity.                                               systems.                          communities.
+
+Chapter 6 – Environmental Movements & Legislation
+
+Notable Environmental Movements                            Key Environmental Legislation
+
+ •    Chipko Movement (1973) – Save Himalayan forests      •     Environment Protection Act, 1986
+ •    Narmada Bachao Andolan – dam displacement            •     Wildlife Protection Act, 1972
+ •    Silent Valley Movement – Kerala rainforest           •     Forest Conservation Act, 1980
+ •    Bishnoi Community – wildlife conservation            •     Water (Prevention & Control of Pollution) Act, 1974
+ •    Green Belt Movement (Wangari Maathai, Kenya)         •     Air (Prevention & Control of Pollution) Act, 1981
+ •    Earth Summit 1992, Kyoto Protocol, Paris Agreement   •     National Green Tribunal (NGT) Act, 2010
+
+CHAPTER 07
+
+Human Population & the
+Environment
+Population Dynamics, Urbanization, Climate Change & Sustainability
+
+Chapter 7 – Population Growth & Resource Linkage
+
+Population Dynamics                                Environmental Impacts
+
+ •    World population > 8 billion (2023)          •    Over-consumption of natural resources
+ •    Demographic transition model stages          •    Increased solid & liquid waste generation
+ •    Population explosion in developing nations   •    Habitat destruction for agriculture & housing
+ •    Carrying capacity of the Earth               •    Urbanization and land use change
+ •    Malthusian theory of population growth       •    Increased GHG emissions & climate change
+ •    IPAT equation: I = P × A × T                 •    Food security and freshwater stress
+ I — Impact.
+ P — Population.
+ A — Affluence.
+ T — Technology.
+
+Chapter 7 – Climate Change, Rights & Sustainability
+
+Greenhouse Effect                    Climate Change Impacts              Human Rights & Environment        Sustainable Consumption
+
+CO₂, CH₄, N₂O trap heat. Global      Rising sea levels, extreme          Clean water, clean air & a safe   Ethical consumption, reducing
+avg. temp rising ~1.2°C above        weather events, melting glaciers,   environment recognized as         carbon footprint, renewable
+pre-industrial levels (IPCC 2023).   desertification & ecosystem         fundamental human rights          energy adoption & green lifestyle
+                                     disruption.                         globally.                         choices.
+
+Chapter 8 – Case Studies & Fieldwork Methodology
+
+Notable Environmental Case Studies                              Fieldwork Methodology
+
+ •    Bhopal Gas Tragedy (1984) – industrial disaster &         •    Structured field observations & species transects
+      governance failure – Group 1.                             •    Systematic documentation of habitats & threats
+ •    Chernobyl Nuclear Accident (1986) & radiation             •    Collection & analysis of environmental samples
+      impacts – Group 2.
+                                                                •    Use of GIS & remote sensing for spatial analysis
+ •    Ganga Action Plan – river pollution & remediation –
+      Group 3.                                                  •    Preparation of environmental impact reports
+ •    Project Tiger – wildlife conservation success story –     •    Community-based conservation action plans
+      Group 4.
+ •    Kerala Floods (2018) & climate vulnerability – Group 5.
+ •    Aral Sea disappearance – water mismanagement –
+      Group 6.
+
+Key Takeaways
+
+•   The environment is a shared responsibility of all stakeholders
+•   Conservation requires scientific understanding paired with policy action
+•   Sustainable development balances economy, ecology & social equity
+•   Pollution control demands technology, legislation & public awareness
+•   Biodiversity protection is essential for maintaining ecosystem services
+•   Individual behaviour change drives collective environmental health
+
+                                   "The Earth does not belong to us; we belong to the Earth."
